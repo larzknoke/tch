@@ -22,6 +22,7 @@ export function HeaderVideo() {
         controlsOFF
         autoPlay
         loop
+        playsInline
         preload="auto"
         className="hidden md:block"
       >
