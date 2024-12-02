@@ -36,7 +36,7 @@ function Vorstand() {
   ];
 
   return (
-    <div className=" my-20">
+    <div className=" my-20 px-5 md:px-0">
       <HeaderText text="Vorstand" />
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 my-10">
         {vorstand.map((position) => {
@@ -51,7 +51,7 @@ function Vorstand() {
               <h3>{position.name}</h3>
               <p className="mt-2">{position.taetigkeit}</p>
               <a
-                className="text-tch-blue mt-3"
+                className="text-tch-blue mt-3 text-xs md:text-base"
                 href="mailto:max.mustermann@tc1928.de"
               >
                 max.mustermann@tc1928.de

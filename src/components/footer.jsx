@@ -32,7 +32,7 @@ function Footer() {
               E-Mail sport@tc1928.de
             </p>
           </div>
-          <div className="flex flex-row  md:flex-col w-full md:w-1/4 gap-3 whitespace-nowrap">
+          <div className="flex flex-row  md:flex-col w-full md:w-1/4 gap-3">
             <p>Der Club</p>
             <p>News & Neuigkeiten</p>
             <p>Teams</p>

@@ -11,8 +11,8 @@ function Aufnahme() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-row gap-10 my-20">
-      <div className="w-1/2">
+    <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
+      <div className="w-full md:w-1/2">
         <HeaderText text="Mitgliedschaft & Antrag" />
         <div className="flex flex-col gap-6">
           <h3>
@@ -43,7 +43,7 @@ function Aufnahme() {
           <Button className={"mt-5"}>So wirst du Mitglied</Button>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-8">
           <Image
             src="/images/gelaende/gelaende_aussen_2.jpg"

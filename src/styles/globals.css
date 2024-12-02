@@ -38,7 +38,7 @@ body {
 }
 
 h1 {
-  @apply text-4xl font-bold text-tch-blue;
+  @apply text-3xl md:text-4xl font-bold text-tch-blue;
 }
 h2 {
   @apply text-3xl font-bold text-tch-blue;
@@ -108,4 +108,8 @@ h4 {
 
 .nav-item span {
   @apply pb-2 bg-[left_90%] bg-gradient-to-r from-white to-white bg-[length:0%_1px] bg-no-repeat  transition-all duration-300 ease-out;
+}
+
+.mobile-nav-item {
+  @apply flex flex-col gap-7 text-xl  uppercase text-white w-full transition-all ease-in-out	duration-500;
 }

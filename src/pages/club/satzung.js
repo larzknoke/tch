@@ -1,16 +1,13 @@
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import Button from "@/components/ui/button";
 
 function Satzung() {
   return (
-    <div className="flex flex-row gap-10 my-20">
-      <div className="w-1/2">
+    <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
+      <div className="w-full md:w-1/2">
         <HeaderText text="Satzung" />
         <div className="flex flex-col gap-6">
           <h3>Hier findest du unsere aktuelle Satzung</h3>
@@ -40,7 +37,7 @@ function Satzung() {
           </p>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-8">
           <Image
             src="/images/gallery/gal8.jpg"

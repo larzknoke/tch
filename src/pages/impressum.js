@@ -9,10 +9,10 @@ import Button from "@/components/ui/button";
 
 function Kontakt() {
   return (
-    <div className="flex flex-row gap-10 my-20">
-      <div className="w-1/2">
+    <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
+      <div className="w-full md:w-1/2">
         <HeaderText text="Impressum" />
-        <div className="flex flex-col gap-6 my-10">
+        <div className="flex flex-col gap-6 my-5 md:my-10">
           <div className="flex flex-col gap-4">
             <h4>Tennis Club Holzminden von 1928 e.V </h4>
             <p>
@@ -32,7 +32,7 @@ function Kontakt() {
           </div>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-8">
           <Image
             src="/images/gallery/gal9.jpg"

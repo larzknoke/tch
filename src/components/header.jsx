@@ -56,18 +56,18 @@ function Header() {
           onClick={() => handleNav()}
         >
           <XMarkIcon
-            className={`absolute size-10 pt-1 transition-all delay-100 ${
+            className={`absolute size-10 pt-1 transition-all  ${
               navOpen ? "rotate-0 " : "rotate-90 opacity-0"
             }`}
           />
           <Bars3Icon
-            className={`absolute size-10 pt-1 transition-all delay-100 ${
+            className={`absolute size-10 pt-1 transition-all  ${
               navOpen ? "rotate-90 opacity-0" : "rotate-0  "
             }`}
           />
         </div>
       </div>
-      <MobileNav navOpen={navOpen} />
+      <MobileNav navOpen={navOpen} setNavOpen={setNavOpen} />
     </header>
   );
 }

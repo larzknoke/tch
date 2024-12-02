@@ -9,8 +9,8 @@ import Button from "@/components/ui/button";
 
 function Datenschutz() {
   return (
-    <div className="flex flex-row gap-10 my-20">
-      <div className="w-2/3">
+    <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
+      <div className="w-full md:w-2/3">
         <HeaderText text="Datenschutz" />
         <div className="flex flex-col gap-6 my-10">
           <p>
@@ -2398,7 +2398,7 @@ function Datenschutz() {
           </p>
         </div>
       </div>
-      <div className="w-1/3">
+      <div className="w-full md:w-1/3">
         <div className="flex flex-col gap-8">
           <Image
             src="/images/gallery/gal9.jpg"

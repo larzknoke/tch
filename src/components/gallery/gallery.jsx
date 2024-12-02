@@ -5,7 +5,7 @@ function Gallery() {
   return (
     <div className="p-5 md:p-0">
       <HeaderText text="GALLERY" />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4">
         <div className="grid gap-4">
           <GalleryItem img={"images/gallery/gal1.jpg"} />
           <GalleryItem img={"images/gallery/gal2.jpg"} />
