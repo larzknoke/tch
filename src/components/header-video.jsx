@@ -10,6 +10,7 @@ export function HeaderVideo() {
           width="800"
           height="600"
           className="h-60 object-cover absolute"
+          priority
         />
         <h2 className="text-white absolute bottom-5 left-5">
           100 Jahre Tennis <br /> in Holzminden
