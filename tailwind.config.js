@@ -25,6 +25,7 @@ module.exports = {
       },
       screens: {
         xl: "1000px",
+        "2xl": "1000px",
       },
     },
   },
