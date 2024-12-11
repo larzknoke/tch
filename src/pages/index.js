@@ -6,6 +6,8 @@ import ScoreWrapper from "@/components/scores/score-wrapper";
 import MemberBox from "@/components/member-box";
 import Gallery from "@/components/gallery/gallery";
 import NewsLetter from "@/components/newsletter/newsletter";
+import ScheduleItem from "@/components/schedule/schedule-item";
+import ScheduleWrapper from "@/components/schedule/schedule-wrapper";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,8 +26,13 @@ export default function Home() {
       <HeaderVideo />
       <NewsWrapper />
       <div className="flex flex-col md:flex-row w-full justify-between gap-4">
-        <ScoreWrapper />
-        <DateWrapper />
+        <div className="flex flex-col gap-4 w-2/3">
+          <ScoreWrapper />
+          <ScheduleWrapper />
+        </div>
+        <div className=" w-1/3">
+          <DateWrapper />
+        </div>
       </div>
       <MemberBox />
       <Gallery />

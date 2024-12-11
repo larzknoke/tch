@@ -1,13 +1,13 @@
 import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
-import ScoreHeader from "./score-header";
-import ScoreItem from "./score-item";
-import ScheduleItem from "../schedule/schedule-item";
 import { useState, useEffect } from "react";
+import ScheduleItem from "./schedule-item";
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import Link from "next/link";
 import Spinner from "../ui/loading";
+dayjs.extend(customParseFormat);
 
-function ScoreWrapper() {
+function ScheduleWrapper() {
   const [isLoading, setIsLoading] = useState(true);
   const [scheduleData, setScheduleData] = useState();
 
@@ -16,7 +16,7 @@ function ScoreWrapper() {
     const tableData = await data.json();
     const fiterTableData = tableData.filter((e) => {
       return (
-        dayjs(e.Datum2, "DD.MM.YYYY HH:mm") < dayjs() &&
+        dayjs(e.Datum2, "DD.MM.YYYY HH:mm") > dayjs().subtract(1, "day") &&
         e.Spielbericht != "zurückgezogen"
       );
     });
@@ -30,9 +30,8 @@ function ScoreWrapper() {
   }, []);
 
   return (
-    <div className="bg-tch-blue p-5 py-8 md:p-10 relative w-full">
-      <ScoreHeader />
-      <h1 className="text-white mb-5">Aktuelle Ergebnisse</h1>
+    <div className="bg-tch-blue p-5 py-8 md:p-10 relative w-full ">
+      <h1 className="text-white mb-5">Nächsten Spiele</h1>
       {!isLoading && scheduleData ? (
         scheduleData.map((schedule, index) => {
           return <ScheduleItem key={index} schedule={schedule} />;
@@ -58,4 +57,4 @@ function ScoreWrapper() {
   );
 }
 
-export default ScoreWrapper;
+export default ScheduleWrapper;

@@ -47,7 +47,7 @@ function Header() {
         <nav className="hidden md:flex font-light gap-7 text-lg self-center main-nav uppercase">
           <NavItemClub />
           <Link href={"/news"}>NEWS & NEUIGKEITEN</Link>
-          <span>TEAMS</span>
+          <Link href={"/teams"}>TEAMS</Link>
           <span>TRAINING</span>
           <Link href={"/kontakt"}>Kontakt</Link>
         </nav>

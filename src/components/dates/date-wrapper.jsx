@@ -4,9 +4,9 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 
 function DateWrapper() {
   return (
-    <div className="bg-tch-blue p-5 py-8 md:p-10 relative w-full md:w-1/3">
+    <div className="bg-tch-blue p-5 py-8 md:p-10 relative w-full h-fullOFF">
       <DateHeader />
-      <h1 className="text-white mb-5">Termine</h1>
+      <h1 className="text-white mb-5">Kalender/Termine</h1>
       <DateItem />
       <DateItem />
       <DateItem />
