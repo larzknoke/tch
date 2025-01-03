@@ -1,7 +1,7 @@
 import { TrophyIcon, CalendarIcon } from "@heroicons/react/16/solid";
 import dayjs from "dayjs";
 
-function ScheduleItem({ schedule }) {
+function ScheduleItem2({ schedule }) {
   function winner(schedule, side) {
     if (side == "heim") {
       return schedule.Matchpunkte.split(":")[0] >
@@ -17,7 +17,7 @@ function ScheduleItem({ schedule }) {
   }
 
   return (
-    <div className="flex flex-row text-white py-4 gap-4">
+    <div className="flex flex-row bg-tch-blue text-white py-6 px-7 gap-4 rounded-xl shadow-xl">
       <div className="flex flex-col w-full">
         <div className="flex flex-col gap-2">
           <div className="flex flex-row gap-2">
@@ -58,4 +58,4 @@ function ScheduleItem({ schedule }) {
   );
 }
 
-export default ScheduleItem;
+export default ScheduleItem2;

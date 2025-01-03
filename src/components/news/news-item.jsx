@@ -1,25 +1,25 @@
 import Image from "next/image";
 
-function NewsItem() {
+function NewsItem({ index }) {
   return (
-    <div className="flex pb-10 gap-7">
-      <div className=" flex-row hidden md:flex ">
+    <div className="flex flex-col rounded bg-gray-200 hover:cursor-pointer news-item">
+      <div className=" flex-row hidden md:flex overflow-hidden ">
         <Image
-          src="/images/news/news-dummy1.jpg"
+          src={`/images/news/news-dummy${index}.jpg`}
           alt="TCH Logo"
           width="320"
           height="205"
-          className="w-96 object-cover"
+          className="w-full object-cover h-52"
         />{" "}
       </div>
-      <div className=" self-end pb-5 gap-1 flex flex-col text-tch-blue">
-        <div>09. September 2024</div>
+      <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
+        <div className="absolute -top-3 right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
+          09. September 2024
+        </div>
         <h2>Sommerfest 2024</h2>
         <div className="max-w-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus nihil
-          autem architecto, fugit suscipit harum, voluptatum odio animi neque,
-          nostrum quae porro reprehenderit voluptas nisi. Temporibus vel hic
-          molestiae enim!
+          autem architecto...
         </div>
       </div>
     </div>

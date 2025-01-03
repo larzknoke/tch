@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Roboto_Condensed } from "next/font/google";
+import Link from "next/link";
 
 const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
 
@@ -40,8 +41,8 @@ function Footer() {
             <p>Kontakt</p>
           </div>
           <div className="flex flex-row md:flex-col w-full md:w-1/4 gap-3">
-            <p>Impressum</p>
-            <p>Datenschutzerklärung</p>
+            <Link href={"datenschutz"}>Datenschutz</Link>
+            <Link href={"impressum"}>Impressum</Link>
           </div>
         </div>
       </div>
@@ -49,7 +50,7 @@ function Footer() {
         className={`text-tch-blue px-10 md:px-0 py-3 text-sm1 ${roboto_cond.className}`}
       >
         <div className="container mx-auto flex flex-row gap-10">
-          © 2024 TC Holzminden von 1928 e.V.
+          © 2025 TC Holzminden von 1928 e.V.
         </div>
       </div>
     </>

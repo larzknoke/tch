@@ -36,28 +36,28 @@ function NavItemClub() {
         className="flex items-center gap-2 focus:outline-none"
       >
         DER CLUB
-        <ChevronDownIcon className="size-5 group-data-[open]:rotate-180" />
+        {/* <ChevronDownIcon className="size-5 group-data-[open]:rotate-180" /> */}
       </PopoverButton>
       <PopoverPanel
-        anchor={{ to: "bottom start", gap: "10px" }}
+        anchor={{ to: "bottom start", gap: "20px" }}
         transition
         className="nav-item-dropdown"
       >
         <a className="nav-item group" href="/club/gelaende">
-          <span className="group-hover:bg-[length:100%_1px]">
+          <span className="group-hover:bg-[length:100%_2px]">
             Clubgelände & Anfahrt
           </span>
         </a>
         <a className="nav-item group" href="/club/vorstand">
-          <span className="group-hover:bg-[length:100%_1px]">Vorstand</span>
+          <span className="group-hover:bg-[length:100%_2px]">Vorstand</span>
         </a>
         <a className="nav-item group" href="/club/aufnahme">
-          <span className="group-hover:bg-[length:100%_1px]">
+          <span className="group-hover:bg-[length:100%_2px]">
             Aufnahmeantrag
           </span>
         </a>
         <a className="nav-item group" href="/club/satzung">
-          <span className="group-hover:bg-[length:100%_1px]">Satzung</span>
+          <span className="group-hover:bg-[length:100%_2px]">Satzung</span>
         </a>
       </PopoverPanel>
     </Popover>

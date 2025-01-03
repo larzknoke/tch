@@ -3,11 +3,13 @@ import Button from "./ui/button";
 
 function MemberBox() {
   return (
-    <div className="w-full flex p-10 md:p-20 member-box flex-col text-tch-blue">
-      <p>Teil der Mannschaft werden</p>
-      <h2>MITGLIED WERDEN</h2>
+    <div className="w-full flex p-10 md:p-20 md:px-30 member-box flex-col text-tch-blue rounded border-b-4 border-tch-gold">
+      <p className="uppercase text-2xl font-bold text-tch-gold underline underline-offset-4 mb-3">
+        Teil der Mannschaft werden
+      </p>
+      <h2 className="text-4xl">MITGLIED WERDEN</h2>
       <p
-        className=" max-w-xl mt-2
+        className="text-lg max-w-xl mt-2
       "
       >
         Um Mitglied zu werden, fülle bitte das Online Anmeldeformular aus und

@@ -4,13 +4,16 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 
 function DateWrapper() {
   return (
-    <div className="bg-tch-blue p-5 py-8 md:p-10 relative w-full h-fullOFF">
+    <div className=" relative w-full rounded">
       <DateHeader />
-      <h1 className="text-white mb-5">Kalender/Termine</h1>
-      <DateItem />
-      <DateItem />
-      <DateItem />
-      <h3 className="text-white mt-16 flex items-center gap-1">
+      <h1 className="text-tch-blue mb-5">Kalender/Termine</h1>
+      <div className="flex flex-col gap-4">
+        <DateItem />
+        <DateItem />
+        <DateItem />
+        <DateItem />
+      </div>
+      <h3 className="text-tch-blue mt-5 flex items-center gap-1">
         Alle Termine
         <ChevronDoubleRightIcon className="size-5" />
       </h3>

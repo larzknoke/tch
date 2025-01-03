@@ -18,14 +18,16 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         "tch-blue": "#19416a",
+        "tch-blue-semi": "#6E97C0",
         "tch-blue-light": "#ECF0F3",
+        "tch-gold": "#C0A26E",
       },
       listStyleType: {
         square: "square",
       },
       screens: {
-        xl: "1000px",
-        "2xl": "1000px",
+        xl: "1200px",
+        "2xl": "1200px",
       },
     },
   },

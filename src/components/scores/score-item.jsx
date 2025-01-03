@@ -10,8 +10,8 @@ function ScoreItem({ schedule }) {
             {schedule.Liga} /{" "}
             {`${schedule.Datum} ${schedule.Datum2} ${schedule.Datum3}`}
           </div>
-          <div className="flex justify-between flex-row ">
-            <div className="flex flex-col  md:flex-row gap-1 md:gap-4">
+          <div className="flex justify-between flex-col ">
+            <div className="flex">
               <div className="font-semibold text-xl">
                 {schedule.Heimmannschaft.replace("[Routenplan]", "").trim()}
               </div>

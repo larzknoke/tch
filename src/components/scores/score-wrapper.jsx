@@ -30,18 +30,18 @@ function ScoreWrapper() {
   }, []);
 
   return (
-    <div className="bg-tch-blue p-5 py-8 md:p-10 relative w-full">
+    <div className="bg-tch-blue p-5 py-8 md:p-8 relative w-full rounded shadow-2xl">
       <ScoreHeader />
       <h1 className="text-white mb-5">Aktuelle Ergebnisse</h1>
       {!isLoading && scheduleData ? (
-        scheduleData.map((schedule, index) => {
+        scheduleData.slice(-5).map((schedule, index) => {
           return <ScheduleItem key={index} schedule={schedule} />;
         })
       ) : (
         <Spinner />
       )}
       <div className="flex flex-row gap-10">
-        <h3 className="text-white mt-16 flex items-center gap-1">
+        <h3 className="text-white mt-10 flex items-center gap-1 uppercase">
           <Link
             target="_blank"
             href={
