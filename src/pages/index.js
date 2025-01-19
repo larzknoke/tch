@@ -23,30 +23,30 @@ const geistMono = localFont({
 
 export default function Home() {
   return (
-    <div className="flex flex-col  gap-24 py-20">
-      <div className="flex gap-16">
-        <div className="w-2/3">
+    <div className="flex flex-col  gap-20 md:gap-24 py-10">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+        <div className="w-full md:w-2/3">
           <NewsWrapper />
         </div>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <ScoreWrapper />
         </div>
       </div>
       {/* <HeaderVideo /> */}
       <MemberBox />
-      <div className="flex flex-col md:flex-row w-full justify-between gap-20">
-        <div className="flex flex-col gap-10 w-2/3">
+      <div className="flex flex-col md:flex-row w-full justify-between gap-10 md:gap-20">
+        <div className="flex flex-col gap-10 w-full md:w-2/3 px-5 md:px-0">
           {/* <ScheduleWrapper /> */}
-          <div className="flex flex-row rounded bg-gray-200 hover:cursor-pointer min-h-48">
+          <div className="flex flex-col md:flex-row rounded bg-gray-200 hover:cursor-pointer min-h-48">
             <Image
               src={`/images/news/news-dummy2.jpg`}
               alt="TCH Logo"
               width="320"
               height="205"
-              className=" object-cover rounded-l w-80"
+              className=" object-cover rounded-t md:rounded-l w-full md:w-80"
             />{" "}
             <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
-              <div className="absolute -top-2 right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
+              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
                 Training
               </div>
               <h2>Kinder und Jugend Training</h2>
@@ -59,16 +59,16 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-row rounded bg-gray-200 hover:cursor-pointer min-h-48">
+          <div className="flex flex-col md:flex-row rounded bg-gray-200 hover:cursor-pointer min-h-48">
             <Image
               src={`/images/halle1.jpg`}
               alt="TCH Logo"
               width="320"
               height="205"
-              className=" object-cover w-80 rounded-l"
+              className=" object-cover rounded-t md:rounded-l w-full md:w-80"
             />{" "}
             <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
-              <div className="absolute -top-2 right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
+              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
                 Halle
               </div>
               <h2>Hallenbuchung/Hallenordnung</h2>
@@ -80,7 +80,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className=" w-1/3 px-5">
+        <div className="w-full md:w-1/3 px-5">
           <DateWrapper />
         </div>
       </div>

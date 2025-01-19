@@ -3,7 +3,7 @@ import Button from "./ui/button";
 
 function MemberBox() {
   return (
-    <div className="w-full flex p-10 md:p-20 md:px-30 member-box flex-col text-tch-blue rounded border-b-4 border-tch-gold">
+    <div className="w-full flex p-10 md:p-20 md:px-30 member-box flex-col text-tch-blue rounded border-b-4 md:border-tch-gold">
       <p className="uppercase text-2xl font-bold text-tch-gold underline underline-offset-4 mb-3">
         Teil der Mannschaft werden
       </p>

@@ -38,9 +38,11 @@ function ScheduleWrapper() {
   }, []);
 
   return (
-    <div className=" py-8 md:py-10 relative w-full">
+    <div className=" py-0 md:py-10 relative w-full">
       {/* <h1 className="text-tch-blue   mb-5">Nächsten Spiele</h1> */}
-      <HeaderText text={"Nächsten Spiele"} />
+      <div className="px-3 md:px-0">
+        <HeaderText text={"Nächsten Spiele"} />
+      </div>
       {!isLoading && scheduleData ? (
         <div className="embla" ref={emblaRef}>
           <div className="embla__container schedule-slide-container">
@@ -56,7 +58,7 @@ function ScheduleWrapper() {
       ) : (
         <Spinner />
       )}
-      <div className="flex flex-row gap-10">
+      <div className="flex flex-row gap-10 px-3 md:px-0">
         <h3 className="text-tch-blue mt-6 flex items-center gap-1">
           <Link
             target="_blank"

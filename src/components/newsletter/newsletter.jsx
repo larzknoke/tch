@@ -2,7 +2,7 @@ import Button from "../ui/button";
 
 function NewsLetter() {
   return (
-    <div className="bg-tch-blue p-10 relative text-white flex flex-col md:flex-row gap-12 md:gap-4 rounded">
+    <div className="bg-tch-blue p-8 md:p-10 relative text-white flex flex-col md:flex-row gap-12 md:gap-4 rounded mx-5 md:mx-0">
       <div className="flex flex-col gap-5 w-full md:w-1/2">
         <h1 className="text-white">
           TENNIS IN HOLZMINDEN SEIT 1928. <br /> TRADITION. ENGAGEMENT. ERFOLG.

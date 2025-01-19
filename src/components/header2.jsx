@@ -14,7 +14,7 @@ const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
 function Header2() {
   const [navOpen, setNavOpen] = useState(false);
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 5000, stopOnHover: true }),
+    Autoplay({ delay: 500000, stopOnHover: true }),
   ]);
 
   function handleNav() {
@@ -25,7 +25,7 @@ function Header2() {
     <header className={`${roboto_cond.className} `}>
       <div className="absolute z-10 flex flex-col justify-between w-full">
         <div className="flex flex-row flex-nowrap  justify-between text-white items-center px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
-          <div className="h-5 text-white/85  flex flex-row gap-8 flex-1 flex-grow justify-start">
+          <div className="h-5 text-white/85 hidden md:flex flex-row gap-8 flex-1 flex-grow justify-start">
             <svg
               className="hover:text-white hover:cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ function Header2() {
               priority
             />
           </Link>
-          <div className="gap-4 flex flex-1 flex-grow justify-end">
+          <div className="gap-4 hidden md:flex flex-1 flex-grow justify-end">
             <Link
               className="border border-white border-opacity-50 rounded px-4 py-1 uppercase text-xs"
               href={"datenschutz"}
@@ -81,6 +81,21 @@ function Header2() {
               Impressum
             </Link>
           </div>
+          <div
+            className="text-white md:hidden cursor-pointer w-10 h-10"
+            onClick={() => handleNav()}
+          >
+            <XMarkIcon
+              className={`absolute size-10 pt-1 transition-all  ${
+                navOpen ? "rotate-0 " : "rotate-90 opacity-0"
+              }`}
+            />
+            <Bars3Icon
+              className={`absolute size-10 pt-1 transition-all  ${
+                navOpen ? "rotate-90 opacity-0" : "rotate-0  "
+              }`}
+            />
+          </div>
         </div>
         <nav className="hidden md:flex font-bold gap-7 text-lg self-center main-nav uppercase text-white py-6">
           <NavItemClub />
@@ -89,26 +104,11 @@ function Header2() {
           <span>TRAINING</span>
           <Link href={"/kontakt"}>Kontakt</Link>
         </nav>
-        <div
-          className=" md:hidden cursor-pointer w-10"
-          onClick={() => handleNav()}
-        >
-          <XMarkIcon
-            className={`absolute size-10 pt-1 transition-all  ${
-              navOpen ? "rotate-0 " : "rotate-90 opacity-0"
-            }`}
-          />
-          <Bars3Icon
-            className={`absolute size-10 pt-1 transition-all  ${
-              navOpen ? "rotate-90 opacity-0" : "rotate-0  "
-            }`}
-          />
-        </div>
       </div>
       <div className="embla" ref={emblaRef}>
-        <div className="embla__container  min-h-screen">
-          <div className="embla__slide header-slide relative bg-cover bg-[url('/images/header/header1.jpg')]">
-            <div className="absolute bottom-32 left-32">
+        <div className="embla__container min-h-[75vh]  md:min-h-screen">
+          <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header1.jpg')]">
+            <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
               <h1 className="text-white uppercase text-7xl font-black">
                 Header <br />
                 Hero Text
@@ -118,8 +118,8 @@ function Header2() {
               </p>
             </div>
           </div>
-          <div className="embla__slide header-slide relative bg-cover bg-[url('/images/header/header3.jpg')]">
-            <div className="absolute bottom-32 left-32">
+          <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header3.jpg')]">
+            <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
               <h1 className="text-white uppercase text-7xl font-black">
                 Text <br />
                 Header Hero
@@ -129,8 +129,8 @@ function Header2() {
               </p>
             </div>
           </div>
-          <div className="embla__slide header-slide relative bg-cover bg-[url('/images/header/header2.jpg')]">
-            <div className="absolute bottom-32 left-32">
+          <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header2.jpg')]">
+            <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
               <h1 className="text-white uppercase text-7xl font-black">
                 Lorem <br />
                 Ipsum Text

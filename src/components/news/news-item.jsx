@@ -3,7 +3,7 @@ import Image from "next/image";
 function NewsItem({ index }) {
   return (
     <div className="flex flex-col rounded bg-gray-200 hover:cursor-pointer news-item">
-      <div className=" flex-row hidden md:flex overflow-hidden ">
+      <div className=" md:flex-row flex overflow-hidden ">
         <Image
           src={`/images/news/news-dummy${index}.jpg`}
           alt="TCH Logo"
