@@ -9,6 +9,7 @@ import NewsLetter from "@/components/newsletter/newsletter";
 import ScheduleItem from "@/components/schedule/schedule-item";
 import ScheduleWrapper from "@/components/schedule/schedule-wrapper";
 import Image from "next/image";
+import Sponsor from "@/components/sponsor";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,7 +24,8 @@ const geistMono = localFont({
 
 export default function Home() {
   return (
-    <div className="flex flex-col  gap-20 md:gap-24 py-10">
+    <div className="flex flex-col  gap-20 md:gap-24 py-5 md:py-10">
+      <Sponsor />
       <div className="flex flex-col md:flex-row gap-8 md:gap-16">
         <div className="w-full md:w-2/3">
           <NewsWrapper />

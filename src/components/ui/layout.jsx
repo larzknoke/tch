@@ -14,7 +14,7 @@ export default function Layout({ children }) {
       {/* <div className="w-full h-2.5 bg-tch-blue" />   */}
       <Header2 />
       <main
-        className={`container mx-auto mt-2 md:mt-10 md:mb-16 ${roboto_cond.className} `}
+        className={`container mx-auto md:mt-10 md:mb-16 ${roboto_cond.className} `}
       >
         {children}
       </main>

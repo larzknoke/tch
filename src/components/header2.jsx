@@ -24,7 +24,7 @@ function Header2() {
   return (
     <header className={`${roboto_cond.className} `}>
       <div className="absolute z-10 flex flex-col justify-between w-full">
-        <div className="flex flex-row flex-nowrap  justify-between text-white items-start px-8 md:px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
+        <div className="flex flex-row flex-nowrap  justify-between text-white items-start md:items-center  px-8 md:px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
           <div className="h-5 text-white/85 hidden md:flex flex-row gap-8 flex-1 flex-grow justify-start">
             <svg
               className="hover:text-white hover:cursor-pointer"
