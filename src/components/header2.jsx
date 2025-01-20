@@ -14,7 +14,7 @@ const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
 function Header2() {
   const [navOpen, setNavOpen] = useState(false);
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 500000, stopOnHover: true }),
+    Autoplay({ delay: 5000, stopOnHover: true }),
   ]);
 
   function handleNav() {
@@ -24,7 +24,7 @@ function Header2() {
   return (
     <header className={`${roboto_cond.className} `}>
       <div className="absolute z-10 flex flex-col justify-between w-full">
-        <div className="flex flex-row flex-nowrap  justify-between text-white items-center px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
+        <div className="flex flex-row flex-nowrap  justify-between text-white items-start px-8 md:px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
           <div className="h-5 text-white/85 hidden md:flex flex-row gap-8 flex-1 flex-grow justify-start">
             <svg
               className="hover:text-white hover:cursor-pointer"
@@ -63,7 +63,7 @@ function Header2() {
               alt="TCH Logo"
               width="307"
               height="77"
-              className="w-72 mx-auto "
+              className="w-60 md:w-72 mx-auto "
               priority
             />
           </Link>
@@ -106,7 +106,7 @@ function Header2() {
         </nav>
       </div>
       <div className="embla" ref={emblaRef}>
-        <div className="embla__container min-h-[75vh]  md:min-h-screen">
+        <div className="embla__container min-h-[60vh]  md:min-h-screen">
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header1.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
               <h1 className="text-white uppercase text-7xl font-black">
@@ -142,6 +142,7 @@ function Header2() {
           </div>
         </div>
       </div>
+      <MobileNav navOpen={navOpen} setNavOpen={setNavOpen} />
     </header>
   );
 }
