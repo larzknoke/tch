@@ -109,7 +109,7 @@ function Header2() {
         <div className="embla__container min-h-[60vh]  md:min-h-screen">
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header1.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
-              <h1 className="text-white uppercase text-7xl font-black">
+              <h1 className="text-white uppercase mb-3 text-5xl md:text-7xl font-black">
                 Header <br />
                 Hero Text
               </h1>
@@ -120,7 +120,7 @@ function Header2() {
           </div>
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header3.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
-              <h1 className="text-white uppercase text-7xl font-black">
+              <h1 className="text-white uppercase mb-3 text-5xl md:text-7xl font-black">
                 Text <br />
                 Header Hero
               </h1>
@@ -131,7 +131,7 @@ function Header2() {
           </div>
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header2.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
-              <h1 className="text-white uppercase text-7xl font-black">
+              <h1 className="text-white uppercase mb-3 text-5xl md:text-7xl font-black">
                 Lorem <br />
                 Ipsum Text
               </h1>
