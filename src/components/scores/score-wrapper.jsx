@@ -7,6 +7,63 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import Spinner from "../ui/loading";
 
+const demoData = [
+  {
+    Datum: "So.",
+    Datum2: "17.03.2025 09:00",
+    Datum3: "",
+    Spielort: "",
+    Liga: "D00 RL",
+    Heimmannschaft: "TC Holzminden",
+    Gastmannschaft: "MTV Almstedt II",
+    Matchpunkte: "5:1",
+    Sätze: "",
+    Spiele: "",
+    Spielbericht: "offen",
+  },
+  {
+    Datum: "",
+    Datum2: "",
+    Datum3: "",
+    Spielort: "",
+    Liga: "H40 LL",
+    Heimmannschaft:
+      "TSV Kirchrode Hannover\n              \t  \n                  [Routenplan]",
+    Gastmannschaft: "TC Holzminden",
+    Matchpunkte: "2:4",
+    Sätze: "",
+    Spiele: "",
+    Spielbericht: "offen",
+  },
+  {
+    Datum: "So.",
+    Datum2: "31.03.2025 10:00",
+    Datum3: "",
+    Spielort: "",
+    Liga: "H40 LL",
+    Heimmannschaft:
+      "TSG Mörse\n              \t  \n                  [Routenplan]",
+    Gastmannschaft: "TC Holzminden",
+    Matchpunkte: "3:3",
+    Sätze: "",
+    Spiele: "",
+    Spielbericht: "offen",
+  },
+  {
+    Datum: "So.",
+    Datum2: "31.03.2025 11:00",
+    Datum3: "",
+    Spielort: "",
+    Liga: "D00 RL",
+    Heimmannschaft: "TC Holzminden",
+    Gastmannschaft: "TC Lauenstein",
+    Matchpunkte: "2:4",
+    Sätze: "",
+    Spiele: "",
+    Spielbericht: "offen",
+  },
+];
+
 function ScoreWrapper() {
   const [isLoading, setIsLoading] = useState(true);
   const [scheduleData, setScheduleData] = useState();
@@ -21,7 +78,9 @@ function ScoreWrapper() {
       );
     });
 
-    setScheduleData(fiterTableData);
+    // setScheduleData(fiterTableData);
+    setScheduleData(demoData);
+
     setIsLoading(false);
   }
 
