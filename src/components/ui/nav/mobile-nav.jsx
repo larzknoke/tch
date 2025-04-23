@@ -46,7 +46,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
               NEWS & NEUIGKEITEN
             </Link>
             <span>TEAMS</span>
-            <span>TRAINING</span>
+            <span>TRAINING & Spielen</span>
             <Link href={"/kontakt"} onClick={() => resetNav()}>
               Kontakt
             </Link>

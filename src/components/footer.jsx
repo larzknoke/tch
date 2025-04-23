@@ -37,7 +37,7 @@ function Footer() {
             <p>Der Club</p>
             <p>News & Neuigkeiten</p>
             <p>Teams</p>
-            <p>Training</p>
+            <p>Training & Spielen</p>
             <p>Kontakt</p>
           </div>
           <div className="flex flex-row md:flex-col w-full md:w-1/4 gap-3">

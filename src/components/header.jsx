@@ -109,7 +109,7 @@ function HeaderHome() {
           <NavItemClub />
           <Link href={"/news"}>NEWS & NEUIGKEITEN</Link>
           <Link href={"/teams"}>TEAMS</Link>
-          <span>TRAINING</span>
+          <span>TRAINING & Spielen</span>
           <Link href={"/kontakt"}>Kontakt</Link>
         </nav>
       </div>
