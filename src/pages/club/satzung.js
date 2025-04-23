@@ -1,3 +1,4 @@
+import Layout from "@/components/ui/layout";
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
 import { useState } from "react";
@@ -60,3 +61,7 @@ function Satzung() {
 }
 
 export default Satzung;
+
+Satzung.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

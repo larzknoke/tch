@@ -1,3 +1,4 @@
+import Layout from "@/components/ui/layout";
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
 import { useState } from "react";
@@ -55,3 +56,7 @@ function Kontakt() {
 }
 
 export default Kontakt;
+
+Kontakt.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

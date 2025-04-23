@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
 
-function Header2() {
+function HeaderHome() {
   const [navOpen, setNavOpen] = useState(false);
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 5000, stopOnHover: true }),
@@ -25,9 +25,9 @@ function Header2() {
     <header className={`${roboto_cond.className} `}>
       <div className="absolute z-10 flex flex-col justify-between w-full">
         <div className="flex flex-row flex-nowrap  justify-between text-white items-start md:items-center  px-8 md:px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
-          <div className="h-5 text-white/85 hidden md:flex flex-row gap-8 flex-1 flex-grow justify-start">
+          <div className=" text-white/85 hidden md:flex flex-row gap-8 flex-1 flex-grow justify-start">
             <svg
-              className="hover:text-white hover:cursor-pointer"
+              className="hover:text-white hover:cursor-pointer h-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
             >
@@ -37,7 +37,7 @@ function Header2() {
               />
             </svg>
             <svg
-              className="hover:text-white hover:cursor-pointer"
+              className="hover:text-white hover:cursor-pointer h-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
             >
@@ -47,7 +47,7 @@ function Header2() {
               />
             </svg>
             <svg
-              className="hover:text-white hover:cursor-pointer"
+              className="hover:text-white hover:cursor-pointer h-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
             >
@@ -56,6 +56,13 @@ function Header2() {
                 d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"
               />
             </svg>
+            <Link
+              className="ml-4 -m-1 bg-tch-gold text-white px-4 py-1 rounded uppercase"
+              href={"https://tc1928.ebusy.de/"}
+              target="_blank"
+            >
+              Platzbuchung
+            </Link>
           </div>
           <Link href={"/"} className="cursor-pointer">
             <Image
@@ -147,4 +154,4 @@ function Header2() {
   );
 }
 
-export default Header2;
+export default HeaderHome;

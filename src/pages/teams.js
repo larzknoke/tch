@@ -1,3 +1,4 @@
+import Layout from "@/components/ui/layout";
 import ScheduleWrapper from "@/components/schedule/schedule-wrapper";
 import { useState, useEffect } from "react";
 
@@ -12,3 +13,7 @@ export default function Teams() {
     </div>
   );
 }
+
+Teams.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

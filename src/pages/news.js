@@ -6,6 +6,7 @@ import ScoreWrapper from "@/components/scores/score-wrapper";
 import MemberBox from "@/components/member-box";
 import Gallery from "@/components/gallery/gallery";
 import NewsLetter from "@/components/newsletter/newsletter";
+import Layout from "@/components/ui/layout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,9 +22,20 @@ const geistMono = localFont({
 export default function News() {
   return (
     <div className="flex flex-col gap-16">
-      <NewsWrapper />
+      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+        <div className="w-full md:w-2/3">
+          <NewsWrapper />
+        </div>
+        <div className="w-full md:w-1/3">
+          <DateWrapper />
+        </div>
+      </div>
       <MemberBox />
       <NewsLetter />
     </div>
   );
 }
+
+News.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

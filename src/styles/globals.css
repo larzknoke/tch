@@ -153,6 +153,10 @@ nav > *::before {
   background: white;
 }
 
+.main-nav-blue > *::before {
+  @apply bg-tch-blue;
+}
+
 nav > *:hover::before {
   opacity: 1;
   width: 1.75rem;

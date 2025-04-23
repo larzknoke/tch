@@ -1,3 +1,4 @@
+import Layout from "@/components/ui/layout";
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
 import { useState } from "react";
@@ -65,3 +66,7 @@ function Vorstand() {
 }
 
 export default Vorstand;
+
+Vorstand.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

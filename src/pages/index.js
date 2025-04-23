@@ -1,3 +1,4 @@
+import LayoutHome from "@/components/ui/layout-home";
 import localFont from "next/font/local";
 import { HeaderVideo } from "@/components/header-video";
 import NewsWrapper from "@/components/news/news-wrapper";
@@ -92,3 +93,7 @@ export default function Home() {
     </div>
   );
 }
+
+Home.getLayout = function getLayout(page) {
+  return <LayoutHome>{page}</LayoutHome>;
+};

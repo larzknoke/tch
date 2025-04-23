@@ -1,3 +1,4 @@
+import Layout from "@/components/ui/layout";
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
 import { useState } from "react";
@@ -2421,3 +2422,7 @@ function Datenschutz() {
 }
 
 export default Datenschutz;
+
+Datenschutz.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
