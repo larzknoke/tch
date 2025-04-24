@@ -7,6 +7,7 @@ import MemberBox from "@/components/member-box";
 import Gallery from "@/components/gallery/gallery";
 import NewsLetter from "@/components/newsletter/newsletter";
 import Layout from "@/components/ui/layout";
+import EffortWrapper from "@/components/efforts/effort-wrapper";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,8 +27,9 @@ export default function News() {
         <div className="w-full md:w-2/3">
           <NewsWrapper />
         </div>
-        <div className="w-full md:w-1/3">
+        <div className="w-full md:w-1/3 gap-12 flex flex-col">
           <DateWrapper />
+          <EffortWrapper />
         </div>
       </div>
       <MemberBox />
