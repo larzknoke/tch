@@ -8,6 +8,7 @@ import Gallery from "@/components/gallery/gallery";
 import NewsLetter from "@/components/newsletter/newsletter";
 import Layout from "@/components/ui/layout";
 import EffortWrapper from "@/components/efforts/effort-wrapper";
+import prisma from "@/lib/prisma";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +21,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export default function News() {
+export default function News({ efforts }) {
   return (
     <div className="flex flex-col gap-16">
       <div className="flex flex-col md:flex-row gap-8 md:gap-16">
@@ -29,7 +30,7 @@ export default function News() {
         </div>
         <div className="w-full md:w-1/3 gap-12 flex flex-col">
           <DateWrapper />
-          <EffortWrapper />
+          <EffortWrapper efforts={efforts} />
         </div>
       </div>
       <MemberBox />
@@ -40,4 +41,14 @@ export default function News() {
 
 News.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps = async () => {
+  const efforts = await prisma.effort.findMany({});
+  console.log("efforts: ", efforts);
+  return {
+    props: {
+      efforts,
+    },
+  };
 };
