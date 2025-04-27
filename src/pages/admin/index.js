@@ -1,14 +1,18 @@
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
-import { Avatar, Badge, Button, Card, Alert } from "@chakra-ui/react";
+import { Avatar, Badge, Button, Card, Alert, HStack } from "@chakra-ui/react";
 
 function Admin() {
   return (
     <div>
-      <Alert.Root status="info" title="This is the alert title">
-        <Alert.Indicator />
-        <Alert.Title>This is the alert title</Alert.Title>
-      </Alert.Root>
-      <Button variant={"outline"}>FOOOO2</Button>
+      <HStack>
+        <Alert.Root status="info" title="This is the alert title">
+          <Alert.Indicator />
+          <Alert.Title>This is the alert title</Alert.Title>
+        </Alert.Root>
+        <Button colorPalette={"gold"} variant={"solid"} my={2}>
+          FOOOO2
+        </Button>
+      </HStack>
       <Badge>BAR</Badge>
       <Avatar.Root>
         <Avatar.Fallback name="Segun Adebayo" />
