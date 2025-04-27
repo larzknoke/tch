@@ -1,4 +1,4 @@
-import LayoutHome from "@/components/ui/layout-home";
+import LayoutHome from "@/components/ui/layouts/layout-home";
 import localFont from "next/font/local";
 import { HeaderVideo } from "@/components/header-video";
 import NewsWrapper from "@/components/news/news-wrapper";
@@ -11,6 +11,7 @@ import ScheduleItem from "@/components/schedule/schedule-item";
 import ScheduleWrapper from "@/components/schedule/schedule-wrapper";
 import Image from "next/image";
 import Sponsor from "@/components/sponsor";
+import { ColorModeButton } from "@/components/ui/color-mode";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

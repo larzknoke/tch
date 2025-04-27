@@ -1,4 +1,4 @@
-import Layout from "@/components/ui/layout";
+import Layout from "@/components/ui/layouts/layout";
 import ScheduleWrapper from "@/components/schedule/schedule-wrapper";
 import { useState, useEffect } from "react";
 

@@ -10,6 +10,9 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/react": "^3.16.1",
+    "@emotion/react": "^11.14.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.6.0",
@@ -21,9 +24,11 @@
     "html-table-to-json": "^1.0.0",
     "jsdom": "^25.0.1",
     "jsonfromtable": "^3.1.2",
-    "next": "^15.4.0-canary.9",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "next": "15.3.1",
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
     "superjson": "^2.2.2",
     "superjson-next": "^0.7.1",
     "yet-another-react-lightbox": "^3.21.7"

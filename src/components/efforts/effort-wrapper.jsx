@@ -1,11 +1,13 @@
+import { Button } from "@chakra-ui/react";
 import HeaderText from "../ui/header-text";
+import Spinner from "../ui/loading";
+import BallLoader from "../ui/loading-ball";
 import EffortHeader from "./effort-header";
 import EffortItem from "./effort-item";
 import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 import { useState, useEffect } from "react";
 
 function EffortWrapper() {
-  
   const [effortsData, setEffortsData] = useState(null);
 
   async function getEfforts() {
@@ -15,7 +17,7 @@ function EffortWrapper() {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
-      
+
       if (res.status != 200) {
         // setLoading(false);
         // setInviteError(true);
@@ -31,20 +33,33 @@ function EffortWrapper() {
     }
   }
 
-    useEffect(() => {
-      getEfforts();
+  useEffect(() => {
+    getEfforts();
   }, []);
-
 
   return (
     <div className=" relative w-full rounded">
       {/* <EffortHeader /> */}
       <HeaderText text="Arbeitseinsätze" />
+      {!effortsData ? (
+        <div className="flex justify-start relative items-center">
+          <BallLoader />
+        </div>
+      ) : (
+        <div className="flex flex-col gap-4">
+          {effortsData &&
+            effortsData.map((effort) => (
+              <EffortItem key={effort.id} effort={effort} />
+            ))}
+        </div>
+      )}
+      {/* <BallLoader />
       <div className="flex flex-col gap-4">
-        {effortsData && effortsData.map((effort) => (
-          <EffortItem key={effort.id} effort={effort} />
-        ))}
-      </div>
+        {effortsData &&
+          effortsData.map((effort) => (
+            <EffortItem key={effort.id} effort={effort} />
+          ))}
+      </div> */}
       <h3 className="text-tch-blue mt-5 flex items-center gap-1">
         Alle Arbeitseinsätze
         <ChevronDoubleRightIcon className="size-5" />

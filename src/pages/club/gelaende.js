@@ -1,4 +1,4 @@
-import Layout from "@/components/ui/layout";
+import Layout from "@/components/ui/layouts/layout";
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
 import { useState } from "react";

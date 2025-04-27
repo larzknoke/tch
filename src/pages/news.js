@@ -6,7 +6,7 @@ import ScoreWrapper from "@/components/scores/score-wrapper";
 import MemberBox from "@/components/member-box";
 import Gallery from "@/components/gallery/gallery";
 import NewsLetter from "@/components/newsletter/newsletter";
-import Layout from "@/components/ui/layout";
+import Layout from "@/components/ui/layouts/layout";
 import EffortWrapper from "@/components/efforts/effort-wrapper";
 
 const geistSans = localFont({

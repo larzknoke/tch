@@ -1,0 +1,121 @@
+:root {
+  --loading-size: 6rem;
+}
+
+.tennis-loading {
+  position: absolute;
+  display: block;
+  position: relative;
+  /* top: calc(50% - calc(var(--loading-size) * 0.5)); */
+  /* top: 0;
+  left: calc(50% - calc(var(--loading-size) * 0.5)); */
+  width: var(--loading-size);
+  height: var(--loading-size);
+}
+
+.shadow {
+  position: absolute;
+  width: calc(var(--loading-size) * 0.25);
+  bottom: 0;
+  left: calc(50% - calc(var(--loading-size) * 0.125));
+  border-radius: 3px;
+  background: #19416a;
+  height: 3px;
+}
+
+.tennis-ball {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  height: calc(var(--loading-size) * 0.25);
+  width: calc(var(--loading-size) * 0.25);
+  left: calc(50% - calc(var(--loading-size) * 0.125));
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 3px solid #19416a;
+}
+.tennis-ball:before,
+.tennis-ball:after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  border: solid 3px #2d4f72;
+  border-radius: 50%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.tennis-ball:before {
+  right: 70%;
+}
+.tennis-ball:after {
+  left: 70%;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(calc(var(--loading-size) * 0.25)) scale(1, 1);
+    animation-timing-function: ease-in;
+  }
+  23% {
+    transform: translateY(
+        calc(var(--loading-size) - var(--loading-size) * 0.25)
+      )
+      scale(1, 1);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: translateY(
+        calc(var(--loading-size) - var(--loading-size) * 0.25)
+      )
+      scale(1.2, 0.9);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    transform: translateY(calc(var(--loading-size) * 0.25)) scale(0.98, 1.1);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(calc(var(--loading-size) * 0.25)) scale(1, 1);
+    animation-timing-function: ease-in;
+  }
+}
+@keyframes shadow {
+  from,
+  to {
+    transform: scaleX(0.5);
+    opacity: 1;
+  }
+  23% {
+    transform: scaleX(0.8);
+    opacity: 1;
+  }
+  25% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  90% {
+    transform: scaleX(0.4);
+  }
+}
+@keyframes move {
+  from {
+    transform: translate(-100%, 100%);
+  }
+  to {
+    transform: translate(100%, -100%);
+  }
+}
+.tennis-ball {
+  animation: bounce 800ms linear infinite;
+}
+
+.tennis-ball:after,
+.tennis-ball:before {
+  animation: move 1600ms linear infinite;
+}
+
+.shadow {
+  animation: shadow 800ms ease-out infinite;
+}

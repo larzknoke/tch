@@ -1,7 +1,7 @@
 import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 
-function Button({ children, href = "", style = "blue", className }) {
+function Button2({ children, href = "", style = "blue", className }) {
   return (
     <Link
       href={href}
@@ -15,4 +15,4 @@ function Button({ children, href = "", style = "blue", className }) {
   );
 }
 
-export default Button;
+export default Button2;

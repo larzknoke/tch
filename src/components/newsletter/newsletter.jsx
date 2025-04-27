@@ -1,4 +1,4 @@
-import Button from "../ui/button";
+import Button from "../ui/button2";
 
 function NewsLetter() {
   return (
