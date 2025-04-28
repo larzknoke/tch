@@ -20,6 +20,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { useState, useEffect } from "react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { dateFormatter } from "@/lib/utils";
+import { EffortModalCreate } from "@/components/efforts/effort-modal-create";
 
 function Admin() {
   const [effortsData, setEffortsData] = useState(null);
@@ -102,7 +103,7 @@ function Admin() {
             <BallLoader />
           </Flex>
         )}
-        <Button colorPalette={"green"}>Neuer Arbeitseinsatz</Button>
+        <EffortModalCreate />
       </VStack>
     </Flex>
   );
