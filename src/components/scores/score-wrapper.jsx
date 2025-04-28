@@ -89,7 +89,7 @@ function ScoreWrapper() {
   }, []);
 
   return (
-    <div className="bg-tch-blue p-5 py-8 md:p-8 relative w-full rounded shadow-2xl">
+    <div className="bg-tch-blue p-5 py-8 md:p-8 relative w-full rounded-sm shadow-2xl">
       <ScoreHeader />
       <h1 className="text-white mb-5">Aktuelle Ergebnisse</h1>
       {!isLoading && scheduleData ? (

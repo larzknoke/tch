@@ -46,7 +46,7 @@ function Vorstand() {
               <img
                 src="https://dummyimage.com/300x310/fff/aaa"
                 alt=""
-                className="rounded my-2 w-full mb-4"
+                className="rounded-sm my-2 w-full mb-4"
               />
               <h4 className="text-tch-blue">{position.position}</h4>
               <h3>{position.name}</h3>

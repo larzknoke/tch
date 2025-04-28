@@ -51,7 +51,7 @@ function Aufnahme() {
             alt="Geländer 1"
             width="1000"
             height="645"
-            className="w-full rounded hover:cursor-pointer border-b-4 border-tch-blue"
+            className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
             onClick={() => setOpen(true)}
           />
           <Image
@@ -59,7 +59,7 @@ function Aufnahme() {
             alt="Geländer 1"
             width="1000"
             height="645"
-            className="w-full rounded hover:cursor-pointer border-b-4 border-tch-blue"
+            className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
             onClick={() => setOpen(true)}
           />
           <Lightbox

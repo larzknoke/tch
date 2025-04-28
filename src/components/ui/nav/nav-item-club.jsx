@@ -33,10 +33,10 @@ function NavItemClub() {
     <Popover className="relative group">
       <PopoverButton
         ref={popoverButtonRef}
-        className="flex items-center gap-2 focus:outline-none"
+        className="flex items-center gap-2 focus:outline-hidden"
       >
         DER CLUB
-        {/* <ChevronDownIcon className="size-5 group-data-[open]:rotate-180" /> */}
+        {/* <ChevronDownIcon className="size-5 group-data-open:rotate-180" /> */}
       </PopoverButton>
       <PopoverPanel
         anchor={{ to: "bottom start", gap: "20px" }}

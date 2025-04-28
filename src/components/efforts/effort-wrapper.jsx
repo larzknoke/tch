@@ -38,7 +38,7 @@ function EffortWrapper() {
   }, []);
 
   return (
-    <div className=" relative w-full rounded">
+    <div className=" relative w-full rounded-sm">
       {/* <EffortHeader /> */}
       <HeaderText text="Arbeitseinsätze" />
       {!effortsData ? (

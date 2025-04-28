@@ -1,7 +1,41 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import "ball-loader.css";
+/* @import 'tailwindcss'; */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css";
+
+@import './ball-loader.css';
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-tch-blue: #19416a;
+  --color-tch-blue-semi: #6e97c0;
+  --color-tch-blue-light: #ecf0f3;
+  --color-tch-gold: #c0a26e;
+
+  --list-style-type-square: square;
+
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1200px;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 /* :root {
   --background: #ffffff;
@@ -75,7 +109,7 @@ h4 {
 }
 
 .gallery-item {
-  @apply overflow-hidden rounded;
+  @apply overflow-hidden rounded-sm;
 }
 
 .gallery-item .gallery-caption {
@@ -100,7 +134,7 @@ h4 {
 /* NAVIGATION */
 
 .nav-item-dropdown {
-  @apply flex flex-col z-10 bg-tch-blue-light py-4 px-3 rounded text-tch-blue font-bold uppercase gap-1  drop-shadow-lg origin-top  transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 data-[closed]:translate-y-5;
+  @apply flex flex-col z-10 bg-tch-blue-light py-4 px-3 rounded-sm text-tch-blue font-bold uppercase gap-1  drop-shadow-lg origin-top  transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 data-closed:translate-y-5;
 }
 
 .nav-item {
@@ -108,7 +142,7 @@ h4 {
 }
 
 .nav-item span {
-  @apply pb-2 bg-[left_90%] bg-gradient-to-r from-tch-blue to-tch-blue bg-[length:0%_2px] bg-no-repeat  transition-all duration-300 ease-out;
+  @apply pb-2 bg-[left_90%] bg-linear-to-r from-tch-blue to-tch-blue bg-[length:0%_2px] bg-no-repeat  transition-all duration-300 ease-out;
 }
 
 .mobile-nav-item {
@@ -169,7 +203,7 @@ nav > *:hover::before {
 }
 
 .news-item {
-  @apply overflow-hidden rounded;
+  @apply overflow-hidden rounded-sm;
 }
 .news-item img {
   @apply duration-500 transition-transform;

@@ -41,7 +41,7 @@ export default function Home() {
       <div className="flex flex-col md:flex-row w-full justify-between gap-10 md:gap-20">
         <div className="flex flex-col gap-10 w-full md:w-2/3 px-5 md:px-0">
           {/* <ScheduleWrapper /> */}
-          <div className="flex flex-col md:flex-row rounded bg-gray-200 hover:cursor-pointer min-h-48">
+          <div className="flex flex-col md:flex-row rounded-sm bg-gray-200 hover:cursor-pointer min-h-48">
             <Image
               src={`/images/news/news-dummy2.jpg`}
               alt="TCH Logo"
@@ -50,7 +50,7 @@ export default function Home() {
               className=" object-cover rounded-t md:rounded-l w-full md:w-80"
             />{" "}
             <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
-              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
+              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
                 Training
               </div>
               <h2>Kinder und Jugend Training</h2>
@@ -63,7 +63,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row rounded bg-gray-200 hover:cursor-pointer min-h-48">
+          <div className="flex flex-col md:flex-row rounded-sm bg-gray-200 hover:cursor-pointer min-h-48">
             <Image
               src={`/images/halle1.jpg`}
               alt="TCH Logo"
@@ -72,7 +72,7 @@ export default function Home() {
               className=" object-cover rounded-t md:rounded-l w-full md:w-80"
             />{" "}
             <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
-              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
+              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
                 Halle
               </div>
               <h2>Hallenbuchung/Hallenordnung</h2>

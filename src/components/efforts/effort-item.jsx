@@ -9,7 +9,7 @@ import { UsersIcon } from "@heroicons/react/24/outline";
 
 function EffortItem({ effort }) {
   return (
-    <div className="flex flex-row text-tch-blue py-3 px-3 gap-4  border-tch-blue/20 rounded border ">
+    <div className="flex flex-row text-tch-blue py-3 px-3 gap-4  border-tch-blue/20 rounded-sm border ">
       <div className="flex flex-row justify-between w-full items-center">
         <div className="flex flex-row gap-2 ">
           <WrenchIcon className="size-5 text-tch-blue mt-1" />

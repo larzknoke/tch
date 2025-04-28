@@ -25,7 +25,7 @@ function HeaderHome() {
     <header className={`${roboto_cond.className} `}>
       <div className="absolute z-10 flex flex-col justify-between w-full">
         <div className="flex flex-row flex-nowrap  justify-between text-white items-start md:items-center  px-8 md:px-10 border-opacity-50 border-b border-tch-blue-light pt-7 pb-6">
-          <div className=" text-white/85 hidden md:flex flex-row gap-8 flex-1 flex-grow justify-start">
+          <div className=" text-white/85 hidden md:flex flex-row gap-8 flex-1 grow justify-start">
             <svg
               className="hover:text-white hover:cursor-pointer h-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ function HeaderHome() {
               />
             </svg>
             <Link
-              className="ml-4 -m-1 bg-tch-gold text-white px-4 py-1 rounded uppercase"
+              className="ml-4 -m-1 bg-tch-gold text-white px-4 py-1 rounded-sm uppercase"
               href={"https://tc1928.ebusy.de/"}
               target="_blank"
             >
@@ -74,15 +74,15 @@ function HeaderHome() {
               priority
             />
           </Link>
-          <div className="gap-4 hidden md:flex flex-1 flex-grow justify-end">
+          <div className="gap-4 hidden md:flex flex-1 grow justify-end">
             <Link
-              className="border border-white border-opacity-50 rounded px-4 py-1 uppercase text-xs"
+              className="border border-white border-opacity-50 rounded-sm px-4 py-1 uppercase text-xs"
               href={"datenschutz"}
             >
               Datenschutz
             </Link>
             <Link
-              className="border border-white border-opacity-50 rounded px-4 py-1 uppercase text-xs"
+              className="border border-white border-opacity-50 rounded-sm px-4 py-1 uppercase text-xs"
               href={"impressum"}
             >
               Impressum

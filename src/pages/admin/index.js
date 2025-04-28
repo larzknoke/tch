@@ -20,7 +20,7 @@ function Admin() {
       </Avatar.Root>
       <Card.Root width="320px">
         <Card.Body gap="2">
-          <Avatar.Root size="lg" shape="rounded">
+          <Avatar.Root size="lg" shape="rounded-sm">
             <Avatar.Image src="https://picsum.photos/200/300" />
             <Avatar.Fallback name="Nue Camp" />
           </Avatar.Root>

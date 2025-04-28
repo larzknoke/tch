@@ -32,7 +32,7 @@
   left: calc(50% - calc(var(--loading-size) * 0.125));
   border-radius: 50%;
   box-sizing: border-box;
-  border: 3px solid #19416a;
+  border: 3px solid #19416a !important;
 }
 .tennis-ball:before,
 .tennis-ball:after {
@@ -41,7 +41,7 @@
   display: block;
   height: 100%;
   width: 100%;
-  border: solid 3px #2d4f72;
+  border: solid 3px #2d4f72 !important;
   border-radius: 50%;
   box-sizing: border-box;
   overflow: hidden;
@@ -53,7 +53,7 @@
   left: 70%;
 }
 
-@keyframes bounce {
+@keyframes bounceTennis {
   0% {
     transform: translateY(calc(var(--loading-size) * 0.25)) scale(1, 1);
     animation-timing-function: ease-in;
@@ -81,7 +81,7 @@
     animation-timing-function: ease-in;
   }
 }
-@keyframes shadow {
+@keyframes shadowTennis {
   from,
   to {
     transform: scaleX(0.5);
@@ -99,7 +99,7 @@
     transform: scaleX(0.4);
   }
 }
-@keyframes move {
+@keyframes moveTennis {
   from {
     transform: translate(-100%, 100%);
   }
@@ -108,14 +108,14 @@
   }
 }
 .tennis-ball {
-  animation: bounce 800ms linear infinite;
+  animation: bounceTennis 800ms linear infinite;
 }
 
 .tennis-ball:after,
 .tennis-ball:before {
-  animation: move 1600ms linear infinite;
+  animation: moveTennis 1600ms linear infinite;
 }
 
 .shadow {
-  animation: shadow 800ms ease-out infinite;
+  animation: shadowTennis 800ms ease-out infinite;
 }

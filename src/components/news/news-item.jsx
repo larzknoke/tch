@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function NewsItem({ index }) {
   return (
-    <div className="flex flex-col rounded bg-gray-200 hover:cursor-pointer news-item">
+    <div className="flex flex-col rounded-sm bg-gray-200 hover:cursor-pointer news-item">
       <div className=" md:flex-row flex overflow-hidden ">
         <Image
           src={`/images/news/news-dummy${index}.jpg`}
@@ -13,7 +13,7 @@ function NewsItem({ index }) {
         />{" "}
       </div>
       <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
-        <div className="absolute -top-3 right-3 uppercase bg-tch-gold text-white rounded-sm inline px-4 w-fit text-sm">
+        <div className="absolute -top-3 right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
           09. September 2024
         </div>
         <h2>Sommerfest 2024</h2>
