@@ -1,42 +1,110 @@
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
-import { Avatar, Badge, Button, Card, Alert, HStack } from "@chakra-ui/react";
+import BallLoader from "@/components/ui/loading-ball";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Alert,
+  HStack,
+  Menu,
+  VStack,
+  Flex,
+  Spacer,
+  Image,
+  Table,
+  Icon,
+} from "@chakra-ui/react";
+import { Tooltip } from "@/components/ui/tooltip";
+
+import { useState, useEffect } from "react";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { dateFormatter } from "@/lib/utils";
 
 function Admin() {
+  const [effortsData, setEffortsData] = useState(null);
+
+  async function getEfforts() {
+    try {
+      // setLoading(true);
+      const res = await fetch(`/api/efforts`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (res.status != 200) {
+        // setLoading(false);
+        // setInviteError(true);
+      } else {
+        const resData = await res.json();
+        setEffortsData(resData);
+        // setLoading(false);
+      }
+    } catch (error) {
+      console.log("api fetch error");
+      console.error("Err", error);
+      // setInviteError(true);
+    }
+  }
+
+  useEffect(() => {
+    getEfforts();
+  }, []);
+
   return (
-    <div>
+    <Flex direction={"column"} py={5} gap={5} divideY={1}>
       <HStack>
-        <Alert.Root status="info" title="This is the alert title">
-          <Alert.Indicator />
-          <Alert.Title>This is the alert title</Alert.Title>
-        </Alert.Root>
-        <Button colorPalette={"gold"} variant={"solid"} my={2}>
-          FOOOO2
+        <Image src="tch_logo_tiny.svg" height={10} mr={10} />
+        <Button variant="outline">Arbeitseinsätze</Button>
+        <Spacer />
+        <Button variant={"outline"} colorPalette={"red"}>
+          Logout
         </Button>
       </HStack>
-      <Badge>BAR</Badge>
-      <Avatar.Root>
-        <Avatar.Fallback name="Segun Adebayo" />
-        <Avatar.Image src="https://bit.ly/sage-adebayo" />
-      </Avatar.Root>
-      <Card.Root width="320px">
-        <Card.Body gap="2">
-          <Avatar.Root size="lg" shape="rounded-sm">
-            <Avatar.Image src="https://picsum.photos/200/300" />
-            <Avatar.Fallback name="Nue Camp" />
-          </Avatar.Root>
-          <Card.Title mt="2">Nue Camp</Card.Title>
-          <Card.Description>
-            This is the card body. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-            Curabitur nec odio vel dui euismod fermentum.
-          </Card.Description>
-        </Card.Body>
-        <Card.Footer justifyContent="flex-end">
-          <Button variant="outline">View</Button>
-          <Button>Join</Button>
-        </Card.Footer>
-      </Card.Root>
-    </div>
+      <VStack py={5} gap={5} placeItems={"flex-start"}>
+        {effortsData ? (
+          <Table.Root>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeader>Einsatz</Table.ColumnHeader>
+                <Table.ColumnHeader>Datum</Table.ColumnHeader>
+                <Table.ColumnHeader>Teilnehmer</Table.ColumnHeader>
+                <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {effortsData &&
+                effortsData.map((item) => (
+                  <Table.Row key={item.id}>
+                    <Table.Cell>{item.title}</Table.Cell>
+                    <Table.Cell>{dateFormatter(item.date, true)}</Table.Cell>
+                    <Table.Cell>2 von 3</Table.Cell>
+                    <Table.Cell textAlign="end">
+                      <HStack placeContent={"end"} gap={4}>
+                        <Tooltip content="Bearbeiten">
+                          <Icon size={"sm"}>
+                            <PencilSquareIcon />
+                          </Icon>
+                        </Tooltip>
+                        <Tooltip content="Löschen">
+                          <Icon size={"sm"} color="red.600">
+                            <TrashIcon />
+                          </Icon>
+                        </Tooltip>
+                      </HStack>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+            </Table.Body>
+          </Table.Root>
+        ) : (
+          <Flex justify="center" w={"100%"}>
+            <BallLoader />
+          </Flex>
+        )}
+        <Button colorPalette={"green"}>Neuer Arbeitseinsatz</Button>
+      </VStack>
+    </Flex>
   );
 }
 

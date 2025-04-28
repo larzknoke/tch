@@ -16,7 +16,7 @@ export const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   if (disabled) return children
 
   return (
-    <ChakraTooltip.Root {...rest}>
+    <ChakraTooltip.Root {...rest} openDelay={50} closeDelay={50}>
       <ChakraTooltip.Trigger asChild>{children}</ChakraTooltip.Trigger>
       <Portal disabled={!portalled} container={portalRef}>
         <ChakraTooltip.Positioner>
