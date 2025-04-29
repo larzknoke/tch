@@ -24,4 +24,18 @@ model Effort {
   finished  Boolean   @default(false)
   date      DateTime?
   maxWorker Int?
+  workers   Worker[]
+}
+
+model Worker {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  email     String?
+  name      String?
+  phone     String?
+  verified  Boolean? @default(false)
+  verifyId  String?  @unique @default(cuid())
+  effort    Effort?  @relation(fields: [effortId], references: [id])
+  effortId  Int?
 }

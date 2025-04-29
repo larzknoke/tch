@@ -19,7 +19,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 
 import { useState, useEffect } from "react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
-import { dateFormatter } from "@/lib/utils";
+import { Checker, dateFormatter } from "@/lib/utils";
 import { EffortModalCreate } from "@/components/efforts/effort-modal-create";
 
 function Admin() {
@@ -53,59 +53,53 @@ function Admin() {
   }, []);
 
   return (
-    <Flex direction={"column"} py={5} gap={5} divideY={1}>
-      <HStack>
-        <Image src="tch_logo_tiny.svg" height={10} mr={10} />
-        <Button variant="outline">Arbeitseinsätze</Button>
-        <Spacer />
-        <Button variant={"outline"} colorPalette={"red"}>
-          Logout
-        </Button>
-      </HStack>
-      <VStack py={5} gap={5} placeItems={"flex-start"}>
-        {effortsData ? (
-          <Table.Root>
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeader>Einsatz</Table.ColumnHeader>
-                <Table.ColumnHeader>Datum</Table.ColumnHeader>
-                <Table.ColumnHeader>Teilnehmer</Table.ColumnHeader>
-                <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {effortsData &&
-                effortsData.map((item) => (
-                  <Table.Row key={item.id}>
-                    <Table.Cell>{item.title}</Table.Cell>
-                    <Table.Cell>{dateFormatter(item.date, true)}</Table.Cell>
-                    <Table.Cell>2 von 3</Table.Cell>
-                    <Table.Cell textAlign="end">
-                      <HStack placeContent={"end"} gap={4}>
-                        <Tooltip content="Bearbeiten">
-                          <Icon size={"sm"}>
-                            <PencilSquareIcon />
-                          </Icon>
-                        </Tooltip>
-                        <Tooltip content="Löschen">
-                          <Icon size={"sm"} color="red.600">
-                            <TrashIcon />
-                          </Icon>
-                        </Tooltip>
-                      </HStack>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-            </Table.Body>
-          </Table.Root>
-        ) : (
-          <Flex justify="center" w={"100%"}>
-            <BallLoader />
-          </Flex>
-        )}
-        <EffortModalCreate />
-      </VStack>
-    </Flex>
+    <VStack py={5} gap={5} placeItems={"flex-start"}>
+      {effortsData ? (
+        <Table.Root>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeader>Einsatz</Table.ColumnHeader>
+              <Table.ColumnHeader>Datum</Table.ColumnHeader>
+              <Table.ColumnHeader>Teilnehmer</Table.ColumnHeader>
+              <Table.ColumnHeader>Aktiv</Table.ColumnHeader>
+              <Table.ColumnHeader>Beendet</Table.ColumnHeader>
+              <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {effortsData &&
+              effortsData.map((item) => (
+                <Table.Row key={item.id}>
+                  <Table.Cell>{item.title}</Table.Cell>
+                  <Table.Cell>{dateFormatter(item.date, true)}</Table.Cell>
+                  <Table.Cell>1 von {item.maxWorker || "-"}</Table.Cell>
+                  <Table.Cell>{Checker(item.active)}</Table.Cell>
+                  <Table.Cell>{Checker(item.finished)}</Table.Cell>
+                  <Table.Cell textAlign="end">
+                    <HStack placeContent={"end"} gap={4}>
+                      <Tooltip content="Bearbeiten">
+                        <Icon size={"sm"}>
+                          <PencilSquareIcon />
+                        </Icon>
+                      </Tooltip>
+                      <Tooltip content="Löschen">
+                        <Icon size={"sm"} color="red.600">
+                          <TrashIcon />
+                        </Icon>
+                      </Tooltip>
+                    </HStack>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+          </Table.Body>
+        </Table.Root>
+      ) : (
+        <Flex justify="center" w={"100%"}>
+          <BallLoader />
+        </Flex>
+      )}
+      <EffortModalCreate />
+    </VStack>
   );
 }
 
