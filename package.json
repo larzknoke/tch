@@ -30,6 +30,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.1",
+    "react-use": "^17.6.0",
     "superjson": "^2.2.2",
     "superjson-next": "^0.7.1",
     "yet-another-react-lightbox": "^3.21.7",
