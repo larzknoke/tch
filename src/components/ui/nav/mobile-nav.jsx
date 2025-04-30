@@ -33,7 +33,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             className={`mobile-nav-item 	 ${
               clubNav
                 ? "opacity-0 z-20 -translate-x-10"
-                : "opacity-1 z-30 translate-x-0"
+                : "opacity-100 z-30 translate-x-0"
             }`}
           >
             <span
@@ -60,7 +60,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
           <nav
             className={`mobile-nav-item absolute ${
               clubNav
-                ? " opacity-1 z-30 translate-x-0"
+                ? " opacity-100 z-30 translate-x-0"
                 : " opacity-0 z-20  translate-x-10"
             }`}
           >

@@ -5,7 +5,7 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 
 function DateWrapper() {
   return (
-    <div className=" relative w-full rounded-sm">
+    <div className=" relative w-full rounded-sm px-4 md:px-0">
       <DateHeader />
       <HeaderText text="Kalender/Termine" />
       <div className="flex flex-col gap-4">
