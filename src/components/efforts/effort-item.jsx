@@ -6,6 +6,7 @@ import {
 import { dateFormatter } from "@/lib/utils";
 
 import { UsersIcon } from "@heroicons/react/24/outline";
+import { EffortModalRegister } from "./effort-modal-register";
 
 function EffortItem({ effort }) {
   return (
@@ -20,9 +21,10 @@ function EffortItem({ effort }) {
         </div>
         <div className="px-4 font-bold uppercase text-tch-gold ">
           <div>
-            <span className="hover:underline hover:cursor-pointer">
+            {/* <span className="hover:underline hover:cursor-pointer">
               Anmelden
-            </span>
+            </span> */}
+            <EffortModalRegister />
             <div className="font-normal text-sm text-tch-blue flex flex-row gap-1 items-center">
               <UsersIcon className="size-4 text-tch-blue" />
               <span>{effort.id}/3 Pers.</span>

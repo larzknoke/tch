@@ -17,7 +17,9 @@ export default function LayoutAdmin({ children }) {
     <Container>
       <Flex direction={"column"} py={5} gap={5} divideY={1}>
         <HStack>
-          <Image src="/tch_logo_tiny.svg" height={10} mr={10} />
+          <Link href="/">
+            <Image src="/tch_logo_tiny.svg" height={10} mr={10} />
+          </Link>
           <Button variant="outline" asChild>
             <Link href="/admin">
               Arbeitseinsätze

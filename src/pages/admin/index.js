@@ -72,7 +72,9 @@ function Admin() {
                 <Table.Row key={item.id}>
                   <Table.Cell>{item.title}</Table.Cell>
                   <Table.Cell>{dateFormatter(item.date, true)}</Table.Cell>
-                  <Table.Cell>1 von {item.maxWorker || "-"}</Table.Cell>
+                  <Table.Cell>
+                    {item.workers.length} von {item.maxWorker || "-"}
+                  </Table.Cell>
                   <Table.Cell>{Checker(item.active)}</Table.Cell>
                   <Table.Cell>{Checker(item.finished)}</Table.Cell>
                   <Table.Cell textAlign="end">

@@ -3,7 +3,16 @@ import prisma from "@/lib/prisma";
 export default async function handler(req, res) {
   if (req.method == "GET") {
     try {
-      const result = await prisma.effort.findMany();
+      const result = await prisma.effort.findMany({
+        include: {
+          workers: true,
+        },
+        orderBy: [
+          {
+            date: "asc",
+          },
+        ],
+      });
       console.log("result: ", result);
       return res.status(200).json(result);
     } catch (error) {
