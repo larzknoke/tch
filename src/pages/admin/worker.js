@@ -81,7 +81,7 @@ function Worker() {
           <BallLoader />
         </Flex>
       )}
-      <WorkerModalCreate />
+      <WorkerModalCreate getWorkers={getWorkers} />
     </VStack>
   );
 }

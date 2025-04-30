@@ -21,14 +21,10 @@ export default function LayoutAdmin({ children }) {
             <Image src="/tch_logo_tiny.svg" height={10} mr={10} />
           </Link>
           <Button variant="outline" asChild>
-            <Link href="/admin">
-              Arbeitseinsätze
-            </Link>
+            <Link href="/admin">Arbeitseinsätze</Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/admin/worker">
-              Arbeiter
-            </Link>
+            <Link href="/admin/worker">Arbeiter</Link>
           </Button>
           <Spacer />
           <Button variant={"outline"} colorPalette={"red"}>

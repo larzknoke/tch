@@ -100,7 +100,7 @@ function Admin() {
           <BallLoader />
         </Flex>
       )}
-      <EffortModalCreate />
+      <EffortModalCreate getEfforts={getEfforts} />
     </VStack>
   );
 }
