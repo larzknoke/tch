@@ -66,7 +66,7 @@ function HeaderHome() {
           </div>
           <Link href={"/"} className="cursor-pointer">
             <Image
-              src="/tch_logo_full_white.svg"
+              src="/tch_logo_full_white2.svg"
               alt="TCH Logo"
               width="307"
               height="77"

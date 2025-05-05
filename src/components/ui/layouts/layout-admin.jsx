@@ -18,7 +18,7 @@ export default function LayoutAdmin({ children }) {
       <Flex direction={"column"} py={5} gap={5} divideY={1}>
         <HStack>
           <Link href="/">
-            <Image src="/tch_logo_tiny.svg" height={10} mr={10} />
+            <Image src="/tch_logo_tiny2.svg" height={10} mr={10} />
           </Link>
           <Button variant="outline" asChild>
             <Link href="/admin">Arbeitseinsätze</Link>

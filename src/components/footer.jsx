@@ -13,7 +13,7 @@ function Footer() {
         <div className="container mx-auto flex flex-col md:flex-row gap-5 md:gap-10">
           <div className="flex flex-col gap-5 w-full md:w-2/4">
             <Image
-              src="/tch_logo_full_white.svg"
+              src="/tch_logo_full_white2.svg"
               alt="TCH Logo"
               width="307"
               height="77"

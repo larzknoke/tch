@@ -20,7 +20,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
       <div className="flex flex-col gap-14 ">
         <Link href={"/"}>
           <Image
-            src="/tch_logo_full_white.svg"
+            src="/tch_logo_full_white2.svg"
             alt="TCH Logo"
             width="307"
             height="77"

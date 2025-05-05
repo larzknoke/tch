@@ -21,9 +21,11 @@ import { useState, useEffect } from "react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, dateFormatter } from "@/lib/utils";
 import { EffortModalCreate } from "@/components/efforts/effort-modal-create";
+import { toaster } from "@/components/ui/toaster";
 
 function Admin() {
   const [effortsData, setEffortsData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function getEfforts() {
     try {
@@ -48,13 +50,35 @@ function Admin() {
     }
   }
 
+  async function deleteEffort(id) {
+    setLoading(true);
+    const resData = await fetch("/api/efforts?id=" + id, {
+      method: "DELETE",
+    });
+    if (resData.status != 200) {
+      toaster.create({
+        description: `Ein Fehler ist aufgetreten`,
+        type: "error",
+      });
+      setLoading(false);
+    } else {
+      // const resData = await res.json();
+      toaster.create({
+        description: `Arbeotseinsatz gelöscht.`,
+        type: "success",
+      });
+      setLoading(false);
+      getEfforts();
+    }
+  }
+
   useEffect(() => {
     getEfforts();
   }, []);
 
   return (
     <VStack py={5} gap={5} placeItems={"flex-start"}>
-      {effortsData ? (
+      {effortsData && !loading ? (
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -85,7 +109,11 @@ function Admin() {
                         </Icon>
                       </Tooltip>
                       <Tooltip content="Löschen">
-                        <Icon size={"sm"} color="red.600">
+                        <Icon
+                          size={"sm"}
+                          color="red.600"
+                          onClick={() => deleteEffort(item.id)}
+                        >
                           <TrashIcon />
                         </Icon>
                       </Tooltip>

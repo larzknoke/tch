@@ -33,4 +33,19 @@ export default async function handler(req, res) {
       return res.status(500).json(error);
     }
   }
+
+  if (req.method == "DELETE") {
+    try {
+      const id = req.query.id;
+      console.log("id: ", id);
+      const result = await prisma.effort.delete({
+        where: { id: parseInt(id) },
+      });
+      console.log("result: ", result);
+      return res.status(200).json(result);
+    } catch (error) {
+      console.log("api error: ", error);
+      return res.status(500).json(error);
+    }
+  }
 }

@@ -5,31 +5,57 @@ import { HStack, VStack, Flex, Table, Icon } from "@chakra-ui/react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, dateFormatter } from "@/lib/utils";
 import BallLoader from "@/components/ui/loading-ball";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { toaster } from "@/components/ui/toaster";
+import { WorkerModalEdit } from "@/components/worker/worker-modal-edit";
 
 function Worker() {
   const [workersData, setWorkersData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [selectedWorker, setSelectedWorker] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   async function getWorkers() {
     try {
-      // setLoading(true);
+      setLoading(true);
       const res = await fetch(`/api/workers`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
 
       if (res.status != 200) {
-        // setLoading(false);
+        setLoading(false);
         // setInviteError(true);
       } else {
         const resData = await res.json();
         setWorkersData(resData);
-        // setLoading(false);
+        setLoading(false);
       }
     } catch (error) {
       console.log("api fetch error");
       console.error("Err", error);
       // setInviteError(true);
+    }
+  }
+
+  async function deleteWorker(id) {
+    setLoading(true);
+    const resData = await fetch("/api/workers?id=" + id, {
+      method: "DELETE",
+    });
+    if (resData.status != 200) {
+      toaster.create({
+        description: `Ein Fehler ist aufgetreten`,
+        type: "error",
+      });
+      setLoading(false);
+    } else {
+      toaster.create({
+        description: `Teilnehmer gelöscht.`,
+        type: "success",
+      });
+      getWorkers();
+      setLoading(false);
     }
   }
 
@@ -39,7 +65,7 @@ function Worker() {
 
   return (
     <VStack py={5} gap={5} placeItems={"flex-start"}>
-      {workersData ? (
+      {workersData && !loading ? (
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -61,12 +87,22 @@ function Worker() {
                   <Table.Cell textAlign="end">
                     <HStack placeContent={"end"} gap={4}>
                       <Tooltip content="Bearbeiten">
-                        <Icon size={"sm"}>
+                        <Icon
+                          size={"sm"}
+                          onClick={() => {
+                            setSelectedWorker(item);
+                            setDialogOpen(true);
+                          }}
+                        >
                           <PencilSquareIcon />
                         </Icon>
                       </Tooltip>
                       <Tooltip content="Löschen">
-                        <Icon size={"sm"} color="red.600">
+                        <Icon
+                          size={"sm"}
+                          color="red.600"
+                          onClick={() => deleteWorker(item.id)}
+                        >
                           <TrashIcon />
                         </Icon>
                       </Tooltip>
@@ -82,6 +118,11 @@ function Worker() {
         </Flex>
       )}
       <WorkerModalCreate getWorkers={getWorkers} />
+      <WorkerModalEdit
+        worker={selectedWorker}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+      />
     </VStack>
   );
 }
