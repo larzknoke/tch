@@ -12,7 +12,7 @@ import { WorkerModalEdit } from "@/components/worker/worker-modal-edit";
 function Worker() {
   const [workersData, setWorkersData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [selectedWorker, setSelectedWorker] = useState(null);
+  const [selectedWorker, setSelectedWorker] = useState({});
   const [openEditModal, setOpenEditModal] = useState(false);
 
   async function getWorkers() {
@@ -123,6 +123,7 @@ function Worker() {
         worker={selectedWorker}
         open={openEditModal}
         setOpen={setOpenEditModal}
+        getWorkers={getWorkers}
       />
     </VStack>
   );

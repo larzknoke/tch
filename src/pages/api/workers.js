@@ -39,4 +39,20 @@ export default async function handler(req, res) {
       return res.status(500).json(error);
     }
   }
+  if (req.method == "PUT") {
+    try {
+      const data = req.body;
+      console.log("data: ", data);
+      const result = await prisma.worker.update({
+        where: { id: parseInt(data.id) },
+        data: data,
+      });
+      console.log("result: ", result);
+      return res.status(200).json(result);
+    } catch (error) {
+      console.log("api error: ", error);
+      return res.status(500).json(error);
+    }
+  }
+  return res.status(405).json({ message: "Method not allowed" });
 }

@@ -37,10 +37,16 @@ const schema = yup
   })
   .required();
 
-export const WorkerModalEdit = ({ worker, open, setOpen }) => {
+export const WorkerModalEdit = ({ worker, open, setOpen, getWorkers }) => {
   const [loading, setLoading] = useState(false);
   const contentRef = useRef(null);
   const dialogRef = useRef(null);
+
+  useEffect(() => {
+    if (worker) {
+      reset(worker);
+    }
+  }, [worker]);
 
   const {
     register,
@@ -56,8 +62,7 @@ export const WorkerModalEdit = ({ worker, open, setOpen }) => {
 
   async function onSubmit(values) {
     try {
-      console.log("values", values);
-
+      setLoading(true);
       const res = await fetch("/api/workers", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -75,7 +80,7 @@ export const WorkerModalEdit = ({ worker, open, setOpen }) => {
           type: "success",
         });
         getWorkers();
-        dialogEditRef.current.close();
+        setOpen(false);
         reset();
         setLoading(false);
       }
@@ -131,11 +136,11 @@ export const WorkerModalEdit = ({ worker, open, setOpen }) => {
                             </Field.Label>
                             <Input name="phone" {...register("phone")} />
                           </Field.Root>
-                          <EffortSelect
+                          {/* <EffortSelect
                             errors={errors}
                             control={control}
                             contentRef={contentRef}
-                          />
+                          /> */}
                           <Controller
                             name="verified"
                             control={control}
