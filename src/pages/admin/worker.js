@@ -13,7 +13,7 @@ function Worker() {
   const [workersData, setWorkersData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   async function getWorkers() {
     try {
@@ -91,7 +91,8 @@ function Worker() {
                           size={"sm"}
                           onClick={() => {
                             setSelectedWorker(item);
-                            setDialogOpen(true);
+                            // setDialogOpen(true);
+                            setOpenEditModal(true);
                           }}
                         >
                           <PencilSquareIcon />
@@ -120,8 +121,8 @@ function Worker() {
       <WorkerModalCreate getWorkers={getWorkers} />
       <WorkerModalEdit
         worker={selectedWorker}
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
+        open={openEditModal}
+        setOpen={setOpenEditModal}
       />
     </VStack>
   );

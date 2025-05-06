@@ -37,19 +37,10 @@ const schema = yup
   })
   .required();
 
-export const WorkerModalEdit = ({ worker, open, onOpenChange }) => {
+export const WorkerModalEdit = ({ worker, open, setOpen }) => {
   const [loading, setLoading] = useState(false);
   const contentRef = useRef(null);
   const dialogRef = useRef(null);
-  // const [open, setOpen] = useState(false);
-
-  // useEffect(() => {
-  //   if (openEditModal) {
-  //     setOpen(true);
-  //   } else {
-  //     setOpen(false);
-  //   }
-  // }, [openEditModal]);
 
   const {
     register,
@@ -100,7 +91,7 @@ export const WorkerModalEdit = ({ worker, open, onOpenChange }) => {
     }
   }
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
@@ -175,7 +166,7 @@ export const WorkerModalEdit = ({ worker, open, onOpenChange }) => {
               }}
             </Dialog.Context>
             <Dialog.Footer>
-              <Button onClick={() => onOpenChange(false)} variant="outline">
+              <Button onClick={() => setOpen(false)} variant="outline">
                 Abbrechen
               </Button>
               <Button
@@ -187,7 +178,7 @@ export const WorkerModalEdit = ({ worker, open, onOpenChange }) => {
               </Button>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
-              <CloseButton onClick={() => onOpenChange(false)} size="sm" />
+              <CloseButton size="sm" />
             </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>
