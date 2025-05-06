@@ -22,10 +22,13 @@ import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, dateFormatter } from "@/lib/utils";
 import { EffortModalCreate } from "@/components/efforts/effort-modal-create";
 import { toaster } from "@/components/ui/toaster";
+import { EffortModalEdit } from "@/components/efforts/effort-modal-edit";
 
 function Admin() {
   const [effortsData, setEffortsData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [selectedEffort, setSelectedEffort] = useState({});
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   async function getEfforts() {
     try {
@@ -104,7 +107,13 @@ function Admin() {
                   <Table.Cell textAlign="end">
                     <HStack placeContent={"end"} gap={4}>
                       <Tooltip content="Bearbeiten">
-                        <Icon size={"sm"}>
+                        <Icon
+                          size={"sm"}
+                          onClick={() => {
+                            setSelectedEffort(item);
+                            setOpenEditModal(true);
+                          }}
+                        >
                           <PencilSquareIcon />
                         </Icon>
                       </Tooltip>
@@ -129,6 +138,12 @@ function Admin() {
         </Flex>
       )}
       <EffortModalCreate getEfforts={getEfforts} />
+      <EffortModalEdit
+        effort={selectedEffort}
+        open={openEditModal}
+        setOpen={setOpenEditModal}
+        getEfforts={getEfforts}
+      />
     </VStack>
   );
 }
