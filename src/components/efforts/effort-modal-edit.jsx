@@ -101,7 +101,10 @@ export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
     }
   }
   return (
-    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+    <Dialog.Root open={open} onOpenChange={(e) => {
+      setOpen(e.open);
+      reset();
+    }}>
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
