@@ -69,12 +69,3 @@ export const EffortSelect = ({ control, errors, contentRef }) => {
     </Field.Root>
   );
 };
-
-const frameworks = createListCollection({
-  items: [
-    { label: "React.js", value: "react" },
-    { label: "Vue.js", value: "vue" },
-    { label: "Angular", value: "angular" },
-    { label: "Svelte", value: "svelte" },
-  ],
-});

@@ -136,11 +136,11 @@ export const WorkerModalEdit = ({ worker, open, setOpen, getWorkers }) => {
                             </Field.Label>
                             <Input name="phone" {...register("phone")} />
                           </Field.Root>
-                          {/* <EffortSelect
+                          <EffortSelect
                             errors={errors}
                             control={control}
                             contentRef={contentRef}
-                          /> */}
+                          />
                           <Controller
                             name="verified"
                             control={control}
