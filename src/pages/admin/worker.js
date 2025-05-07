@@ -73,6 +73,7 @@ function Worker() {
               <Table.ColumnHeader>Email</Table.ColumnHeader>
               <Table.ColumnHeader>Telefon</Table.ColumnHeader>
               <Table.ColumnHeader> Bestätigt</Table.ColumnHeader>
+              <Table.ColumnHeader> Einsatz</Table.ColumnHeader>
               <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
             </Table.Row>
           </Table.Header>
@@ -84,6 +85,7 @@ function Worker() {
                   <Table.Cell>{item.email}</Table.Cell>
                   <Table.Cell>{item.phone}</Table.Cell>
                   <Table.Cell>{Checker(item.verified)}</Table.Cell>
+                  <Table.Cell>{item.effort?.title || "-"}</Table.Cell>
                   <Table.Cell textAlign="end">
                     <HStack placeContent={"end"} gap={4}>
                       <Tooltip content="Bearbeiten">

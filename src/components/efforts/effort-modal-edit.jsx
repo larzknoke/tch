@@ -15,7 +15,7 @@ import * as yup from "yup";
 import { toaster } from "@/components/ui/toaster";
 import { useRef, useState, useEffect } from "react";
 import dayjs from "dayjs";
-import 'dayjs/locale/de'
+import "dayjs/locale/de";
 
 const schema = yup
   .object({
@@ -40,13 +40,6 @@ const schema = yup
 export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
   const [loading, setLoading] = useState(false);
   const dialogRef = useRef(null);
-  console.log("effort", effort);
-
-  // useEffect(() => {
-  //   if (effort && effort.date) {
-  //     reset({ ...effort, date: dayjs(effort.date).format("YYYY-MM-DDThh:mm") });
-  //   }
-  // }, [effort]);
 
   const {
     register,
@@ -59,7 +52,7 @@ export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: effort,
-    values: {...effort, date: dayjs(effort.date).format("YYYY-MM-DDThh:mm")}
+    values: { ...effort, date: dayjs(effort.date).format("YYYY-MM-DDThh:mm") },
   });
 
   async function onSubmit(values) {
@@ -101,10 +94,13 @@ export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
     }
   }
   return (
-    <Dialog.Root open={open} onOpenChange={(e) => {
-      setOpen(e.open);
-      reset();
-    }}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={(e) => {
+        setOpen(e.open);
+        reset();
+      }}
+    >
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>

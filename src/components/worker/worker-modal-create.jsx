@@ -41,6 +41,7 @@ export const WorkerModalCreate = ({ getWorkers }) => {
   const [loading, setLoading] = useState(false);
   const contentRef = useRef(null);
   const dialogRef = useRef(null);
+  const [open, setOpen] = useState(false);
 
   const {
     register,
@@ -82,7 +83,8 @@ export const WorkerModalCreate = ({ getWorkers }) => {
           type: "success",
         });
         getWorkers();
-        dialogRef.current.close();
+        setOpen(false);
+        // dialogRef.current.close();
         reset();
         setLoading(false);
       }
@@ -98,7 +100,7 @@ export const WorkerModalCreate = ({ getWorkers }) => {
     }
   }
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Dialog.Trigger asChild>
         <Button colorPalette={"green"}>Neuer Arbeiter</Button>
       </Dialog.Trigger>
@@ -142,6 +144,7 @@ export const WorkerModalCreate = ({ getWorkers }) => {
                             errors={errors}
                             control={control}
                             contentRef={contentRef}
+                            register={register}
                           />
                           <Controller
                             name="verified"

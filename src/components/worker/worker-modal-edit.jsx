@@ -9,6 +9,7 @@ import {
   Textarea,
   Switch,
   DialogContext,
+  NativeSelect,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -136,11 +137,26 @@ export const WorkerModalEdit = ({ worker, open, setOpen, getWorkers }) => {
                             </Field.Label>
                             <Input name="phone" {...register("phone")} />
                           </Field.Root>
+                          {/* <Field.Root>
+                            <Field.Label>
+                              Arbeitseinsätze
+                              <Field.RequiredIndicator />
+                            </Field.Label>
+                            <NativeSelect.Root>
+                              <NativeSelect.Field {...register("effortId")}>
+                                <option value="1">Option 1</option>
+                                <option value="17">Option 2</option>
+                              </NativeSelect.Field>
+                              <NativeSelect.Indicator />
+                            </NativeSelect.Root>
+                          </Field.Root> */}
                           <EffortSelect
                             errors={errors}
                             control={control}
                             contentRef={contentRef}
+                            register={register}
                           />
+
                           <Controller
                             name="verified"
                             control={control}
