@@ -9,10 +9,14 @@ import {
   Textarea,
   Switch,
   Alert,
+  Flex,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toaster } from "../ui/toaster";
+import BallLoader from "../ui/loading-ball";
+import { useState } from "react";
 
 const schema = yup
   .object({
@@ -35,6 +39,7 @@ const schema = yup
   .required();
 
 export const EffortModalRegister = () => {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -42,57 +47,104 @@ export const EffortModalRegister = () => {
     control,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      title: "",
-      content: "",
-      maxWorker: 1,
-      // date: new Date(),
-      active: "on",
-      finished: false,
-    },
+    // resolver: yupResolver(schema),
+    // defaultValues: {
+    //   title: "",
+    //   content: "",
+    //   maxWorker: 1,
+    //   // date: new Date(),
+    //   active: "on",
+    //   finished: false,
+    // },
   });
 
   async function onSubmit(values) {
     try {
       console.log("values", values);
-
-      const res = await fetch("/api/efforts", {
+      setLoading(true);
+      const resMail = await fetch("/api/verifyWorkerEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-      // if (res.status != 200) {
-      //   toast({
-      //     title: "Ein Fehler ist aufgetreten",
-      //     status: "error",
-      //     duration: 4000,
-      //     isClosable: true,
-      //   });
-      // } else {
-      //   const resData = await res.json();
-      //   toast({
-      //     title: `Ansprechpartner ${resData.result.name} erstellt.`,
-      //     status: "success",
-      //     duration: 4000,
-      //     isClosable: true,
-      //   });
-      //   onClose();
-      //   reset();
-      //   router.replace(router.asPath);
-      // }
+      const res = await fetch("/api/workers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (res.status != 200) {
+        toaster.create({
+          description: "Ein Fehler ist aufgetreten",
+          type: "error",
+        });
+        setLoading(false);
+      } else {
+        const resData = await res.json();
+        console.log("resData", resData);
+        toaster.create({
+          description: `Email zur Bestätigung wurde versendet`,
+          type: "success",
+        });
+        setLoading(false);
+      }
     } catch (error) {
       console.log("api fetch error");
       console.error("Err", error);
-      toast({
-        title: "Ein Fehler ist aufgetreten",
+      toaster.create({
         description: JSON.stringify(error),
-        status: "error",
-        duration: 4000,
-        isClosable: true,
+        type: "error",
       });
+      // toast({
+      //   title: "Ein Fehler ist aufgetreten",
+      //   description: JSON.stringify(error),
+      //   status: "error",
+      //   duration: 4000,
+      //   isClosable: true,
+      // });
+      setLoading(false);
     }
   }
+
+  // async function onSubmit(values) {
+  //   try {
+  //     console.log("values", values);
+
+  //     const res = await fetch("/api/efforts", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(values),
+  //     });
+  // if (res.status != 200) {
+  //   toast({
+  //     title: "Ein Fehler ist aufgetreten",
+  //     status: "error",
+  //     duration: 4000,
+  //     isClosable: true,
+  //   });
+  // } else {
+  //   const resData = await res.json();
+  //   toast({
+  //     title: `Ansprechpartner ${resData.result.name} erstellt.`,
+  //     status: "success",
+  //     duration: 4000,
+  //     isClosable: true,
+  //   });
+  //   onClose();
+  //   reset();
+  //   router.replace(router.asPath);
+  // }
+  //   } catch (error) {
+  //     console.log("api fetch error");
+  //     console.error("Err", error);
+  //     toast({
+  //       title: "Ein Fehler ist aufgetreten",
+  //       description: JSON.stringify(error),
+  //       status: "error",
+  //       duration: 4000,
+  //       isClosable: true,
+  //     });
+  //   }
+  // }
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -108,40 +160,46 @@ export const EffortModalRegister = () => {
               <Dialog.Title>Für Arbeitseinsatz registrieren</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-              <form id="effort-form" onSubmit={handleSubmit(onSubmit)}>
-                <VStack gap={4}>
-                  <Field.Root required>
-                    <Field.Label>
-                      Email
-                      <Field.RequiredIndicator />
-                    </Field.Label>
-                    <Input name="email" {...register("email")} />
-                    {/* <Field.ErrorMessage>
+              {!loading ? (
+                <form id="effort-form" onSubmit={handleSubmit(onSubmit)}>
+                  <VStack gap={4}>
+                    <Field.Root required>
+                      <Field.Label>
+                        Email
+                        <Field.RequiredIndicator />
+                      </Field.Label>
+                      <Input name="email" {...register("email")} />
+                      {/* <Field.ErrorMessage>
                       {errors.email?.message && errors.email?.message}
                     </Field.ErrorMessage> */}
-                  </Field.Root>
-                  <Field.Root>
-                    <Field.Label>
-                      Name
-                      <Field.RequiredIndicator />
-                    </Field.Label>
-                    <Input name="title" {...register("title")} />
-                    {/* <Field.ErrorMessage>
+                    </Field.Root>
+                    <Field.Root>
+                      <Field.Label>
+                        Name
+                        <Field.RequiredIndicator />
+                      </Field.Label>
+                      <Input name="name" {...register("name")} />
+                      {/* <Field.ErrorMessage>
                       {errors.title?.message && errors.title?.message}
                     </Field.ErrorMessage> */}
-                  </Field.Root>
-                  <Field.Root>
-                    <Field.Label>
-                      Telefon
-                      <Field.RequiredIndicator />
-                    </Field.Label>
-                    <Input name="phone" {...register("phone")} />
-                    {/* <Field.ErrorMessage>
+                    </Field.Root>
+                    <Field.Root>
+                      <Field.Label>
+                        Telefon
+                        <Field.RequiredIndicator />
+                      </Field.Label>
+                      <Input name="phone" {...register("phone")} />
+                      {/* <Field.ErrorMessage>
                       {errors.phone?.message && errors.phone?.message}
                     </Field.ErrorMessage> */}
-                  </Field.Root>
-                </VStack>
-              </form>
+                    </Field.Root>
+                  </VStack>
+                </form>
+              ) : (
+                <Flex justifyContent={"center"} alignItems={"center"} pb={5}>
+                  <BallLoader />
+                </Flex>
+              )}
               <Alert.Root
                 status="neutral"
                 variant={"surface"}
