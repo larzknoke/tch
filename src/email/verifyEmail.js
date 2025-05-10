@@ -1,3 +1,4 @@
+import { dateFormatter } from "@/lib/utils";
 import {
   Body,
   Button,
@@ -11,7 +12,7 @@ import {
   Text,
 } from "@react-email/components";
 
-export default function VerifyEmail({ worker }) {
+export default function VerifyEmail({ worker, effort }) {
   return (
     <Html>
       <Head />
@@ -19,7 +20,7 @@ export default function VerifyEmail({ worker }) {
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`https://tch.larsknoke.com/tch_logo_full2.svg`} //TODO: URL in Production ersetzen
+            src={`https://tch.larsknoke.com/tch_logo.png`} //TODO: URL in Production ersetzen
             alt="TC Holzminden von 1928 e.V."
             width={120}
             height={24}
@@ -28,8 +29,9 @@ export default function VerifyEmail({ worker }) {
 
           <Text style={title}>
             Arbeitseinsatz: <br />
-            <strong>{worker.name}</strong> <br />
-            <strong>{worker.email}</strong>
+            <strong>{effort.title}</strong> <br />
+            <strong>{effort.content}</strong> <br />
+            <strong>{dateFormatter(effort.date)}</strong>
           </Text>
 
           <Section style={section}>

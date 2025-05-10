@@ -14,12 +14,13 @@ import {
   Image,
   Table,
   Icon,
+  Text,
 } from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
 
 import { useState, useEffect } from "react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
-import { Checker, dateFormatter } from "@/lib/utils";
+import { Checker, dateFormatter, verifiedWorker } from "@/lib/utils";
 import { EffortModalCreate } from "@/components/efforts/effort-modal-create";
 import { toaster } from "@/components/ui/toaster";
 import { EffortModalEdit } from "@/components/efforts/effort-modal-edit";
@@ -100,7 +101,24 @@ function Admin() {
                   <Table.Cell>{item.title}</Table.Cell>
                   <Table.Cell>{dateFormatter(item.date, true)}</Table.Cell>
                   <Table.Cell>
-                    {item.workers.length} von {item.maxWorker || "-"}
+                    {verifiedWorker(item.workers)} von {item.maxWorker || "-"}
+                    <Text fontSize={"xs"} color={"gray.500"}>
+                      {/* {item.workers.length} Teilnehmer */}
+                      {item.workers.length > 0 &&
+                        item.workers
+                          .filter((worker) => worker.verified == true)
+                          .map((worker) => (
+                            <Badge
+                              key={worker.id}
+                              colorScheme="green"
+                              fontSize={"xs"}
+                              mr={1}
+                              mt={1}
+                            >
+                              {worker.name}
+                            </Badge>
+                          ))}
+                    </Text>
                   </Table.Cell>
                   <Table.Cell>{Checker(item.active)}</Table.Cell>
                   <Table.Cell>{Checker(item.finished)}</Table.Cell>

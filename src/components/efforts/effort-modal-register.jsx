@@ -40,6 +40,8 @@ const schema = yup
 
 export const EffortModalRegister = ({ effortId }) => {
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -79,6 +81,7 @@ export const EffortModalRegister = ({ effortId }) => {
           type: "error",
         });
         setLoading(false);
+        setOpen(false);
       } else {
         console.log("resData", resData);
         toaster.create({
@@ -86,6 +89,7 @@ export const EffortModalRegister = ({ effortId }) => {
           type: "success",
         });
         setLoading(false);
+        setOpen(false);
       }
     } catch (error) {
       console.log("api fetch error");
@@ -95,11 +99,12 @@ export const EffortModalRegister = ({ effortId }) => {
         type: "error",
       });
       setLoading(false);
+      setOpen(false);
     }
   }
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Dialog.Trigger asChild>
         <span className="font-bold uppercase text-tch-gold hover:underline hover:cursor-pointer">
           Anmelden
@@ -171,7 +176,12 @@ export const EffortModalRegister = ({ effortId }) => {
               <Dialog.ActionTrigger asChild>
                 <Button variant="outline">Abbrechen</Button>
               </Dialog.ActionTrigger>
-              <Button colorPalette={"gold"} type="submit" form="effort-form">
+              <Button
+                loading={loading}
+                colorPalette={"gold"}
+                type="submit"
+                form="effort-form"
+              >
                 Anmelden
               </Button>
             </Dialog.Footer>

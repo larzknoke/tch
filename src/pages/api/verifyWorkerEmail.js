@@ -1,9 +1,5 @@
 import { sendEmail } from "@/lib/email";
 import { render } from "@react-email/render";
-// import ConfirmEmail from "@/email/ConfirmEmail";
-// import ConfirmStiftungEmail from "@/email/ConfirmStiftungEmail";
-// import { LetterPDF } from "@/email/pdf";
-// import { renderToBuffer } from "@react-pdf/renderer";
 import VerifyEmail from "@/email/verifyEmail";
 
 export default async function handle(req, res) {
@@ -12,6 +8,11 @@ export default async function handle(req, res) {
   try {
     console.log("req.body", req.body);
     const worker = req.body;
+    const effort = await prisma.effort.findUnique({
+      where: {
+        id: parseInt(worker.effortId),
+      },
+    });
     if (worker) {
       await sendEmail({
         to:
@@ -19,7 +20,7 @@ export default async function handle(req, res) {
             ? "info@larsknoke.com"
             : "info@larsknoke.com",
         subject: "Arbeitseinsatz bestätigen - TC Holzminden von 1928 e.V.",
-        html: await render(<VerifyEmail worker={worker} />),
+        html: await render(<VerifyEmail worker={worker} effort={effort} />),
       });
     } else {
       throw new Error("No Worker found");
