@@ -1,10 +1,10 @@
-// import { sendEmail } from "@/lib/email";
-// import { render } from "@react-email/render";
+import { sendEmail } from "@/lib/email";
+import { render } from "@react-email/render";
 // import ConfirmEmail from "@/email/ConfirmEmail";
 // import ConfirmStiftungEmail from "@/email/ConfirmStiftungEmail";
 // import { LetterPDF } from "@/email/pdf";
 // import { renderToBuffer } from "@react-pdf/renderer";
-import { sendEmail } from "@/lib/email";
+import VerifyEmail from "@/email/verifyEmail";
 
 export default async function handle(req, res) {
   console.log("email api call");
@@ -19,8 +19,7 @@ export default async function handle(req, res) {
             ? "info@larsknoke.com"
             : "info@larsknoke.com",
         subject: "Arbeitseinsatz bestätigen - TC Holzminden von 1928 e.V.",
-        // html: render(<ConfirmEmail letter={letter} />),
-        html: `<b>Hello world?</b><pre>${JSON.stringify(worker)}</pre>`, // HTML body
+        html: await render(<VerifyEmail worker={worker} />),
       });
     } else {
       throw new Error("No Worker found");

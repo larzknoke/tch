@@ -3,7 +3,7 @@ import {
   WrenchIcon,
   // UserGroupIcon,
 } from "@heroicons/react/16/solid";
-import { dateFormatter } from "@/lib/utils";
+import { dateFormatter, verifiedWorker } from "@/lib/utils";
 
 import { UsersIcon } from "@heroicons/react/24/outline";
 import { EffortModalRegister } from "./effort-modal-register";
@@ -15,19 +15,18 @@ function EffortItem({ effort }) {
         <div className="flex flex-row gap-2 ">
           <WrenchIcon className="size-5 text-tch-blue mt-1" />
           <div className="flex flex-col">
-            <div>{dateFormatter(effort.date,false)}</div>
+            <div>{dateFormatter(effort.date, false)}</div>
             <div className="font-semibold text-xl">{effort.title}</div>
           </div>
         </div>
         <div className="px-4 font-bold uppercase text-tch-gold ">
           <div>
-            {/* <span className="hover:underline hover:cursor-pointer">
-              Anmelden
-            </span> */}
-            <EffortModalRegister />
+            <EffortModalRegister effortId={effort.id} />
             <div className="font-normal text-sm text-tch-blue flex flex-row gap-1 items-center">
               <UsersIcon className="size-4 text-tch-blue" />
-              <span>{effort.id}/3 Pers.</span>
+              <span>
+                {verifiedWorker(effort.workers)}/{effort.maxWorker}
+              </span>
             </div>
           </div>
         </div>

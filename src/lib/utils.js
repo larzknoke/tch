@@ -30,3 +30,11 @@ export function Checker(bool) {
     );
   }
 }
+
+export function verifiedWorker(workers) {
+  if (workers.length > 0) {
+    return workers.filter((worker) => worker.verified).length;
+  } else {
+    return 0;
+  }
+}

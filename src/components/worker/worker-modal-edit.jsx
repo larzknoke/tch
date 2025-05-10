@@ -62,6 +62,7 @@ export const WorkerModalEdit = ({ worker, open, setOpen, getWorkers }) => {
   });
 
   async function onSubmit(values) {
+    delete values.effort;
     try {
       setLoading(true);
       const res = await fetch("/api/workers", {

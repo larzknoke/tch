@@ -38,7 +38,7 @@ const schema = yup
   })
   .required();
 
-export const EffortModalRegister = () => {
+export const EffortModalRegister = ({ effortId }) => {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -48,30 +48,31 @@ export const EffortModalRegister = () => {
     formState: { errors },
   } = useForm({
     // resolver: yupResolver(schema),
-    // defaultValues: {
-    //   title: "",
-    //   content: "",
-    //   maxWorker: 1,
-    //   // date: new Date(),
-    //   active: "on",
-    //   finished: false,
-    // },
+    defaultValues: {
+      effortId: effortId,
+    },
   });
 
   async function onSubmit(values) {
     try {
       console.log("values", values);
       setLoading(true);
-      const resMail = await fetch("/api/verifyWorkerEmail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
       const res = await fetch("/api/workers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
+      const resData = await res.json();
+      console.log("resData", resData);
+
+      if (resData.email) {
+        const resMail = await fetch("/api/verifyWorkerEmail", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(resData),
+        });
+      }
+
       if (res.status != 200) {
         toaster.create({
           description: "Ein Fehler ist aufgetreten",
@@ -79,7 +80,6 @@ export const EffortModalRegister = () => {
         });
         setLoading(false);
       } else {
-        const resData = await res.json();
         console.log("resData", resData);
         toaster.create({
           description: `Email zur Bestätigung wurde versendet`,
@@ -94,57 +94,10 @@ export const EffortModalRegister = () => {
         description: JSON.stringify(error),
         type: "error",
       });
-      // toast({
-      //   title: "Ein Fehler ist aufgetreten",
-      //   description: JSON.stringify(error),
-      //   status: "error",
-      //   duration: 4000,
-      //   isClosable: true,
-      // });
       setLoading(false);
     }
   }
 
-  // async function onSubmit(values) {
-  //   try {
-  //     console.log("values", values);
-
-  //     const res = await fetch("/api/efforts", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(values),
-  //     });
-  // if (res.status != 200) {
-  //   toast({
-  //     title: "Ein Fehler ist aufgetreten",
-  //     status: "error",
-  //     duration: 4000,
-  //     isClosable: true,
-  //   });
-  // } else {
-  //   const resData = await res.json();
-  //   toast({
-  //     title: `Ansprechpartner ${resData.result.name} erstellt.`,
-  //     status: "success",
-  //     duration: 4000,
-  //     isClosable: true,
-  //   });
-  //   onClose();
-  //   reset();
-  //   router.replace(router.asPath);
-  // }
-  //   } catch (error) {
-  //     console.log("api fetch error");
-  //     console.error("Err", error);
-  //     toast({
-  //       title: "Ein Fehler ist aufgetreten",
-  //       description: JSON.stringify(error),
-  //       status: "error",
-  //       duration: 4000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // }
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
