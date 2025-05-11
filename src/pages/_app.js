@@ -1,3 +1,4 @@
+import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
 // import { Provider } from "@/components/ui/provider";
 import { ChakraProvider, LocaleProvider } from "@chakra-ui/react";
@@ -9,11 +10,13 @@ export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <ChakraProvider value={system}>
-      <LocaleProvider locale={"de-DE"}>
-        {getLayout(<Component {...pageProps} />)}
-        <Toaster />
-      </LocaleProvider>
-    </ChakraProvider>
+    <SessionProvider session={pageProps.session}>
+      <ChakraProvider value={system}>
+        <LocaleProvider locale={"de-DE"}>
+          {getLayout(<Component {...pageProps} />)}
+          <Toaster />
+        </LocaleProvider>
+      </ChakraProvider>
+    </SessionProvider>
   );
 }

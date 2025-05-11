@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LoginBtn from "../admin/login-btn";
 
 // If loading a variable font, you don't need to specify the font weight
 const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
@@ -43,9 +44,10 @@ export default function LayoutAdmin({ children }) {
             );
           })}
           <Spacer />
-          <Button variant="outline" colorScheme="red">
+          {/* <Button variant="outline" colorScheme="red">
             Logout
-          </Button>
+          </Button> */}
+          <LoginBtn />
         </HStack>
         {children}
       </Flex>
