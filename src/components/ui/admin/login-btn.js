@@ -1,24 +1,25 @@
-import { Button } from "@chakra-ui/react";
+import { Text, Button, HStack } from "@chakra-ui/react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default function LoginBtn() {
   const { data: session } = useSession();
   if (session) {
     return (
-      <>
-        Signed in as {session.user.email} <br />
+      <HStack gap={1}>
+        <UserCircleIcon className="w-4" />
+        <Text className="mr-2">{session.user.email}</Text>
         <Button onClick={() => signOut()} colorScheme="red">
           Logout
         </Button>
-      </>
+      </HStack>
     );
   }
   return (
-    <>
-      Not signed in <br />
+    <HStack>
       <Button variant={"outline"} onClick={() => signIn()}>
         Login
       </Button>
-    </>
+    </HStack>
   );
 }
