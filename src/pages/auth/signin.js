@@ -26,6 +26,7 @@ function SignIn() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     handleSubmit,
@@ -35,6 +36,7 @@ function SignIn() {
   } = useForm();
 
   async function onSubmit(values) {
+    setIsLoading(true);
     console.log(`signing:onsubmit:values`, values);
 
     try {
@@ -45,8 +47,10 @@ function SignIn() {
         callbackUrl: router.query.callbackUrl,
       });
       console.log(`signing:onsubmit:res`, res);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   }
   if (status === "authenticated") {
@@ -67,9 +71,10 @@ function SignIn() {
         borderWidth={1}
         borderRadius="lg"
         boxShadow="md"
+        className="bg-gray-100"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack gap="4" align="flex-start" maxW="sm">
+          <Stack gap="4" align="flex-start">
             <Field.Root invalid={!!errors.email}>
               <Field.Label>Email</Field.Label>
               <Input
@@ -98,7 +103,13 @@ function SignIn() {
               <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
             </Field.Root>
 
-            <Button type="submit">Login</Button>
+            <Button
+              type="submit"
+              className="w-100 bg-tch-blue hover:bg-tch-blue-semi"
+              loading={isLoading}
+            >
+              Login
+            </Button>
           </Stack>
         </form>
       </Box>
