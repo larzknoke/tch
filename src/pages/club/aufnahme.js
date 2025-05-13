@@ -6,7 +6,7 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import Button from "@/components/ui/button2";
+import MemberRegisterForm from "@/components/member-register-form";
 
 function Aufnahme() {
   const [open, setOpen] = useState(false);
@@ -41,7 +41,7 @@ function Aufnahme() {
             Gerne kannst Du auch einen Termin zu einem Schnuppertraining bei
             unserer Tennisschule vereinbaren.
           </p>
-          <Button className={"mt-5"}>So wirst du Mitglied</Button>
+          <MemberRegisterForm />
         </div>
       </div>
       <div className="w-full md:w-1/2">
