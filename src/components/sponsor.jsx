@@ -10,7 +10,27 @@ function Sponsor() {
   return (
     <div className=" py-0 relative w-full hidden md:block">
       <div className="embla" ref={emblaRef}>
-        <div className="embla__container sponsor-slide-container items-end  md:px-0">
+        <div className="embla__container sponsor-slide-container items-center  md:px-0">
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/babolat.svg"
+              alt="Babolat Sponsor"
+              width="225"
+              height="35"
+              // objectFit="contain"
+              className=" mx-auto  object-contain"
+            />
+          </div>
+
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/rathmann.svg"
+              alt="Rathmann Sponsor"
+              width="146"
+              height="70"
+              className="w-52 mx-auto object-contain"
+            />
+          </div>
           <div className=" sponsor-slide">
             <Image
               src="/images/sponsor/gronemeyer_1c.svg"
@@ -18,15 +38,6 @@ function Sponsor() {
               width="282"
               height="69"
               className="w-48 mx-auto  object-contain"
-            />
-          </div>
-          <div className=" sponsor-slide">
-            <Image
-              src="/images/sponsor/stadtwerke.png"
-              alt="Stadtwerke Sponsor"
-              width="300"
-              height="149"
-              className="w-36 mx-auto object-contain"
             />
           </div>
           <div className=" sponsor-slide">
@@ -40,20 +51,11 @@ function Sponsor() {
           </div>
           <div className=" sponsor-slide">
             <Image
-              src="/images/sponsor/tnb_1c.svg"
-              alt="TNB Sponsor"
-              width="146"
-              height="70"
-              className="w-40 mx-auto object-contain"
-            />
-          </div>
-          <div className=" sponsor-slide">
-            <Image
-              src="/images/sponsor/allersheimer_1c.png"
-              alt="Allersheimer Sponsor"
-              width="500"
-              height="95"
-              className="w-48 mx-auto object-contain"
+              src="/images/sponsor/stadtwerke.png"
+              alt="Stadtwerke Sponsor"
+              width="300"
+              height="149"
+              className="w-36 mx-auto object-contain"
             />
           </div>
           <div className=" sponsor-slide">
@@ -63,6 +65,70 @@ function Sponsor() {
               width="146"
               height="70"
               className="w-40 mx-auto object-contain"
+            />
+          </div>
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/borchers.svg"
+              alt="Borchers Sponsor"
+              width="146"
+              height="70"
+              className="w-40 mx-auto object-contain"
+            />
+          </div>
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/gehl.svg"
+              alt="Gehl Sponsor"
+              width="146"
+              height="70"
+              className="w-40 mx-auto object-contain"
+            />
+          </div>
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/hachenberg.svg"
+              alt="Hachenberg Sponsor"
+              width="146"
+              height="70"
+              className="w-32 mx-auto object-contain"
+            />
+          </div>
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/galabau.svg"
+              alt="Galabau Sponsor"
+              width="545"
+              height="416"
+              className="w-32 mx-auto  object-contain"
+            />
+          </div>
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/sportbund.svg"
+              alt="Sportbund Sponsor"
+              width="146"
+              height="70"
+              className="w-40 mx-auto object-contain"
+            />
+          </div>
+
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/blsk.svg"
+              alt="BLSK Sponsor"
+              width="146"
+              height="70"
+              className="w-52 mx-auto object-contain"
+            />
+          </div>
+          <div className=" sponsor-slide">
+            <Image
+              src="/images/sponsor/vb.svg"
+              alt="VB Südniedersachen Sponsor"
+              width="146"
+              height="70"
+              className="w-52 mx-auto object-contain"
             />
           </div>
         </div>
