@@ -3,7 +3,7 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css";
 
-@import './ball-loader.css';
+@import "./ball-loader.css";
 
 @theme {
   --color-background: var(--background);
@@ -226,4 +226,12 @@ nav > *:hover::before {
   flex: 0 0 25%;
   min-width: 0;
   @apply md:basis-1/4 basis-1/2;
+}
+
+.satzung p {
+  @apply text-justify mb-3;
+}
+
+.satzung li {
+  @apply list-disc list-outside;
 }
