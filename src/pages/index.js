@@ -41,15 +41,15 @@ export default function Home() {
       <div className="flex flex-col md:flex-row w-full justify-between gap-10 md:gap-20">
         <div className="flex flex-col gap-10 w-full md:w-2/3 px-5 md:px-0">
           {/* <ScheduleWrapper /> */}
-          <div className="flex flex-col md:flex-row rounded-sm bg-gray-200 hover:cursor-pointer min-h-48">
+          <div className="flex flex-col md:flex-row rounded-sm  hover:cursor-pointer min-h-48">
             <Image
               src={`/images/news/news-dummy2.jpg`}
               alt="TCH Logo"
               width="320"
               height="205"
-              className=" object-cover rounded-t md:rounded-l w-full md:w-80"
+              className=" object-cover rounded-t md:rounded-t-none md:rounded-l w-full md:w-80"
             />{" "}
-            <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
+            <div className=" p-6 gap-1 flex flex-col text-tch-blue relative bg-gray-200 md:rounded-r  rounded-b">
               <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
                 Training
               </div>
@@ -63,19 +63,19 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row rounded-sm bg-gray-200 hover:cursor-pointer min-h-48">
+          <div className="flex flex-col md:flex-row rounded-sm  hover:cursor-pointer min-h-48">
             <Image
               src={`/images/halle1.jpg`}
               alt="TCH Logo"
               width="320"
               height="205"
-              className=" object-cover rounded-t md:rounded-l w-full md:w-80"
+              className=" object-cover rounded-t md:rounded-l md:rounded-t-none w-full md:w-80"
             />{" "}
-            <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
+            <div className=" p-6 gap-1 flex flex-col text-tch-blue relative bg-gray-200 md:rounded-r rounded-b">
               <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
                 Halle
               </div>
-              <h2>Hallenbuchung/Hallenordnung</h2>
+              <h2>Hallenbuchung / Hallenordnung</h2>
               <div className="max-w-xl">
                 Wir möchten Euch auf die Einhaltung der Hallenordnung Bitte
                 leitet die entsprechenden Informationen auch an Eure Mitspieler
