@@ -8,6 +8,8 @@ import MobileNav from "./ui/nav/mobile-nav";
 import { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import NavItemTraining from "./ui/nav/nav-item-training";
+import NavItemTeams from "./ui/nav/nav-item-teams";
 
 const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
 
@@ -107,8 +109,8 @@ function HeaderHome() {
         <nav className="hidden md:flex font-bold gap-7 text-lg self-center main-nav uppercase text-white py-6">
           <NavItemClub />
           <Link href={"/news"}>NEWS & NEUIGKEITEN</Link>
-          <Link href={"/teams"}>TEAMS</Link>
-          <span>TRAINING & Spielen</span>
+          <NavItemTeams />
+          <NavItemTraining />
           <Link href={"/kontakt"}>Kontakt</Link>
         </nav>
       </div>

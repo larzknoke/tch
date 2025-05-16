@@ -5,8 +5,12 @@ import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 
 function MobileNav({ navOpen = false, setNavOpen }) {
   const [clubNav, setClubNav] = useState(false);
+  const [trainingNav, setTrainingNav] = useState(false);
+  const [teamsNav, setTeamsNav] = useState(false);
 
   function resetNav() {
+    setTrainingNav(false);
+    setTeamsNav(false);
     setClubNav(false);
     setNavOpen(false);
   }
@@ -31,7 +35,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
         <div className="flex flex-row ">
           <nav
             className={`mobile-nav-item 	 ${
-              clubNav
+              clubNav || trainingNav || teamsNav
                 ? "opacity-0 z-20 -translate-x-10"
                 : "opacity-100 z-30 translate-x-0"
             }`}
@@ -45,8 +49,19 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/news"} onClick={() => resetNav()}>
               NEWS & NEUIGKEITEN
             </Link>
-            <span>TEAMS</span>
-            <span>TRAINING & Spielen</span>
+            <span
+              className="flex items-center gap-1"
+              onClick={() => setTeamsNav(true)}
+            >
+              TEAMS <ChevronRightIcon className="size-5" />
+            </span>
+            <span
+              className="flex items-center gap-1"
+              onClick={() => setTrainingNav(true)}
+            >
+              TRAINING & Spielen <ChevronRightIcon className="size-5" />
+            </span>
+
             <Link href={"/kontakt"} onClick={() => resetNav()}>
               Kontakt
             </Link>
@@ -78,6 +93,54 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             </Link>
             <span
               onClick={() => setClubNav(false)}
+              className="font-bold underline underline-offset-4 flex items-center text-sm"
+            >
+              <ChevronLeftIcon className="size-4" />
+              Zurück
+            </span>
+          </nav>
+          <nav
+            className={`mobile-nav-item absolute ${
+              teamsNav
+                ? " opacity-100 z-30 translate-x-0"
+                : " opacity-0 z-20  translate-x-10"
+            }`}
+          >
+            <Link href={"/club/gelaende"} onClick={() => resetNav()}>
+              Jugend-Teams
+            </Link>
+            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
+              Senioren-Teams
+            </Link>
+            <span
+              onClick={() => setTeamsNav(false)}
+              className="font-bold underline underline-offset-4 flex items-center text-sm"
+            >
+              <ChevronLeftIcon className="size-4" />
+              Zurück
+            </span>
+          </nav>
+          <nav
+            className={`mobile-nav-item absolute ${
+              trainingNav
+                ? " opacity-100 z-30 translate-x-0"
+                : " opacity-0 z-20  translate-x-10"
+            }`}
+          >
+            <Link href={"/club/gelaende"} onClick={() => resetNav()}>
+              Jugendtraining
+            </Link>
+            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
+              Seniorentraining
+            </Link>
+            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
+              Spielen Sommer
+            </Link>
+            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
+              Spielen Winter
+            </Link>
+            <span
+              onClick={() => setTrainingNav(false)}
               className="font-bold underline underline-offset-4 flex items-center text-sm"
             >
               <ChevronLeftIcon className="size-4" />
