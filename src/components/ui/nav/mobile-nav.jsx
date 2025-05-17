@@ -79,6 +79,9 @@ function MobileNav({ navOpen = false, setNavOpen }) {
                 : " opacity-0 z-20  translate-x-10"
             }`}
           >
+            <Link href={"/club/ueberuns"} onClick={() => resetNav()}>
+              Über uns
+            </Link>
             <Link href={"/club/gelaende"} onClick={() => resetNav()}>
               Clubgelände & Anfahrt
             </Link>

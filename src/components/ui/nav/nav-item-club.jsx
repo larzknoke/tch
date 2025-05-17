@@ -43,6 +43,9 @@ function NavItemClub() {
         transition
         className="nav-item-dropdown"
       >
+        <a className="nav-item group" href="/club/ueberuns">
+          <span className="group-hover:bg-[length:100%_2px]">Über uns</span>
+        </a>
         <a className="nav-item group" href="/club/gelaende">
           <span className="group-hover:bg-[length:100%_2px]">
             Clubgelände & Anfahrt

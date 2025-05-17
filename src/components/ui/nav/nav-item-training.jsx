@@ -63,6 +63,11 @@ function NavItemTraining() {
             Spielen Winter
           </span>
         </a>
+        <a className="nav-item group" href="/mitgliedschaft">
+          <span className="group-hover:bg-[length:100%_2px]">
+            Mitgliedschaft
+          </span>
+        </a>
       </PopoverPanel>
     </Popover>
   );
