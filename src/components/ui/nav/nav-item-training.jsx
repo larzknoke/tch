@@ -68,6 +68,11 @@ function NavItemTraining() {
             Mitgliedschaft
           </span>
         </a>
+        <a className="nav-item group" href="/ukraine-projekt">
+          <span className="group-hover:bg-[length:100%_2px]">
+            Das Ukraine-Projekt
+          </span>
+        </a>
       </PopoverPanel>
     </Popover>
   );

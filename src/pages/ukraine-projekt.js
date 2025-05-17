@@ -8,46 +8,51 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import MemberRegisterForm from "@/components/member-register-form";
 
-function JugendTraining() {
+function UkranineProjekt() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
       <div className="w-full md:w-1/2">
-        <HeaderText text="Jugendtraining & Kooperationen" />
+        <HeaderText text="Das Ukraine-Projekt" />
         <div className="flex flex-col gap-6">
           <h2>
-            Intensive Kooperation mit Schulen und Betreuungstätten: Ein
-            Erfolgsmodell des TC Holzminden
+            Das Ukraine-Projekt des TC Holzminden: Eine Erfolgsgeschichte der
+            Integration
           </h2>
-          <p>
-            Der TC Holzminden kann auf eine langjährige und erfolgreiche
-            Kooperation mit der Astrid-Lind-Kind-Schule und Betreuungsstelle
-            sowie dem Campe-Gymnasium in Holzminden zurückblicken.
-          </p>
-
-          <h2>Acht Jahre Kooperation mit der Astrid-Lind-Kind-Schule</h2>
-          <p>
-            Seit acht Jahren bietet der TC Holzminden an zwei Tagen in der Woche
-            kostenloses Tennistraining für die ersten und zweiten Klassen der
-            Astrid-Lind-Kind-Schule an. Diese Kooperation hat bereits viele
-            Talente in den Verein integriert und fördert die sportliche
-            Entwicklung der jungen Mitglieder.
-          </p>
-
-          <h2>Kooperation mit dem Campe-Gymnasium</h2>
-          <p>
-            Zusätzlich besteht eine Kooperation mit dem Campe-Gymnasium in
-            Holzminden, wo einmal wöchentlich kostenloses Tennistraining
-            angeboten wird. In den Wintermonaten, wenn der Spielbetrieb in die
-            eigene Halle am Stahler Ufer verlegt wird, werden die Kinder mit dem
-            Vereinsbus zum Training gefahren.
-          </p>
 
           <p>
-            Diese Kooperationen sind ein wichtiger Bestandteil der Jugendarbeit
-            des TC Holzminden und tragen dazu bei, junge Talente zu fördern und
-            die Liebe zum Tennissport zu wecken.
+            Nach dem Ausbruch des Ukraine-Kriegs und der Ankunft vieler
+            Flüchtlinge in Deutschland hat der TC Holzminden ein Projekt ins
+            Leben gerufen, um Kindern aus der Ukraine zu helfen. Mit
+            Unterstützung von Sponsoren bietet der Verein allen Kindern aus der
+            Ukraine, unabhängig vom Alter, kostenloses Jugendtraining an.
+          </p>
+
+          <h2>Talente fördern und integrieren</h2>
+
+          <p>
+            Das Projekt zielt darauf ab, Talente zu entdecken und intensiv zu
+            fördern. Die Kinder aus der Ukraine sind eine Bereicherung des
+            Vereinslebens und haben sich schnell integriert. Mittlerweile
+            trainieren etwa 40 Kinder aus der Ukraine im Verein.
+          </p>
+
+          <h2>Erfolge und Engagement</h2>
+
+          <p>
+            Einige der Kinder haben sich zu Leistungsträgern in diversen
+            Mannschaften entwickelt und unterstützen die Trainer bei der Arbeit
+            mit anderen Gruppen. Einige haben sogar bereits eigenständig als
+            Übungsleiter Tennistraining gegeben und sind somit eine wertvolle
+            Bereicherung des Vereinslebens.
+          </p>
+
+          <p>
+            Das Ukraine-Projekt des TC Holzminden ist ein vorbildliches Beispiel
+            für erfolgreiche Integration und Förderung von Kindern mit
+            Fluchterfahrung. Der Verein zeigt, dass Sport eine wichtige Rolle
+            bei der Integration und Förderung von Kindern spielen kann.
           </p>
         </div>
       </div>
@@ -88,8 +93,8 @@ function JugendTraining() {
   );
 }
 
-export default JugendTraining;
+export default UkranineProjekt;
 
-JugendTraining.getLayout = function getLayout(page) {
+UkranineProjekt.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
