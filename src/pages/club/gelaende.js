@@ -16,23 +16,22 @@ function ClubGelaende() {
         <HeaderText text="Clubgelände & Anfahrt" />
         <div className="flex flex-col gap-6">
           <p>
-            Umrahmt vom Grün der Isarauen bildet unsere parkähnliche Anlage mit
-            seinen 15 gepflegten Sandplätzen, Grünflächen und einem
-            Beachvolleyballplatz, einem großzügigen Clubhaus mit gehobener
-            italienischer Gastronomie und teilweise überdachter Sonnenterrasse
-            ein ansprechendes Ambiente. Unser TennisShop Best of Five unter
-            Leitung unserer Tennisschule ist Vertragspartner von Tennis Point!
+            Die Anlage des TC Holzminden liegt an der Liebigstraße 111 und
+            verfügt über sechs gepflegte Sandplätze in zentraler, grüner
+            Umgebung. Ergänzt wird das Angebot seit 2022 durch eine moderne
+            Tennishalle am Stahler Ufer 11 mit weiteren vier Plätzen, die
+            ganzjähriges Training und Spielbetrieb ermöglicht – auch im Winter.
+            Die Kombination aus Außen- und Hallenplätzen macht den Verein zu
+            einem attraktiven Standort für Freizeit- und Mannschaftsspieler
+            jeder Altersklasse.
           </p>
           <p>
-            Die 2014 komplett renovierte Tennishalle verfügt über 3 Tennisplätze
-            mit gelenkschonendem Teppich-Granulatbelag und moderner Beleuchtung.
-          </p>
-          <p>
-            Unsere Anlage befindet sich nur wenige Minuten entfernt vom
-            Freisinger Stadtzentrum, im Stadtteil Lerchenfeld, neben dem Stadion
-            des SE Freising und einer Minigolfanlage. In unmittelbarer Nähe
-            befindet sich darüberhinaus das neue topmoderne fresch, Freisings
-            Erlebnis-Schwimmbad.
+            Besonders vorteilhaft ist die zentrale Lage der Anlage: Sie befindet
+            sich direkt zwischen dem Campe-Gymnasium, dem Liebigstadion und der
+            Astrid-Lindgren-Grundschule. Diese Nähe zu mehreren
+            Bildungseinrichtungen fördert eine enge Zusammenarbeit im Schul- und
+            Jugendsport und macht den Verein besonders attraktiv für Kinder,
+            Jugendliche und Familien.
           </p>
         </div>
       </div>

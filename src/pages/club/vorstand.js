@@ -11,28 +11,45 @@ function Vorstand() {
   const vorstand = [
     {
       position: "1. Vorsitzender",
-      name: "Max Mustermann",
+      name: "Rolf Gans",
       taetigkeit: "Leitung der Vereinsgeschäfte",
+      email: "info@tc1928.com",
     },
     {
       position: "2. Vorsitzender",
-      name: "Max Mustermann",
+      name: "Erdal Kilic",
       taetigkeit: "Sponsoring",
+      email: "info@tc1928.com",
     },
     {
-      position: "3. Vorsitzender",
-      name: "Max Mustermann",
-      taetigkeit: "Jugendwart",
+      position: "Kassenwart",
+      name: "Uta Holz",
+      taetigkeit: "Finanzen",
+      email: "kasse@tc1928.com",
     },
     {
-      position: "4. Vorsitzender",
-      name: "Max Mustermann",
-      taetigkeit: "Partywart",
+      position: "Sportwart",
+      name: "Christian Henning",
+      taetigkeit: "Organisation des Spielbetriebs",
+      email: "sportwart@tc1928.com",
     },
     {
-      position: "5. Vorsitzender",
-      name: "Max Mustermann",
-      taetigkeit: "Leitung der Vereinsgeschäfte",
+      position: "2. Sportwart",
+      name: "Karsten Jung",
+      taetigkeit: "Unterstützung des Sportwarts",
+      email: "sportwart@tc1928.com",
+    },
+    {
+      position: "Jugendwart",
+      name: "Frank Klingspor",
+      taetigkeit: "Betreuung der Jugendabteilung",
+      email: "sport@tc1928.com",
+    },
+    {
+      position: "Pressewart",
+      name: "Lars Knoke",
+      taetigkeit: "Öffentlichkeitsarbeit und Online-Kommunikation",
+      email: "presse@tc1928.com",
     },
   ];
 
@@ -55,7 +72,7 @@ function Vorstand() {
                 className="text-tch-blue mt-3 text-xs md:text-base"
                 href="mailto:max.mustermann@tc1928.de"
               >
-                max.mustermann@tc1928.de
+                {position.email}
               </a>
             </div>
           );

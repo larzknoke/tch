@@ -48,6 +48,9 @@ function NavItemClub() {
             Clubgelände & Anfahrt
           </span>
         </a>
+        <a className="nav-item group" href="/club/chronik">
+          <span className="group-hover:bg-[length:100%_2px]">Chronik</span>
+        </a>
         <a className="nav-item group" href="/club/vorstand">
           <span className="group-hover:bg-[length:100%_2px]">Vorstand</span>
         </a>
