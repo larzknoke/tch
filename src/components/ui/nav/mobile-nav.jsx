@@ -153,7 +153,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/club/vorstand"} onClick={() => resetNav()}>
               Spielen Winter
             </Link>
-            <Link href={"/club/mitgliedschaft"} onClick={() => resetNav()}>
+            <Link href={"/mitgliedschaft"} onClick={() => resetNav()}>
               Mitgliedschaft
             </Link>
             <Link href={"/ukraine-projekt"} onClick={() => resetNav()}>
