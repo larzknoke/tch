@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
+import Hallenbuchung from "../hallenbuchung";
 
 function MobileNav({ navOpen = false, setNavOpen }) {
   const [clubNav, setClubNav] = useState(false);
@@ -21,7 +22,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
         navOpen ? "-translate-x-0" : "-translate-x-full"
       } fixed top-0 left-0 bottom-0 right-20 px-8 py-12 bg-tch-blue text-white flex flex-col gap-10 z-50 items-start h-screen justify-between overflow-hidden`}
     >
-      <div className="flex flex-col gap-14 ">
+      <div className="flex flex-col gap-12 ">
         <Link href={"/"}>
           <Image
             src="/tch_logo_full_white2.svg"
@@ -40,6 +41,13 @@ function MobileNav({ navOpen = false, setNavOpen }) {
                 : "opacity-100 z-30 translate-x-0"
             }`}
           >
+            <Link
+              className=" bg-tch-gold text-white px-4 py-1 rounded-sm uppercase"
+              href={"https://tc1928.ebusy.de/"}
+              target="_blank"
+            >
+              Platzbuchung
+            </Link>
             <span
               className="flex items-center gap-1"
               onClick={() => setClubNav(true)}

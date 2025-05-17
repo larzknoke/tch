@@ -134,7 +134,7 @@ h4 {
 /* NAVIGATION */
 
 .nav-item-dropdown {
-  @apply flex flex-col z-10 bg-tch-blue-light py-4 px-3 rounded-sm text-tch-blue font-bold uppercase gap-1  drop-shadow-lg origin-top  transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 data-closed:translate-y-5;
+  @apply flex flex-col z-10 bg-tch-blue-light py-4 px-3 rounded-sm text-tch-blue font-bold gap-1  drop-shadow-lg origin-top  transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 data-closed:translate-y-5;
 }
 
 .nav-item {
