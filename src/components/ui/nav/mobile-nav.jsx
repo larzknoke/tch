@@ -133,7 +133,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
                 : " opacity-0 z-20  translate-x-10"
             }`}
           >
-            <Link href={"/club/gelaende"} onClick={() => resetNav()}>
+            <Link href={"/jugend-training"} onClick={() => resetNav()}>
               Jugendtraining
             </Link>
             <Link href={"/club/vorstand"} onClick={() => resetNav()}>

@@ -43,7 +43,7 @@ function NavItemTraining() {
         transition
         className="nav-item-dropdown"
       >
-        <a className="nav-item group" href="/club/gelaende">
+        <a className="nav-item group" href="/jugend-training">
           <span className="group-hover:bg-[length:100%_2px]">
             Jugendtraining
           </span>
