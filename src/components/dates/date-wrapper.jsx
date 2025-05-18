@@ -7,7 +7,8 @@ function DateWrapper() {
   return (
     <div className=" relative w-full rounded-sm px-4 md:px-0">
       <DateHeader />
-      <HeaderText text="Kalender/Termine" />
+      {/* <HeaderText text="Kalender/Termine" /> */}
+      <h2 className="mb-3 uppercase ">Kalender/Termine</h2>
       <div className="flex flex-col gap-4">
         <DateItem />
         <DateItem />

@@ -40,7 +40,8 @@ function EffortWrapper() {
   return (
     <div className=" relative w-full rounded-sm px-4 md:px-0">
       {/* <EffortHeader /> */}
-      <HeaderText text="Arbeitseinsätze" />
+      {/* <HeaderText text="Arbeitseinsätze" /> */}
+      <h2 className="mb-3 uppercase ">Arbeitseinsätze</h2>
       {!effortsData ? (
         <div className="flex justify-start relative items-center">
           <BallLoader />

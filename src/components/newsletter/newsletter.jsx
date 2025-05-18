@@ -8,13 +8,12 @@ function NewsLetter() {
           TENNIS IN HOLZMINDEN SEIT 1928. <br /> TRADITION. ENGAGEMENT. ERFOLG.
         </h1>
         <ul className="list-square md:list-inside	">
-          <li>über 600 Mitglieder</li>
-          <li>15 Freiplätze</li>
-          <li>3 moderne Hallenplätze (online buchbar)</li>
-          <li>Beachvolleyball</li>
-          <li>
-            Mannschaften in allen AlterklassenSpielertreff für Hobbyspieler
-          </li>
+          <li>über 500 Mitglieder</li>
+          <li>6 Freiplätze</li>
+          <li>4 moderne Hallenplätze (online buchbar)</li>
+          <li>2 Squashplätze</li>
+          <li>Mannschaften in vielen Alterklassen</li>
+          <li>Spielertreff für Hobbyspieler</li>
           <li>Professionelle Tennisschule für alle Leistungsstärken</li>
           <li>Fast Learning Kurse für Anfänger und Wiedereinsteiger</li>
           <li>Gruppen- und Individualtraining</li>
@@ -23,9 +22,9 @@ function NewsLetter() {
       <div className="flex w-full md:w-1/2 items-center justify-center flex-col gap-4">
         <h3 className="text-white">TC HOLZMINDEN NEWSLETTER</h3>
         <input
-          type="text"
+          type="email"
           placeholder="Email eintragen"
-          className="px-3 py-2 m-3 text-tch-blue rounded-md w-full md:w-3/4"
+          className="text-center px-3 py-2 m-3 text-tch-blue rounded-md w-full md:w-3/4 placeholder:text-center"
         />
         <Button className={"w-1/2"}>Newsletter abbonieren</Button>
         <p className="text-sm text-center">

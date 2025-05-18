@@ -69,26 +69,31 @@ export default function Home() {
               </div>
             </div>
           </Link>
-          <div className="flex flex-col md:flex-row rounded-sm  hover:cursor-pointer min-h-48">
-            <Image
-              src={`/images/halle1.jpg`}
-              alt="TCH Logo"
-              width="320"
-              height="205"
-              className=" object-cover rounded-t md:rounded-l md:rounded-t-none w-full md:w-80"
-            />{" "}
-            <div className=" p-6 gap-1 flex flex-col text-tch-blue relative bg-gray-200 md:rounded-r rounded-b">
-              <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
-                Halle
-              </div>
-              <h2>Hallenbuchung / Hallenordnung</h2>
-              <div className="max-w-xl">
-                Wir möchten Euch auf die Einhaltung der Hallenordnung Bitte
-                leitet die entsprechenden Informationen auch an Eure Mitspieler
-                weiter.
+          <Link href={"/ukraine-projekt"}>
+            <div className="flex flex-col md:flex-row rounded-sm  hover:cursor-pointer min-h-48">
+              <Image
+                src={`/images/halle1.jpg`}
+                alt="TCH Logo"
+                width="320"
+                height="205"
+                className=" object-cover rounded-t md:rounded-l md:rounded-t-none w-full md:w-80"
+              />{" "}
+              <div className=" p-6 gap-1 flex flex-col text-tch-blue relative bg-gray-200 md:rounded-r rounded-b">
+                <div className="absolute -top-2 left-5 md:right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
+                  Integration
+                </div>
+                <h2>Das Ukraine-Projekt</h2>
+                <div className="max-w-xl">
+                  Nach dem Ausbruch des Ukraine-Kriegs und der Ankunft vieler
+                  Flüchtlinge in Deutschland hat der TC Holzminden ein Projekt
+                  ins Leben gerufen, um Kindern aus der Ukraine zu helfen. Mit
+                  Unterstützung von Sponsoren bietet der Verein allen Kindern
+                  aus der Ukraine, unabhängig vom Alter, kostenloses
+                  Jugendtraining an.
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
         <div className="w-full md:w-1/3 px-5">
           <DateWrapper />
