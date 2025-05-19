@@ -20,8 +20,10 @@ function Spielordnung() {
             <h3>Platzbuchung</h3>
             <ul className="list-disc list-outside pl-5">
               <li>
-                Ein Platz muss vor dem Spielen gebucht werden (
-                <a href="https://tc1928.ebusy.de/">Online Platzbuchung</a>)
+                Ein Platz muss vor dem Spielen gebucht werden:{" "}
+                <a className="text-tch-gold" href="https://tc1928.ebusy.de/">
+                  Online Platzbuchung
+                </a>
               </li>
               <li>
                 Die Spielzeit für Einzel und Doppel ist bei der Online
@@ -44,7 +46,7 @@ function Spielordnung() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="bg-gray-200 p-8 rounded-md">
             <h3>Spielen für Gäste</h3>
             <ul className="list-disc list-outside pl-5">
               <li>Alle Gäste können nur auf den Plätzen 9 und 10 spielen</li>
@@ -63,7 +65,7 @@ function Spielordnung() {
                 uns spielen
               </li>
               <li>
-                <b>Wie buche ich einen Gastspieler-Platz: </b>
+                Wie buche ich einen Gastspieler-Platz:{" "}
                 <a href="https://tc1928.ebusy.de/">
                   <b>Bitte hier klicken</b>
                 </a>
@@ -72,29 +74,11 @@ function Spielordnung() {
           </div>
           <div>
             <h3>Platzpflege</h3>
-            <ul className="list-disc list-outside pl-5">
+            <ul className="list-disc list-outside pl-5 mb-4">
               <li>Der Platz muss vor und nach dem Spielen gepflegt werden</li>
               <li>Dabei gelten die Regeln zu Platzpflege</li>
             </ul>
-          </div>
-          <div className="bg-gray-200 p-8 rounded-md">
-            <h3 className="mb-3">Regeln zur Platzbuchung</h3>
-            <ul className="list-disc list-outside pl-5 mb-0">
-              <li>
-                Die Buchung erfolgt ausschließlich über das Online
-                Buchungssystem
-              </li>
-              <li>
-                Es sind nur nächstmögliche Platzreservierungen erlaubt, außer
-                den im Online System beschriebenen Ausnahmen
-              </li>
-              <li>Reservierungen über Leerzeiten sind nicht möglich</li>
-              <li>Ablösungen sind nur möglich, wenn alle Plätze belegt sind</li>
-              <li>Der Platz kann nur für das Tennisspiel benutzt werden</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Regeln zur Platzpflege</h3>
+            <h4>Regeln zur Platzpflege</h4>
             <ul className="list-disc list-outside pl-5">
               <li>
                 Der Platz muss vor dem Spiel für mindestens 3 Minuten bewässert
@@ -118,6 +102,22 @@ function Spielordnung() {
                   </li>
                 </ul>
               </li>
+            </ul>
+          </div>
+          <div className="bg-gray-200 p-8 rounded-md">
+            <h3 className="mb-3">Regeln zur Platzbuchung</h3>
+            <ul className="list-disc list-outside pl-5 mb-0">
+              <li>
+                Die Buchung erfolgt ausschließlich über das Online
+                Buchungssystem
+              </li>
+              <li>
+                Es sind nur nächstmögliche Platzreservierungen erlaubt, außer
+                den im Online System beschriebenen Ausnahmen
+              </li>
+              <li>Reservierungen über Leerzeiten sind nicht möglich</li>
+              <li>Ablösungen sind nur möglich, wenn alle Plätze belegt sind</li>
+              <li>Der Platz kann nur für das Tennisspiel benutzt werden</li>
             </ul>
           </div>
           <div>
