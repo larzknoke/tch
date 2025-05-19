@@ -22,6 +22,9 @@
   background: #19416a;
   height: 3px;
 }
+.white > .shadow {
+  background: #fff;
+}
 
 .tennis-ball {
   overflow: hidden;
@@ -34,6 +37,9 @@
   box-sizing: border-box;
   border: 3px solid #19416a !important;
 }
+.white > .tennis-ball {
+  border: 3px solid #fff !important;
+}
 .tennis-ball:before,
 .tennis-ball:after {
   content: "";
@@ -45,6 +51,10 @@
   border-radius: 50%;
   box-sizing: border-box;
   overflow: hidden;
+}
+.white > .tennis-ball:before,
+.white > .tennis-ball:after {
+  border: solid 3px #fff !important;
 }
 .tennis-ball:before {
   right: 70%;

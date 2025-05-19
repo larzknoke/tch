@@ -40,6 +40,15 @@ model Worker {
   effortId  Int?
 }
 
+model Newsletter {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  email     String?
+  verified  Boolean? @default(false)
+  verifyId  String?  @unique @default(cuid())
+}
+
 
 model User {
   id            String          @id @default(cuid())
