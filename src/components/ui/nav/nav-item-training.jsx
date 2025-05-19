@@ -43,6 +43,9 @@ function NavItemTraining() {
         transition
         className="nav-item-dropdown"
       >
+        <a className="nav-item group" href="/spielordnung">
+          <span className="group-hover:bg-[length:100%_2px]">Spielordnung</span>
+        </a>
         <a className="nav-item group" href="/jugend-training">
           <span className="group-hover:bg-[length:100%_2px]">
             Jugendtraining
@@ -51,21 +54,16 @@ function NavItemTraining() {
         <a className="nav-item group" href="/play-stay">
           <span className="group-hover:bg-[length:100%_2px]">Play + Stay</span>
         </a>
-        <a className="nav-item group" href="/club/vorstand">
+        {/* <a className="nav-item group" href="/club/vorstand">
           <span className="group-hover:bg-[length:100%_2px]">
             Erwachsenentraining
           </span>
-        </a>
-        <a className="nav-item group" href="/club/aufnahme">
-          <span className="group-hover:bg-[length:100%_2px]">
-            Spielen Sommer
-          </span>
-        </a>
-        <a className="nav-item group" href="/club/satzung">
+        </a> */}
+        {/* <a className="nav-item group" href="/club/satzung">
           <span className="group-hover:bg-[length:100%_2px]">
             Spielen Winter
           </span>
-        </a>
+        </a> */}
         <a className="nav-item group" href="/mitgliedschaft">
           <span className="group-hover:bg-[length:100%_2px]">
             Mitgliedschaft

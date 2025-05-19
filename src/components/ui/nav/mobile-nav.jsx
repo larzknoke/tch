@@ -141,18 +141,18 @@ function MobileNav({ navOpen = false, setNavOpen }) {
                 : " opacity-0 z-20  translate-x-10"
             }`}
           >
+            <Link href={"/spielordnung"} onClick={() => resetNav()}>
+              Spielordnung
+            </Link>
             <Link href={"/jugend-training"} onClick={() => resetNav()}>
               Jugendtraining
             </Link>
-            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
+            {/* <Link href={"/club/vorstand"} onClick={() => resetNav()}>
               Seniorentraining
-            </Link>
-            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
-              Spielen Sommer
-            </Link>
-            <Link href={"/club/vorstand"} onClick={() => resetNav()}>
+            </Link> */}
+            {/* <Link href={"/club/vorstand"} onClick={() => resetNav()}>
               Spielen Winter
-            </Link>
+            </Link> */}
             <Link href={"/mitgliedschaft"} onClick={() => resetNav()}>
               Mitgliedschaft
             </Link>

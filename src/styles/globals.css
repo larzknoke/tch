@@ -72,6 +72,11 @@ body {
   @apply bg-tch-blue-light;
 }
 
+p,
+ul {
+  @apply text-lg text-gray-700;
+}
+
 h1 {
   @apply text-2xl md:text-3xl font-bold text-tch-blue;
 }
@@ -234,4 +239,8 @@ nav > *:hover::before {
 
 .satzung li {
   @apply list-disc list-outside;
+}
+
+.spielordnung h3 {
+  @apply mb-3;
 }
