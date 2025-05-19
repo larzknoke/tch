@@ -74,7 +74,7 @@ body {
 
 p,
 ul {
-  @apply text-lg text-gray-700;
+  @apply text-lg;
 }
 
 h1 {
