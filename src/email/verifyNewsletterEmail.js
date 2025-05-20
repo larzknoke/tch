@@ -22,8 +22,8 @@ export default function VerifyNewsletterEmail({ newsletter }) {
           <Img
             src={`https://tch.larsknoke.com/tch_logo.png`} //TODO: URL in Production ersetzen
             alt="TC Holzminden von 1928 e.V."
-            width={120}
-            height={24}
+            width={250}
+            height={66}
             priority
           />
 
@@ -41,7 +41,7 @@ export default function VerifyNewsletterEmail({ newsletter }) {
                 newsletter.verifyId
               }
             >
-              <Text style={buttonText}>Arbeitseinsatz bestätigen</Text>
+              <Text style={buttonText}>Newsletter bestätigen</Text>
             </Button>
             <Text style={text}>
               Wenn der Link oben nicht funktioniert kopieren Sie bitte folgende
