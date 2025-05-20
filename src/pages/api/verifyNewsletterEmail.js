@@ -1,7 +1,7 @@
 import { sendEmail } from "@/lib/email";
 import { render } from "@react-email/render";
-import VerifyEmail from "@/email/verifyEmail";
 import prisma from "@/lib/prisma";
+import VerifyNewsletterEmail from "@/email/verifyNewsletterEmail";
 
 export default async function handle(req, res) {
   console.log("email api call");
@@ -16,8 +16,8 @@ export default async function handle(req, res) {
             ? "info@larsknoke.com"
             : "info@larsknoke.com",
         subject: "Newsletter bestätigen - TC Holzminden von 1928 e.V.",
-        // html: await render(<VerifyEmail worker={worker} effort={effort} />),
-        text: "Hier ist der Link zur Bestätigung deines Newsletters",
+        html: await render(<VerifyNewsletterEmail newsletter={newsletter} />),
+        // text: "Hier ist der Link zur Bestätigung deines Newsletters",
       });
     } else {
       throw new Error("No Worker found");

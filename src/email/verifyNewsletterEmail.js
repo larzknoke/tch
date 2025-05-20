@@ -12,48 +12,45 @@ import {
   Text,
 } from "@react-email/components";
 
-export default function VerifyEmail({ worker, effort }) {
+export default function VerifyNewsletterEmail({ newsletter }) {
   return (
     <Html>
       <Head />
-      <Preview>Arbeitseinsatz bestätigen - TC Holzminden von 1928 e.V.</Preview>
+      <Preview>Newsletter bestätigen - TC Holzminden von 1928 e.V.</Preview>
       <Body style={main}>
         <Container style={container}>
           <Img
             src={`https://tch.larsknoke.com/tch_logo.png`} //TODO: URL in Production ersetzen
             alt="TC Holzminden von 1928 e.V."
-            width={250}
-            height={66}
+            width={120}
+            height={24}
             priority
           />
 
-          <Text style={title}>
-            Arbeitseinsatz: <br />
-            <strong>{effort.title}</strong> <br />
-            <strong>{effort.content}</strong> <br />
-            <strong>{dateFormatter(effort.date)}</strong>
-          </Text>
-
           <Section style={section}>
             <Text style={text}>
-              Um Ihren Arbeitseinsatz zu aktivieren, klicken Sie bitte auf
-              folgenden Link:
+              Um den Newsletter zu aktivieren, klicken Sie bitte auf folgenden
+              Link:
             </Text>
 
             <Button
               style={button}
               href={
-                process.env.NEXTAUTH_URL + "/verify?verifyId=" + worker.verifyId
+                process.env.NEXTAUTH_URL +
+                "/verifyNewsletter?verifyId=" +
+                newsletter.verifyId
               }
             >
-              <Text style={buttonText}>Newsletter bestätigen</Text>
+              <Text style={buttonText}>Arbeitseinsatz bestätigen</Text>
             </Button>
             <Text style={text}>
               Wenn der Link oben nicht funktioniert kopieren Sie bitte folgende
               URL in Ihren Browser:
             </Text>
             <Text style={textbold}>
-              {process.env.NEXTAUTH_URL + "/verify?verifyId=" + worker.verifyId}
+              {process.env.NEXTAUTH_URL +
+                "/verifyNewsletter?verifyId=" +
+                newsletter.verifyId}
             </Text>
           </Section>
 
