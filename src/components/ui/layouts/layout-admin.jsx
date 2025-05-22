@@ -21,6 +21,7 @@ export default function LayoutAdmin({ children }) {
   const navLinks = [
     { href: "/admin", label: "Arbeitseinsätze" },
     { href: "/admin/worker", label: "Arbeiter" },
+    { href: "/admin/newsletter", label: "Newsletter" },
   ];
 
   return (
