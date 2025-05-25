@@ -16,7 +16,7 @@ export const newsData = [
     date: "2023-05-05",
     content:
       '<h2 id="ein-jahr-mit-dem-neuen-bulli">Ein Jahr mit dem neuen Bulli</h2><p>Seit einem Jahr ist der TC Holzminden von 1928 stolzer Besitzer eines acht-sitzigen Bullis. Dieses Fahrzeug wird genutzt, um Kinder von der Schule abzuholen und zum Training oder zu Punktspielen zu bringen. Der Slogan “Wir bewegen eure Kinder” ist dabei besonders hervorzuheben.</p><p><strong>Ein Angebot für die Jugend</strong></p><p>Der TC Holzminden bietet mit diesem Angebot eine praktische Lösung für Eltern, deren Kinder am Training oder an Wettkämpfen teilnehmen möchten. Der Bulli ermöglicht es, die Kinder sicher und bequem zu transportieren.</p><p><strong>Zweideutiger Slogan</strong></p><p>Der Slogan “Wir bewegen eure Kinder” ist zweideutig gemeint und kann sowohl als Hinweis auf den Transport der Kinder als auch auf die sportliche Aktivität und Bewegung selbst interpretiert werden.</p>',
-    image: "Bulli.jpg",
+    image: "TC-Bulli.jpg",
     slug: "bulli",
     preview:
       "Seit einem Jahr ist der TC Holzminden von 1928 stolzer Besitzer eines acht-sitzigen Bullis.",
