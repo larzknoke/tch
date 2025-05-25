@@ -6,7 +6,6 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import MemberRegisterForm from "@/components/member-register-form";
 
 function UkranineProjekt() {
   const [open, setOpen] = useState(false);
