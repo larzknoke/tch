@@ -78,8 +78,8 @@ function ScoreWrapper() {
       );
     });
 
-    // setScheduleData(fiterTableData);
-    setScheduleData(demoData);
+    setScheduleData(fiterTableData);
+    // setScheduleData(demoData);
 
     setIsLoading(false);
   }

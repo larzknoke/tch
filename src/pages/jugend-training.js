@@ -54,16 +54,16 @@ function JugendTraining() {
       <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-8">
           <Image
-            src="/images/gelaende/gelaende_aussen_2.jpg"
-            alt="Geländer 1"
+            src="/images/jugendtraining/Asli-Hort-2017.jpg"
+            alt="Beginn Asli Hort 2017"
             width="1000"
             height="645"
             className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
             onClick={() => setOpen(true)}
           />
           <Image
-            src="/images/gelaende/gelaende_aussen_3.jpg"
-            alt="Geländer 1"
+            src="/images/jugendtraining/Campe-in-Halle.jpg"
+            alt="Campe in der Halle"
             width="1000"
             height="645"
             className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
@@ -75,11 +75,8 @@ function JugendTraining() {
             close={() => setOpen(false)}
             plugins={[Thumbnails]}
             slides={[
-              { src: "/images/gelaende/gelaende_aussen_1.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_2.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_3.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_4.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_5.jpg" },
+              { src: "/images/jugendtraining/Campe-in-Halle.jpg" },
+              { src: "/images/jugendtraining/Asli-Hort-2017.jpg" },
             ]}
           />
         </div>
