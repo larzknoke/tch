@@ -64,15 +64,7 @@ function PlayStay() {
       <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-8">
           <Image
-            src="/images/gelaende/gelaende_aussen_2.jpg"
-            alt="Geländer 1"
-            width="1000"
-            height="645"
-            className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
-            onClick={() => setOpen(true)}
-          />
-          <Image
-            src="/images/gelaende/gelaende_aussen_3.jpg"
+            src="/images/jugendtraining/PlayStay.jpg"
             alt="Geländer 1"
             width="1000"
             height="645"
@@ -84,13 +76,7 @@ function PlayStay() {
             open={open}
             close={() => setOpen(false)}
             plugins={[Thumbnails]}
-            slides={[
-              { src: "/images/gelaende/gelaende_aussen_1.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_2.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_3.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_4.jpg" },
-              { src: "/images/gelaende/gelaende_aussen_5.jpg" },
-            ]}
+            slides={[{ src: "/images/jugendtraining/PlayStay.jpg" }]}
           />
         </div>
       </div>

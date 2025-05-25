@@ -54,7 +54,7 @@ export default function Home() {
             <Link href={"/play-stay"}>
               <div className="flex flex-col md:flex-row rounded-sm  hover:cursor-pointer min-h-48">
                 <Image
-                  src={`/images/news/news-dummy2.jpg`}
+                  src={`/images/jugendtraining/PlayStay.jpg`}
                   alt="TCH Logo"
                   width="320"
                   height="205"
@@ -81,7 +81,7 @@ export default function Home() {
             <Link href={"/ukraine-projekt"}>
               <div className="flex flex-col md:flex-row rounded-sm  hover:cursor-pointer min-h-48">
                 <Image
-                  src={`/images/halle1.jpg`}
+                  src={`/images/ukraine/ukraine-projekt.jpg`}
                   alt="TCH Logo"
                   width="320"
                   height="205"
