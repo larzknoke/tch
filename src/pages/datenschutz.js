@@ -2401,14 +2401,14 @@ function Datenschutz() {
       <div className="w-full md:w-1/3">
         <div className="flex flex-col gap-8">
           <Image
-            src="/images/gallery/gal9.jpg"
+            src="/images/gelaende/gelaende_aussen_1.jpg"
             alt="Geländer 1"
             width="1000"
             height="645"
             className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
           />
           <Image
-            src="/images/gallery/gal8.jpg"
+            src="/images/gelaende/gelaende_aussen_6.jpg"
             alt="Geländer 1"
             width="1000"
             height="645"

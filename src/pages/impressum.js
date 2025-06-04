@@ -42,10 +42,10 @@ function Kontakt() {
             className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
           />
           <Image
-            src="/images/gallery/gal8.jpg"
+            src="/images/jugendtraining/Asli-Hort-2017.jpg"
             alt="Geländer 1"
             width="1000"
-            height="645"
+            height="689"
             className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue"
           />
         </div>
