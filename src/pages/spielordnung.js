@@ -27,50 +27,67 @@ function Spielordnung() {
               </li>
               <li>
                 Die Spielzeit für Einzel und Doppel ist bei der Online
-                Platzbuchung beschrieben (siehe oben)
+                Platzbuchung beschrieben
               </li>
-              <li>Es gelten die Regeln zur Platzbuchung</li>
+              <li>Es gelten die Regeln zur Platzbuchung:</li>
             </ul>
+            <div className="bg-gray-200 p-8 rounded-md mt-5">
+              <h3 className="mb-3">Regeln zur Platzbuchung</h3>
+              <ul className="list-disc list-outside pl-5 mb-0">
+                <li>
+                  Die Buchung erfolgt ausschließlich über das Online
+                  Buchungssystem
+                </li>
+                <li>
+                  Es sind nur nächstmögliche Platzreservierungen erlaubt, außer
+                  den im Online System beschriebenen Ausnahmen
+                </li>
+                <li>Reservierungen über Leerzeiten sind nicht möglich</li>
+                <li>
+                  Ablösungen sind nur möglich, wenn alle Plätze belegt sind
+                </li>
+                <li>Der Platz kann nur für das Tennisspiel benutzt werden</li>
+              </ul>
+            </div>
           </div>
           <div>
             <h3>Spielen für Mitglieder</h3>
             <ul className="list-disc list-outside pl-5">
-              <li>Vereinsmitglieder können auf allen Plätzen spielen</li>
               <li>
-                Auf Platz 9 und 10 haben Gäste oder Mitglieder, die mit einem
-                Gast spielen, Vorrang
+                Vereinsmitglieder dürfen alle Plätze werktags von 9–14 Uhr und
+                18–22 Uhr sowie am Wochenende ganztägig nutzen.
               </li>
+              <li>Auf Platz 1 und 2 ist spielen mit Flutlicht möglich</li>
               <li>
                 Spielt ein Mitglied mit einem Gast, dann gilt die folgende
-                Regelung
+                Regelung:
               </li>
             </ul>
-          </div>
-          <div className="bg-gray-200 p-8 rounded-md">
-            <h3>Spielen für Gäste</h3>
-            <ul className="list-disc list-outside pl-5">
-              <li>Alle Gäste können nur auf den Plätzen 9 und 10 spielen</li>
-              <li>Die Buchung muss elektronisch im Buchungsportal erfolgen</li>
-              <li>
-                Spielt ein Gast mit einem Mitglied, kann das Mitglied den Platz
-                günstiger buchen. Das Mitglied ist für die ordnungsmäßige
-                Platzbelegung und die Bezahlung der Gastgebühr verantwortlich.
-              </li>
-              <li>
-                Zudem müssen die Gastspielerschilder benutzt werden, um die
-                Belegung auf der Spieltafel anzuzeigen
-              </li>
-              <li>
-                Alle Gäste können erst ab dem 01.05. eines Kalenderjahres bei
-                uns spielen
-              </li>
-              <li>
-                Wie buche ich einen Gastspieler-Platz:{" "}
-                <a href="https://tc1928.ebusy.de/">
-                  <b>Bitte hier klicken</b>
-                </a>
-              </li>
-            </ul>
+            <div className="bg-gray-200 p-8 rounded-md mt-5">
+              <h4>Spielen für Gäste</h4>
+              <ul className="list-disc list-outside pl-5">
+                <li>
+                  Die Buchung muss elektronisch im Buchungsportal erfolgen
+                </li>
+                <li>
+                  Spielt ein Gast mit einem Mitglied, kann das Mitglied den
+                  Platz günstiger buchen. Das Mitglied ist für die
+                  ordnungsmäßige Platzbelegung und die Bezahlung der Gastgebühr
+                  verantwortlich.
+                </li>
+                <li>
+                  Zudem müssen die Gastspielerschilder benutzt werden, um die
+                  Belegung auf der Spieltafel anzuzeigen
+                </li>
+                <li>Gebühr für Gäste 6€ pro Stunde, Buchung übe Ebusy</li>
+                <li>
+                  Wie buche ich einen Gastspieler-Platz:{" "}
+                  <a href="https://tc1928.ebusy.de/" target="_blank">
+                    <b>Bitte hier klicken</b>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div>
             <h3>Platzpflege</h3>
@@ -78,48 +95,36 @@ function Spielordnung() {
               <li>Der Platz muss vor und nach dem Spielen gepflegt werden</li>
               <li>Dabei gelten die Regeln zu Platzpflege</li>
             </ul>
-            <h4>Regeln zur Platzpflege</h4>
-            <ul className="list-disc list-outside pl-5">
-              <li>
-                Der Platz muss vor dem Spiel für mindestens 3 Minuten bewässert
-                werden
-              </li>
-              <li>Der Platz muss pfleglich behandelt werden</li>
-              <li>
-                Der Platz muss nach dem Spiel abgezogen und die Linien gekehrt
-                werden
-                <ul className="list-disc list-outside pl-5">
-                  <li>
-                    Beim Abziehen muss die gesamte Platzfläche erfasst werden
-                  </li>
-                  <li>
-                    Die Regner müssen ausgespart werden, damit sie nicht
-                    verschmutzen
-                  </li>
-                  <li>
-                    Die Matten und Besen müssen nach der Benutzung aufgehängt
-                    werden
-                  </li>
-                </ul>
-              </li>
-            </ul>
+            <div className="bg-gray-200 p-8 rounded-md">
+              <h4>Regeln zur Platzpflege</h4>
+              <ul className="list-disc list-outside pl-5">
+                <li>
+                  Der Platz muss vor dem Spiel für mindestens 3 Minuten
+                  bewässert werden
+                </li>
+                <li>Der Platz muss pfleglich behandelt werden</li>
+                <li>
+                  Der Platz muss nach dem Spiel abgezogen und die Linien gekehrt
+                  werden
+                  <ul className="list-disc list-outside pl-5">
+                    <li>
+                      Beim Abziehen muss die <strong>gesamte</strong>{" "}
+                      Platzfläche erfasst werden
+                    </li>
+                    <li>
+                      Die Regner müssen ausgespart werden, damit sie nicht
+                      verschmutzen
+                    </li>
+                    <li>
+                      Die Matten und Besen müssen nach der Benutzung aufgehängt
+                      werden
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="bg-gray-200 p-8 rounded-md">
-            <h3 className="mb-3">Regeln zur Platzbuchung</h3>
-            <ul className="list-disc list-outside pl-5 mb-0">
-              <li>
-                Die Buchung erfolgt ausschließlich über das Online
-                Buchungssystem
-              </li>
-              <li>
-                Es sind nur nächstmögliche Platzreservierungen erlaubt, außer
-                den im Online System beschriebenen Ausnahmen
-              </li>
-              <li>Reservierungen über Leerzeiten sind nicht möglich</li>
-              <li>Ablösungen sind nur möglich, wenn alle Plätze belegt sind</li>
-              <li>Der Platz kann nur für das Tennisspiel benutzt werden</li>
-            </ul>
-          </div>
+
           <div>
             <h3>Regeln auf der Anlage</h3>
             <ul className="list-disc list-outside pl-5">
@@ -136,7 +141,7 @@ function Spielordnung() {
                 Eingangsbereich zu wechseln.
               </li>
               <li>
-                Auf dem Gelände des TC Rot-Weiss müssen Hunde an der Leine
+                Auf dem Gelände des TC Holzminden müssen Hunde an der Leine
                 geführt werden – egal ob deren Besitzer Vereinsmitglieder sind
                 oder nicht.
               </li>

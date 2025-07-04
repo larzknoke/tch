@@ -14,42 +14,49 @@ function Vorstand() {
       name: "Rolf Gans",
       taetigkeit: "Leitung der Vereinsgeschäfte",
       email: "info@tc1928.com",
+      image: "/images/vorstand/vorstand-mann.svg",
     },
     {
       position: "2. Vorsitzender",
       name: "Erdal Kilic",
       taetigkeit: "Sponsoring",
       email: "info@tc1928.com",
+      image: "/images/vorstand/vorstand-mann.svg",
     },
     {
       position: "Kassenwart",
       name: "Uta Holz",
       taetigkeit: "Finanzen",
       email: "kasse@tc1928.com",
+      image: "/images/vorstand/vorstand-frau.svg",
     },
     {
       position: "Sportwart",
       name: "Christian Henning",
       taetigkeit: "Organisation des Spielbetriebs",
       email: "sportwart@tc1928.com",
+      image: "/images/vorstand/vorstand-mann.svg",
     },
     {
       position: "2. Sportwart",
       name: "Karsten Jung",
       taetigkeit: "Unterstützung des Sportwarts",
       email: "sportwart@tc1928.com",
+      image: "/images/vorstand/vorstand-mann.svg",
     },
     {
       position: "Jugendwart",
       name: "Frank Klingspor",
       taetigkeit: "Betreuung der Jugendabteilung",
       email: "sport@tc1928.com",
+      image: "/images/vorstand/vorstand-mann.svg",
     },
     {
       position: "Pressewart",
       name: "Lars Knoke",
       taetigkeit: "Öffentlichkeitsarbeit und Online-Kommunikation",
       email: "presse@tc1928.com",
+      image: "/images/vorstand/vorstand-mann.svg",
     },
   ];
 
@@ -61,8 +68,8 @@ function Vorstand() {
           return (
             <div className="text-center">
               <img
-                src="https://dummyimage.com/300x310/fff/aaa"
-                alt=""
+                src={position.image}
+                alt={position.name}
                 className="rounded-sm my-2 w-full mb-4"
               />
               <h4 className="text-tch-blue">{position.position}</h4>

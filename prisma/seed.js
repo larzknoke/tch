@@ -12,7 +12,7 @@ const userData = [
   {
     name: "Lars Knoke",
     email: "info@larsknoke.com",
-    password: hashPassword("tennis"),
+    password: hashPassword("tennis1928inholzminden"),
   },
 ];
 

@@ -34,11 +34,10 @@ function Footer() {
             </p>
           </div>
           <div className="flex flex-row  md:flex-col w-full md:w-1/4 gap-3">
-            <p>Der Club</p>
-            <p>News & Neuigkeiten</p>
-            <p>Teams</p>
-            <p>Training & Spielen</p>
-            <p>Kontakt</p>
+            <Link href={"/club/ueberuns"}>Der Club</Link>
+            <Link href={"/news"}>News & Neuigkeiten</Link>
+            <Link href={"/jugend-training"}>Training & Spielen</Link>
+            <Link href={"/kontakt"}>Kontakt</Link>
           </div>
           <div className="flex flex-row md:flex-col w-full md:w-1/4 gap-3">
             <Link href={"datenschutz"}>Datenschutz</Link>

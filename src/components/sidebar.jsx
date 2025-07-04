@@ -6,7 +6,7 @@ import NewsWrapperSidebar from "./news/news-wrapper-sidebar";
 function Sidebar() {
   return (
     <div className="gap-12 flex flex-col">
-      <NewsWrapperSidebar />
+      {/* <NewsWrapperSidebar /> */}
       <DateWrapper />
       <EffortWrapper />
     </div>

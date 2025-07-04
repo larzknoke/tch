@@ -57,12 +57,12 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/news"} onClick={() => resetNav()}>
               NEWS & NEUIGKEITEN
             </Link>
-            <span
+            {/* <span
               className="flex items-center gap-1"
               onClick={() => setTeamsNav(true)}
             >
               TEAMS <ChevronRightIcon className="size-5" />
-            </span>
+            </span> */}
             <span
               className="flex items-center gap-1"
               onClick={() => setTrainingNav(true)}

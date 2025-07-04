@@ -9,7 +9,7 @@ import { dateFormatter } from "@/lib/utils";
 
 export default function NewsPage({ newsItem }) {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-16 p-5 md:p-0">
       <div className="flex flex-col md:flex-row gap-8 md:gap-16">
         <div className="w-full md:w-2/3">
           <div>
