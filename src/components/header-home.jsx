@@ -144,34 +144,37 @@ function HeaderHome() {
         <div className="embla__container min-h-[60vh]  md:min-h-screen">
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header1.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
-              <h1 className="text-white uppercase mb-3 text-5xl md:text-7xl font-black">
-                Header <br />
-                Hero Text
+              <h1 className="text-white uppercase mb-3 text-4xl md:text-7xl font-black">
+                Tennis in
+                <br />
+                Holzminden seit 1928
               </h1>
               <p className=" font-bold uppercase text-xl subline-hero px-2 inline-block">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                100 Jahre Tradition trifft Leidenschaft: Unser Tennisclub
               </p>
             </div>
           </div>
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header3.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
-              <h1 className="text-white uppercase mb-3 text-5xl md:text-7xl font-black">
-                Text <br />
-                Header Hero
+              <h1 className="text-white uppercase mb-3 text-4xl md:text-7xl font-black">
+                Tennis mitten <br />
+                in Holzminden
               </h1>
               <p className=" font-bold uppercase text-xl subline-hero px-2 inline-block">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                ganzjährig spielbereit - perfekte Bedingungen für Spiel,
+                Training und Gemeinschaft.
               </p>
             </div>
           </div>
           <div className="embla__slide header-slide relative bg-cover bg-center bg-[url('/images/header/header2.jpg')]">
             <div className="absolute px-5 md:px-0 bottom-10 md:bottom-32 md:left-32">
-              <h1 className="text-white uppercase mb-3 text-5xl md:text-7xl font-black">
-                Lorem <br />
-                Ipsum Text
+              <h1 className="text-white uppercase mb-3 text-4xl md:text-7xl font-black">
+                Tennis für alle – <br />
+                von klein auf groß geworden
               </h1>
               <p className=" font-bold uppercase text-xl subline-hero px-2 inline-block">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mit jedem Aufschlag: Unsere Jugendförderung mit Vielfalt auf dem
+                Platz
               </p>
             </div>
           </div>
