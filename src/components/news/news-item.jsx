@@ -8,7 +8,7 @@ function NewsItem({ news }) {
       <div className="flex flex-col rounded-sm bg-gray-200 hover:cursor-pointer news-item">
         <div className=" md:flex-row flex overflow-hidden ">
           <Image
-            src={`/news/${news.image}`}
+            src={`/news/${news.image_pre || news.image}`}
             alt={news.title}
             width="320"
             height="205"
