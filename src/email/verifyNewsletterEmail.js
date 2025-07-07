@@ -20,7 +20,7 @@ export default function VerifyNewsletterEmail({ newsletter }) {
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`https://tch.larsknoke.com/tch_logo.png`} //TODO: URL in Production ersetzen
+            src={`https://www.tc1928.com/tch_logo.png`} //TODO: URL in Production ersetzen
             alt="TC Holzminden von 1928 e.V."
             width={250}
             height={66}
