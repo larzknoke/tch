@@ -14,7 +14,7 @@ export default async function handle(req, res) {
         to:
           process.env.NODE_ENV === "development"
             ? "info@larsknoke.com"
-            : "info@larsknoke.com",
+            : req.body.email,
         subject: "Newsletter bestätigen - TC Holzminden von 1928 e.V.",
         html: await render(<VerifyNewsletterEmail newsletter={newsletter} />),
         // text: "Hier ist der Link zur Bestätigung deines Newsletters",
