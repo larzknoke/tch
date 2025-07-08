@@ -176,7 +176,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
         37603 Holzminden <br />
         <span className="h-3"></span>
         Telefon: +49 170 / 766 2112 <br />
-        E-Mail sport@tc1928.de
+        E-Mail sport@tc1928.com
       </div>
     </div>
   );

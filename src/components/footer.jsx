@@ -30,7 +30,7 @@ function Footer() {
             </p>
             <p>
               Telefon: +49 170 / 766 2112 <br />
-              E-Mail sport@tc1928.de
+              E-Mail sport@tc1928.com
             </p>
           </div>
           <div className="flex flex-row  md:flex-col w-full md:w-1/4 gap-3">

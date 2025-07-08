@@ -77,7 +77,7 @@ function Vorstand() {
               <p className="mt-2">{position.taetigkeit}</p>
               <a
                 className="text-tch-blue mt-3 text-xs md:text-base"
-                href="mailto:max.mustermann@tc1928.de"
+                href={`mailto:${position.email}`}
               >
                 {position.email}
               </a>

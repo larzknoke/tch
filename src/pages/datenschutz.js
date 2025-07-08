@@ -307,9 +307,9 @@ function Datenschutz() {
               <br />
               Tel.: 01707662112
               <br />
-              E-Mail: sport@tc1928.de
+              E-Mail: sport@tc1928.com
               <br />
-              Website: www.tc1928.de
+              Website: www.tc1928.com
               <br />
               3. Erfassung von allgemeinen Daten und Informationen
               <br />

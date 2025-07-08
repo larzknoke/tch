@@ -20,8 +20,8 @@ function Kontakt() {
               37603 Holzminden <br />
             </p>
             <p>
-              Telefon: +49 1707662112 <br /> E-Mail: sport@tc1928.de <br />
-              Internet: www.tc1928.de
+              Telefon: +49 1707662112 <br /> E-Mail: sport@tc1928.com <br />
+              Internet: www.tc1928.com
               <br />
             </p>
             <p>Vertretungsberechtigter: Rolf Gans</p>
