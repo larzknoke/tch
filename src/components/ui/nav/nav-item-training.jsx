@@ -52,7 +52,7 @@ function NavItemTraining() {
           </span>
         </a>
         <a className="nav-item group" href="/play-stay">
-          <span className="group-hover:bg-[length:100%_2px]">Play + Stay</span>
+          <span className="group-hover:bg-[length:100%_2px]">Play & Stay</span>
         </a>
         {/* <a className="nav-item group" href="/club/vorstand">
           <span className="group-hover:bg-[length:100%_2px]">
