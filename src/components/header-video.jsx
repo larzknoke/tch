@@ -3,7 +3,7 @@ import Image from "next/image";
 export function HeaderVideo() {
   return (
     <>
-      <div className="md:hidden h-60 relative">
+      {/* <div className="md:hidden h-60 relative">
         <Image
           src={"/images/header-mobile.jpg"}
           alt="Header Mobile"
@@ -15,7 +15,7 @@ export function HeaderVideo() {
         <h2 className="text-white absolute bottom-5 left-5">
           100 Jahre Tennis <br /> in Holzminden
         </h2>
-      </div>
+      </div> */}
       <video
         width="1200"
         height="350"
@@ -25,7 +25,8 @@ export function HeaderVideo() {
         loop
         playsInline
         preload="auto"
-        className="hidden md:block"
+        className="rounded-sm"
+        // className="hidden md:block"
       >
         <source src="/images/header-web-high-tiny.mp4" type="video/mp4" />
         Dein Browser unterstützt keine Videos.

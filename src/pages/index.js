@@ -46,7 +46,7 @@ export default function Home() {
             <ScoreWrapper />
           </div>
         </div>
-        {/* <HeaderVideo /> */}
+        <HeaderVideo />
         <MemberBox />
         <div className="flex flex-col md:flex-row w-full justify-between gap-10 md:gap-12">
           <div className="flex flex-col gap-10 w-full md:w-2/3 px-5 md:px-0">

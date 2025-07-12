@@ -47,14 +47,15 @@ function EffortWrapper() {
           <BallLoader />
         </div>
       )}
-      {!loading && effortsData && effortsData.length > 0 ? (
+      {!loading && effortsData && effortsData.length > 0 && (
         <div className="flex flex-col gap-4">
           {effortsData &&
             effortsData.map((effort) => (
               <EffortItem key={effort.id} effort={effort} />
             ))}
         </div>
-      ) : (
+      )}
+      {!loading && effortsData && effortsData.length === 0 && (
         <div className="flex flex-row gap-2">
           <WrenchIcon className="size-4 text-gray-400 mt-1" />
           <h4 className="text-gray-400">Momentan keine Arbeitseinsätze</h4>
