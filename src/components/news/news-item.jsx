@@ -12,14 +12,14 @@ function NewsItem({ news }) {
             alt={news.title}
             width="320"
             height="205"
-            className="w-full object-cover h-52"
+            className="w-full md:h-52 object-cover"
           />{" "}
         </div>
         <div className=" p-6 gap-1 flex flex-col text-tch-blue relative">
           <div className="absolute -top-3 right-3 uppercase bg-tch-gold text-white rounded-xs inline px-4 w-fit text-sm">
             {dateFormatter(news.date, false)}
           </div>
-          <h2>{news.title}</h2>
+          <h2 className="text-balance">{news.title}</h2>
           <div className="max-w-xl">{news.preview}</div>
         </div>
       </div>
