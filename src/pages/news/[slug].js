@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Sidebar from "@/components/sidebar";
 import Layout from "@/components/ui/layouts/layout";
 import { useRouter } from "next/router";
@@ -7,7 +8,26 @@ import { Text } from "@chakra-ui/react";
 import { newsData } from "@/lib/newsData";
 import { dateFormatter } from "@/lib/utils";
 
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Lightbox from "yet-another-react-lightbox";
+import Inline from "yet-another-react-lightbox/plugins/inline";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+
 export default function NewsPage({ newsItem }) {
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  const toggleOpen = (state) => () => setOpen(state);
+
+  const updateIndex =
+    (when) =>
+    ({ index: current }) => {
+      if (when === open) {
+        setIndex(current);
+      }
+    };
+
   return (
     <div className="flex flex-col gap-16 p-5 md:p-0">
       <div className="flex flex-col md:flex-row gap-8 md:gap-16">
@@ -18,13 +38,40 @@ export default function NewsPage({ newsItem }) {
             </Text>
             <HeaderText text={newsItem.title} />
           </div>
-          <Image
-            src={`/news/${newsItem.image}`}
-            alt={newsItem.title}
-            width="1000"
-            height="645"
-            className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue mb-4"
-          />
+          {(newsItem.images || []).length > 1 ? (
+            <Lightbox
+              className="news-lightbox"
+              index={index}
+              slides={newsItem.images}
+              plugins={[Inline, Slideshow]}
+              slideshow={{ autoplay: 3000, delay: 3000 }}
+              on={{
+                view: updateIndex(false),
+                click: toggleOpen(true),
+              }}
+              carousel={{
+                padding: 0,
+                spacing: 0,
+                imageFit: "cover",
+              }}
+              inline={{
+                style: {
+                  width: "100%",
+                  maxWidth: "900px",
+                  aspectRatio: "1000 / 645",
+                  margin: "0 auto",
+                },
+              }}
+            />
+          ) : (
+            <Image
+              src={`/news/${newsItem.image}`}
+              alt={newsItem.title}
+              width="1000"
+              height="645"
+              className="w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue mb-4"
+            />
+          )}
           <div
             className="flex flex-col gap-4 mt-8"
             dangerouslySetInnerHTML={{ __html: newsItem.content }}

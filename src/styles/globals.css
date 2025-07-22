@@ -244,3 +244,7 @@ nav > *:hover::before {
 .spielordnung h3 {
   @apply mb-3;
 }
+
+.yarl__container {
+  @apply w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue mb-4;
+}
