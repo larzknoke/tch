@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
 // import { Provider } from "@/components/ui/provider";
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }) {
         <LocaleProvider locale={"de-DE"}>
           {getLayout(<Component {...pageProps} />)}
           <Toaster />
+          <Analytics />
         </LocaleProvider>
       </ChakraProvider>
     </SessionProvider>
