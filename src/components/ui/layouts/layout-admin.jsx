@@ -1,4 +1,3 @@
-import { Roboto_Condensed } from "next/font/google";
 import {
   Container,
   Flex,
@@ -11,9 +10,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LoginBtn from "../admin/login-btn";
 
-// If loading a variable font, you don't need to specify the font weight
-const roboto_cond = Roboto_Condensed({ subsets: ["latin"] });
-
 export default function LayoutAdmin({ children }) {
   const router = useRouter();
   const pathname = router.pathname;
@@ -22,6 +18,7 @@ export default function LayoutAdmin({ children }) {
     { href: "/admin", label: "Arbeitseinsätze" },
     { href: "/admin/worker", label: "Arbeiter" },
     { href: "/admin/newsletter", label: "Newsletter" },
+    { href: "/admin/articles", label: "Artikel" },
   ];
 
   return (

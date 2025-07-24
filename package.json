@@ -16,6 +16,7 @@
     "@auth/prisma-adapter": "^2.9.1",
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^3.16.1",
+    "@ckeditor/ckeditor5-react": "^11.0.0",
     "@emotion/react": "^11.14.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
