@@ -62,7 +62,7 @@ export const newsData = [
   },
   {
     id: 6,
-    title: "Bikeleasing-Open 2025 - Interview mit den Ballkindern",
+    title: "Bikeleasing-Open 2025 - Interview",
     date: "2025-07-22",
     content:
       "<h3>Jaqueline und Sina im Gespräch mit TV Göttingen:</h3><iframe height='350' src='https://www.youtube.com/embed/5inLCD9h6CM' title='Jaqueline und Sina im Gespräch mit TV Göttingen' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe><p>Quelle: TV Goe Special / <a href='https://www.youtube.com/@tvgoespecial2903/videos'>Youtube</a></p><p>Bericht zu den Ballkindern bei den Bikeleasing-Open 2025 folgt...</p>",
@@ -71,5 +71,32 @@ export const newsData = [
     preview: "Jaqueline und Sina im Gespräch mit TV Göttingen",
     image_pre: "UslarBikeLeasingOpen2025_Interview_pre.jpg",
     image: "UslarBikeLeasingOpen2025_Interview.jpg",
+  },
+  {
+    id: 7,
+    title: "Bikeleasing-Open 2025 – mit Profis auf dem Platz",
+    date: "2025-07-25",
+    content:
+      "<h2>ITF Tennis Turnier in Uslar – mit Profis auf dem Platz</h2><p>Das ITF Tennis Turnier in Uslar war ein spannendes und gut organisiertes Event, bei dem unsere talentierten Ballkinder eine wichtige Rolle gespielt haben. Insgesamt waren 11 Kinder aus Holzminden, 1 Kind aus Uslar und 2 Kinder aus Bovenden dabei – allesamt ausgebildet vom TC Holzminden in vier intensiven Lehrgängen.</p><p>Die jungen Ballkinder, namentlich Matthilda, Charlotte, Julie, Kristina, Jaquline, Sina, Johanna, Elisa, Amina, Henk, Jeron, Tania, Liam und Jonas, haben während des Turniers großartig agiert und ihre Aufgaben mit viel Engagement und Professionalität erfüllt. Sie haben nicht nur das Spielgeschehen unterstützt, sondern auch für eine positive Atmosphäre auf dem Platz gesorgt.</p><p>Die Betreuung der Ballkinder übernahmen Leon Schwerdtfeger und Frank Klingspor, die die Jugendlichen während der Lehrgänge und des Turniers begleitet haben. Dank ihrer Unterstützung konnten die Kinder wertvolle Erfahrungen sammeln und ihre Fähigkeiten weiterentwickeln.</p><p>Das Turnier in Uslar war eine tolle Gelegenheit für unsere Nachwuchstalente, ihr Können unter Beweis zu stellen und wertvolle Einblicke in den Turnieralltag zu gewinnen. Wir sind stolz auf unsere Ballkinder und freuen uns auf weitere spannende Einsätze!</p>",
+    images: [
+      {
+        src: "blo25_opener.jpg",
+      },
+      {
+        src: "blo25_1.jpg",
+      },
+      {
+        src: "blo25_2.jpg",
+      },
+      {
+        src: "blo25_3.jpg",
+      },
+      {
+        src: "blo25_4.jpg",
+      },
+    ],
+    slug: "ballkinder-bei-den-bikeleasing-open-2025",
+    preview: "ITF Tennis Turnier in Uslar – mit Profis auf dem Platz",
+    image: "blo25_opener.jpg",
   },
 ];
