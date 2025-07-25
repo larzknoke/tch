@@ -13,7 +13,6 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { EffortSelect } from "./effort-select";
 import { toaster } from "../ui/toaster";
 import { useRef, useState } from "react";
 
@@ -100,7 +99,7 @@ export const ArticleModalCreate = ({ getArticles }) => {
     }
   }
   return (
-    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)} size={"xl"}>
       <Dialog.Trigger asChild>
         <Button colorPalette={"green"}>Neuer Artikel</Button>
       </Dialog.Trigger>
@@ -121,36 +120,42 @@ export const ArticleModalCreate = ({ getArticles }) => {
                         <VStack gap={4}>
                           <Field.Root required>
                             <Field.Label>
-                              Name
+                              Titel
                               <Field.RequiredIndicator />
                             </Field.Label>
-                            <Input name="name" {...register("name")} />
+                            <Input name="title" {...register("title")} />
                           </Field.Root>
                           <Field.Root>
                             <Field.Label>
-                              Email
+                              Teaser
                               <Field.RequiredIndicator />
                             </Field.Label>
-                            <Input name="email" {...register("email")} />
+                            <Input name="teaser" {...register("teaser")} />
                           </Field.Root>
                           <Field.Root>
                             <Field.Label>
-                              Telefon
+                              Slug
                               <Field.RequiredIndicator />
                             </Field.Label>
-                            <Input name="phone" {...register("phone")} />
+                            <Input name="slug" {...register("slug")} />
                           </Field.Root>
-                          <EffortSelect
-                            errors={errors}
-                            control={control}
-                            contentRef={contentRef}
-                            register={register}
-                          />
+                          <Field.Root>
+                            <Field.Label>Inhalt</Field.Label>
+                            <Textarea name="content" {...register("content")} />
+                          </Field.Root>
+                          <Field.Root>
+                            <Field.Label>Datum</Field.Label>
+                            <Input
+                              name="date"
+                              type="datetime-local"
+                              {...register("date", { valueAsDate: true })}
+                            />
+                          </Field.Root>
                           <Controller
-                            name="verified"
+                            name="active"
                             control={control}
                             render={({ field }) => (
-                              <Field.Root invalid={!!errors.verified}>
+                              <Field.Root invalid={!!errors.active}>
                                 <Switch.Root
                                   name={field.name}
                                   checked={field.value}
@@ -160,10 +165,10 @@ export const ArticleModalCreate = ({ getArticles }) => {
                                 >
                                   <Switch.HiddenInput onBlur={field.onBlur} />
                                   <Switch.Control />
-                                  <Switch.Label>Bestätigt</Switch.Label>
+                                  <Switch.Label>Aktiv</Switch.Label>
                                 </Switch.Root>
                                 <Field.ErrorText>
-                                  {errors.verified?.message}
+                                  {errors.active?.message}
                                 </Field.ErrorText>
                               </Field.Root>
                             )}
