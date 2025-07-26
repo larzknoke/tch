@@ -249,18 +249,15 @@ nav > *:hover::before {
   @apply w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue mb-4;
 }
 
-
-
 /* CKEEDITOR */
 
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 
-
 :root {
-  --ck-content-font-family: 'Roboto Condensed', 'Roboto Condensed Fallback';
+  --ck-content-font-family: "Roboto Condensed", "Roboto Condensed Fallback";
 }
 .ck-content {
-  padding:  0 2rem !important;
+  padding: 0 2rem !important;
 }
 
 /* .main-container {

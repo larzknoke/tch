@@ -6,71 +6,77 @@ import {
   Field,
   Input,
   VStack,
-  Textarea,
   Switch,
   DialogContext,
-  NativeSelect,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { EffortSelect } from "./effort-select";
+import { useRef, useState, useEffect } from "react";
 import { toaster } from "../ui/toaster";
-import { use, useEffect, useRef, useState } from "react";
+import CKEditorAdmin from "../ui/admin/ckeditor-admin";
 
 const schema = yup
   .object({
-    title: yup.string().required("Name ist erforderlich"),
+    title: yup.string().required("Titel ist erforderlich"),
     content: yup.string(),
-    maxWorker: yup
-      .number()
-      .typeError("Max. Teilnehmer muss eine Zahl sein")
-      // .positive("Max. Teilnehmer muss eine Zahl größer als 0 sein")
-      .integer("Max. Teilnehmer muss eine ganze Zahl sein")
-      .required("Max. Teilnehmer ist erforderlich"),
     date: yup.date().required("Datum ist erforderlich"),
-    active: yup.boolean().transform((value) => {
-      return value == "on";
-    }),
-    finished: yup.boolean().transform((value) => {
-      return value == "on";
-    }),
+    active: yup.boolean().required(),
+    finished: yup.boolean().required(),
   })
   .required();
 
-export const ArticleModalEdit = ({ article, open, setOpen, getArticles }) => {
+export const ArticleModalEdit = ({ article, getArticles, isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
   const contentRef = useRef(null);
   const dialogRef = useRef(null);
 
-  useEffect(() => {
-    if (article) {
-      reset(article);
-    }
-  }, [article]);
-
   const {
     register,
     handleSubmit,
-    watch,
     control,
     reset,
     formState: { errors },
   } = useForm({
-    // resolver: yupResolver(schema),
-    defaultValues: article,
+    resolver: yupResolver(schema),
+    defaultValues: {
+      title: "",
+      teaser: "",
+      slug: "",
+      content: "",
+      date: "",
+      active: false,
+      finished: false,
+    },
   });
 
+  // Setzt Daten, wenn Modal geöffnet wird oder sich der Artikel ändert
+  useEffect(() => {
+    if (article) {
+      reset({
+        title: article.title || "",
+        teaser: article.teaser || "",
+        slug: article.slug || "",
+        content: article.content || "",
+        date: article.date
+          ? new Date(article.date).toISOString().slice(0, 16)
+          : "",
+        active: article.active || false,
+        finished: article.finished || false,
+      });
+    }
+  }, [article, reset]);
+
   async function onSubmit(values) {
-    delete values.effort;
     try {
       setLoading(true);
-      const res = await fetch("/api/articles", {
+      const res = await fetch(`/api/articles/${article.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-      if (res.status != 200) {
+
+      if (res.status !== 200) {
         toaster.create({
           description: "Ein Fehler ist aufgetreten",
           type: "error",
@@ -78,27 +84,31 @@ export const ArticleModalEdit = ({ article, open, setOpen, getArticles }) => {
       } else {
         const resData = await res.json();
         toaster.create({
-          description: `Artikel gespeichert.`,
+          description: `Artikel '${resData.title}' aktualisiert.`,
           type: "success",
         });
         getArticles();
-        setOpen(false);
+        onClose();
         reset();
-        setLoading(false);
       }
     } catch (error) {
-      console.log("api fetch error");
-      console.error("Err", error);
+      console.error("Update-Fehler:", error);
       toaster.create({
         title: "Ein Fehler ist aufgetreten",
         description: JSON.stringify(error),
         type: "error",
       });
+    } finally {
       setLoading(false);
     }
   }
+
   return (
-    <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={(e) => !e.open && onClose()}
+      size="xl"
+    >
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
@@ -113,56 +123,58 @@ export const ArticleModalEdit = ({ article, open, setOpen, getArticles }) => {
                     </Dialog.Header>
                     <Dialog.Body>
                       <form
-                        id="article-form-edit"
+                        id="article-edit-form"
                         onSubmit={handleSubmit(onSubmit)}
                       >
                         <VStack gap={4}>
                           <Field.Root required>
                             <Field.Label>
-                              Name
-                              <Field.RequiredIndicator />
+                              Titel <Field.RequiredIndicator />
                             </Field.Label>
-                            <Input name="name" {...register("name")} />
+                            <Input {...register("title")} />
+                            <Field.ErrorText>
+                              {errors.title?.message}
+                            </Field.ErrorText>
                           </Field.Root>
                           <Field.Root>
-                            <Field.Label>
-                              Email
-                              <Field.RequiredIndicator />
-                            </Field.Label>
-                            <Input name="email" {...register("email")} />
+                            <Field.Label>Teaser</Field.Label>
+                            <Input {...register("teaser")} />
                           </Field.Root>
                           <Field.Root>
-                            <Field.Label>
-                              Telefon
-                              <Field.RequiredIndicator />
-                            </Field.Label>
-                            <Input name="phone" {...register("phone")} />
+                            <Field.Label>Slug</Field.Label>
+                            <Input {...register("slug")} />
                           </Field.Root>
-                          {/* <Field.Root>
-                            <Field.Label>
-                              Arbeitseinsätze
-                              <Field.RequiredIndicator />
-                            </Field.Label>
-                            <NativeSelect.Root>
-                              <NativeSelect.Field {...register("effortId")}>
-                                <option value="1">Option 1</option>
-                                <option value="17">Option 2</option>
-                              </NativeSelect.Field>
-                              <NativeSelect.Indicator />
-                            </NativeSelect.Root>
-                          </Field.Root> */}
-                          <EffortSelect
-                            errors={errors}
-                            control={control}
-                            contentRef={contentRef}
-                            register={register}
-                          />
-
                           <Controller
-                            name="verified"
+                            name="content"
                             control={control}
                             render={({ field }) => (
-                              <Field.Root invalid={!!errors.verified}>
+                              <Field.Root>
+                                <Field.Label>Inhalt</Field.Label>
+                                <CKEditorAdmin
+                                  value={field.value}
+                                  onChange={field.onChange}
+                                />
+                                <Field.ErrorText>
+                                  {errors.content?.message}
+                                </Field.ErrorText>
+                              </Field.Root>
+                            )}
+                          />
+                          <Field.Root>
+                            <Field.Label>Datum</Field.Label>
+                            <Input
+                              type="datetime-local"
+                              {...register("date")}
+                            />
+                            <Field.ErrorText>
+                              {errors.date?.message}
+                            </Field.ErrorText>
+                          </Field.Root>
+                          <Controller
+                            name="active"
+                            control={control}
+                            render={({ field }) => (
+                              <Field.Root>
                                 <Switch.Root
                                   name={field.name}
                                   checked={field.value}
@@ -172,36 +184,34 @@ export const ArticleModalEdit = ({ article, open, setOpen, getArticles }) => {
                                 >
                                   <Switch.HiddenInput onBlur={field.onBlur} />
                                   <Switch.Control />
-                                  <Switch.Label>Bestätigt</Switch.Label>
+                                  <Switch.Label>Aktiv</Switch.Label>
                                 </Switch.Root>
-                                <Field.ErrorText>
-                                  {errors.verified?.message}
-                                </Field.ErrorText>
                               </Field.Root>
                             )}
                           />
                         </VStack>
                       </form>
                     </Dialog.Body>
+                    <Dialog.Footer>
+                      <Button variant="outline" onClick={onClose}>
+                        Abbrechen
+                      </Button>
+                      <Button
+                        colorPalette="green"
+                        type="submit"
+                        form="article-edit-form"
+                        isLoading={loading}
+                      >
+                        Speichern
+                      </Button>
+                    </Dialog.Footer>
+                    <Dialog.CloseTrigger asChild>
+                      <CloseButton size="sm" />
+                    </Dialog.CloseTrigger>
                   </>
                 );
               }}
             </Dialog.Context>
-            <Dialog.Footer>
-              <Button onClick={() => setOpen(false)} variant="outline">
-                Abbrechen
-              </Button>
-              <Button
-                colorPalette={"green"}
-                type="submit"
-                form="article-form-edit"
-              >
-                Speichern
-              </Button>
-            </Dialog.Footer>
-            <Dialog.CloseTrigger asChild>
-              <CloseButton size="sm" />
-            </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>
       </Portal>

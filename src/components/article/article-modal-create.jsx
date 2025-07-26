@@ -15,24 +15,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toaster } from "../ui/toaster";
 import { useRef, useState } from "react";
+import CKEditorAdmin from "../ui/admin/ckeditor-admin";
 
 const schema = yup
   .object({
-    title: yup.string().required("Name ist erforderlich"),
+    title: yup.string().required("Titel ist erforderlich"),
     content: yup.string(),
-    maxWorker: yup
-      .number()
-      .typeError("Max. Teilnehmer muss eine Zahl sein")
-      // .positive("Max. Teilnehmer muss eine Zahl größer als 0 sein")
-      .integer("Max. Teilnehmer muss eine ganze Zahl sein")
-      .required("Max. Teilnehmer ist erforderlich"),
     date: yup.date().required("Datum ist erforderlich"),
-    active: yup.boolean().transform((value) => {
-      return value == "on";
-    }),
-    finished: yup.boolean().transform((value) => {
-      return value == "on";
-    }),
+    active: yup.boolean().required(),
+    finished: yup.boolean().required(),
   })
   .required();
 
@@ -64,11 +55,11 @@ export const ArticleModalCreate = ({ getArticles }) => {
   async function onSubmit(values) {
     try {
       console.log("values", values);
-
+      setLoading(true);
       const res = await fetch("/api/articles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, effortId: values.effortId[0] }),
+        body: JSON.stringify(values),
       });
       if (res.status != 200) {
         toaster.create({
@@ -78,7 +69,7 @@ export const ArticleModalCreate = ({ getArticles }) => {
       } else {
         const resData = await res.json();
         toaster.create({
-          description: `Teilnehmer '${resData.email}' erstellt.`,
+          description: `Artikel '${resData.title}' erstellt.`,
           type: "success",
         });
         getArticles();
@@ -139,15 +130,27 @@ export const ArticleModalCreate = ({ getArticles }) => {
                             </Field.Label>
                             <Input name="slug" {...register("slug")} />
                           </Field.Root>
-                          <Field.Root>
-                            <Field.Label>Inhalt</Field.Label>
-                            <Textarea name="content" {...register("content")} />
-                          </Field.Root>
+                          <Controller
+                            name="content"
+                            control={control}
+                            render={({ field }) => (
+                              <Field.Root>
+                                <Field.Label>Inhalt</Field.Label>
+                                <CKEditorAdmin
+                                  value={field.value}
+                                  onChange={field.onChange}
+                                />
+                                <Field.ErrorText>
+                                  {errors.content?.message}
+                                </Field.ErrorText>
+                              </Field.Root>
+                            )}
+                          />
                           <Field.Root>
                             <Field.Label>Datum</Field.Label>
                             <Input
                               name="date"
-                              type="datetime-local"
+                              type="date"
                               {...register("date", { valueAsDate: true })}
                             />
                           </Field.Root>
