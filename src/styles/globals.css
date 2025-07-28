@@ -260,6 +260,9 @@ nav > *:hover::before {
   padding: 0 2rem !important;
 }
 
+.ck-image-insert-form button {
+  display: flex !important;
+}
 /* .main-container {
   font-family: var(--ck-content-font-family);
   width: fit-content;

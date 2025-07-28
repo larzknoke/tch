@@ -1,6 +1,6 @@
 import { Tooltip } from "@/components/ui/tooltip";
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
-import { HStack, VStack, Flex, Table, Icon } from "@chakra-ui/react";
+import { HStack, VStack, Flex, Table, Icon, Button } from "@chakra-ui/react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, dateFormatter } from "@/lib/utils";
 import BallLoader from "@/components/ui/loading-ball";
@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { toaster } from "@/components/ui/toaster";
 import { ArticleModalCreate } from "@/components/article/article-modal-create";
 import { ArticleModalEdit } from "@/components/article/article-modal-edit";
+import Link from "next/link";
 
 function Article() {
   const [articlesData, setArticlesData] = useState(null);
@@ -77,6 +78,7 @@ function Article() {
         <Table.Root>
           <Table.Header>
             <Table.Row>
+              <Table.ColumnHeader>ID</Table.ColumnHeader>
               <Table.ColumnHeader>Titel</Table.ColumnHeader>
               <Table.ColumnHeader>Teaser</Table.ColumnHeader>
               <Table.ColumnHeader>Slug</Table.ColumnHeader>
@@ -88,6 +90,7 @@ function Article() {
           <Table.Body>
             {articlesData.map((item) => (
               <Table.Row key={item.id}>
+                <Table.Cell>{item.id}</Table.Cell>
                 <Table.Cell>{item.title}</Table.Cell>
                 <Table.Cell>{item.teaser}</Table.Cell>
                 <Table.Cell>{item.slug}</Table.Cell>
@@ -96,9 +99,11 @@ function Article() {
                 <Table.Cell textAlign="end">
                   <HStack placeContent="end" gap={4}>
                     <Tooltip content="Bearbeiten">
-                      <Icon size="sm" onClick={() => handleEditOpen(item)}>
-                        <PencilSquareIcon />
-                      </Icon>
+                      <Link href={`/admin/articles/edit/${item.id}`} passHref>
+                        <Icon size="sm">
+                          <PencilSquareIcon />
+                        </Icon>
+                      </Link>
                     </Tooltip>
                     <Tooltip content="Löschen">
                       <Icon
@@ -121,7 +126,10 @@ function Article() {
         </Flex>
       )}
 
-      <ArticleModalCreate getArticles={getArticles} />
+      <Link href="/admin/articles/create" passHref>
+        <Button colorPalette={"green"}>Neuer Artikel</Button>
+      </Link>
+      {/* <ArticleModalCreate getArticles={getArticles} /> */}
 
       {selectedArticle && (
         <ArticleModalEdit
