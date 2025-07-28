@@ -1,5 +1,13 @@
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
-import { Button, Field, Input, VStack, Switch, Card } from "@chakra-ui/react";
+import {
+  Center,
+  Button,
+  Field,
+  Input,
+  VStack,
+  Switch,
+  Card,
+} from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -105,82 +113,86 @@ function EditArticle() {
   return loading ? (
     <BallLoader />
   ) : (
-    <Card.Root my={5} size={"lg"} maxWidth={"4xl"}>
-      <Card.Header>
-        <Card.Title>Artikel bearbeiten</Card.Title>
-        <Card.Description>Bearbeite einen bestehenden Artikel</Card.Description>
-      </Card.Header>
-      <Card.Body>
-        <form id="article-form" onSubmit={handleSubmit(onSubmit)}>
-          <VStack gap={4}>
-            <Field.Root required>
-              <Field.Label>
-                Titel <Field.RequiredIndicator />
-              </Field.Label>
-              <Input {...register("title")} />
-            </Field.Root>
+    <Center>
+      <Card.Root my={5} size={"lg"} maxWidth={"4xl"}>
+        <Card.Header>
+          <Card.Title>Artikel bearbeiten</Card.Title>
+          <Card.Description>
+            Bearbeite einen bestehenden Artikel
+          </Card.Description>
+        </Card.Header>
+        <Card.Body>
+          <form id="article-form" onSubmit={handleSubmit(onSubmit)}>
+            <VStack gap={4}>
+              <Field.Root required>
+                <Field.Label>
+                  Titel <Field.RequiredIndicator />
+                </Field.Label>
+                <Input {...register("title")} />
+              </Field.Root>
 
-            <Field.Root>
-              <Field.Label>Teaser</Field.Label>
-              <Input {...register("teaser")} />
-            </Field.Root>
+              <Field.Root>
+                <Field.Label>Teaser</Field.Label>
+                <Input {...register("teaser")} />
+              </Field.Root>
 
-            <Field.Root>
-              <Field.Label>Slug</Field.Label>
-              <Input {...register("slug")} />
-            </Field.Root>
+              <Field.Root>
+                <Field.Label>Slug</Field.Label>
+                <Input {...register("slug")} />
+              </Field.Root>
 
-            <Controller
-              name="content"
-              control={control}
-              render={({ field }) => (
-                <Field.Root>
-                  <Field.Label>Inhalt</Field.Label>
-                  <CKEditorAdmin
-                    value={field.value}
-                    onChange={field.onChange}
-                  />
-                  <Field.ErrorText>{errors.content?.message}</Field.ErrorText>
-                </Field.Root>
-              )}
-            />
+              <Controller
+                name="content"
+                control={control}
+                render={({ field }) => (
+                  <Field.Root>
+                    <Field.Label>Inhalt</Field.Label>
+                    <CKEditorAdmin
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                    <Field.ErrorText>{errors.content?.message}</Field.ErrorText>
+                  </Field.Root>
+                )}
+              />
 
-            <Field.Root>
-              <Field.Label>Datum</Field.Label>
-              <Input type="date" {...register("date")} />
-            </Field.Root>
+              <Field.Root>
+                <Field.Label>Datum</Field.Label>
+                <Input type="date" {...register("date")} />
+              </Field.Root>
 
-            <Controller
-              name="active"
-              control={control}
-              render={({ field }) => (
-                <Field.Root>
-                  <Switch.Root
-                    checked={field.value}
-                    onCheckedChange={({ checked }) => field.onChange(checked)}
-                  >
-                    <Switch.HiddenInput onBlur={field.onBlur} />
-                    <Switch.Control />
-                    <Switch.Label>Aktiv</Switch.Label>
-                  </Switch.Root>
-                  <Field.ErrorText>{errors.active?.message}</Field.ErrorText>
-                </Field.Root>
-              )}
-            />
-          </VStack>
-        </form>
-      </Card.Body>
-      <Card.Footer>
-        <Button
-          colorPalette="green"
-          type="submit"
-          form="article-form"
-          isLoading={loading}
-        >
-          Änderungen speichern
-        </Button>
-      </Card.Footer>
-    </Card.Root>
+              <Controller
+                name="active"
+                control={control}
+                render={({ field }) => (
+                  <Field.Root>
+                    <Switch.Root
+                      checked={field.value}
+                      onCheckedChange={({ checked }) => field.onChange(checked)}
+                    >
+                      <Switch.HiddenInput onBlur={field.onBlur} />
+                      <Switch.Control />
+                      <Switch.Label>Aktiv</Switch.Label>
+                    </Switch.Root>
+                    <Field.ErrorText>{errors.active?.message}</Field.ErrorText>
+                  </Field.Root>
+                )}
+              />
+            </VStack>
+          </form>
+        </Card.Body>
+        <Card.Footer>
+          <Button
+            colorPalette="green"
+            type="submit"
+            form="article-form"
+            isLoading={loading}
+          >
+            Änderungen speichern
+          </Button>
+        </Card.Footer>
+      </Card.Root>
+    </Center>
   );
 }
 
