@@ -11,6 +11,7 @@ import {
   Switch,
   DialogContext,
   Card,
+  Center,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -93,8 +94,8 @@ function NewArticle() {
   }
 
   return (
-    <div>
-      <Card.Root my={5}>
+    <Center>
+      <Card.Root my={5} maxWidth={"4xl"}>
         <Card.Header>
           <Card.Title>Neuer Artikel</Card.Title>
           <Card.Description>Erstelle einen neuen Artikel</Card.Description>
@@ -177,7 +178,7 @@ function NewArticle() {
           </Button>
         </Card.Footer>
       </Card.Root>
-    </div>
+    </Center>
   );
 }
 
