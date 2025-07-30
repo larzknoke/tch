@@ -15,7 +15,7 @@ function Kontakt() {
         <div className="flex flex-col gap-6 my-5 md:my-10">
           <h3>Kontaktiere uns gerne!</h3>
           <div className="flex flex-col gap-4">
-            <h4>Tennis Club Holzminden von 1928 e.V </h4>
+            <h4>Tennis Club Holzminden von 1928 e.V. </h4>
             <p>
               Liebigstraße 111 <br />
               37603 Holzminden <br />

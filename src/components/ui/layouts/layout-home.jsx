@@ -5,8 +5,8 @@ import Head from "next/head";
 
 export const metadata = {
   title: {
-    template: "%s | Tennis Club Holzminden von 1928 e.V",
-    default: "Tennis Club Holzminden von 1928 e.V",
+    template: "%s | Tennis Club Holzminden von 1928 e.V.",
+    default: "Tennis Club Holzminden von 1928 e.V.",
   },
   description: "The official Next.js Learn Dashboard built with App Router.",
 };
@@ -21,7 +21,7 @@ export default function LayoutHome({ children }) {
         <title>Tennis Club Holzminden von 1928 e.V</title>
         <meta
           name="description"
-          content="Die Homepage des Tennis Club Holzminden von 1928 e.V"
+          content="Die Homepage des Tennis Club Holzminden von 1928 e.V."
         />
       </Head>
       <HeaderHome />
