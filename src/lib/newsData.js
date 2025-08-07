@@ -99,4 +99,16 @@ export const newsData = [
     preview: "ITF Tennis Turnier in Uslar – mit Profis auf dem Platz",
     image: "blo25_opener.jpg",
   },
+  {
+    id: 8,
+    title: "Erfolg von Michael Köhne bei den Deutschen Meisterschaften 2025",
+    date: "2025-08-07",
+    content:
+      "<h3>Erfolg von Michael Köhne bei den Deutschen Meisterschaften 2025 – Ein Grund zur Freude für die Trainingsgruppe des TC Holzminden/SG Holzminden</h3><p>Die Trainingsgruppe des TC Holzminden/SG Holzminden sind stolz und begeistert über den beeindruckenden Erfolg von Michael Köhne bei den Deutschen Meisterschaften 2025.</p><p>In der Kategorie Herren 70 hat Michael mit großem Einsatz und sportlichem Können überzeugt und den zweiten Platz belegt – somit wurde er deutscher Vize-Meister.</p><p>Seine Leistung auf dem Platz war herausragend: Mit viel Erfahrung, Durchhaltevermögen und einer positiven Einstellung hat er die Konkurrenz beeindruckt und sich den zweiten Platz gesichert. Dieser Erfolg ist nicht nur eine große Auszeichnung für Michael persönlich, sondern auch ein Beweis für die hervorragende Arbeit und das Engagement in unserer Trainingsgruppe.</p><p>Die Trainingsgruppe, bestehend aus Christian Henning, Alois Hüser, Karsten Jung und Frank Klingspor, trainiert seit 10 Jahren gemeinsam und hat durch ihre kontinuierliche Arbeit maßgeblich zu diesem Erfolg beigetragen. Der Trainer, Constantin Meier, hat die Gruppe über die Jahre hinweg begleitet und unterstützt, was sicherlich auch zu diesem großartigen Ergebnis beigetragen hat.</p><p>Die Freude über diesen Erfolg ist groß, denn er zeigt, dass harte Arbeit und Leidenschaft im Tennis belohnt werden. Die Mitglieder und Trainer des TC Holzminden und SG Holzminden gratulieren Michael herzlich zu diesem großartigen Ergebnis und wünschen ihm weiterhin viel Erfolg auf seinem sportlichen Weg.</p><p>Wir sind stolz auf unseren Vize-Meister, seine langjährige Trainingsgruppe und den Trainer Constantin Meier und freuen uns auf viele weitere spannende Turniererfolge!</p>",
+    images: [],
+    slug: "michael-kohne-deutschen-meisterschaften-2025",
+    preview:
+      "Ein Grund zur Freude für die Trainingsgruppe des TC Holzminden/SG Holzminden",
+    image: "MichaelKoehne800.jpg",
+  },
 ];
