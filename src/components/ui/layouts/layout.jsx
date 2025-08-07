@@ -15,7 +15,7 @@ export default function Layout({ children }) {
         <title>Tennis Club Holzminden von 1928 e.V</title>
         <meta
           name="description"
-          content="Die Homepage des Tennis Club Holzminden von 1928 e.V"
+          content="Die Homepage des Tennis Club Holzminden von 1928 e.V."
         />
       </Head>
       <Header />

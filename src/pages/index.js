@@ -33,7 +33,7 @@ export default function Home() {
         <title>Home | Tennis Club Holzminden von 1928 e.V</title>
         <meta
           name="description"
-          content="Die Homepage des Tennis Club Holzminden von 1928 e.V"
+          content="Die Homepage des Tennis Club Holzminden von 1928 e.V."
         />
       </Head>
       <div className="flex flex-col  gap-20 md:gap-24 py-5 md:py-10">
