@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Hallenbuchung from "../hallenbuchung";
+import { Text } from "@chakra-ui/react";
 
 function MobileNav({ navOpen = false, setNavOpen }) {
   const [clubNav, setClubNav] = useState(false);
@@ -163,7 +164,9 @@ function MobileNav({ navOpen = false, setNavOpen }) {
               Das Ukraine-Projekt
             </Link>
             <Link href={"/gesucht-gefunden"} onClick={() => resetNav()}>
-              Nicht gesucht, doch gefunden
+              <Text as={"span"} letterSpacing={-0.8}>
+                Nicht gesucht, doch gefunden
+              </Text>
             </Link>
             <span
               onClick={() => setTrainingNav(false)}
