@@ -74,6 +74,11 @@ function NavItemTraining() {
             Das Ukraine-Projekt
           </span>
         </a>
+        <a className="nav-item group" href="/gesucht-gefunden">
+          <span className="group-hover:bg-[length:100%_2px]">
+            Nicht gesucht, doch gefunden
+          </span>
+        </a>
       </PopoverPanel>
     </Popover>
   );

@@ -249,6 +249,10 @@ nav > *:hover::before {
   @apply w-full rounded-sm hover:cursor-pointer border-b-4 border-tch-blue mb-4;
 }
 
+.yarl__thumbnails_wrapper .yarl__container {
+  @apply w-auto rounded-none hover:cursor-auto border-b-0 border-tch-blue mb-0;
+}
+
 /* CKEEDITOR */
 
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */

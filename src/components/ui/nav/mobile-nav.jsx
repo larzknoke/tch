@@ -162,6 +162,9 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/ukraine-projekt"} onClick={() => resetNav()}>
               Das Ukraine-Projekt
             </Link>
+            <Link href={"/gesucht-gefunden"} onClick={() => resetNav()}>
+              Nicht gesucht, doch gefunden
+            </Link>
             <span
               onClick={() => setTrainingNav(false)}
               className="font-bold underline underline-offset-4 flex items-center text-sm"
