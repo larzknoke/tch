@@ -111,4 +111,16 @@ export const newsData = [
       "Ein Grund zur Freude für die Trainingsgruppe des TC Holzminden/SG Holzminden",
     image: "MichaelKoehne800.jpg",
   },
+  {
+    id: 9,
+    title: "Neue Rubrik - Nicht gesucht und doch gefunden",
+    date: "2025-08-14",
+    content:
+      "<p>Manchmal schreibt das Leben die schönsten Geschichten – ganz ohne Plan. Unsere neue Rubrik <strong>„Nicht gesucht und doch gefunden“</strong> erzählt von Begegnungen, die zufällig entstanden sind und sich zu echten Freundschaften entwickelt haben – oft auf, manchmal neben dem Tennisplatz.</p><p>Den Anfang machen zwei inspirierende Geschichten:</p><ul><li><strong>Jonas &amp; Jeron</strong> – zwei völlig unterschiedliche Sporttypen, die sich beim Tennis kennenlernten und heute als Freunde und Trainingspartner perfekt ergänzen.</li><li><strong>Vlada, Sina &amp; Johanna</strong> – drei junge Frauen, deren Wege unterschiedlicher nicht sein könnten, die aber durch Tennis zueinander fanden und nun gemeinsam auf dem Platz stehen.</li></ul><p>Diese Rubrik zeigt: Sport ist mehr als Wettkampf – er verbindet, baut Brücken und schafft Gemeinschaft.</p><a class='text-xl font-bold text-tch-blue underline underline-offset-4' href='/gesucht-gefunden'>Link zu den Geschichten</a>",
+    images: [],
+    slug: "neue-rubrik-nicht-gesucht-und-doch-gefunden",
+    preview:
+      "Kleine Geschichten, die zeigen, wie Tennis Menschen zusammenbringt",
+    image: "GesuchtGefunden.jpg",
+  },
 ];
