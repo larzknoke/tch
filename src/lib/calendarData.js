@@ -7,7 +7,7 @@ export const calendarData = [
   {
     id: 2,
     title: "Sommerfest der Jugend",
-    date: "2025-09-14",
+    date: "2025-09-13",
   },
   {
     id: 3,
