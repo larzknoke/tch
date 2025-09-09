@@ -14,13 +14,13 @@ function JugendTraining() {
 
   return (
     <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2 gap-5 flex flex-col">
         <HeaderText text="Jugendtraining & Kooperationen" />
         <Link
           href="Jugendleitlinie_2025.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-tch-blue underline text-2xl mb-8 d-block"
+          className="text-tch-blue underline text-2xl"
         >
           Jugendleitlinie des TC Holzminden (PDF)
         </Link>
