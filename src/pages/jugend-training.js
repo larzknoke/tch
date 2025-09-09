@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "@/components/ui/layouts/layout";
 import Image from "next/image";
 import HeaderText from "@/components/ui/header-text";
@@ -15,6 +16,14 @@ function JugendTraining() {
     <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
       <div className="w-full md:w-1/2">
         <HeaderText text="Jugendtraining & Kooperationen" />
+        <Link
+          href="Jugendleitlinie_2025.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-tch-blue underline text-2xl mb-8 d-block"
+        >
+          Jugendleitlinie des TC Holzminden (PDF)
+        </Link>
         <div className="flex flex-col gap-6">
           <h2>
             Intensive Kooperation mit Schulen und Betreuungstätten: Ein
