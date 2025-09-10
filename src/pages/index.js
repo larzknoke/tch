@@ -14,6 +14,8 @@ import Sponsor from "@/components/sponsor";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import Link from "next/link";
 import Head from "next/head";
+import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
+import GoogleCalendar from "@/components/googlecalendar/GoogleCalendar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,13 +42,20 @@ export default function Home() {
         <Sponsor />
         <div className="flex flex-col md:flex-row gap-8 md:gap-16">
           <div className="w-full md:w-2/3">
-            <NewsWrapper />
+            <NewsWrapper limit={4} />
+            <Link href="/news">
+              <h2 className="text-tch-blue mt-8 flex items-center gap-1 uppercase">
+                Alle Neuigkeiten & News
+                <ChevronDoubleRightIcon className="size-6" />
+              </h2>
+            </Link>
           </div>
           <div className="w-full md:w-1/3">
             <ScoreWrapper />
           </div>
         </div>
         <HeaderVideo />
+        {/* <GoogleCalendar /> */}
         <MemberBox />
         <div className="flex flex-col md:flex-row w-full justify-between gap-10 md:gap-12">
           <div className="flex flex-col gap-10 w-full md:w-2/3 px-5 md:px-0">
