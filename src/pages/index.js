@@ -44,7 +44,7 @@ export default function Home() {
           <div className="w-full md:w-2/3">
             <NewsWrapper limit={4} />
             <Link href="/news">
-              <h2 className="text-tch-blue mt-8 flex items-center gap-1 uppercase">
+              <h2 className="text-tch-blue mt-2 md:mt-8 flex items-center gap-1 uppercase px-6 md:px-0">
                 Alle Neuigkeiten & News
                 <ChevronDoubleRightIcon className="size-6" />
               </h2>

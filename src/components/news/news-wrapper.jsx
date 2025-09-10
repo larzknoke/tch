@@ -9,8 +9,8 @@ function NewsWrapper({ limit = null }) {
       <HeaderText text="NEWS & NEUIGKEITEN" />
       <div className="pt-3 grid gap-8 grid-cols-1 md:grid-cols-2">
         {newsData
-          .slice(0, limit || newsData.length)
           .sort((a, b) => b.id - a.id)
+          .slice(0, limit || newsData.length)
           .map((news) => (
             <NewsItem key={news.id} news={news} />
           ))}
