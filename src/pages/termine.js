@@ -15,7 +15,7 @@ import { calendarData } from "@/lib/calendarData";
 
 export default function Termine() {
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-16 md:p-0 p-5">
       <div className="flex flex-col md:flex-row gap-8 md:gap-16">
         <div className="w-full md:w-2/3">
           <h2 className="mb-3 uppercase ">Kalender/Termine</h2>

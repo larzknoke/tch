@@ -278,3 +278,32 @@ nav > *:hover::before {
   min-width: 795px;
   max-width: 795px;
 } */
+
+.fc-daygrid-event {
+  white-space: normal;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .fc-toolbar.fc-header-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .fc-toolbar.fc-header-toolbar .fc-button {
+    line-height: 1;
+    font-size: 0.875rem;
+  }
+  .fc-toolbar.fc-header-toolbar .fc-button .fc-icon {
+    font-size: 0.875rem;
+  }
+  .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk:nth-child(1) {
+    order: 3;
+  }
+  .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk:nth-child(2) {
+    order: 1;
+  }
+  .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk:nth-child(3) {
+    order: 2;
+  }
+}

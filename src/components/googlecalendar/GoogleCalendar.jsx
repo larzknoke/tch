@@ -47,7 +47,7 @@ export default function GoogleCalendar() {
   return (
     <FullCalendar
       // height={"30em"}
-      // aspectRatio={1.5}
+      aspectRatio={1.5}
       plugins={[dayGridPlugin, listPlugin, googleCalendarPlugin]}
       googleCalendarApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_CALENDAR_KEY}
       initialView="dayGridMonth"
@@ -57,7 +57,7 @@ export default function GoogleCalendar() {
         center: "title",
         right: "dayGridMonth,dayGridWeek,listWeek",
       }}
-      eventMinHeight={30}
+      // eventMinHeight={30}
       events={{
         googleCalendarId: process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID,
       }}
