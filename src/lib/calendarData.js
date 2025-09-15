@@ -1,14 +1,14 @@
 export const calendarData = [
-  {
-    id: 1,
-    title: "Blau Weiss Junior Classics 2025",
-    date: "2025-07-03",
-  },
-  {
-    id: 2,
-    title: "Sommerfest der Jugend",
-    date: "2025-09-13",
-  },
+  // {
+  //   id: 1,
+  //   title: "Blau Weiss Junior Classics 2025",
+  //   date: "2025-07-03",
+  // },
+  // {
+  //   id: 2,
+  //   title: "Sommerfest der Jugend",
+  //   date: "2025-09-13",
+  // },
   {
     id: 3,
     title: "TCH LK Race Finale 2025",
