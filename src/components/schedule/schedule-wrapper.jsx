@@ -44,17 +44,25 @@ function ScheduleWrapper() {
         <HeaderText text={"Nächsten Spiele"} />
       </div>
       {!isLoading && scheduleData ? (
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container schedule-slide-container">
-            {scheduleData.map((schedule, index) => {
-              return (
-                <div className="embla__slide schedule-slide" key={index}>
-                  <ScheduleItem2 key={index} schedule={schedule} />
-                </div>
-              );
-            })}
+        scheduleData.length > 0 ? (
+          <div className="embla" ref={emblaRef}>
+            <div className="embla__container schedule-slide-container">
+              {scheduleData.map((schedule, index) => {
+                return (
+                  <div className="embla__slide schedule-slide" key={index}>
+                    <ScheduleItem2 key={index} schedule={schedule} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="p-5 md:p-0">
+            <p className="text-sm uppercase text-white bg-gray-400 px-6 py-2 rounded inline-block">
+              Derzeit sind keine Spiele geplant
+            </p>
+          </div>
+        )
       ) : (
         <Spinner />
       )}
