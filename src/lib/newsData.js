@@ -177,7 +177,8 @@ export const newsData = [
       { src: "Sommerfest2025/25.jpg" },
     ],
     slug: "saisonbericht-sommer-2025",
-    preview: "",
+    preview:
+      "Erfolgreiche Sommersaison mit drei Staffelsiegen und starken Platzierungen",
     image: "Sommerfest2025/19.jpg",
   },
 ];
