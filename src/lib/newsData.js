@@ -126,7 +126,7 @@ export const newsData = [
   {
     id: 10,
     title: "Sommerfest der Jugend 2025",
-    date: "2025-07-15",
+    date: "2025-09-15",
     content:
       "<h2>Sommerfest der Jugend 2025</h2><p>Am vergangenen Wochenende fand auf unserer Tennisanlage das „Sommerfest der Jugend 2025“ statt – und das bei bestem Sommerwetter. Schon am Nachmittag füllte sich die Anlage mit zahlreichen Kindern, die voller Energie und Freude die verschiedensten Spiele ausprobierten. Von Tennisspaß auf den Plätzen bis hin zu kleinen Geschicklichkeitswettbewerben war für jede Altersklasse etwas dabei.</p><p>Während die Kinder tobten und spielten, konnten die Eltern die entspannte Atmosphäre genießen. Am Grill gab es reichlich Würstchen, dazu ein großes Kuchenbuffet mit Muffins und vielen weiteren Leckereien. Für die Kinder gab es Stockbrot am Lagerfeuer, das bis in die späten Stunden gebacken wurde.</p><p>Als die Dämmerung einsetzte, erlebten die Kinder ein ganz besonderes Gefühl: Tennisspielen bei Flutlicht – für viele ein echtes Abenteuer. Den krönenden Abschluss bildete ein beeindruckendes Feuerwerk, das den Himmel über der Anlage in bunten Farben erstrahlen ließ.</p><p>Ein großer Dank gilt Frank Klingspor, der mit viel Engagement und Organisationstalent dieses unvergessliche Fest möglich gemacht hat. Kinder wie Eltern hatten gleichermaßen großen Spaß und werden das Sommerfest 2025 sicher noch lange in Erinnerung behalten.</p>",
     images: [
@@ -160,5 +160,24 @@ export const newsData = [
     slug: "sommerfest-der-jugend-2025",
     preview: "Ein gelungener Tag voller Spaß, Spiel und Gemeinschaft",
     image: "Sommerfest2025/26.jpg",
+  },
+  {
+    id: 11,
+    title: "Saisonbericht – Sommer 2025",
+    date: "2025-09-18",
+    content:
+      "<h2>Saisonbericht – Sommer 2025</h2><h3>Damen II &amp; Jugendmannschaften</h3><p>Die Sommersaison 2025 war für den TC Holzminden von 1928 e.V. ein voller Erfolg. Insbesondere die Damen II überzeugten mit einer makellosen Bilanz und krönten sich verdient zum Staffelsieger. Auch im Jugendbereich gab es zahlreiche Lichtblicke mit gleich drei Gruppensiegen und vielen engagierten Auftritten.</p><hr><h3>Damen II (4er) – Staffelsieg ohne Punktverlust</h3><ul><li><strong>Liga:</strong> 2. Regionsklasse Gr. 064</li><li><strong>Mannschaftsführerin:</strong> Ilina Vlada</li><li><strong>Platzierung:</strong> 1. Platz</li><li><strong>Bilanz:</strong> 8:0 Punkte</li></ul><p>Mit souveränen Auftritten in allen Partien sicherten sich die Damen II ungeschlagen den ersten Platz in ihrer Gruppe. Die Mannschaft überzeugte nicht nur spielerisch, sondern auch durch Teamgeist und Zuverlässigkeit. Ein verdienter Staffelsieg und ein starkes Zeichen für die Zukunft des Damenbereichs.</p><hr><h3>Jugendmannschaften – Ergebnisse &amp; Highlights</h3><article><h3>Junioren C (2er)</h3><ul><li><strong>Liga:</strong> Regionsliga Gr. 822</li><li><strong>Mannschaftsführer:</strong> Jonas Knoke</li><li><strong>Platzierung:</strong> 3. Platz</li><li><strong>Bilanz:</strong> 6:4 Punkte</li></ul><p>Mit drei Siegen erreichten die Junioren C einen starken dritten Platz. Die Saison zeigte das große Entwicklungspotenzial und die gute Stimmung im Team.</p></article><article><h3>Junioren C II (2er)</h3><ul><li><strong>Liga:</strong> Regionsklasse Gr. 886</li><li><strong>Mannschaftsführer:</strong> Alexander Weißferdt</li><li><strong>Platzierung:</strong> 5. Platz</li><li><strong>Bilanz:</strong> 2:8 Punkte</li></ul><p>Das zweite Junioren-C-Team kämpfte tapfer in einer starken Gruppe. Trotz Niederlagen wurde kontinuierlich dazugelernt, und erste Einzelsiege wurden gefeiert – wichtig für die langfristige Entwicklung.</p></article><article><h3>Juniorinnen A (2er)</h3><ul><li><strong>Liga:</strong> Regionsliga Gr. 907</li><li><strong>Mannschaftsführerin:</strong> Noemi Pietrzyk</li><li><strong>Platzierung:</strong> 4. Platz</li><li><strong>Bilanz:</strong> 4:4 Punkte</li></ul><p>Mit ausgeglichener Bilanz landeten die Juniorinnen A auf einem soliden vierten Platz. Die Saison verlief eng, und das Team zeigte in vielen Matches Nervenstärke und spielerische Qualität.</p></article><article><h3>Juniorinnen A II (2er) – Staffelsieg</h3><ul><li><strong>Liga:</strong> Regionsklasse Gr. 951</li><li><strong>Mannschaftsführerin:</strong> Paula Henke</li><li><strong>Platzierung:</strong> 1. Platz</li><li><strong>Bilanz:</strong> 8:0 Punkte</li></ul><p>Ungeschlagen durch die Saison – die zweite A-Juniorinnen-Mannschaft dominierte ihre Gruppe. Der klare Staffelsieg war Ergebnis harter Trainingsarbeit und eines starken Teamzusammenhalts.</p></article><article><h3>Juniorinnen B (4er) – Staffelsieg</h3><ul><li><strong>Liga:</strong> Regionsliga Gr. 961</li><li><strong>Mannschaftsführerin:</strong> Ilina Vlada</li><li><strong>Platzierung:</strong> 1. Platz</li><li><strong>Bilanz:</strong> 10:0 Punkte</li></ul><p>Das mit Abstand dominanteste Team der Liga: Die Juniorinnen B gewannen alle Partien deutlich. Mit einem Satzverhältnis von 56:4 unterstrichen sie ihre Überlegenheit eindrucksvoll.</p></article><article><h3>Juniorinnen C (2er)</h3><ul><li><strong>Liga:</strong> Regionsliga Gr. 1019</li><li><strong>Mannschaftsführerin:</strong> Charlotte Kreplin</li><li><strong>Platzierung:</strong> 4. Platz</li><li><strong>Bilanz:</strong> 2:6 Punkte</li></ul><p>Trotz Tabellenplatz 4 zeigte das Team Kampfgeist und Fortschritte. Die jüngeren Spielerinnen sammelten wichtige Spielpraxis – ein wertvoller Baustein für die kommenden Jahre.</p></article><article><h3>Junioren U10 (Orange Court)</h3><ul><li><strong>Liga:</strong> Regionsklasse Gr. 1123</li><li><strong>Mannschaftsführer:</strong> Ben Kowitz</li><li><strong>Platzierung:</strong> 3. Platz</li><li><strong>Bilanz:</strong> 6:2 Punkte</li></ul><p>Ein toller Einstieg für die Kleinsten: Mit Begeisterung und Ehrgeiz belegte das Team einen hervorragenden dritten Platz – ein Erfolg, der Mut macht und Freude auf die nächsten Jahre bringt.</p></article><hr><h3>Fazit</h3><p>Mit drei Staffelsiegen (Damen II, Juniorinnen A II, Juniorinnen B) und mehreren starken Platzierungen war die Sommersaison 2025 ein voller Erfolg für den TC Holzminden. Neben den sportlichen Ergebnissen überzeugte vor allem der Zusammenhalt innerhalb der Mannschaften, das Engagement der Mannschaftsführerinnen und Mannschaftsführer sowie die spürbare Entwicklung auf allen Ebenen.</p>",
+    images: [
+      { src: "Sommerfest2025/19.jpg" },
+      { src: "Sommerfest2025/13.jpg" },
+      { src: "Sommerfest2025/17.jpg" },
+      { src: "Sommerfest2025/22.jpg" },
+      { src: "Sommerfest2025/16.jpg" },
+      { src: "Sommerfest2025/21.jpg" },
+      { src: "Sommerfest2025/25.jpg" },
+    ],
+    slug: "saisonbericht-sommer-2025",
+    preview: "",
+    image: "Sommerfest2025/19.jpg",
   },
 ];
