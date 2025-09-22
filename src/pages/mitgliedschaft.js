@@ -7,6 +7,8 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import MemberRegisterForm from "@/components/member-register-form";
+import { Text } from "@chakra-ui/react";
+import Button from "@/components/ui/button2";
 
 function Mitgliedschaft() {
   const [open, setOpen] = useState(false);
@@ -41,7 +43,10 @@ function Mitgliedschaft() {
             Gerne kannst Du auch einen Termin zu einem Schnuppertraining bei
             unserer Tennisschule vereinbaren.
           </p>
-          <MemberRegisterForm />
+          {/* <MemberRegisterForm /> */}
+          <Button href="/AufnahmeantragTC1928.pdf" className={"mt-8"}>
+            So wirst du Mitglied
+          </Button>
         </div>
       </div>
       <div className="w-full md:w-1/2">
