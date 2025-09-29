@@ -58,7 +58,7 @@ export default function NewsPage({ newsItem }) {
                 style: {
                   width: "100%",
                   maxWidth: "900px",
-                  aspectRatio: "1000 / 645",
+                  aspectRatio: newsItem.portrait ? "1000/1000" : "1000 / 645",
                   margin: "0 auto",
                 },
               }}
