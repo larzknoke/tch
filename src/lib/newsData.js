@@ -205,4 +205,14 @@ export const newsData = [
     image: "TCH_LK_Race/TCH_LK_Race_Finale_Title.jpg",
     portrait: true,
   },
+  {
+    id: 13,
+    title: "Video-Beitrag zur Nachwuchsförderung von Weser-Ith-News",
+    date: "2025-10-12",
+    content:
+      "<p>Bericht zum Video findet Ihr hier: <br /><a class='text-xl font-bold text-tch-blue ' href='https://www.holzminden-news.de/sport/16795-zukunft-gestalten-der-tc-holzminden-ist-made-for-tennis-powered-by-jugend'>https://www.holzminden-news.de/sport/16795-zukunft-gestalten-der-tc-holzminden-ist-made-for-tennis-powered-by-jugend</a></p><iframe  height='350' src='https://www.youtube.com/embed/i179Tu4dbdk' title='Jugendarbeit beim Tennisclub Holzminden' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe><p>Quelle: Weser-Ith-News / <a href='https://www.youtube.com/@meine-onlinezeitung'>Youtube</a></p>",
+    image: "WeserIthNews.jpg",
+    slug: "video-beitrag-weser-ith-news",
+    preview: "Video-Beitrag zur Nachwuchsförderung beim TCH von Weser-Ith-News",
+  },
 ];
