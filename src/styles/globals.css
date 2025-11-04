@@ -307,3 +307,12 @@ nav > *:hover::before {
     order: 2;
   }
 }
+
+.fc-daygrid-event {
+  flex-direction: column;
+  text-align: center;
+}
+
+.fc-daygrid-event-dot {
+  border-color: var(--color-tch-gold) !important;
+}
