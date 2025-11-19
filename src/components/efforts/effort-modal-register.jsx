@@ -16,7 +16,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toaster } from "../ui/toaster";
 import BallLoader from "../ui/loading-ball";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { verifiedWorker } from "@/lib/utils";
 
 const schema = yup
   .object({
@@ -38,9 +39,14 @@ const schema = yup
   })
   .required();
 
-export const EffortModalRegister = ({ effortId }) => {
+export const EffortModalRegister = ({ effort }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const isFull = useMemo(() => {
+    if (!effort?.maxWorker) return false;
+    return verifiedWorker(effort.workers) >= effort.maxWorker;
+  }, [effort]);
 
   const {
     register,
@@ -51,7 +57,7 @@ export const EffortModalRegister = ({ effortId }) => {
   } = useForm({
     // resolver: yupResolver(schema),
     defaultValues: {
-      effortId: effortId,
+      effortId: effort.id,
     },
   });
 
@@ -106,8 +112,23 @@ export const EffortModalRegister = ({ effortId }) => {
   return (
     <Dialog.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Dialog.Trigger asChild>
-        <span className="font-bold uppercase text-tch-gold hover:underline hover:cursor-pointer">
-          Anmelden
+        <span
+          className={`font-bold uppercase ${
+            isFull
+              ? "text-gray-400 cursor-not-allowed"
+              : "text-tch-gold hover:underline hover:cursor-pointer"
+          }`}
+          onClick={(e) => {
+            if (isFull) {
+              e.preventDefault();
+              toaster.create({
+                description: "Dieser Arbeitseinsatz ist bereits voll",
+                type: "error",
+              });
+            }
+          }}
+        >
+          {isFull ? "Ausgebucht" : "Anmelden"}
         </span>
       </Dialog.Trigger>
       <Portal>

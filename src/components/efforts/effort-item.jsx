@@ -21,7 +21,7 @@ function EffortItem({ effort }) {
         </div>
         <div className="px-4 font-bold uppercase text-tch-gold ">
           <div>
-            <EffortModalRegister effortId={effort.id} />
+            <EffortModalRegister effort={effort} />
             <div className="font-normal text-sm text-tch-blue flex flex-row gap-1 items-center">
               <UsersIcon className="size-4 text-tch-blue" />
               <span>
