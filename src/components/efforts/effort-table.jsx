@@ -4,7 +4,12 @@ import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, verifiedWorker } from "@/lib/utils";
 import { useMemo } from "react";
 
-export const EffortTable = ({ effortsData, onEdit, onDelete }) => {
+export const EffortTable = ({
+  effortsData,
+  onEdit,
+  onDelete,
+  onDeleteWorker,
+}) => {
   const activeEfforts = useMemo(() => {
     return effortsData?.filter((effort) => !effort.finished) || [];
   }, [effortsData]);
@@ -44,6 +49,16 @@ export const EffortTable = ({ effortsData, onEdit, onDelete }) => {
                           fontSize={"xs"}
                           mr={1}
                           mt={1}
+                          className="cursor-pointer hover:bg-red-400"
+                          onClick={() => {
+                            if (
+                              confirm(
+                                `Möchten Sie ${worker.name} wirklich löschen?`
+                              )
+                            ) {
+                              onDeleteWorker(worker.id);
+                            }
+                          }}
                         >
                           {worker.name}
                         </Badge>

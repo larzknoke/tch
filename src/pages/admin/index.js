@@ -58,6 +58,27 @@ function Admin() {
     }
   }
 
+  async function deleteWorker(id) {
+    setLoading(true);
+    const resData = await fetch("/api/workers?id=" + id, {
+      method: "DELETE",
+    });
+    if (resData.status != 200) {
+      toaster.create({
+        description: `Ein Fehler ist aufgetreten`,
+        type: "error",
+      });
+      setLoading(false);
+    } else {
+      toaster.create({
+        description: `Teilnehmer gelöscht.`,
+        type: "success",
+      });
+      setLoading(false);
+      getEfforts();
+    }
+  }
+
   function handleEdit(effort) {
     setSelectedEffort(effort);
     setOpenEditModal(true);
@@ -74,6 +95,7 @@ function Admin() {
           effortsData={effortsData}
           onEdit={handleEdit}
           onDelete={deleteEffort}
+          onDeleteWorker={deleteWorker}
         />
       ) : (
         <Flex justify="center" w={"100%"}>

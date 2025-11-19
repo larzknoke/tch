@@ -109,7 +109,7 @@ export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
                 return (
                   <>
                     <Dialog.Header>
-                      <Dialog.Title>Neuer Arbeitseinsatz</Dialog.Title>
+                      <Dialog.Title>Arbeitseinsatz bearbeiten</Dialog.Title>
                     </Dialog.Header>
                     <Dialog.Body>
                       <form id="effort-form" onSubmit={handleSubmit(onSubmit)}>
