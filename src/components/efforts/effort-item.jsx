@@ -15,7 +15,7 @@ function EffortItem({ effort }) {
         <div className="flex flex-row gap-2 ">
           <WrenchIcon className="size-5 text-tch-blue mt-1" />
           <div className="flex flex-col">
-            <div>{dateFormatter(effort.date, false)}</div>
+            <div>{effort.date}</div>
             <div className="font-semibold text-xl">{effort.title}</div>
           </div>
         </div>

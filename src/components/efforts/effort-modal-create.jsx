@@ -25,7 +25,7 @@ const schema = yup
       // .positive("Max. Teilnehmer muss eine Zahl größer als 0 sein")
       .integer("Max. Teilnehmer muss eine ganze Zahl sein")
       .required("Max. Teilnehmer ist erforderlich"),
-    date: yup.date().required("Datum ist erforderlich"),
+    date: yup.string(),
     active: yup.boolean().transform((value) => {
       return value == "on";
     }),
@@ -52,13 +52,14 @@ export const EffortModalCreate = ({ getEfforts }) => {
       title: "",
       content: "",
       maxWorker: 1,
-      // date: new Date(),
+      date: "",
       active: "on",
       finished: false,
     },
   });
 
   async function onSubmit(values) {
+    console.log("onSubmit", values);
     try {
       setLoading(true);
       console.log("values", values);
@@ -143,8 +144,8 @@ export const EffortModalCreate = ({ getEfforts }) => {
                             <Field.Label>Datum</Field.Label>
                             <Input
                               name="date"
-                              type="datetime-local"
-                              {...register("date", { valueAsDate: true })}
+                              type="text"
+                              {...register("date")}
                             />
                           </Field.Root>{" "}
                           <Controller

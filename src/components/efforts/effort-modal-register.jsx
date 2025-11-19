@@ -28,7 +28,7 @@ const schema = yup
       // .positive("Max. Teilnehmer muss eine Zahl größer als 0 sein")
       .integer("Max. Teilnehmer muss eine ganze Zahl sein")
       .required("Max. Teilnehmer ist erforderlich"),
-    date: yup.date().required("Datum ist erforderlich"),
+    date: yup.string(),
     active: yup.boolean().transform((value) => {
       return value == "on";
     }),

@@ -99,7 +99,7 @@ function Admin() {
               effortsData.map((item) => (
                 <Table.Row key={item.id}>
                   <Table.Cell>{item.title}</Table.Cell>
-                  <Table.Cell>{dateFormatter(item.date, true)}</Table.Cell>
+                  <Table.Cell>{item.date}</Table.Cell>
                   <Table.Cell>
                     {verifiedWorker(item.workers)} von {item.maxWorker || "-"}
                     <Text fontSize={"xs"} color={"gray.500"}>

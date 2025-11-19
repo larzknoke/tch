@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Effort" ALTER COLUMN "date" SET DATA TYPE TEXT;

@@ -14,8 +14,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toaster } from "@/components/ui/toaster";
 import { useRef, useState, useEffect } from "react";
-import dayjs from "dayjs";
-import "dayjs/locale/de";
 
 const schema = yup
   .object({
@@ -27,7 +25,7 @@ const schema = yup
       // .positive("Max. Teilnehmer muss eine Zahl größer als 0 sein")
       .integer("Max. Teilnehmer muss eine ganze Zahl sein")
       .required("Max. Teilnehmer ist erforderlich"),
-    date: yup.date().required("Datum ist erforderlich"),
+    date: yup.string(),
     // active: yup.boolean().transform((value) => {
     //   return value == "on";
     // }),
@@ -52,7 +50,7 @@ export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: effort,
-    values: { ...effort, date: dayjs(effort.date).format("YYYY-MM-DDThh:mm") },
+    values: effort,
   });
 
   async function onSubmit(values) {
@@ -144,8 +142,8 @@ export const EffortModalEdit = ({ effort, open, setOpen, getEfforts }) => {
                             <Field.Label>Datum</Field.Label>
                             <Input
                               name="date"
-                              type="datetime-local"
-                              {...register("date", { valueAsDate: true })}
+                              type="text"
+                              {...register("date")}
                             />
                           </Field.Root>{" "}
                           <Controller

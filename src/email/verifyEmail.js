@@ -31,7 +31,7 @@ export default function VerifyEmail({ worker, effort }) {
             Arbeitseinsatz: <br />
             <strong>{effort.title}</strong> <br />
             <strong>{effort.content}</strong> <br />
-            <strong>{dateFormatter(effort.date)}</strong>
+            <strong>{effort.date}</strong>
           </Text>
 
           <Section style={section}>

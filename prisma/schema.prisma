@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -15,14 +9,14 @@ datasource db {
 }
 
 model Effort {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   title     String?
   content   String?
-  active    Boolean   @default(false)
-  finished  Boolean   @default(false)
-  date      DateTime?
+  active    Boolean  @default(false)
+  finished  Boolean  @default(false)
+  date      String?
   maxWorker Int?
   workers   Worker[]
 }
@@ -42,20 +36,20 @@ model Article {
 model Worker {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   email     String?
   name      String?
   phone     String?
   verified  Boolean? @default(false)
   verifyId  String?  @unique @default(cuid())
-  effort    Effort?  @relation(fields: [effortId], references: [id])
   effortId  Int?
+  effort    Effort?  @relation(fields: [effortId], references: [id])
 }
 
 model Newsletter {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   email     String?
   verified  Boolean? @default(false)
   verifyId  String?  @unique @default(cuid())
@@ -66,13 +60,12 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  password      String?
   image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  password      String?
   accounts      Account[]
   sessions      Session[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Account {
@@ -87,11 +80,9 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
 }
@@ -100,10 +91,9 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model VerificationToken {
