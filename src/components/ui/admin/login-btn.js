@@ -9,7 +9,11 @@ export default function LoginBtn() {
       <HStack gap={1}>
         <UserCircleIcon className="w-4" />
         <Text className="mr-2">{session.user.email}</Text>
-        <Button onClick={() => signOut()} colorScheme="red">
+        <Button
+          onClick={() => signOut()}
+          colorPalette={"red"}
+          variant={"outline"}
+        >
           Logout
         </Button>
       </HStack>

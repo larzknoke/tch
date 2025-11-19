@@ -16,6 +16,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
 import GoogleCalendar from "@/components/googlecalendar/GoogleCalendar";
+import EffortWrapper from "@/components/efforts/effort-wrapper";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -115,8 +116,9 @@ export default function Home() {
               </div>
             </Link>
           </div>
-          <div className="w-full md:w-1/3 px-5">
+          <div className="w-full md:w-1/3 px-5 space-y-12">
             <DateWrapper />
+            <EffortWrapper />
           </div>
         </div>
         <ScheduleWrapper />

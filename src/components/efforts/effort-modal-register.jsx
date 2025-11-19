@@ -122,7 +122,7 @@ export const EffortModalRegister = ({ effort }) => {
             if (isFull) {
               e.preventDefault();
               toaster.create({
-                description: "Dieser Arbeitseinsatz ist bereits voll",
+                description: "Dieser Arbeitseinsatz ist bereits ausgebucht.",
                 type: "error",
               });
             }
