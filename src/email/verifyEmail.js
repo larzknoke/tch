@@ -30,7 +30,11 @@ export default function VerifyEmail({ worker, effort }) {
           <Text style={title}>
             Arbeitseinsatz: <br />
             <strong>{effort.title}</strong> <br />
-            <strong>{effort.content}</strong> <br />
+            {effort.content && (
+              <>
+                <strong>{effort.content}</strong> <br />
+              </>
+            )}
             <strong>{effort.date}</strong>
           </Text>
 
@@ -46,7 +50,7 @@ export default function VerifyEmail({ worker, effort }) {
                 process.env.NEXTAUTH_URL + "/verify?verifyId=" + worker.verifyId
               }
             >
-              <Text style={buttonText}>Newsletter bestätigen</Text>
+              <Text style={buttonText}>Arbeitseinsatz bestätigen</Text>
             </Button>
             <Text style={text}>
               Wenn der Link oben nicht funktioniert kopieren Sie bitte folgende
