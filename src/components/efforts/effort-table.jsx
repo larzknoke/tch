@@ -1,10 +1,19 @@
-import { Badge, HStack, Table, Icon, Text } from "@chakra-ui/react";
+import { Badge, HStack, Table, Icon, Text, Tabs } from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, verifiedWorker } from "@/lib/utils";
+import { useMemo } from "react";
 
 export const EffortTable = ({ effortsData, onEdit, onDelete }) => {
-  return (
+  const activeEfforts = useMemo(() => {
+    return effortsData?.filter((effort) => !effort.finished) || [];
+  }, [effortsData]);
+
+  const finishedEfforts = useMemo(() => {
+    return effortsData?.filter((effort) => effort.finished) || [];
+  }, [effortsData]);
+
+  const renderTable = (data) => (
     <Table.Root>
       <Table.Header>
         <Table.Row>
@@ -17,8 +26,8 @@ export const EffortTable = ({ effortsData, onEdit, onDelete }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {effortsData &&
-          effortsData.map((item) => (
+        {data && data.length > 0 ? (
+          data.map((item) => (
             <Table.Row key={item.id}>
               <Table.Cell>{item.title}</Table.Cell>
               <Table.Cell>{item.date}</Table.Cell>
@@ -67,8 +76,34 @@ export const EffortTable = ({ effortsData, onEdit, onDelete }) => {
                 </HStack>
               </Table.Cell>
             </Table.Row>
-          ))}
+          ))
+        ) : (
+          <Table.Row>
+            <Table.Cell colSpan={6} textAlign="center" color="gray.500">
+              Keine Arbeitseinsätze vorhanden
+            </Table.Cell>
+          </Table.Row>
+        )}
       </Table.Body>
     </Table.Root>
+  );
+
+  return (
+    <Tabs.Root defaultValue="active" width="100%">
+      <Tabs.List>
+        <Tabs.Trigger value="active">
+          Einsätze ({activeEfforts.length})
+        </Tabs.Trigger>
+        <Tabs.Trigger value="finished">
+          Beendete Einsätze ({finishedEfforts.length})
+        </Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="active" pt={4}>
+        {renderTable(activeEfforts)}
+      </Tabs.Content>
+      <Tabs.Content value="finished" pt={4}>
+        {renderTable(finishedEfforts)}
+      </Tabs.Content>
+    </Tabs.Root>
   );
 };
