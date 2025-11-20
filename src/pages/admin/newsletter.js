@@ -1,13 +1,12 @@
 import { Tooltip } from "@/components/ui/tooltip";
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
 import { WorkerModalCreate } from "@/components/worker/worker-modal-create";
-import { HStack, VStack, Flex, Table, Icon } from "@chakra-ui/react";
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
-import { Checker, dateFormatter } from "@/lib/utils";
+import { VStack, Flex } from "@chakra-ui/react";
 import BallLoader from "@/components/ui/loading-ball";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { toaster } from "@/components/ui/toaster";
 import { WorkerModalEdit } from "@/components/worker/worker-modal-edit";
+import { NewsletterTable } from "@/components/newsletter/newsletter-table";
 
 function Newsletter() {
   const [newsletterData, setNewsletterData] = useState(null);
@@ -59,6 +58,11 @@ function Newsletter() {
     }
   }
 
+  function handleEdit(newsletter) {
+    setSelectedWorker(newsletter);
+    setOpenEditModal(true);
+  }
+
   useEffect(() => {
     getNewsletters();
   }, []);
@@ -66,49 +70,11 @@ function Newsletter() {
   return (
     <VStack py={5} gap={5} placeItems={"flex-start"}>
       {newsletterData && !loading ? (
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeader>Email</Table.ColumnHeader>
-              <Table.ColumnHeader> Bestätigt</Table.ColumnHeader>
-              <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {newsletterData &&
-              newsletterData.map((item) => (
-                <Table.Row key={item.id}>
-                  <Table.Cell>{item.email}</Table.Cell>
-                  <Table.Cell>{Checker(item.verified)}</Table.Cell>
-                  <Table.Cell textAlign="end">
-                    <HStack placeContent={"end"} gap={4}>
-                      <Tooltip content="Bearbeiten">
-                        <Icon
-                          size={"sm"}
-                          onClick={() => {
-                            setSelectedWorker(item);
-                            // setDialogOpen(true);
-                            setOpenEditModal(true);
-                          }}
-                        >
-                          <PencilSquareIcon />
-                        </Icon>
-                      </Tooltip>
-                      <Tooltip content="Löschen">
-                        <Icon
-                          size={"sm"}
-                          color="red.600"
-                          onClick={() => deleteWorker(item.id)}
-                        >
-                          <TrashIcon />
-                        </Icon>
-                      </Tooltip>
-                    </HStack>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-          </Table.Body>
-        </Table.Root>
+        <NewsletterTable
+          newsletterData={newsletterData}
+          onEdit={handleEdit}
+          onDelete={deleteWorker}
+        />
       ) : (
         <Flex justify="center" w={"100%"}>
           <BallLoader />
