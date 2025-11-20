@@ -7,6 +7,7 @@ import {
   Tabs,
   Input,
   VStack,
+  Box,
 } from "@chakra-ui/react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -53,60 +54,62 @@ export default function WorkerTable({
   }
 
   const renderTable = (data) => (
-    <Table.Root>
-      <Table.Header>
-        <Table.Row>
-          <Table.ColumnHeader>Name</Table.ColumnHeader>
-          <Table.ColumnHeader>Email</Table.ColumnHeader>
-          <Table.ColumnHeader>Telefon</Table.ColumnHeader>
-          <Table.ColumnHeader> Bestätigt</Table.ColumnHeader>
-          <Table.ColumnHeader> Einsatz</Table.ColumnHeader>
-          <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {data && data.length > 0 ? (
-          data.map((item) => (
-            <Table.Row key={item.id}>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.email}</Table.Cell>
-              <Table.Cell>{item.phone}</Table.Cell>
-              <Table.Cell>{Checker(item.verified)}</Table.Cell>
-              <Table.Cell>{item.effort?.title || "-"}</Table.Cell>
-              <Table.Cell textAlign="end">
-                <HStack placeContent={"end"} gap={4}>
-                  <Tooltip content="Bearbeiten">
-                    <Icon
-                      size={"sm"}
-                      onClick={() => onEdit(item)}
-                      className="cursor-pointer"
-                    >
-                      <PencilSquareIcon />
-                    </Icon>
-                  </Tooltip>
-                  <Tooltip content="Löschen">
-                    <Icon
-                      size={"sm"}
-                      color="red.600"
-                      onClick={() => onDelete(item.id)}
-                      className="cursor-pointer"
-                    >
-                      <TrashIcon />
-                    </Icon>
-                  </Tooltip>
-                </HStack>
+    <Box overflowX="auto" width="100%">
+      <Table.Root minWidth={{ base: "600px", md: "100%" }}>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>Name</Table.ColumnHeader>
+            <Table.ColumnHeader>Email</Table.ColumnHeader>
+            <Table.ColumnHeader>Telefon</Table.ColumnHeader>
+            <Table.ColumnHeader> Bestätigt</Table.ColumnHeader>
+            <Table.ColumnHeader> Einsatz</Table.ColumnHeader>
+            <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {data && data.length > 0 ? (
+            data.map((item) => (
+              <Table.Row key={item.id}>
+                <Table.Cell>{item.name}</Table.Cell>
+                <Table.Cell>{item.email}</Table.Cell>
+                <Table.Cell>{item.phone}</Table.Cell>
+                <Table.Cell>{Checker(item.verified)}</Table.Cell>
+                <Table.Cell>{item.effort?.title || "-"}</Table.Cell>
+                <Table.Cell textAlign="end">
+                  <HStack placeContent={"end"} gap={4}>
+                    <Tooltip content="Bearbeiten">
+                      <Icon
+                        size={"sm"}
+                        onClick={() => onEdit(item)}
+                        className="cursor-pointer"
+                      >
+                        <PencilSquareIcon />
+                      </Icon>
+                    </Tooltip>
+                    <Tooltip content="Löschen">
+                      <Icon
+                        size={"sm"}
+                        color="red.600"
+                        onClick={() => onDelete(item.id)}
+                        className="cursor-pointer"
+                      >
+                        <TrashIcon />
+                      </Icon>
+                    </Tooltip>
+                  </HStack>
+                </Table.Cell>
+              </Table.Row>
+            ))
+          ) : (
+            <Table.Row>
+              <Table.Cell colSpan={6} textAlign="center" color="gray.500">
+                Keine Teilnehmer vorhanden
               </Table.Cell>
             </Table.Row>
-          ))
-        ) : (
-          <Table.Row>
-            <Table.Cell colSpan={6} textAlign="center" color="gray.500">
-              Keine Teilnehmer vorhanden
-            </Table.Cell>
-          </Table.Row>
-        )}
-      </Table.Body>
-    </Table.Root>
+          )}
+        </Table.Body>
+      </Table.Root>
+    </Box>
   );
 
   return (
