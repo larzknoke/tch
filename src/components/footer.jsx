@@ -42,6 +42,7 @@ function Footer() {
           <div className="flex flex-row md:flex-col w-full md:w-1/4 gap-3">
             <Link href={"datenschutz"}>Datenschutz</Link>
             <Link href={"impressum"}>Impressum</Link>
+            <Link href={"admin"}>Admin</Link>
           </div>
         </div>
       </div>
