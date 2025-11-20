@@ -1,17 +1,41 @@
-import { HStack, Table, Icon, Tabs } from "@chakra-ui/react";
+import {
+  HStack,
+  Table,
+  Icon,
+  Tabs,
+  Input,
+  VStack,
+  Flex,
+} from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Checker } from "@/lib/utils";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export const NewsletterTable = ({ newsletterData, onEdit, onDelete }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredNewsletters = useMemo(() => {
+    if (!searchQuery.trim()) return newsletterData;
+
+    const query = searchQuery.toLowerCase();
+    return newsletterData?.filter((newsletter) => {
+      return newsletter.email?.toLowerCase().includes(query);
+    });
+  }, [newsletterData, searchQuery]);
+
   const verifiedNewsletters = useMemo(() => {
-    return newsletterData?.filter((newsletter) => newsletter.verified) || [];
-  }, [newsletterData]);
+    return (
+      filteredNewsletters?.filter((newsletter) => newsletter.verified) || []
+    );
+  }, [filteredNewsletters]);
 
   const unverifiedNewsletters = useMemo(() => {
-    return newsletterData?.filter((newsletter) => !newsletter.verified) || [];
-  }, [newsletterData]);
+    return (
+      filteredNewsletters?.filter((newsletter) => !newsletter.verified) || []
+    );
+  }, [filteredNewsletters]);
 
   const renderTable = (data) => (
     <Table.Root>
@@ -65,21 +89,41 @@ export const NewsletterTable = ({ newsletterData, onEdit, onDelete }) => {
   );
 
   return (
-    <Tabs.Root defaultValue="verified" width="100%">
-      <Tabs.List>
-        <Tabs.Trigger value="verified">
-          Bestätigt ({verifiedNewsletters.length})
-        </Tabs.Trigger>
-        <Tabs.Trigger value="unverified">
-          Unbestätigt ({unverifiedNewsletters.length})
-        </Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="verified" pt={4}>
-        {renderTable(verifiedNewsletters)}
-      </Tabs.Content>
-      <Tabs.Content value="unverified" pt={4}>
-        {renderTable(unverifiedNewsletters)}
-      </Tabs.Content>
-    </Tabs.Root>
+    <VStack width="100%" gap={4}>
+      <Flex width="100%" position="relative">
+        <Icon
+          position="absolute"
+          left="3"
+          top="50%"
+          transform="translateY(-50%)"
+          color="gray.400"
+          size="sm"
+        >
+          <MagnifyingGlassIcon />
+        </Icon>
+        <Input
+          placeholder="Suche nach Email..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          paddingLeft="10"
+        />
+      </Flex>
+      <Tabs.Root defaultValue="verified" width="100%">
+        <Tabs.List>
+          <Tabs.Trigger value="verified">
+            Bestätigt ({verifiedNewsletters.length})
+          </Tabs.Trigger>
+          <Tabs.Trigger value="unverified">
+            Unbestätigt ({unverifiedNewsletters.length})
+          </Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="verified" pt={4}>
+          {renderTable(verifiedNewsletters)}
+        </Tabs.Content>
+        <Tabs.Content value="unverified" pt={4}>
+          {renderTable(unverifiedNewsletters)}
+        </Tabs.Content>
+      </Tabs.Root>
+    </VStack>
   );
 };

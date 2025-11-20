@@ -1,9 +1,18 @@
 import { Tooltip } from "@/components/ui/tooltip";
-import { HStack, Table, Icon, Flex, Tabs } from "@chakra-ui/react";
+import {
+  HStack,
+  Table,
+  Icon,
+  Flex,
+  Tabs,
+  Input,
+  VStack,
+} from "@chakra-ui/react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Checker } from "@/lib/utils";
 import BallLoader from "@/components/ui/loading-ball";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export default function WorkerTable({
   workersData,
@@ -11,13 +20,29 @@ export default function WorkerTable({
   onEdit,
   onDelete,
 }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredWorkers = useMemo(() => {
+    if (!searchQuery.trim()) return workersData;
+
+    const query = searchQuery.toLowerCase();
+    return workersData?.filter((worker) => {
+      return (
+        worker.name?.toLowerCase().includes(query) ||
+        worker.email?.toLowerCase().includes(query) ||
+        worker.phone?.toLowerCase().includes(query) ||
+        worker.effort?.title?.toLowerCase().includes(query)
+      );
+    });
+  }, [workersData, searchQuery]);
+
   const verifiedWorkers = useMemo(() => {
-    return workersData?.filter((worker) => worker.verified) || [];
-  }, [workersData]);
+    return filteredWorkers?.filter((worker) => worker.verified) || [];
+  }, [filteredWorkers]);
 
   const unverifiedWorkers = useMemo(() => {
-    return workersData?.filter((worker) => !worker.verified) || [];
-  }, [workersData]);
+    return filteredWorkers?.filter((worker) => !worker.verified) || [];
+  }, [filteredWorkers]);
 
   if (loading) {
     return (
@@ -85,21 +110,41 @@ export default function WorkerTable({
   );
 
   return (
-    <Tabs.Root defaultValue="verified" width="100%">
-      <Tabs.List>
-        <Tabs.Trigger value="verified">
-          Bestätigte Teilnehmer ({verifiedWorkers.length})
-        </Tabs.Trigger>
-        <Tabs.Trigger value="unverified">
-          Unbestätigte Teilnehmer ({unverifiedWorkers.length})
-        </Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="verified" pt={4}>
-        {renderTable(verifiedWorkers)}
-      </Tabs.Content>
-      <Tabs.Content value="unverified" pt={4}>
-        {renderTable(unverifiedWorkers)}
-      </Tabs.Content>
-    </Tabs.Root>
+    <VStack width="100%" gap={4}>
+      <Flex width="100%" position="relative">
+        <Icon
+          position="absolute"
+          left="3"
+          top="50%"
+          transform="translateY(-50%)"
+          color="gray.400"
+          size="sm"
+        >
+          <MagnifyingGlassIcon />
+        </Icon>
+        <Input
+          placeholder="Suche nach Name, Email, Telefon oder Einsatz..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          paddingLeft="10"
+        />
+      </Flex>
+      <Tabs.Root defaultValue="verified" width="100%">
+        <Tabs.List>
+          <Tabs.Trigger value="verified">
+            Bestätigte Teilnehmer ({verifiedWorkers.length})
+          </Tabs.Trigger>
+          <Tabs.Trigger value="unverified">
+            Unbestätigte Teilnehmer ({unverifiedWorkers.length})
+          </Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="verified" pt={4}>
+          {renderTable(verifiedWorkers)}
+        </Tabs.Content>
+        <Tabs.Content value="unverified" pt={4}>
+          {renderTable(unverifiedWorkers)}
+        </Tabs.Content>
+      </Tabs.Root>
+    </VStack>
   );
 }

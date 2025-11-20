@@ -1,8 +1,19 @@
-import { Badge, HStack, Table, Icon, Text, Tabs } from "@chakra-ui/react";
+import {
+  Badge,
+  HStack,
+  Table,
+  Icon,
+  Text,
+  Tabs,
+  Input,
+  VStack,
+  Flex,
+} from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Checker, verifiedWorker } from "@/lib/utils";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export const EffortTable = ({
   effortsData,
@@ -10,13 +21,31 @@ export const EffortTable = ({
   onDelete,
   onDeleteWorker,
 }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredEfforts = useMemo(() => {
+    if (!searchQuery.trim()) return effortsData;
+
+    const query = searchQuery.toLowerCase();
+    return effortsData?.filter((effort) => {
+      return (
+        effort.title?.toLowerCase().includes(query) ||
+        effort.date?.toLowerCase().includes(query) ||
+        effort.content?.toLowerCase().includes(query) ||
+        effort.workers?.some((worker) =>
+          worker.name?.toLowerCase().includes(query)
+        )
+      );
+    });
+  }, [effortsData, searchQuery]);
+
   const activeEfforts = useMemo(() => {
-    return effortsData?.filter((effort) => !effort.finished) || [];
-  }, [effortsData]);
+    return filteredEfforts?.filter((effort) => !effort.finished) || [];
+  }, [filteredEfforts]);
 
   const finishedEfforts = useMemo(() => {
-    return effortsData?.filter((effort) => effort.finished) || [];
-  }, [effortsData]);
+    return filteredEfforts?.filter((effort) => effort.finished) || [];
+  }, [filteredEfforts]);
 
   const renderTable = (data) => (
     <Table.Root>
@@ -104,21 +133,41 @@ export const EffortTable = ({
   );
 
   return (
-    <Tabs.Root defaultValue="active" width="100%">
-      <Tabs.List>
-        <Tabs.Trigger value="active">
-          Einsätze ({activeEfforts.length})
-        </Tabs.Trigger>
-        <Tabs.Trigger value="finished">
-          Beendete Einsätze ({finishedEfforts.length})
-        </Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="active" pt={4}>
-        {renderTable(activeEfforts)}
-      </Tabs.Content>
-      <Tabs.Content value="finished" pt={4}>
-        {renderTable(finishedEfforts)}
-      </Tabs.Content>
-    </Tabs.Root>
+    <VStack width="100%" gap={4}>
+      <Flex width="100%" position="relative">
+        <Icon
+          position="absolute"
+          left="3"
+          top="50%"
+          transform="translateY(-50%)"
+          color="gray.400"
+          size="sm"
+        >
+          <MagnifyingGlassIcon />
+        </Icon>
+        <Input
+          placeholder="Suche nach Einsatz, Datum, Beschreibung oder Teilnehmer..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          paddingLeft="10"
+        />
+      </Flex>
+      <Tabs.Root defaultValue="active" width="100%">
+        <Tabs.List>
+          <Tabs.Trigger value="active">
+            Einsätze ({activeEfforts.length})
+          </Tabs.Trigger>
+          <Tabs.Trigger value="finished">
+            Beendete Einsätze ({finishedEfforts.length})
+          </Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="active" pt={4}>
+          {renderTable(activeEfforts)}
+        </Tabs.Content>
+        <Tabs.Content value="finished" pt={4}>
+          {renderTable(finishedEfforts)}
+        </Tabs.Content>
+      </Tabs.Root>
+    </VStack>
   );
 };
