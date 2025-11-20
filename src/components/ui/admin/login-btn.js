@@ -8,11 +8,12 @@ export default function LoginBtn() {
     return (
       <HStack gap={1}>
         <UserCircleIcon className="w-4" />
-        <Text className="mr-2">{session.user.email}</Text>
+        <Text className="mr-2 text-sm">{session.user.email}</Text>
         <Button
           onClick={() => signOut()}
           colorPalette={"red"}
           variant={"outline"}
+          size={"xs"}
         >
           Logout
         </Button>
