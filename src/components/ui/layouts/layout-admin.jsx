@@ -33,7 +33,7 @@ export default function LayoutAdmin({ children }) {
 
   return (
     <Container>
-      <Flex direction={"column"} py={5} gap={5} divideY={1}>
+      <Flex direction={"column"} py={5} gap={5} divideY={{ base: 0, md: 1 }}>
         {/* Desktop Navigation */}
         <HStack display={{ base: "none", md: "flex" }}>
           <Link href="/">
@@ -82,7 +82,7 @@ export default function LayoutAdmin({ children }) {
               mt={4}
               alignItems="stretch"
               pb={4}
-              borderBottomWidth={1}
+              borderBottomWidth={0}
             >
               {navLinks.map((link) => {
                 const isActive = pathname == link.href;
