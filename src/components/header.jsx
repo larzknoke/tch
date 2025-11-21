@@ -120,6 +120,7 @@ function HeaderHome() {
         <nav className="hidden md:flex font-bold gap-7 text-lg self-center main-nav-blue uppercase text-tch-blue py-6">
           <NavItemClub />
           <Link href={"/news"}>NEWS & NEUIGKEITEN</Link>
+          <Link href={"/termine"}>TERMINE</Link>
           {/* <NavItemTeams /> */}
           <NavItemTraining />
           <Link href={"/kontakt"}>Kontakt</Link>

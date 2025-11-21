@@ -58,6 +58,9 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/news"} onClick={() => resetNav()}>
               NEWS & NEUIGKEITEN
             </Link>
+            <Link href={"/termine"} onClick={() => resetNav()}>
+              TERMINE
+            </Link>
             {/* <span
               className="flex items-center gap-1"
               onClick={() => setTeamsNav(true)}

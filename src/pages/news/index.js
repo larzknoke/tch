@@ -27,7 +27,7 @@ export default function News() {
         <div className="w-full md:w-2/3">
           <NewsWrapper />
         </div>
-        <div className="w-full md:w-1/3 gap-12 flex flex-col">
+        <div className="w-full md:w-1/3 gap-12 flex flex-col mb-12">
           <DateWrapper />
           <EffortWrapper />
         </div>

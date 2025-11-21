@@ -1,6 +1,7 @@
 import Layout from "@/components/ui/layouts/layout";
 import EffortWrapper from "@/components/efforts/effort-wrapper";
 import { calendarData } from "@/lib/calendarData";
+import GoogleCalendar from "@/components/googlecalendar/GoogleCalendar";
 
 // const geistSans = localFont({
 //   src: "../fonts/GeistVF.woff",
@@ -34,9 +35,12 @@ export default function Termine() {
             ))}
           {/* Placeholder items for demonstration */}
         </div>
-        <div className="w-full md:w-1/2 gap-12 flex flex-col -mx-4 md:mx-0">
+        <div className="w-full md:w-1/2 gap-12 flex flex-col -mx-4 md:mx-0 ">
           <EffortWrapper />
         </div>
+      </div>
+      <div>
+        <GoogleCalendar />
       </div>
     </div>
   );
