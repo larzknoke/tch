@@ -34,4 +34,9 @@ export const calendarData = [
     title: "6. Arbeitseinsatz (Laubbeseitigung)",
     date: "2025-12-13",
   },
+  {
+    id: 8,
+    title: "Weihnachtsfeier 2025",
+    date: "2025-12-20",
+  },
 ];
