@@ -16,8 +16,8 @@ import { calendarData } from "@/lib/calendarData";
 export default function Termine() {
   return (
     <div className="flex flex-col gap-16 md:p-0 p-5">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
-        <div className="w-full md:w-2/3">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-16">
+        <div className="w-full md:w-1/2">
           <h2 className="mb-3 uppercase ">Kalender/Termine</h2>
           {calendarData
             .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -34,7 +34,7 @@ export default function Termine() {
             ))}
           {/* Placeholder items for demonstration */}
         </div>
-        <div className="w-full md:w-1/3 gap-12 flex flex-col">
+        <div className="w-full md:w-1/2 gap-12 flex flex-col -mx-4 md:mx-0">
           <EffortWrapper />
         </div>
       </div>
