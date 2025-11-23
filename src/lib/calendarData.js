@@ -9,16 +9,16 @@ export const calendarData = [
   //   title: "Sommerfest der Jugend",
   //   date: "2025-09-13",
   // },
-  {
-    id: 3,
-    title: "TCH LK Race Finale 2025",
-    date: "2025-09-26",
-  },
-  {
-    id: 4,
-    title: "Fisch und Flutlicht 2025",
-    date: "2025-10-10",
-  },
+  // {
+  //   id: 3,
+  //   title: "TCH LK Race Finale 2025",
+  //   date: "2025-09-26",
+  // },
+  // {
+  //   id: 4,
+  //   title: "Fisch und Flutlicht 2025",
+  //   date: "2025-10-10",
+  // },
   {
     id: 5,
     title: "4. Arbeitseinsatz",

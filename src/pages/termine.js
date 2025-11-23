@@ -16,8 +16,8 @@ import GoogleCalendar from "@/components/googlecalendar/GoogleCalendar";
 
 export default function Termine() {
   return (
-    <div className="flex flex-col gap-16 md:p-0 p-5">
-      <div className="flex flex-col md:flex-row gap-4 md:gap-16">
+    <div className="flex flex-col gap-8 md:gap-16 md:p-0 p-5">
+      <div className="flex flex-col-reverse md:flex-row gap-12 md:gap-16 ">
         <div className="w-full md:w-1/2">
           <h2 className="mb-3 uppercase ">Kalender/Termine</h2>
           {calendarData
@@ -35,7 +35,7 @@ export default function Termine() {
             ))}
           {/* Placeholder items for demonstration */}
         </div>
-        <div className="w-full md:w-1/2 gap-12 flex flex-col -mx-4 md:mx-0 ">
+        <div className="w-full md:w-1/2 gap-12 flex flex-col -mx-4 md:mx-0 mt-8 md:mt-0">
           <EffortWrapper />
         </div>
       </div>
