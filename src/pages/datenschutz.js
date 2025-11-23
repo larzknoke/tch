@@ -17,73 +17,171 @@ function Datenschutz() {
             <span className="flex flex-col gap-8">
               Wir freuen uns sehr über Ihr Interesse an unserem Verein.
               Datenschutz hat einen besondershohen Stellenwert für den Vorstand
-              des Tennisverein Holzminden von 1928 e.V.. Eine
-              <br />
-              Nutzung der Internetseiten des Tennisverein Holzminden von 1928
-              e.V.. ist grundsätzlich
-              <br />
-              ohne jede Angabe personenbezogener Daten möglich. Sofern eine
-              betroffene Person
-              <br />
-              besondere Services unseres Unternehmens über unsere Internetseite
-              in Anspruch nehmen
-              <br />
-              möchte, könnte jedoch eine Verarbeitung personenbezogener Daten
-              erforderlich werden. Ist
-              <br />
-              die Verarbeitung personenbezogener Daten erforderlich und besteht
-              für eine solche
-              <br />
-              Verarbeitung keine gesetzliche Grundlage, holen wir generell eine
-              Einwilligung der
-              <br />
+              des Tennisverein Holzminden von 1928 e.V.. Eine Nutzung der
+              Internetseiten des Tennisverein Holzminden von 1928 e.V.. ist
+              grundsätzlich ohne jede Angabe personenbezogener Daten möglich.
+              Sofern eine betroffene Person besondere Services unseres
+              Unternehmens über unsere Internetseite in Anspruch nehmen möchte,
+              könnte jedoch eine Verarbeitung personenbezogener Daten
+              erforderlich werden. Ist die Verarbeitung personenbezogener Daten
+              erforderlich und besteht für eine solche Verarbeitung keine
+              gesetzliche Grundlage, holen wir generell eine Einwilligung der
               betroffenen Person ein.
               <br />
+              <br />
               Die Verarbeitung personenbezogener Daten, beispielsweise des
-              Namens, der Anschrift, EMail-
-              <br />
-              Adresse oder Telefonnummer einer betroffenen Person, erfolgt stets
-              im Einklang mit der
-              <br />
+              Namens, der Anschrift, EMail- Adresse oder Telefonnummer einer
+              betroffenen Person, erfolgt stets im Einklang mit der
               Datenschutz-Grundverordnung und in Übereinstimmung mit den für die
-              Tennisverein
-              <br />
-              Holzminden von 1928 e.V.. geltenden landesspezifischen
-              Datenschutzbestimmungen. Mittels
-              <br />
-              dieser Datenschutzerklärung möchte unser Unternehmen die
-              Öffentlichkeit über Art, Umfang
-              <br />
-              und Zweck der von uns erhobenen, genutzten und verarbeiteten
-              personenbezogenen Daten
-              <br />
-              informieren. Ferner werden betroffene Personen mittels dieser
-              Datenschutzerklärung über die
-              <br />
+              Tennisverein Holzminden von 1928 e.V.. geltenden
+              landesspezifischen Datenschutzbestimmungen. Mittels dieser
+              Datenschutzerklärung möchte unser Unternehmen die Öffentlichkeit
+              über Art, Umfang und Zweck der von uns erhobenen, genutzten und
+              verarbeiteten personenbezogenen Daten informieren. Ferner werden
+              betroffene Personen mittels dieser Datenschutzerklärung über die
               ihnen zustehenden Rechte aufgeklärt.
               <br />
+              <br />
               Die Tennisverein Holzminden von 1928 e.V.. hat als für die
-              Verarbeitung Verantwortlicher
-              <br />
-              zahlreiche technische und organisatorische Maßnahmen umgesetzt, um
-              einen möglichst
-              <br />
+              Verarbeitung Verantwortlicher zahlreiche technische und
+              organisatorische Maßnahmen umgesetzt, um einen möglichst
               lückenlosen Schutz der über diese Internetseite verarbeiteten
-              personenbezogenen Daten
-              <br />
-              sicherzustellen. Dennoch können Internetbasierte
-              Datenübertragungen grundsätzlich
-              <br />
+              personenbezogenen Daten sicherzustellen. Dennoch können
+              Internetbasierte Datenübertragungen grundsätzlich
               Sicherheitslücken aufweisen, sodass ein absoluter Schutz nicht
-              gewährleistet werden kann.
-              <br />
-              Aus diesem Grund steht es jeder betroffenen Person frei,
-              personenbezogene Daten auch auf
-              <br />
+              gewährleistet werden kann. Aus diesem Grund steht es jeder
+              betroffenen Person frei, personenbezogene Daten auch auf
               alternativen Wegen, beispielsweise telefonisch, an uns zu
               übermitteln.
               <br />
-              1. Begriffsbestimmungen
+              <nav className="text-sm bg-gray-100 p-4 rounded-md space-y-1">
+                <strong className="block mb-2">Inhalt</strong>
+                <ul className="list-disc list-inside space-y-1 columns-1 md:columns-2 gap-4">
+                  <li>
+                    <a href="#begrifflichkeiten" className="hover:underline">
+                      1. Begriffsbestimmungen
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#verantwortlicher" className="hover:underline">
+                      2. Verantwortlicher
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#erfassung" className="hover:underline">
+                      3. Erfassung von Daten
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#kontakt" className="hover:underline">
+                      4. Kontaktmöglichkeit
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#kommentare" className="hover:underline">
+                      5. Kommentarfunktion
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#loeschung" className="hover:underline">
+                      6. Löschung & Sperrung
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#rechte" className="hover:underline">
+                      7. Rechte der betroffenen Person
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#facebook" className="hover:underline">
+                      8. Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#google-analytics" className="hover:underline">
+                      9. Google (Allgemein)
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#google-adwords" className="hover:underline">
+                      10. Google Ads
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#google-remarketing" className="hover:underline">
+                      11. Google Remarketing
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#bing" className="hover:underline">
+                      12. Bing
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#xing" className="hover:underline">
+                      13. XING
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#linkedin" className="hover:underline">
+                      14. LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#twitter" className="hover:underline">
+                      15. Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#youtube" className="hover:underline">
+                      16. YouTube
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#rechtsgrundlage" className="hover:underline">
+                      17. Rechtsgrundlage
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#berechtigte-interessen"
+                      className="hover:underline"
+                    >
+                      18. Berechtigte Interessen
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#speicherdauer" className="hover:underline">
+                      19. Speicherdauer
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#bereitstellung" className="hover:underline">
+                      20. Bereitstellungspflichten
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#automatisierte-entscheidungen"
+                      className="hover:underline"
+                    >
+                      21. Automatisierte Entscheidungen
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <h2
+                id="begrifflichkeiten"
+                className="mt-10 text-xl font-semibold"
+              >
+                1. Begriffsbestimmungen{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Die Datenschutzerklärung der Tennisverein Holzminden von 1928
               e.V.. beruht auf den
@@ -104,190 +202,126 @@ function Datenschutz() {
               <br />
               Wir verwenden in dieser Datenschutzerklärung unter anderem die
               folgenden Begriffe:
-              <br />• a) personenbezogene Daten
-              <br />
-              Personenbezogene Daten sind alle Informationen, die sich auf eine
-              identifizierte oder
-              <br />
-              identifizierbare natürliche Person (im Folgenden „betroffene
-              Person“) beziehen. Als
-              <br />
-              identifizierbar wird eine natürliche Person angesehen, die direkt
-              oder indirekt,
-              <br />
-              insbesondere mittels Zuordnung zu einer Kennung wie einem Namen,
-              zu einer
-              <br />
-              Kennnummer, zu Standortdaten, zu einer Online-Kennung oder zu
-              einem oder
-              <br />
-              mehreren besonderen Merkmalen, die Ausdruck der physischen,
-              physiologischen,
-              <br />
-              genetischen, psychischen, wirtschaftlichen, kulturellen oder
-              sozialen Identität dieser
-              <br />
-              natürlichen Person sind, identifiziert werden kann.
-              <br />• b) betroffene Person
-              <br />
-              Betroffene Person ist jede identifizierte oder identifizierbare
-              natürliche Person, deren
-              <br />
-              personenbezogene Daten von dem für die Verarbeitung
-              Verantwortlichen verarbeitet
-              <br />
-              werden.
-              <br />• c) Verarbeitung
-              <br />
-              Verarbeitung ist jeder mit oder ohne Hilfe automatisierter
-              Verfahren ausgeführte
-              <br />
-              Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit
-              personenbezogenen
-              <br />
-              Daten wie das Erheben, das Erfassen, die Organisation, das Ordnen,
-              die Speicherung,
-              <br />
-              die Anpassung oder Veränderung, das Auslesen, das Abfragen, die
-              Verwendung, die
-              <br />
-              Offenlegung durch Übermittlung, Verbreitung oder eine andere Form
-              der
-              <br />
-              Bereitstellung, den Abgleich oder die Verknüpfung, die
-              Einschränkung, das Löschen
-              <br />
-              oder die Vernichtung.
-              <br />• d) Einschränkung der Verarbeitung
-              <br />
-              Einschränkung der Verarbeitung ist die Markierung gespeicherter
-              personenbezogener
-              <br />
-              Daten mit dem Ziel, ihre künftige Verarbeitung einzuschränken.
-              <br />• e) Profiling
-              <br />
-              Profiling ist jede Art der automatisierten Verarbeitung
-              personenbezogener Daten, die
-              <br />
-              darin besteht, dass diese personenbezogenen Daten verwendet
-              werden, um bestimmte
-              <br />
-              persönliche Aspekte, die sich auf eine natürliche Person beziehen,
-              zu bewerten,
-              <br />
-              insbesondere, um Aspekte bezüglich Arbeitsleistung,
-              wirtschaftlicher Lage,
-              <br />
-              Gesundheit, persönlicher Vorlieben, Interessen, Zuverlässigkeit,
-              Verhalten,
-              <br />
-              Aufenthaltsort oder Ortswechsel dieser natürlichen Person zu
-              analysieren oder
-              <br />
-              vorherzusagen.
-              <br />• f) Pseudonymisierung
-              <br />
-              Pseudonymisierung ist die Verarbeitung personenbezogener Daten in
-              einer Weise, auf
-              <br />
-              welche die personenbezogenen Daten ohne Hinzuziehung zusätzlicher
-              Informationen
-              <br />
-              nicht mehr einer spezifischen betroffenen Person zugeordnet werden
-              können, sofern
-              <br />
-              diese zusätzlichen Informationen gesondert aufbewahrt werden und
-              technischen und
-              <br />
-              organisatorischen Maßnahmen unterliegen, die gewährleisten, dass
-              die
-              <br />
-              personenbezogenen Daten nicht einer identifizierten oder
-              identifizierbaren natürlichen
-              <br />
-              Person zugewiesen werden.
-              <br />• g) Verantwortlicher oder für die Verarbeitung
-              Verantwortlicher
-              <br />
-              Verantwortlicher oder für die Verarbeitung Verantwortlicher ist
-              die natürliche oder
-              <br />
-              juristische Person, Behörde, Einrichtung oder andere Stelle, die
-              allein oder gemeinsam
-              <br />
-              mit anderen über die Zwecke und Mittel der Verarbeitung von
-              personenbezogenen
-              <br />
-              Daten entscheidet. Sind die Zwecke und Mittel dieser Verarbeitung
-              durch das
-              <br />
-              Unionsrecht oder das Recht der Mitgliedstaaten vorgegeben, so kann
-              der
-              <br />
-              Verantwortliche beziehungsweise können die bestimmten Kriterien
-              seiner Benennung
-              <br />
-              nach dem Unionsrecht oder dem Recht der Mitgliedstaaten vorgesehen
-              werden.
-              <br />• h) Auftragsverarbeiter
-              <br />
-              Auftragsverarbeiter ist eine natürliche oder juristische Person,
-              Behörde, Einrichtung
-              <br />
-              oder andere Stelle, die personenbezogene Daten im Auftrag des
-              Verantwortlichen
-              <br />
-              verarbeitet.
-              <br />• i) Empfänger
-              <br />
-              Empfänger ist eine natürliche oder juristische Person, Behörde,
-              Einrichtung oder
-              <br />
-              andere Stelle, der personenbezogene Daten offengelegt werden,
-              unabhängig davon, ob
-              <br />
-              es sich bei ihr um einen Dritten handelt oder nicht. Behörden, die
-              im Rahmen eines
-              <br />
-              bestimmten Untersuchungsauftrags nach dem Unionsrecht oder dem
-              Recht der
-              <br />
-              Mitgliedstaaten möglicherweise personenbezogene Daten erhalten,
-              gelten jedoch nicht
-              <br />
-              als Empfänger.
-              <br />• j) Dritter
-              <br />
-              Dritter ist eine natürliche oder juristische Person, Behörde,
-              Einrichtung oder andere
-              <br />
-              Stelle außer der betroffenen Person, dem Verantwortlichen, dem
-              Auftragsverarbeiter
-              <br />
-              und den Personen, die unter der unmittelbaren Verantwortung des
-              Verantwortlichen
-              <br />
-              oder des Auftragsverarbeiters befugt sind, die personenbezogenen
-              Daten zu
-              <br />
-              verarbeiten.
-              <br />• k) Einwilligung
-              <br />
-              Einwilligung ist jede von der betroffenen Person freiwillig für
-              den bestimmten Fall in
-              <br />
-              informierter Weise und unmissverständlich abgegebene
-              Willensbekundung in Form
-              <br />
-              einer Erklärung oder einer sonstigen eindeutigen bestätigenden
-              Handlung, mit der die
-              <br />
-              betroffene Person zu verstehen gibt, dass sie mit der Verarbeitung
-              der sie betreffenden
-              <br />
-              personenbezogenen Daten einverstanden ist.
-              <br />
-              2. Name und Anschrift des für die Verarbeitung Verantwortlichen
+              <ul className="list-disc list-inside space-y-4 mt-4">
+                <li>
+                  <strong>a) personenbezogene Daten:</strong> Personenbezogene
+                  Daten sind alle Informationen, die sich auf eine
+                  identifizierte oder identifizierbare natürliche Person (im
+                  Folgenden „betroffene Person“) beziehen. Als identifizierbar
+                  wird eine natürliche Person angesehen, die direkt oder
+                  indirekt, insbesondere mittels Zuordnung zu einer Kennung wie
+                  einem Namen, zu einer Kennnummer, zu Standortdaten, zu einer
+                  Online-Kennung oder zu einem oder mehreren besonderen
+                  Merkmalen, die Ausdruck der physischen, physiologischen,
+                  genetischen, psychischen, wirtschaftlichen, kulturellen oder
+                  sozialen Identität dieser natürlichen Person sind,
+                  identifiziert werden kann.
+                </li>
+                <li>
+                  <strong>b) betroffene Person:</strong> Betroffene Person ist
+                  jede identifizierte oder identifizierbare natürliche Person,
+                  deren personenbezogene Daten von dem für die Verarbeitung
+                  Verantwortlichen verarbeitet werden.
+                </li>
+                <li>
+                  <strong>c) Verarbeitung:</strong> Verarbeitung ist jeder mit
+                  oder ohne Hilfe automatisierter Verfahren ausgeführte Vorgang
+                  oder jede solche Vorgangsreihe im Zusammenhang mit
+                  personenbezogenen Daten wie das Erheben, das Erfassen, die
+                  Organisation, das Ordnen, die Speicherung, die Anpassung oder
+                  Veränderung, das Auslesen, das Abfragen, die Verwendung, die
+                  Offenlegung durch Übermittlung, Verbreitung oder eine andere
+                  Form der Bereitstellung, den Abgleich oder die Verknüpfung,
+                  die Einschränkung, das Löschen oder die Vernichtung.
+                </li>
+                <li>
+                  <strong>d) Einschränkung der Verarbeitung:</strong>
+                  Einschränkung der Verarbeitung ist die Markierung
+                  gespeicherter personenbezogener Daten mit dem Ziel, ihre
+                  künftige Verarbeitung einzuschränken.
+                </li>
+                <li>
+                  <strong>e) Profiling:</strong> Profiling ist jede Art der
+                  automatisierten Verarbeitung personenbezogener Daten, die
+                  darin besteht, dass diese personenbezogenen Daten verwendet
+                  werden, um bestimmte persönliche Aspekte, die sich auf eine
+                  natürliche Person beziehen, zu bewerten, insbesondere, um
+                  Aspekte bezüglich Arbeitsleistung, wirtschaftlicher Lage,
+                  Gesundheit, persönlicher Vorlieben, Interessen,
+                  Zuverlässigkeit, Verhalten, Aufenthaltsort oder Ortswechsel
+                  dieser natürlichen Person zu analysieren oder vorherzusagen.
+                </li>
+                <li>
+                  <strong>f) Pseudonymisierung:</strong> Pseudonymisierung ist
+                  die Verarbeitung personenbezogener Daten in einer Weise, auf
+                  welche die personenbezogenen Daten ohne Hinzuziehung
+                  zusätzlicher Informationen nicht mehr einer spezifischen
+                  betroffenen Person zugeordnet werden können, sofern diese
+                  zusätzlichen Informationen gesondert aufbewahrt werden und
+                  technischen und organisatorischen Maßnahmen unterliegen, die
+                  gewährleisten, dass die personenbezogenen Daten nicht einer
+                  identifizierten oder identifizierbaren natürlichen Person
+                  zugewiesen werden.
+                </li>
+                <li>
+                  <strong>
+                    g) Verantwortlicher oder für die Verarbeitung
+                    Verantwortlicher:
+                  </strong>{" "}
+                  Verantwortlicher ist die natürliche oder juristische Person,
+                  Behörde, Einrichtung oder andere Stelle, die allein oder
+                  gemeinsam mit anderen über die Zwecke und Mittel der
+                  Verarbeitung von personenbezogenen Daten entscheidet. Sind die
+                  Zwecke und Mittel dieser Verarbeitung durch das Unionsrecht
+                  oder das Recht der Mitgliedstaaten vorgegeben, so kann der
+                  Verantwortliche beziehungsweise können die bestimmten
+                  Kriterien seiner Benennung nach dem Unionsrecht oder dem Recht
+                  der Mitgliedstaaten vorgesehen werden.
+                </li>
+                <li>
+                  <strong>h) Auftragsverarbeiter:</strong> Auftragsverarbeiter
+                  ist eine natürliche oder juristische Person, Behörde,
+                  Einrichtung oder andere Stelle, die personenbezogene Daten im
+                  Auftrag des Verantwortlichen verarbeitet.
+                </li>
+                <li>
+                  <strong>i) Empfänger:</strong> Empfänger ist eine natürliche
+                  oder juristische Person, Behörde, Einrichtung oder andere
+                  Stelle, der personenbezogene Daten offengelegt werden,
+                  unabhängig davon, ob es sich bei ihr um einen Dritten handelt
+                  oder nicht. Behörden, die im Rahmen eines bestimmten
+                  Untersuchungsauftrags nach dem Unionsrecht oder dem Recht der
+                  Mitgliedstaaten möglicherweise personenbezogene Daten
+                  erhalten, gelten jedoch nicht als Empfänger.
+                </li>
+                <li>
+                  <strong>j) Dritter:</strong> Dritter ist eine natürliche oder
+                  juristische Person, Behörde, Einrichtung oder andere Stelle
+                  außer der betroffenen Person, dem Verantwortlichen, dem
+                  Auftragsverarbeiter und den Personen, die unter der
+                  unmittelbaren Verantwortung des Verantwortlichen oder des
+                  Auftragsverarbeiters befugt sind, die personenbezogenen Daten
+                  zu verarbeiten.
+                </li>
+                <li>
+                  <strong>k) Einwilligung:</strong> Einwilligung ist jede von
+                  der betroffenen Person freiwillig für den bestimmten Fall in
+                  informierter Weise und unmissverständlich abgegebene
+                  Willensbekundung in Form einer Erklärung oder einer sonstigen
+                  eindeutigen bestätigenden Handlung, mit der die betroffene
+                  Person zu verstehen gibt, dass sie mit der Verarbeitung der
+                  sie betreffenden personenbezogenen Daten einverstanden ist.
+                </li>
+              </ul>
+              <h2 id="verantwortlicher" className="mt-10 text-xl font-semibold">
+                2. Name und Anschrift des für die Verarbeitung Verantwortlichen{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Verantwortlicher im Sinne der Datenschutz-Grundverordnung,
               sonstiger in den
@@ -311,7 +345,15 @@ function Datenschutz() {
               <br />
               Website: www.tc1928.com
               <br />
-              3. Erfassung von allgemeinen Daten und Informationen
+              <h2 id="erfassung" className="mt-10 text-xl font-semibold">
+                3. Erfassung von allgemeinen Daten und Informationen{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Die Internetseite der Tennisverein Holzminden von 1928 e.V..
               erfasst mit jedem Aufruf der
@@ -387,7 +429,15 @@ function Datenschutz() {
               durch eine betroffene Person angegebenen personenbezogenen Daten
               gespeichert.
               <br />
-              4. Kontaktmöglichkeit über die Internetseite
+              <h2 id="kontakt" className="mt-10 text-xl font-semibold">
+                4. Kontaktmöglichkeit über die Internetseite{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Die Internetseite der Tennisverein Holzminden von 1928 e.V..
               enthält aufgrund von
@@ -421,7 +471,15 @@ function Datenschutz() {
               <br />
               personenbezogenen Daten an Dritte.
               <br />
-              5. Kommentarfunktion im Blog auf der Internetseite
+              <h2 id="kommentare" className="mt-10 text-xl font-semibold">
+                5. Kommentarfunktion im Blog auf der Internetseite{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Die Tennisverein Holzminden von 1928 e.V.. bietet den Nutzern auf
               einem Blog, der sich auf
@@ -481,7 +539,16 @@ function Datenschutz() {
               <br />
               Verarbeitung Verantwortlichen dient.
               <br />
-              6. Routinemäßige Löschung und Sperrung von personenbezogenen Daten
+              <h2 id="loeschung" className="mt-10 text-xl font-semibold">
+                6. Routinemäßige Löschung und Sperrung von personenbezogenen
+                Daten{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Der für die Verarbeitung Verantwortliche verarbeitet und speichert
               personenbezogene Daten
@@ -508,7 +575,15 @@ function Datenschutz() {
               <br />
               gesetzlichen Vorschriften gesperrt oder gelöscht.
               <br />
-              7. Rechte der betroffenen Person
+              <h2 id="rechte" className="mt-10 text-xl font-semibold">
+                7. Rechte der betroffenen Person{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />• a) Recht auf Bestätigung
               <br />
               Jede betroffene Person hat das vom Europäischen Richtlinien- und
@@ -1037,7 +1112,16 @@ function Datenschutz() {
               <br />
               Verantwortlichen wenden.
               <br />
-              8. Datenschutzbestimmungen zu Einsatz und Verwendung von Facebook
+              <h2 id="facebook" className="mt-10 text-xl font-semibold">
+                8. Datenschutzbestimmungen zu Einsatz und Verwendung von
+                Facebook{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
               Internetseite Komponenten des
@@ -1178,7 +1262,15 @@ function Datenschutz() {
               <br />
               zu unterdrücken.
               <br />
-              9. Datenschutzbestimmungen zu Einsatz und Verwendung von Google
+              <h2 id="google-analytics" className="mt-10 text-xl font-semibold">
+                9. Datenschutzbestimmungen zu Einsatz und Verwendung von Google{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               AdSense
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
@@ -1309,7 +1401,15 @@ function Datenschutz() {
               <br />
               erläutert.
               <br />
-              10. Datenschutzbestimmungen zu Einsatz und Verwendung von Google
+              <h2 id="google-adwords" className="mt-10 text-xl font-semibold">
+                10. Datenschutzbestimmungen zu Einsatz und Verwendung von Google{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               Analytics (mit
               <br />
               Anonymisierungsfunktion)
@@ -1508,7 +1608,18 @@ function Datenschutz() {
               unter diesem Link https://www.google.com/intl/de_de/analytics/
               genauer erläutert.
               <br />
-              11. Datenschutzbestimmungen zu Einsatz und Verwendung von Google
+              <h2
+                id="google-remarketing"
+                className="mt-10 text-xl font-semibold"
+              >
+                11. Datenschutzbestimmungen zu Einsatz und Verwendung von Google{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               Remarketing
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
@@ -1634,7 +1745,15 @@ function Datenschutz() {
               unter https://www.google.de/intl/de/policies/privacy/ abgerufen
               werden.
               <br />
-              12. Datenschutzbestimmungen zu Einsatz und Verwendung von
+              <h2 id="bing" className="mt-10 text-xl font-semibold">
+                12. Datenschutzbestimmungen zu Einsatz und Verwendung von{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               Google-AdWords
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
@@ -1793,7 +1912,15 @@ function Datenschutz() {
               unter https://www.google.de/intl/de/policies/privacy/ abgerufen
               werden.
               <br />
-              13. Datenschutzbestimmungen zu Einsatz und Verwendung von
+              <h2 id="xing" className="mt-10 text-xl font-semibold">
+                13. Datenschutzbestimmungen zu Einsatz und Verwendung von{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               Instagram
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
@@ -1889,7 +2016,16 @@ function Datenschutz() {
               <br />
               https://www.instagram.com/about/legal/privacy/ abgerufen werden.
               <br />
-              14. Datenschutzbestimmungen zu Einsatz und Verwendung von LinkedIn
+              <h2 id="linkedin" className="mt-10 text-xl font-semibold">
+                14. Datenschutzbestimmungen zu Einsatz und Verwendung von
+                LinkedIn{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
               Internetseite Komponenten der
@@ -2008,7 +2144,16 @@ function Datenschutz() {
               <br />
               ist unter https://www.linkedin.com/legal/cookie-policy abrufbar.
               <br />
-              15. Datenschutzbestimmungen zu Einsatz und Verwendung von Twitter
+              <h2 id="twitter" className="mt-10 text-xl font-semibold">
+                15. Datenschutzbestimmungen zu Einsatz und Verwendung von
+                Twitter{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
               Internetseite Komponenten von
@@ -2124,7 +2269,16 @@ function Datenschutz() {
               <br />
               https://twitter.com/privacy?lang=de abrufbar.
               <br />
-              16. Datenschutzbestimmungen zu Einsatz und Verwendung von YouTube
+              <h2 id="youtube" className="mt-10 text-xl font-semibold">
+                16. Datenschutzbestimmungen zu Einsatz und Verwendung von
+                YouTube{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Der für die Verarbeitung Verantwortliche hat auf dieser
               Internetseite Komponenten von
@@ -2224,7 +2378,15 @@ function Datenschutz() {
               Erhebung, Verarbeitung und Nutzung personenbezogener Daten durch
               YouTube und Google.
               <br />
-              17. Rechtsgrundlage der Verarbeitung
+              <h2 id="rechtsgrundlage" className="mt-10 text-xl font-semibold">
+                17. Rechtsgrundlage der Verarbeitung{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Art. 6 I lit. a DS-GVO dient unserem Unternehmen als
               Rechtsgrundlage für
@@ -2305,7 +2467,18 @@ function Datenschutz() {
               <br />
               Kunde des Verantwortlichen ist (Erwägungsgrund 47 Satz 2 DS-GVO).
               <br />
-              18. Berechtigte Interessen an der Verarbeitung, die von dem
+              <h2
+                id="berechtigte-interessen"
+                className="mt-10 text-xl font-semibold"
+              >
+                18. Berechtigte Interessen an der Verarbeitung, die von dem{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               Verantwortlichen oder
               <br />
               einem Dritten verfolgt werden
@@ -2318,7 +2491,16 @@ function Datenschutz() {
               <br />
               Wohlergehens all unserer Mitarbeiter und unserer Anteilseigner.
               <br />
-              19. Dauer, für die die personenbezogenen Daten gespeichert werden
+              <h2 id="speicherdauer" className="mt-10 text-xl font-semibold">
+                19. Dauer, für die die personenbezogenen Daten gespeichert
+                werden{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Das Kriterium für die Dauer der Speicherung von personenbezogenen
               Daten ist die jeweilige
@@ -2331,7 +2513,16 @@ function Datenschutz() {
               <br />
               erforderlich sind.
               <br />
-              20. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung
+              <h2 id="bereitstellung" className="mt-10 text-xl font-semibold">
+                20. Gesetzliche oder vertragliche Vorschriften zur
+                Bereitstellung{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               der personenbezogenen
               <br />
               Daten; Erforderlichkeit für den Vertragsabschluss; Verpflichtung
@@ -2384,7 +2575,18 @@ function Datenschutz() {
               <br />
               Nichtbereitstellung der personenbezogenen Daten hätte.
               <br />
-              21. Bestehen einer automatisierten Entscheidungsfindung
+              <h2
+                id="automatisierte-entscheidungen"
+                className="mt-10 text-xl font-semibold"
+              >
+                21. Bestehen einer automatisierten Entscheidungsfindung{" "}
+                <a
+                  href="#top"
+                  className="ml-2 text-xs font-normal underline hover:no-underline"
+                >
+                  ↑
+                </a>
+              </h2>
               <br />
               Als verantwortungsbewusstes Unternehmen verzichten wir auf eine
               automatische
