@@ -24,6 +24,7 @@ export default function LayoutAdmin({ children }) {
     { href: "/admin", label: "Arbeitseinsätze" },
     { href: "/admin/worker", label: "Arbeiter" },
     { href: "/admin/newsletter", label: "Newsletter" },
+    { href: "/admin/member-registrations", label: "Mitgliedsanträge" },
     { href: "/admin/articles", label: "Artikel" },
   ];
 
