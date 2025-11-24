@@ -87,7 +87,9 @@ export function MemberRegistrationTable({
                 <Table.Cell>{registration.mitgliedsart}</Table.Cell>
                 <Table.Cell>{registration.status}</Table.Cell>
                 <Table.Cell>
-                  <Badge colorPalette={registration.processed ? "green" : "gray"}>
+                  <Badge
+                    colorPalette={registration.processed ? "green" : "gray"}
+                  >
                     {registration.processed ? "Ja" : "Nein"}
                   </Badge>
                 </Table.Cell>
