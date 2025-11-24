@@ -670,13 +670,18 @@ function MemberRegisterForm() {
                 </form>
               )}
             </Dialog.Body>
-            <Dialog.Footer>
+            <Dialog.Footer className="flex flex-col md:flex-row gap-3 md:gap-3">
               <Dialog.ActionTrigger asChild>
-                <Button variant="outline" disabled={loading}>
+                <Button
+                  variant="outline"
+                  disabled={loading}
+                  className="w-full md:w-auto"
+                >
                   Abrechen
                 </Button>
               </Dialog.ActionTrigger>
               <Button
+                className="w-full md:w-auto"
                 loading={loading}
                 colorPalette={"gold"}
                 type="submit"
