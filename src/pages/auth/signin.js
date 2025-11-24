@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { PasswordInput } from "@/components/ui/password-input";
+import { toaster } from "@/components/ui/toaster";
 
 function SignIn() {
   // const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +28,7 @@ function SignIn() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const {
     handleSubmit,
@@ -37,6 +39,7 @@ function SignIn() {
 
   async function onSubmit(values) {
     setIsLoading(true);
+    setError("");
     console.log(`signing:onsubmit:values`, values);
 
     try {
@@ -44,12 +47,38 @@ function SignIn() {
       console.log(`POSTing ${JSON.stringify(body, null, 2)}`);
       let res = await signIn("credentials", {
         ...body,
-        callbackUrl: router.query.callbackUrl,
+        redirect: false,
+        callbackUrl: router.query.callbackUrl || "/admin",
       });
       console.log(`signing:onsubmit:res`, res);
-      setIsLoading(false);
+      
+      if (res?.error) {
+        setError("Email oder Passwort ist falsch");
+        toaster.create({
+          title: "Anmeldefehler",
+          description: "Email oder Passwort ist falsch",
+          type: "error",
+          duration: 5000,
+        });
+        setIsLoading(false);
+      } else if (res?.ok) {
+        toaster.create({
+          title: "Erfolgreich angemeldet",
+          description: "Sie werden weitergeleitet...",
+          type: "success",
+          duration: 3000,
+        });
+        router.push(res.url || router.query.callbackUrl || "/admin");
+      }
     } catch (error) {
       console.log(error);
+      setError("Ein Fehler ist aufgetreten");
+      toaster.create({
+        title: "Fehler",
+        description: "Ein Fehler ist aufgetreten",
+        type: "error",
+        duration: 5000,
+      });
       setIsLoading(false);
     }
   }
@@ -75,6 +104,19 @@ function SignIn() {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap="4" align="flex-start">
+            {error && (
+              <Box
+                p={3}
+                borderRadius="md"
+                bg="red.50"
+                color="red.700"
+                width="100%"
+                fontSize="sm"
+              >
+                {error}
+              </Box>
+            )}
+
             <Field.Root invalid={!!errors.email}>
               <Field.Label>Email</Field.Label>
               <Input

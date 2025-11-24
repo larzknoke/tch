@@ -48,7 +48,7 @@ export const authOptions = {
           return user;
         } else {
           console.log("no user");
-          return null;
+          throw new Error("Email oder Passwort ist falsch");
         }
       },
     }),
