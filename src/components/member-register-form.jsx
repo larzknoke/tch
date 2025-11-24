@@ -58,7 +58,7 @@ function MemberRegisterForm() {
         });
       } else {
         toaster.create({
-          description: `Formular wurde erfolgreich versendet.`,
+          description: `Ihr Antrag wird bearbeitet. Sie erhalten in Kürze eine Bestätigungs-E-Mail.`,
           type: "success",
         });
         setOpen(false);
@@ -654,7 +654,7 @@ function MemberRegisterForm() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  Datenschutz
+                                  Datenschutzerklärung
                                 </Link>{" "}
                                 akzeptieren
                               </Checkbox.Label>

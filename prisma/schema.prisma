@@ -103,3 +103,45 @@ model VerificationToken {
 
   @@id([identifier, token])
 }
+
+model MemberRegistration {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Persönliche Daten
+  vorname      String
+  name         String
+  strasse      String
+  plz          String
+  ort          String
+  email        String
+  telefon      String?
+  geburtsdatum String
+
+  // Mitgliedschaft
+  mitgliedsart String
+  status       String
+
+  // SEPA-Lastschriftmandat
+  sepaVorname           String  @map("sepa_vorname")
+  sepaName              String  @map("sepa_name")
+  sepaStrasse           String  @map("sepa_strasse")
+  sepaPlz               String  @map("sepa_plz")
+  sepaOrt               String  @map("sepa_ort")
+  sepaKreditinstitut    String  @map("sepa_kreditinstitut")
+  sepaIban              String  @map("sepa_iban")
+  sepaEinzug            String  @map("sepa_einzug")
+  sepaLastschriftmandat Boolean @default(false) @map("sepa_lastschriftmandat")
+
+  // Zustimmungen
+  datenschutz Boolean @default(false)
+
+  // Status
+  verified  Boolean @default(false)
+  verifyId  String? @unique @default(cuid())
+  processed Boolean @default(false)
+  notes     String?
+
+  @@map("member_registrations")
+}
