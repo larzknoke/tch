@@ -10,12 +10,19 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  PencilSquareIcon,
+  ArrowDownTrayIcon,
+} from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Checker } from "@/lib/utils";
 import BallLoader from "@/components/ui/loading-ball";
 import { useState, useMemo } from "react";
 import { dateFormatter } from "@/lib/utils";
+import { pdf } from "@react-pdf/renderer";
+import { MemberRegistrationPDF } from "@/pdf/member-registration-pdf";
+import { toaster } from "@/components/ui/toaster";
 
 export function MemberRegistrationTable({
   registrationsData,
@@ -24,6 +31,7 @@ export function MemberRegistrationTable({
   onDelete,
 }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [downloadingId, setDownloadingId] = useState(null);
 
   const filteredRegistrations = useMemo(() => {
     if (!searchQuery.trim()) return registrationsData;
@@ -54,6 +62,40 @@ export function MemberRegistrationTable({
         <BallLoader />
       </Flex>
     );
+  }
+
+  async function handleDownloadPDF(registration) {
+    try {
+      setDownloadingId(registration.id);
+
+      // Generate PDF document
+      const blob = await pdf(
+        <MemberRegistrationPDF registration={registration} />
+      ).toBlob();
+
+      // Create download link
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Mitgliedsantrag_${registration.vorname}_${registration.name}_${registration.id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toaster.create({
+        description: "PDF erfolgreich heruntergeladen",
+        type: "success",
+      });
+    } catch (error) {
+      console.error("PDF generation error:", error);
+      toaster.create({
+        description: "Fehler beim Erstellen der PDF",
+        type: "error",
+      });
+    } finally {
+      setDownloadingId(null);
+    }
   }
 
   const renderTable = (data) => (
@@ -96,6 +138,16 @@ export function MemberRegistrationTable({
                 <Table.Cell>{dateFormatter(registration.createdAt)}</Table.Cell>
                 <Table.Cell textAlign="end">
                   <HStack placeContent={"end"} gap={4}>
+                    <Tooltip content="PDF herunterladen">
+                      <Icon
+                        size={"sm"}
+                        onClick={() => handleDownloadPDF(registration)}
+                        className="cursor-pointer"
+                        opacity={downloadingId === registration.id ? 0.5 : 1}
+                      >
+                        <ArrowDownTrayIcon />
+                      </Icon>
+                    </Tooltip>
                     <Tooltip content="Bearbeiten">
                       <Icon
                         size={"sm"}

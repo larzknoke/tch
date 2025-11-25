@@ -3,6 +3,8 @@ import { sendEmail } from "@/lib/email";
 import { render } from "@react-email/render";
 import AdminNotifyMemberRegistrationEmail from "@/email/adminNotifyMemberRegistrationEmail";
 import ConfirmMemberRegistrationEmail from "@/email/confirmMemberRegistrationEmail";
+import { pdf } from "@react-pdf/renderer";
+import { MemberRegistrationPDF } from "@/pdf/member-registration-pdf";
 
 export default async function handle(req, res) {
   console.log("verifyMemberRegistration api call");
@@ -44,7 +46,19 @@ export default async function handle(req, res) {
         // Don't fail the request if member email fails
       }
 
-      // Send admin notification email
+      // Generate PDF for admin email
+      let pdfBuffer = null;
+      try {
+        const pdfBlob = await pdf(
+          <MemberRegistrationPDF registration={registration} />
+        ).toBlob();
+        pdfBuffer = Buffer.from(await pdfBlob.arrayBuffer());
+      } catch (pdfError) {
+        console.log("Failed to generate PDF:", pdfError);
+        // Continue without PDF if generation fails
+      }
+
+      // Send admin notification email with PDF attachment
       try {
         await sendEmail({
           to:
@@ -56,6 +70,15 @@ export default async function handle(req, res) {
           html: await render(
             <AdminNotifyMemberRegistrationEmail registration={registration} />
           ),
+          attachments: pdfBuffer
+            ? [
+                {
+                  filename: `Mitgliedsantrag_${registration.vorname}_${registration.name}_${registration.id}.pdf`,
+                  content: pdfBuffer,
+                  contentType: "application/pdf",
+                },
+              ]
+            : [],
         });
       } catch (emailError) {
         console.log("Failed to send admin notification email:", emailError);

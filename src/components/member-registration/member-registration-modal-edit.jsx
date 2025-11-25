@@ -7,12 +7,14 @@ import {
   Field,
   Input,
   Checkbox,
-  HStack,
   Text,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { toaster } from "@/components/ui/toaster";
 import { useState, useEffect } from "react";
+import { pdf } from "@react-pdf/renderer";
+import { MemberRegistrationPDF } from "@/pdf/member-registration-pdf";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
 export function MemberRegistrationModalEdit({
   registration,
@@ -21,6 +23,7 @@ export function MemberRegistrationModalEdit({
   getRegistrations,
 }) {
   const [loading, setLoading] = useState(false);
+  const [downloadingPDF, setDownloadingPDF] = useState(false);
 
   const { register, handleSubmit, control, reset } = useForm({
     mode: "onSubmit",
@@ -77,6 +80,40 @@ export function MemberRegistrationModalEdit({
     }
   }
 
+  async function handleDownloadPDF() {
+    try {
+      setDownloadingPDF(true);
+
+      // Generate PDF document
+      const blob = await pdf(
+        <MemberRegistrationPDF registration={registration} />
+      ).toBlob();
+
+      // Create download link
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Mitgliedsantrag_${registration.vorname}_${registration.name}_${registration.id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toaster.create({
+        description: "PDF erfolgreich heruntergeladen",
+        type: "success",
+      });
+    } catch (error) {
+      console.error("PDF generation error:", error);
+      toaster.create({
+        description: "Fehler beim Erstellen der PDF",
+        type: "error",
+      });
+    } finally {
+      setDownloadingPDF(false);
+    }
+  }
+
   if (!registration) return null;
 
   return (
@@ -90,6 +127,18 @@ export function MemberRegistrationModalEdit({
             </Dialog.Header>
             <Dialog.Body>
               <VStack gap={4} align="stretch">
+                {/* PDF Download Button */}
+                <Button
+                  variant="outline"
+                  colorPalette="blue"
+                  onClick={handleDownloadPDF}
+                  loading={downloadingPDF}
+                  size="sm"
+                >
+                  <ArrowDownTrayIcon className="w-4 h-4" />
+                  PDF herunterladen
+                </Button>
+
                 {/* Display member info (read-only) */}
                 <VStack
                   align="stretch"
