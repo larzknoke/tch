@@ -13,6 +13,8 @@ import {
   Checkbox,
   NativeSelect,
   RadioGroup,
+  Accordion,
+  Spacer,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { toaster } from "@/components/ui/toaster";
@@ -20,6 +22,10 @@ import { useRef, useState } from "react";
 import TcButton from "@/components/ui/button2";
 import Link from "next/link";
 import BallLoader from "./ui/loading-ball";
+import {
+  InformationCircleIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/outline";
 
 function MemberRegisterForm() {
   const [loading, setLoading] = useState(false);
@@ -296,7 +302,7 @@ function MemberRegisterForm() {
                         </Field.ErrorText>
                       </Field.Root>
                     </HStack>
-                    <HStack w={"50%"} gap={4} marginRight={"auto"}>
+                    <HStack w={"100%"} gap={4}>
                       <Field.Root required invalid={!!errors.geburtsdatum}>
                         <Field.Label>
                           Geburtsdatum
@@ -318,8 +324,39 @@ function MemberRegisterForm() {
                           {errors.geburtsdatum?.message}
                         </Field.ErrorText>
                       </Field.Root>
-                    </HStack>
 
+                      <Field.Root invalid={!!errors.status}>
+                        <Field.Label>Status</Field.Label>
+                        <Controller
+                          name="status"
+                          control={control}
+                          rules={{ required: "Status auswählen" }}
+                          render={({ field }) => (
+                            <NativeSelect.Root>
+                              <NativeSelect.Field
+                                name={field.name}
+                                value={field.value || ""}
+                                onChange={(e) => field.onChange(e.target.value)}
+                                onBlur={field.onBlur}
+                              >
+                                <option value="" disabled>
+                                  Bitte wählen...
+                                </option>
+                                {itemsStatus.map((item) => (
+                                  <option key={item.value} value={item.value}>
+                                    {item.label}
+                                  </option>
+                                ))}
+                              </NativeSelect.Field>
+                              <NativeSelect.Indicator />
+                            </NativeSelect.Root>
+                          )}
+                        />
+                        <Field.ErrorText>
+                          {errors.status?.message}
+                        </Field.ErrorText>
+                      </Field.Root>
+                    </HStack>
                     <Field.Root invalid={!!errors.mitgliedsart}>
                       <Field.Label>Mitgliedsart</Field.Label>
                       <Controller
@@ -347,51 +384,81 @@ function MemberRegisterForm() {
                           </NativeSelect.Root>
                         )}
                       />
-                      <Text mt={2} fontSize="xs" color="gray.500">
+                      {/* <Text mt={2} fontSize="xs" color="gray.500">
                         Preise pro Jahr. Fußnoten (*, **, ***) siehe
                         Beitragsordnung.
-                      </Text>
+                      </Text> */}
+
+                      {/* Accordion for more information */}
+                      <Accordion.Root collapsible>
+                        <Accordion.Item value="mitgliedsart-info">
+                          <Accordion.ItemTrigger>
+                            <Button
+                              variant={"outline"}
+                              className="w-full "
+                              color={"red.700"}
+                            >
+                              <ExclamationTriangleIcon className="w-5 h-5 inline-block " />
+                              Beitragsordnung / Bedingungen / Arbeitsdienst /
+                              Satzung
+                              <Accordion.ItemIndicator color="red.700" />
+                            </Button>
+                          </Accordion.ItemTrigger>
+                          <Accordion.ItemContent>
+                            <VStack
+                              align="stretch"
+                              gap={3}
+                              p={3}
+                              bg="gray.50"
+                              borderRadius="md"
+                            >
+                              <Text fontSize="sm">
+                                <strong>Jugendliche bis 18 Jahre:</strong> Diese
+                                Mitgliedschaft richtet sich an alle Jugendlichen
+                                bis zum vollendeten 18. Lebensjahr. Sie erhalten
+                                vollen Zugang zu allen Plätzen und
+                                Trainingsmöglichkeiten.
+                              </Text>
+                              <Text fontSize="sm">
+                                <strong>Aktives Einzelmitglied:</strong> Als
+                                aktives Mitglied haben Sie unbegrenzten Zugang
+                                zu unseren Tennisplätzen und können an allen
+                                Vereinsaktivitäten teilnehmen.
+                              </Text>
+                              <Text fontSize="sm">
+                                <strong>Familienmitgliedschaften:</strong> Bei
+                                Familienmitgliedschaften sind bis zu 3 Kinder
+                                bis 18 Jahre inklusive. Dies bietet ein
+                                ausgezeichnetes Preis-Leistungs-Verhältnis für
+                                Familien.
+                              </Text>
+                              <Text fontSize="sm">
+                                <strong>Passives/Förderndes Mitglied:</strong>{" "}
+                                Sie unterstützen den Verein, ohne selbst aktiv
+                                zu spielen. Keine Spielberechtigung enthalten.
+                              </Text>
+                              <Text fontSize="sm">
+                                <strong>Zweitmitgliedschaft:</strong> Wenn Sie
+                                bereits Vollmitglied in einem anderen
+                                Tennisverein sind, bieten wir vergünstigte
+                                Konditionen für eine Zweitmitgliedschaft.
+                              </Text>
+                            </VStack>
+                          </Accordion.ItemContent>
+                        </Accordion.Item>
+                      </Accordion.Root>
+
                       <Field.ErrorText>
                         {errors.mitgliedsart?.message}
                       </Field.ErrorText>
                     </Field.Root>
-                    <Field.Root invalid={!!errors.status}>
-                      <Field.Label>Status</Field.Label>
-                      <Controller
-                        name="status"
-                        control={control}
-                        rules={{ required: "Status auswählen" }}
-                        render={({ field }) => (
-                          <NativeSelect.Root>
-                            <NativeSelect.Field
-                              name={field.name}
-                              value={field.value || ""}
-                              onChange={(e) => field.onChange(e.target.value)}
-                              onBlur={field.onBlur}
-                            >
-                              <option value="" disabled>
-                                Bitte wählen...
-                              </option>
-                              {itemsStatus.map((item) => (
-                                <option key={item.value} value={item.value}>
-                                  {item.label}
-                                </option>
-                              ))}
-                            </NativeSelect.Field>
-                            <NativeSelect.Indicator />
-                          </NativeSelect.Root>
-                        )}
-                      />
-                      <Field.ErrorText>
-                        {errors.status?.message}
-                      </Field.ErrorText>
-                    </Field.Root>
+
                     {/* SEPA - Lastschriftmandat Section */}
                     <VStack
                       w="100%"
                       gap={4}
                       align="stretch"
-                      mt={2}
+                      mt={4}
                       p={4}
                       borderWidth="1px"
                       borderRadius="md"
