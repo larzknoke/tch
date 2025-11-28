@@ -50,7 +50,7 @@ function Footer() {
         className={`text-tch-blue px-10 md:px-0 py-3 text-sm1 ${roboto_cond.className}`}
       >
         <div className="container mx-auto flex flex-row gap-10">
-          © 2025 TC Holzminden von 1928 e.V.
+          © {new Date().getFullYear()} TC Holzminden von 1928 e.V.
         </div>
       </div>
     </>
