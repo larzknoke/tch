@@ -390,7 +390,7 @@ function MemberRegisterForm() {
                       <Accordion.Root collapsible>
                         <Accordion.Item value="mitgliedsart-info">
                           <Accordion.ItemTrigger
-                            className="w-full"
+                            className="w-full mt-5 hover:cursor-pointer border-1 px-3 mb-3"
                             color="red.700"
                           >
                             <ExclamationTriangleIcon className="w-5 h-5 inline-block " />
