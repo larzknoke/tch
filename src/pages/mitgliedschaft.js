@@ -43,10 +43,10 @@ function Mitgliedschaft() {
             Gerne kannst Du auch einen Termin zu einem Schnuppertraining bei
             unserer Tennisschule vereinbaren.
           </p>
-          {/* <MemberRegisterForm /> */}
-          <Button href="/AufnahmeantragTC1928.pdf" className={"mt-8"}>
+          <MemberRegisterForm />
+          {/* <Button href="/AufnahmeantragTC1928.pdf" className={"mt-8"}>
             So wirst du Mitglied
-          </Button>
+          </Button> */}
         </div>
       </div>
       <div className="w-full md:w-1/2">
