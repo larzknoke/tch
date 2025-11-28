@@ -11,6 +11,33 @@ import {
 } from "@react-email/components";
 
 export default function AdminNotifyMemberRegistrationEmail({ registration }) {
+  // Map mitgliedsart values to readable labels
+  const mitgliedsartLabels = {
+    jugendliche: "Jugendliche bis 18 Jahre",
+    "aktiv-einzel": "Aktives Einzelmitglied",
+    "aktiv-einzel-mit-kindern":
+      "Aktives Einzelmitglied – mit max. 3 Kindern bis 18 Jahre",
+    "aktiv-paar": "Aktive Ehepaar/Lebensgemeinschaft",
+    "aktiv-paar-mit-kindern":
+      "Aktive Ehepaar/Lebensgemeinschaft mit max. 3 Kindern bis 18 Jahre",
+    "passiv-foerdernd":
+      "Passives / Förderndes Mitglied – keine Spielberechtigung",
+    "zweitmitgliedschaft-voll":
+      "Zweitmitgliedschaft bei Vollmitgliedschaft in einem anderen Tennisverein",
+    "zweitmitgliedschaft-punktspiel":
+      "Zweitmitgliedschaft ausschließlich für den Punktspielbetrieb",
+  };
+
+  const statusLabels = {
+    erwachsener: "Erwachsener",
+    "jugendlicher-azubi-student": "Jugendlicher / Auszubildender / Student/in",
+  };
+
+  const einzugLabels = {
+    halbjaehrlich: "Halbjährlich",
+    jaehrlich: "Jährlich",
+  };
+
   return (
     <Html>
       <Head />
@@ -60,10 +87,13 @@ export default function AdminNotifyMemberRegistrationEmail({ registration }) {
 
             <Text style={sectionTitle}>Mitgliedschaft</Text>
             <Text style={dataText}>
-              <strong>Mitgliedsart:</strong> {registration.mitgliedsart}
+              <strong>Mitgliedsart:</strong>{" "}
+              {mitgliedsartLabels[registration.mitgliedsart] ||
+                registration.mitgliedsart}
             </Text>
             <Text style={dataText}>
-              <strong>Status:</strong> {registration.status}
+              <strong>Status:</strong>{" "}
+              {statusLabels[registration.status] || registration.status}
             </Text>
 
             <Hr style={hr} />
@@ -84,7 +114,8 @@ export default function AdminNotifyMemberRegistrationEmail({ registration }) {
               <strong>IBAN:</strong> {registration.sepaIban}
             </Text>
             <Text style={dataText}>
-              <strong>Einzug:</strong> {registration.sepaEinzug}
+              <strong>Einzug:</strong>{" "}
+              {einzugLabels[registration.sepaEinzug] || registration.sepaEinzug}
             </Text>
             <Text style={dataText}>
               <strong>Mandat erteilt:</strong>{" "}

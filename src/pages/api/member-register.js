@@ -61,7 +61,10 @@ export default async function handle(req, res) {
       // Send verification email
       try {
         await sendEmail({
-          to: email,
+          to:
+            process.env.NODE_ENV === "development"
+              ? "info@larsknoke.com"
+              : email,
           subject: "Mitgliedsantrag bestätigen - TC Holzminden von 1928 e.V.",
           html: await render(
             <VerifyMemberRegistrationEmail registration={memberRegistration} />
