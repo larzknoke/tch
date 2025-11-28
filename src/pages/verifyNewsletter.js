@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import BallLoader from "@/components/ui/loading-ball";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 
 function VerifyNewsletter() {
   const router = useRouter();
@@ -86,13 +87,17 @@ function VerifyNewsletter() {
         </Flex>
       )}
       {newsletterData?.verified && (
-        <VStack>
-          <HeaderText
-            text={"Sie sind nun als Teilnehmer für den Newsletter registriert."}
-          />
-          {/* <Text fontSize={"lg"} fontWeight={700} mb={4}>
-            Sie erhalten in Kürze eine Bestätigungs-Email.
-          </Text> */}
+        <VStack gap={8} align="center">
+          <CheckCircleIcon className="size-20 text-green-600" />
+          <Heading size="lg" textAlign="center">
+            Sie sind nun als Teilnehmer für den Newsletter registriert.
+          </Heading>
+          <Text textAlign="center" fontSize="lg">
+            Vielen Dank für Ihre Bestätigung.
+          </Text>
+          <Link href="/" className="text-tch-blue underline">
+            Zurück zur Startseite
+          </Link>
         </VStack>
       )}
       {newsletterError && !newsletterData?.verified && (

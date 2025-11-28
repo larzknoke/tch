@@ -54,7 +54,7 @@ function VerifyMemberRegistration() {
               Vielen Dank für Ihre Bestätigung. Wir haben Ihren Antrag erhalten
               und werden ihn in Kürze bearbeiten.
             </Text>
-            <Link href="/" className="text-blue-500 underline">
+            <Link href="/" className="text-tch-blue underline">
               Zurück zur Startseite
             </Link>
           </>
