@@ -21,13 +21,9 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { toaster } from "@/components/ui/toaster";
 import { useRef, useState } from "react";
-import TcButton from "@/components/ui/button2";
 import Link from "next/link";
 import BallLoader from "./ui/loading-ball";
-import {
-  InformationCircleIcon,
-  ExclamationTriangleIcon,
-} from "@heroicons/react/24/outline";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 function MemberRegisterForm() {
   const [loading, setLoading] = useState(false);
@@ -288,17 +284,9 @@ function MemberRegisterForm() {
                           {errors.email?.message}
                         </Field.ErrorText>
                       </Field.Root>
-                      <Field.Root>
+                      <Field.Root invalid={!!errors.telefon}>
                         <Field.Label>Telefon</Field.Label>
-                        <Input
-                          name="telefon"
-                          {...register("telefon", {
-                            pattern: {
-                              value: /^[0-9+\s\-/()]{6,}$/,
-                              message: "Ungültige Telefonnummer",
-                            },
-                          })}
-                        />
+                        <Input name="telefon" {...register("telefon")} />
                         <Field.ErrorText>
                           {errors.telefon?.message}
                         </Field.ErrorText>
@@ -327,8 +315,11 @@ function MemberRegisterForm() {
                         </Field.ErrorText>
                       </Field.Root>
 
-                      <Field.Root invalid={!!errors.status}>
-                        <Field.Label>Status</Field.Label>
+                      <Field.Root required invalid={!!errors.status}>
+                        <Field.Label>
+                          Status
+                          <Field.RequiredIndicator />
+                        </Field.Label>
                         <Controller
                           name="status"
                           control={control}
@@ -359,8 +350,11 @@ function MemberRegisterForm() {
                         </Field.ErrorText>
                       </Field.Root>
                     </HStack>
-                    <Field.Root invalid={!!errors.mitgliedsart}>
-                      <Field.Label>Mitgliedsart</Field.Label>
+                    <Field.Root required invalid={!!errors.mitgliedsart}>
+                      <Field.Label>
+                        Mitgliedsart
+                        <Field.RequiredIndicator />
+                      </Field.Label>
                       <Controller
                         name="mitgliedsart"
                         control={control}
@@ -395,17 +389,14 @@ function MemberRegisterForm() {
                       {/* Accordion for more information */}
                       <Accordion.Root collapsible>
                         <Accordion.Item value="mitgliedsart-info">
-                          <Accordion.ItemTrigger>
-                            <Button
-                              variant={"outline"}
-                              className="w-full "
-                              color={"red.700"}
-                            >
-                              <ExclamationTriangleIcon className="w-5 h-5 inline-block " />
-                              Beitragsordnung / Bedingungen / Arbeitsdienst /
-                              Satzung
-                              <Accordion.ItemIndicator color="red.700" />
-                            </Button>
+                          <Accordion.ItemTrigger
+                            className="w-full"
+                            color="red.700"
+                          >
+                            <ExclamationTriangleIcon className="w-5 h-5 inline-block " />
+                            Beitragsordnung / Bedingungen / Arbeitsdienst /
+                            Satzung
+                            <Accordion.ItemIndicator color="red.700" />
                           </Accordion.ItemTrigger>
                           <Accordion.ItemContent>
                             <VStack
@@ -664,55 +655,28 @@ function MemberRegisterForm() {
                         Gläubiger ID-Nr.: DE 60ZZZ00001202950
                       </Text>
                       <HStack w="100%" gap={4}>
-                        <Field.Root
-                          required
-                          w="100%"
-                          invalid={!!errors.sepa_vorname}
-                        >
-                          <Field.Label>
-                            Vorname Kontoinhaber
-                            <Field.RequiredIndicator />
-                          </Field.Label>
+                        <Field.Root w="100%" invalid={!!errors.sepa_vorname}>
+                          <Field.Label>Vorname Kontoinhaber</Field.Label>
                           <Input
-                            {...register("sepa_vorname", {
-                              required:
-                                "Vorname des Kontoinhabers erforderlich",
-                            })}
+                            {...register("sepa_vorname")}
                             name="sepa_vorname"
                           />
                           <Field.ErrorText>
                             {errors.sepa_vorname?.message}
                           </Field.ErrorText>
                         </Field.Root>
-                        <Field.Root
-                          required
-                          w="100%"
-                          invalid={!!errors.sepa_name}
-                        >
-                          <Field.Label>
-                            Name Kontoinhaber
-                            <Field.RequiredIndicator />
-                          </Field.Label>
-                          <Input
-                            {...register("sepa_name", {
-                              required: "Name des Kontoinhabers erforderlich",
-                            })}
-                            name="sepa_name"
-                          />
+                        <Field.Root w="100%" invalid={!!errors.sepa_name}>
+                          <Field.Label>Name Kontoinhaber</Field.Label>
+                          <Input {...register("sepa_name")} name="sepa_name" />
                           <Field.ErrorText>
                             {errors.sepa_name?.message}
                           </Field.ErrorText>
                         </Field.Root>
                       </HStack>
-                      <Field.Root required invalid={!!errors.sepa_strasse}>
-                        <Field.Label>
-                          Straße
-                          <Field.RequiredIndicator />
-                        </Field.Label>
+                      <Field.Root invalid={!!errors.sepa_strasse}>
+                        <Field.Label>Straße</Field.Label>
                         <Input
-                          {...register("sepa_strasse", {
-                            required: "Straße ist erforderlich",
-                          })}
+                          {...register("sepa_strasse")}
                           name="sepa_strasse"
                         />
                         <Field.ErrorText>
@@ -720,14 +684,10 @@ function MemberRegisterForm() {
                         </Field.ErrorText>
                       </Field.Root>
                       <HStack w="100%" gap={4}>
-                        <Field.Root required invalid={!!errors.sepa_plz}>
-                          <Field.Label>
-                            PLZ
-                            <Field.RequiredIndicator />
-                          </Field.Label>
+                        <Field.Root invalid={!!errors.sepa_plz}>
+                          <Field.Label>PLZ</Field.Label>
                           <Input
                             {...register("sepa_plz", {
-                              required: "PLZ ist erforderlich",
                               pattern: {
                                 value: /^[0-9]{5}$/,
                                 message: "PLZ muss 5 Ziffern haben",
@@ -739,41 +699,25 @@ function MemberRegisterForm() {
                             {errors.sepa_plz?.message}
                           </Field.ErrorText>
                         </Field.Root>
-                        <Field.Root required invalid={!!errors.sepa_ort}>
-                          <Field.Label>
-                            Ort
-                            <Field.RequiredIndicator />
-                          </Field.Label>
-                          <Input
-                            {...register("sepa_ort", {
-                              required: "Ort ist erforderlich",
-                            })}
-                            name="sepa_ort"
-                          />
+                        <Field.Root invalid={!!errors.sepa_ort}>
+                          <Field.Label>Ort</Field.Label>
+                          <Input {...register("sepa_ort")} name="sepa_ort" />
                           <Field.ErrorText>
                             {errors.sepa_ort?.message}
                           </Field.ErrorText>
                         </Field.Root>
                       </HStack>
-                      <Field.Root
-                        required
-                        invalid={!!errors.sepa_kreditinstitut}
-                      >
-                        <Field.Label>
-                          Kreditinstitut
-                          <Field.RequiredIndicator />
-                        </Field.Label>
+                      <Field.Root invalid={!!errors.sepa_kreditinstitut}>
+                        <Field.Label>Kreditinstitut</Field.Label>
                         <Input
-                          {...register("sepa_kreditinstitut", {
-                            required: "Kreditinstitut ist erforderlich",
-                          })}
+                          {...register("sepa_kreditinstitut")}
                           name="sepa_kreditinstitut"
                         />
                         <Field.ErrorText>
                           {errors.sepa_kreditinstitut?.message}
                         </Field.ErrorText>
                       </Field.Root>
-                      <Field.Root required invalid={!!errors.sepa_iban}>
+                      <Field.Root invalid={!!errors.sepa_iban}>
                         <Field.Label>
                           IBAN
                           <Field.RequiredIndicator />
@@ -781,13 +725,6 @@ function MemberRegisterForm() {
                         <Controller
                           name="sepa_iban"
                           control={control}
-                          rules={{
-                            required: "IBAN ist erforderlich",
-                            pattern: {
-                              value: /^(?:[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30})$/,
-                              message: "Ungültige IBAN",
-                            },
-                          }}
                           render={({ field }) => (
                             <Input
                               {...field}
@@ -803,15 +740,11 @@ function MemberRegisterForm() {
                           {errors.sepa_iban?.message}
                         </Field.ErrorText>
                       </Field.Root>
-                      <Field.Root required invalid={!!errors.sepa_einzug}>
-                        <Field.Label>
-                          Einzug (Zahlungsintervall)
-                          <Field.RequiredIndicator />
-                        </Field.Label>
+                      <Field.Root invalid={!!errors.sepa_einzug}>
+                        <Field.Label>Einzug (Zahlungsintervall)</Field.Label>
                         <Controller
                           name="sepa_einzug"
                           control={control}
-                          rules={{ required: "Bitte Einzugsintervall wählen" }}
                           render={({ field }) => (
                             <RadioGroup.Root
                               name={field.name}
@@ -862,10 +795,6 @@ function MemberRegisterForm() {
                         <Controller
                           control={control}
                           name="sepa_lastschriftmandat"
-                          rules={{
-                            validate: (v) =>
-                              v || "Bitte SEPA-Lastschriftmandat akzeptieren",
-                          }}
                           render={({ field }) => (
                             <Field.Root>
                               <Checkbox.Root
@@ -889,6 +818,7 @@ function MemberRegisterForm() {
                       </Field.Root>
                     </VStack>
                     <Field.Root
+                      required
                       className="my-2 mt-4"
                       invalid={!!errors.datenschutz}
                     >
@@ -900,34 +830,31 @@ function MemberRegisterForm() {
                           validate: (v) => v || "Bitte Datenschutz akzeptieren",
                         }}
                         render={({ field }) => (
-                          // <Field.Root invalid={invalid} disabled={field.disabled}>
-                          <Field.Root>
-                            <Checkbox.Root
-                              checked={field.value}
-                              onCheckedChange={({ checked }) =>
-                                field.onChange(checked)
-                              }
-                            >
-                              <Checkbox.HiddenInput />
-                              <Checkbox.Control />
-                              <Checkbox.Label>
-                                <Link
-                                  href={"/datenschutz"}
-                                  className="underline underline-offset-4"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  Datenschutzerklärung
-                                </Link>{" "}
-                                akzeptieren
-                              </Checkbox.Label>
-                            </Checkbox.Root>
-                            <Field.ErrorText>
-                              {errors.datenschutz?.message}
-                            </Field.ErrorText>
-                          </Field.Root>
+                          <Checkbox.Root
+                            checked={field.value}
+                            onCheckedChange={({ checked }) =>
+                              field.onChange(checked)
+                            }
+                          >
+                            <Checkbox.HiddenInput />
+                            <Checkbox.Control />
+                            <Checkbox.Label>
+                              <Link
+                                href={"/datenschutz"}
+                                className="underline underline-offset-4"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Datenschutzerklärung
+                              </Link>{" "}
+                              akzeptieren
+                            </Checkbox.Label>
+                          </Checkbox.Root>
                         )}
                       />
+                      <Field.ErrorText>
+                        {errors.datenschutz?.message}
+                      </Field.ErrorText>
                     </Field.Root>
                   </VStack>
                 </form>
@@ -949,11 +876,7 @@ function MemberRegisterForm() {
                 colorPalette={"gold"}
                 type="submit"
                 form="member-register-form"
-                disabled={
-                  loading ||
-                  !watch("datenschutz") ||
-                  !watch("sepa_lastschriftmandat")
-                }
+                disabled={loading || !watch("datenschutz")}
               >
                 Mitgliedsantrag verbindlich absenden
               </Button>
