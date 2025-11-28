@@ -124,15 +124,15 @@ model MemberRegistration {
   status       String
 
   // SEPA-Lastschriftmandat
-  sepaVorname           String  @map("sepa_vorname")
-  sepaName              String  @map("sepa_name")
-  sepaStrasse           String  @map("sepa_strasse")
-  sepaPlz               String  @map("sepa_plz")
-  sepaOrt               String  @map("sepa_ort")
-  sepaKreditinstitut    String  @map("sepa_kreditinstitut")
-  sepaIban              String  @map("sepa_iban")
-  sepaEinzug            String  @map("sepa_einzug")
-  sepaLastschriftmandat Boolean @default(false) @map("sepa_lastschriftmandat")
+  sepaVorname           String?  @map("sepa_vorname")
+  sepaName              String?  @map("sepa_name")
+  sepaStrasse           String?  @map("sepa_strasse")
+  sepaPlz               String?  @map("sepa_plz")
+  sepaOrt               String?  @map("sepa_ort")
+  sepaKreditinstitut    String?  @map("sepa_kreditinstitut")
+  sepaIban              String?  @map("sepa_iban")
+  sepaEinzug            String?  @map("sepa_einzug")
+  sepaLastschriftmandat Boolean? @default(false) @map("sepa_lastschriftmandat")
 
   // Zustimmungen
   datenschutz Boolean @default(false)
