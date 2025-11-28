@@ -15,6 +15,8 @@ import {
   RadioGroup,
   Accordion,
   Spacer,
+  Heading,
+  Table,
 } from "@chakra-ui/react";
 import { useForm, Controller } from "react-hook-form";
 import { toaster } from "@/components/ui/toaster";
@@ -376,7 +378,8 @@ function MemberRegisterForm() {
                               </option>
                               {itemsMitgliedschaft.map((item) => (
                                 <option key={item.value} value={item.value}>
-                                  {item.label} – {item.amountFormatted} €
+                                  {item.label} – {item.amountFormatted} €{" "}
+                                  {item.footnote}
                                 </option>
                               ))}
                             </NativeSelect.Field>
@@ -412,37 +415,227 @@ function MemberRegisterForm() {
                               bg="gray.50"
                               borderRadius="md"
                             >
-                              <Text fontSize="sm">
-                                <strong>Jugendliche bis 18 Jahre:</strong> Diese
-                                Mitgliedschaft richtet sich an alle Jugendlichen
-                                bis zum vollendeten 18. Lebensjahr. Sie erhalten
-                                vollen Zugang zu allen Plätzen und
-                                Trainingsmöglichkeiten.
+                              <Text
+                                fontSize="sm"
+                                fontWeight="bold"
+                                className="underline"
+                              >
+                                Bedingungen
                               </Text>
                               <Text fontSize="sm">
-                                <strong>Aktives Einzelmitglied:</strong> Als
-                                aktives Mitglied haben Sie unbegrenzten Zugang
-                                zu unseren Tennisplätzen und können an allen
-                                Vereinsaktivitäten teilnehmen.
+                                Der jeweilige Jahresbeitrag ergibt sich aus der
+                                vorstehenden Beitragsordnung. <br />
+                                Eine schriftliche Beitragsrechnung erfolgt nur
+                                auf schriftlichen Antrag beim Kassenwart.
                               </Text>
+
+                              <Table.Root size="sm" variant="outline">
+                                <Table.Body>
+                                  <Table.Row>
+                                    <Table.Cell
+                                      fontWeight="medium"
+                                      verticalAlign={"top"}
+                                    >
+                                      *{" "}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                      Der Nachweis einer Vollmitgliedschaft ist
+                                      dem Kassenwart bis zum Ende des lfd.
+                                      Kalenderjahres für das Folgejahr
+                                      unaufgefordert vorzulegen. <br />
+                                      <strong>
+                                        Die Voraussetzung für eine der o.g.
+                                        Zweitmitgliedschaften ist die aktive
+                                        Teilnahme am Punktspielbetrieb des TC
+                                        Holzminden v. 1928 e.V.
+                                      </strong>
+                                    </Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell
+                                      fontWeight="medium"
+                                      verticalAlign={"top"}
+                                    >
+                                      ***{" "}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                      Schüler und Studenten, die das 18.
+                                      Lebensjahr vollendet haben, müssen dem
+                                      Kassenwart unaufgefordert bis zum Ende des
+                                      lfd. Kalenderjahres eine Bescheinigung
+                                      ihres Status für das Folgejahr vorlegen,
+                                      wenn der Beitrag auch im Folgejahr gelten
+                                      soll.{" "}
+                                      <span className="underline">
+                                        Im Eintrittsjahr ist die Mitgliedschaft
+                                        einmalig beitragsfrei.
+                                      </span>
+                                    </Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell fontWeight="medium">
+                                      ***
+                                    </Table.Cell>
+                                    <Table.Cell verticalAlign={"top"}>
+                                      Im Eintrittsjahr reduziert sich der
+                                      Mitgliedsbeitrag einmalig um 100,00 €
+                                    </Table.Cell>
+                                  </Table.Row>
+                                </Table.Body>
+                              </Table.Root>
                               <Text fontSize="sm">
-                                <strong>Familienmitgliedschaften:</strong> Bei
-                                Familienmitgliedschaften sind bis zu 3 Kinder
-                                bis 18 Jahre inklusive. Dies bietet ein
-                                ausgezeichnetes Preis-Leistungs-Verhältnis für
-                                Familien.
+                                Der Jahresbeitrag wird jeweils zum{" "}
+                                <strong>01.03.</strong> und{" "}
+                                <strong>01.08.</strong> eines jeden Jahres
+                                fällig. Jedes Mitglied hat dazu die vom Club
+                                vorgedruckte Einzugsermächtigung auszufüllen
+                                oder digital einzureichen.
                               </Text>
-                              <Text fontSize="sm">
-                                <strong>Passives/Förderndes Mitglied:</strong>{" "}
-                                Sie unterstützen den Verein, ohne selbst aktiv
-                                zu spielen. Keine Spielberechtigung enthalten.
+                              <Text
+                                fontSize="sm"
+                                fontWeight="bold"
+                                marginTop={3}
+                                className="underline"
+                              >
+                                Arbeitsdienst
                               </Text>
-                              <Text fontSize="sm">
-                                <strong>Zweitmitgliedschaft:</strong> Wenn Sie
-                                bereits Vollmitglied in einem anderen
-                                Tennisverein sind, bieten wir vergünstigte
-                                Konditionen für eine Zweitmitgliedschaft.
+                              <VStack align="stretch" gap={2}>
+                                <Text fontSize="sm">
+                                  Verpflichtet zum Arbeitsdienst sind alle
+                                  aktiven Mitglieder vom <strong>16.</strong>{" "}
+                                  bis zum <strong>70.</strong> Lebensjahr. Die
+                                  Teilnahme kann zum Frühjahrs- oder zum
+                                  Herbstarbeitsdienst erfolgen.{" "}
+                                </Text>
+                                <Text fontSize="sm">
+                                  Die zu leistende Arbeitszeit beträgt{" "}
+                                  <strong>4,00 Stunden.</strong>
+                                </Text>
+                                <Text fontSize="sm">
+                                  Bei Nichtteilnahme wird eine Gebühr von{" "}
+                                  <strong>60,00 € </strong>
+                                  erhoben. Die Termine werden auf der Homepage
+                                  des Clubs (
+                                  <a
+                                    href="https://www.tc1928.com/termine"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    www.tc1928.com/termine
+                                  </a>
+                                  ) veröffentlicht.
+                                </Text>
+                              </VStack>
+                              <Text
+                                fontSize="sm"
+                                fontWeight="bold"
+                                marginTop={3}
+                                className="underline"
+                              >
+                                Satzung
                               </Text>
+                              <Text fontSize={"sm"}>
+                                Die aktuelle Fassung der Satzung ist auf unserer
+                                Homepage{" "}
+                                <a
+                                  className="underline"
+                                  href="https://www.tc1928.com/club/satzung/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  www.tc1928.com
+                                </a>{" "}
+                                einsehbar.
+                              </Text>
+                              <Text
+                                fontSize="sm"
+                                fontWeight="bold"
+                                className="underline"
+                                marginTop={3}
+                              >
+                                Beitragsordnung
+                              </Text>
+                              <Table.Root size="sm" variant="outline">
+                                <Table.Header>
+                                  <Table.Row>
+                                    <Table.ColumnHeader fontWeight="medium">
+                                      Mitgliedsart
+                                    </Table.ColumnHeader>
+                                    <Table.ColumnHeader fontWeight="medium">
+                                      Beitragsgruppe
+                                    </Table.ColumnHeader>
+                                    <Table.ColumnHeader fontWeight="medium">
+                                      Betrag (Euro)
+                                    </Table.ColumnHeader>
+                                  </Table.Row>
+                                </Table.Header>
+                                <Table.Body>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Jugendliche bis 18 Jahre **
+                                    </Table.Cell>
+                                    <Table.Cell>A</Table.Cell>
+                                    <Table.Cell>100,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Aktives Einzelmitglied ***
+                                    </Table.Cell>
+                                    <Table.Cell>B</Table.Cell>
+                                    <Table.Cell>230,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Aktives Einzelmitglied – mit max. 3
+                                      Kindern bis 18 Jahre ***
+                                    </Table.Cell>
+                                    <Table.Cell>C</Table.Cell>
+                                    <Table.Cell>330,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Aktive Ehepaar/Lebensgemeinschaft ***
+                                    </Table.Cell>
+                                    <Table.Cell>D</Table.Cell>
+                                    <Table.Cell>350,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Aktive Ehepaar/Lebensgemeinschaft mit max.
+                                      3 Kindern bis 18 Jahre ***
+                                    </Table.Cell>
+                                    <Table.Cell>E</Table.Cell>
+                                    <Table.Cell>450,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Passives / Förderndes Mitglied –{" "}
+                                      <Text as="u">
+                                        keine Spielberechtigung
+                                      </Text>
+                                    </Table.Cell>
+                                    <Table.Cell>F</Table.Cell>
+                                    <Table.Cell>50,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Zweitmitgliedschaft bei Vollmitgliedschaft
+                                      in einem anderen Tennisverein *
+                                    </Table.Cell>
+                                    <Table.Cell>G</Table.Cell>
+                                    <Table.Cell>150,00</Table.Cell>
+                                  </Table.Row>
+                                  <Table.Row>
+                                    <Table.Cell>
+                                      Zweitmitgliedschaft ausschließlich für den
+                                      Punktspielbetrieb bei Vollmitgliedschaft
+                                      in einem anderen Tennisverein *
+                                    </Table.Cell>
+                                    <Table.Cell>H</Table.Cell>
+                                    <Table.Cell>95,00</Table.Cell>
+                                  </Table.Row>
+                                </Table.Body>
+                              </Table.Root>
                             </VStack>
                           </Accordion.ItemContent>
                         </Accordion.Item>
@@ -466,6 +659,9 @@ function MemberRegisterForm() {
                     >
                       <Text fontWeight="semibold">
                         SEPA - Lastschriftmandat
+                      </Text>
+                      <Text fontSize={"sm"} fontWeight={"bold"}>
+                        Gläubiger ID-Nr.: DE 60ZZZ00001202950
                       </Text>
                       <HStack w="100%" gap={4}>
                         <Field.Root
@@ -631,7 +827,7 @@ function MemberRegisterForm() {
                                   />
                                   <RadioGroup.ItemIndicator />
                                   <RadioGroup.ItemText>
-                                    Halbjährlich
+                                    Halbjährlich (01.03. und 01.08.)
                                   </RadioGroup.ItemText>
                                 </RadioGroup.Item>
                                 <RadioGroup.Item value="jaehrlich">
@@ -640,7 +836,7 @@ function MemberRegisterForm() {
                                   />
                                   <RadioGroup.ItemIndicator />
                                   <RadioGroup.ItemText>
-                                    Jährlich
+                                    Jährlich (01.03.)
                                   </RadioGroup.ItemText>
                                 </RadioGroup.Item>
                               </VStack>

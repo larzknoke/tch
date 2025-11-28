@@ -28,7 +28,7 @@ export default async function handle(req, res) {
           to:
             process.env.NODE_ENV === "development"
               ? "info@larsknoke.com"
-              : "info@larsknoke.com",
+              : ["kilic@kilic-gmbh.de", "info@larsknoke.com"],
           subject:
             "Neuer Teilnehmer für Arbeitseinsatz bestätigt - TC Holzminden von 1928 e.V.",
           html: await render(
