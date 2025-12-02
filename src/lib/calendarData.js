@@ -19,16 +19,16 @@ export const calendarData = [
   //   title: "Fisch und Flutlicht 2025",
   //   date: "2025-10-10",
   // },
-  {
-    id: 5,
-    title: "4. Arbeitseinsatz",
-    date: "2025-10-18",
-  },
-  {
-    id: 6,
-    title: "5. Arbeitseinsatz",
-    date: "2025-10-25",
-  },
+  // {
+  //   id: 5,
+  //   title: "4. Arbeitseinsatz",
+  //   date: "2025-10-18",
+  // },
+  // {
+  //   id: 6,
+  //   title: "5. Arbeitseinsatz",
+  //   date: "2025-10-25",
+  // },
   {
     id: 7,
     title: "6. Arbeitseinsatz (Laubbeseitigung)",
@@ -38,5 +38,10 @@ export const calendarData = [
     id: 8,
     title: "Weihnachtsfeier 2025",
     date: "2025-12-20",
+  },
+  {
+    id: 9,
+    title: "TNB-Regionsmeisterschaften-Südniedersachsen",
+    date: "2026-03-14",
   },
 ];
