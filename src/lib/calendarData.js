@@ -44,4 +44,9 @@ export const calendarData = [
     title: "TNB-Regionsmeisterschaften-Südniedersachsen",
     date: "2026-03-14",
   },
+  {
+    id: 10,
+    title: "Holzminden Sylvester Finale 2025",
+    date: "2025-12-27",
+  },
 ];
