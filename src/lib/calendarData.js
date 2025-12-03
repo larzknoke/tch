@@ -46,7 +46,7 @@ export const calendarData = [
   },
   {
     id: 10,
-    title: "Holzminden Sylvester Finale 2025",
+    title: "Jugendturnier - Holzminden Sylvester Finale 2025",
     date: "2025-12-27",
   },
 ];
