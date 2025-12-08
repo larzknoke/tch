@@ -29,11 +29,11 @@ export const calendarData = [
   //   title: "5. Arbeitseinsatz",
   //   date: "2025-10-25",
   // },
-  {
-    id: 7,
-    title: "6. Arbeitseinsatz (Laubbeseitigung)",
-    date: "2025-12-13",
-  },
+  // {
+  //   id: 7,
+  //   title: "6. Arbeitseinsatz (Laubbeseitigung)",
+  //   date: "2025-12-13",
+  // },
   {
     id: 8,
     title: "Weihnachtsfeier 2025",
