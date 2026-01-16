@@ -49,4 +49,9 @@ export const calendarData = [
     title: "Jugendturnier - Holzminden Sylvester Finale 2025",
     date: "2025-12-27",
   },
+  {
+    id: 11,
+    title: "Jahreshautpversammlung 2026",
+    date: "2026-03-20",
+  },
 ];
