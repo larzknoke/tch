@@ -6,6 +6,74 @@ import CartDrawer from "@/components/shop/cart-drawer";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 
+const sampleProducts = [
+  {
+    id: 1,
+    name: "TCH Tennisschläger Pro",
+    description:
+      "Professioneller Tennisschläger für ambitionierte Spieler. Leicht und kraftvoll.",
+    price: 149.99,
+    stock: 15,
+    active: true,
+    image: "https://picsum.photos/seed/racket/400/300",
+    sku: "TCH-RACKET-001",
+  },
+  {
+    id: 2,
+    name: "Tennisbälle Premium (3er Pack)",
+    description:
+      "Hochwertige Tennisbälle für Training und Wettkampf. ITF zugelassen.",
+    price: 8.99,
+    stock: 50,
+    active: true,
+    image: "https://picsum.photos/seed/balls/400/300",
+    sku: "TCH-BALLS-001",
+  },
+  {
+    id: 3,
+    name: "TCH Club T-Shirt",
+    description:
+      "Offizielles TCH Vereins-Shirt aus atmungsaktivem Material. In verschiedenen Größen.",
+    price: 24.99,
+    stock: 30,
+    active: true,
+    image: "https://picsum.photos/seed/shirt/400/300",
+    sku: "TCH-SHIRT-001",
+  },
+  {
+    id: 4,
+    name: "Tennissocken Performance (3er Pack)",
+    description:
+      "Komfortable Sportsocken mit Polsterung und Feuchtigkeitstransport.",
+    price: 12.99,
+    stock: 40,
+    active: true,
+    image: "https://picsum.photos/seed/socks/400/300",
+    sku: "TCH-SOCKS-001",
+  },
+  {
+    id: 5,
+    name: "Schweißband Set",
+    description: "2x Handgelenk-Schweißbänder und 1x Stirnband in TCH Farben.",
+    price: 6.99,
+    stock: 25,
+    active: true,
+    image: "https://picsum.photos/seed/sweatbands/400/300",
+    sku: "TCH-SWEAT-001",
+  },
+  {
+    id: 6,
+    name: "Trinkflasche TCH Edition",
+    description:
+      "Isolierte Trinkflasche 750ml mit TCH Logo. Hält bis zu 24h kalt.",
+    price: 18.99,
+    stock: 20,
+    active: true,
+    image: "https://picsum.photos/seed/bottle/400/300",
+    sku: "TCH-BOTTLE-001",
+  },
+];
+
 export default function Shop() {
   const router = useRouter();
   const [products, setProducts] = useState([]);
@@ -30,9 +98,12 @@ export default function Shop() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch("/api/products");
-        const data = await response.json();
-        setProducts(data);
+        // Use sample data for now
+        setProducts(sampleProducts);
+        // Uncomment below to fetch from API instead:
+        // const response = await fetch("/api/products");
+        // const data = await response.json();
+        // setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
