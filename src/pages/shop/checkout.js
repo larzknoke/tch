@@ -3,17 +3,81 @@ import Head from "next/head";
 import Layout from "@/components/ui/layouts/layout";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { HStack, RadioCard } from "@chakra-ui/react";
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Bitte geben Sie eine gültige E-Mail-Adresse ein")
+      .required("E-Mail ist erforderlich"),
+    payment: yup
+      .string()
+      .oneOf(
+        ["Barzahlung", "Überweisung", "PayPal"],
+        "Bitte wählen Sie eine Zahlungsmethode",
+      )
+      .required("Zahlungsmethode ist erforderlich"),
+    shippingName: yup.string().required("Name ist erforderlich"),
+    shippingStreet: yup.string().required("Straße ist erforderlich"),
+    shippingPlz: yup.string().required("PLZ ist erforderlich"),
+    shippingCity: yup.string().required("Stadt ist erforderlich"),
+    useSameAddress: yup.boolean().default(true),
+    billingName: yup.string().when("useSameAddress", {
+      is: false,
+      then: (schema) => schema.required("Name ist erforderlich"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+    billingStreet: yup.string().when("useSameAddress", {
+      is: false,
+      then: (schema) => schema.required("Straße ist erforderlich"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+    billingPlz: yup.string().when("useSameAddress", {
+      is: false,
+      then: (schema) => schema.required("PLZ ist erforderlich"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+    billingCity: yup.string().when("useSameAddress", {
+      is: false,
+      then: (schema) => schema.required("Stadt ist erforderlich"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  })
+  .required();
 
 export default function Checkout() {
   const router = useRouter();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    shippingAddress: "",
-    billingAddress: "",
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "",
+      payment: "Barzahlung",
+      shippingName: "",
+      shippingStreet: "",
+      shippingPlz: "",
+      shippingCity: "",
+      billingName: "",
+      billingStreet: "",
+      billingPlz: "",
+      billingCity: "",
+      useSameAddress: true,
+    },
   });
-  const [errors, setErrors] = useState({});
+
+  const useSameAddress = watch("useSameAddress");
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -29,33 +93,7 @@ export default function Checkout() {
     0,
   );
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse ein";
-    }
-    if (!formData.shippingAddress.trim()) {
-      newErrors.shippingAddress = "Bitte geben Sie eine Lieferadresse ein";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
+  const onSubmit = async (values) => {
     setLoading(true);
 
     try {
@@ -65,9 +103,24 @@ export default function Checkout() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: formData.email,
-          shippingAddress: formData.shippingAddress,
-          billingAddress: formData.billingAddress || formData.shippingAddress,
+          email: values.email,
+          payment: values.payment,
+          shippingName: values.shippingName,
+          shippingStreet: values.shippingStreet,
+          shippingPlz: values.shippingPlz,
+          shippingCity: values.shippingCity,
+          billingName: values.useSameAddress
+            ? values.shippingName
+            : values.billingName,
+          billingStreet: values.useSameAddress
+            ? values.shippingStreet
+            : values.billingStreet,
+          billingPlz: values.useSameAddress
+            ? values.shippingPlz
+            : values.billingPlz,
+          billingCity: values.useSameAddress
+            ? values.shippingCity
+            : values.billingCity,
           items: cart.map((item) => ({
             productId: item.id,
             quantity: item.quantity,
@@ -130,7 +183,9 @@ export default function Checkout() {
                       </div>
                     )}
                     <div className="flex-1">
-                      <h3 className="font-semibold">{item.name}</h3>
+                      <h3 className="font-semibold text-tch-blue">
+                        {item.name}
+                      </h3>
                       <p className="text-sm text-gray-600">
                         Menge: {item.quantity}
                       </p>
@@ -141,9 +196,9 @@ export default function Checkout() {
                   </div>
                 ))}
                 <div className="pt-4 border-t">
-                  <div className="flex justify-between text-xl font-bold">
+                  <div className="flex justify-between text-xl font-bold text-tch-blue">
                     <span>Gesamtsumme:</span>
-                    <span className="text-tch-blue">{total.toFixed(2)} €</span>
+                    <span>{total.toFixed(2)} €</span>
                   </div>
                 </div>
               </div>
@@ -152,9 +207,9 @@ export default function Checkout() {
             {/* Checkout Form */}
             <div>
               <h2 className="text-2xl font-semibold mb-4">
-                Lieferinformationen
+                Bestell- & Zahlungsinformationen
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                   <label
                     htmlFor="email"
@@ -165,70 +220,298 @@ export default function Checkout() {
                   <input
                     type="email"
                     id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    {...register("email")}
                     className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
                       errors.email ? "border-red-500" : ""
                     }`}
-                    required
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.email.message}
+                    </p>
                   )}
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="shippingAddress"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Lieferadresse *
-                  </label>
-                  <textarea
-                    id="shippingAddress"
-                    name="shippingAddress"
-                    value={formData.shippingAddress}
-                    onChange={handleChange}
-                    rows={4}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
-                      errors.shippingAddress ? "border-red-500" : ""
-                    }`}
-                    placeholder="Name&#10;Straße, Hausnummer&#10;PLZ Stadt&#10;Land"
-                    required
+                <div className="mb-8">
+                  <Controller
+                    name="payment"
+                    control={control}
+                    render={({ field }) => (
+                      <RadioCard.Root
+                        {...field}
+                        onValueChange={field.onChange}
+                        colorPalette="blue"
+                      >
+                        <RadioCard.Label>Zahlungsmethode *</RadioCard.Label>
+                        <HStack align="stretch">
+                          <RadioCard.Item value="Barzahlung">
+                            <RadioCard.ItemHiddenInput />
+                            <RadioCard.ItemControl className="hover:cursor-pointer">
+                              <RadioCard.ItemContent>
+                                <RadioCard.ItemText fontWeight="medium">
+                                  Barzahlung
+                                </RadioCard.ItemText>
+                                <RadioCard.ItemDescription>
+                                  Bezahlung bei Abholung
+                                </RadioCard.ItemDescription>
+                              </RadioCard.ItemContent>
+                              <RadioCard.ItemIndicator />
+                            </RadioCard.ItemControl>
+                          </RadioCard.Item>
+                          <RadioCard.Item value="Überweisung">
+                            <RadioCard.ItemHiddenInput />
+                            <RadioCard.ItemControl className="hover:cursor-pointer">
+                              <RadioCard.ItemContent>
+                                <RadioCard.ItemText fontWeight="medium">
+                                  Überweisung
+                                </RadioCard.ItemText>
+                                <RadioCard.ItemDescription>
+                                  Banküberweisung nach Bestellung
+                                </RadioCard.ItemDescription>
+                              </RadioCard.ItemContent>
+                              <RadioCard.ItemIndicator />
+                            </RadioCard.ItemControl>
+                          </RadioCard.Item>
+                          <RadioCard.Item value="PayPal">
+                            <RadioCard.ItemHiddenInput />
+                            <RadioCard.ItemControl className="hover:cursor-pointer">
+                              <RadioCard.ItemContent>
+                                <RadioCard.ItemText fontWeight="medium">
+                                  PayPal
+                                </RadioCard.ItemText>
+                                <RadioCard.ItemDescription>
+                                  Schnelle und sichere Online-Zahlung
+                                </RadioCard.ItemDescription>
+                              </RadioCard.ItemContent>
+                              <RadioCard.ItemIndicator />
+                            </RadioCard.ItemControl>
+                          </RadioCard.Item>
+                        </HStack>
+                      </RadioCard.Root>
+                    )}
                   />
-                  {errors.shippingAddress && (
+                  {errors.payment && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.shippingAddress}
+                      {errors.payment.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="billingAddress"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Rechnungsadresse (optional)
-                  </label>
-                  <textarea
-                    id="billingAddress"
-                    name="billingAddress"
-                    value={formData.billingAddress}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue"
-                    placeholder="Leer lassen, wenn identisch mit Lieferadresse"
-                  />
-                  <p className="text-sm text-gray-500 mt-1">
-                    Falls leer, wird die Lieferadresse verwendet
-                  </p>
+                  <h3 className="text-lg font-semibold mb-3">
+                    Besteller Informationen
+                  </h3>
+                  <div className="space-y-3">
+                    <div>
+                      <label
+                        htmlFor="shippingName"
+                        className="block text-sm font-medium mb-1"
+                      >
+                        Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="shippingName"
+                        {...register("shippingName")}
+                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                          errors.shippingName ? "border-red-500" : ""
+                        }`}
+                      />
+                      {errors.shippingName && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.shippingName.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="shippingStreet"
+                        className="block text-sm font-medium mb-1"
+                      >
+                        Straße, Hausnummer *
+                      </label>
+                      <input
+                        type="text"
+                        id="shippingStreet"
+                        {...register("shippingStreet")}
+                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                          errors.shippingStreet ? "border-red-500" : ""
+                        }`}
+                      />
+                      {errors.shippingStreet && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.shippingStreet.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label
+                          htmlFor="shippingPlz"
+                          className="block text-sm font-medium mb-1"
+                        >
+                          PLZ *
+                        </label>
+                        <input
+                          type="text"
+                          id="shippingPlz"
+                          {...register("shippingPlz")}
+                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                            errors.shippingPlz ? "border-red-500" : ""
+                          }`}
+                        />
+                        {errors.shippingPlz && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.shippingPlz.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="shippingCity"
+                          className="block text-sm font-medium mb-1"
+                        >
+                          Stadt *
+                        </label>
+                        <input
+                          type="text"
+                          id="shippingCity"
+                          {...register("shippingCity")}
+                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                            errors.shippingCity ? "border-red-500" : ""
+                          }`}
+                        />
+                        {errors.shippingCity && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.shippingCity.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center mb-3">
+                    <input
+                      type="checkbox"
+                      id="useSameAddress"
+                      {...register("useSameAddress")}
+                      className="mr-2"
+                    />
+                    <label
+                      htmlFor="useSameAddress"
+                      className="text-sm font-medium"
+                    >
+                      Rechnungsadresse ist gleich wie Lieferadresse
+                    </label>
+                  </div>
+
+                  {!useSameAddress && (
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-semibold mb-3">
+                        Rechnungsadresse
+                      </h3>
+                      <div>
+                        <label
+                          htmlFor="billingName"
+                          className="block text-sm font-medium mb-1"
+                        >
+                          Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="billingName"
+                          {...register("billingName")}
+                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                            errors.billingName ? "border-red-500" : ""
+                          }`}
+                        />
+                        {errors.billingName && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.billingName.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="billingStreet"
+                          className="block text-sm font-medium mb-1"
+                        >
+                          Straße, Hausnummer *
+                        </label>
+                        <input
+                          type="text"
+                          id="billingStreet"
+                          {...register("billingStreet")}
+                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                            errors.billingStreet ? "border-red-500" : ""
+                          }`}
+                        />
+                        {errors.billingStreet && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.billingStreet.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label
+                            htmlFor="billingPlz"
+                            className="block text-sm font-medium mb-1"
+                          >
+                            PLZ *
+                          </label>
+                          <input
+                            type="text"
+                            id="billingPlz"
+                            {...register("billingPlz")}
+                            className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                              errors.billingPlz ? "border-red-500" : ""
+                            }`}
+                          />
+                          {errors.billingPlz && (
+                            <p className="text-red-500 text-sm mt-1">
+                              {errors.billingPlz.message}
+                            </p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="billingCity"
+                            className="block text-sm font-medium mb-1"
+                          >
+                            Stadt *
+                          </label>
+                          <input
+                            type="text"
+                            id="billingCity"
+                            {...register("billingCity")}
+                            className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                              errors.billingCity ? "border-red-500" : ""
+                            }`}
+                          />
+                          {errors.billingCity && (
+                            <p className="text-red-500 text-sm mt-1">
+                              {errors.billingCity.message}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="text-xl w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed hover:cursor-pointer"
                 >
                   {loading
                     ? "Bestellung wird erstellt..."

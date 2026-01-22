@@ -3,7 +3,19 @@ import prisma from "@/lib/prisma";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { email, items, shippingAddress, billingAddress } = req.body;
+      const {
+        email,
+        items,
+        payment,
+        shippingName,
+        shippingStreet,
+        shippingPlz,
+        shippingCity,
+        billingName,
+        billingStreet,
+        billingPlz,
+        billingCity,
+      } = req.body;
 
       if (!email || !items || items.length === 0) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -45,8 +57,15 @@ export default async function handler(req, res) {
         data: {
           email,
           total,
-          shippingAddress: shippingAddress || null,
-          billingAddress: billingAddress || null,
+          payment: payment || "Barzahlung",
+          shippingName: shippingName || null,
+          shippingStreet: shippingStreet || null,
+          shippingPlz: shippingPlz || null,
+          shippingCity: shippingCity || null,
+          billingName: billingName || null,
+          billingStreet: billingStreet || null,
+          billingPlz: billingPlz || null,
+          billingCity: billingCity || null,
           status: "pending",
           items: {
             create: orderItems,

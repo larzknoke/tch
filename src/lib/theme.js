@@ -12,6 +12,18 @@ const config = defineConfig({
         gold: {
           500: { value: "#C0A26E" },
         },
+        blue: {
+          50: "#e6edf4",
+          100: "#c2d3e3",
+          200: "#9bb6d1",
+          300: "#7399bf",
+          400: "#4d7eae",
+          500: "#19416a", // Hauptfarbe
+          600: "#153a5f",
+          700: "#113253",
+          800: "#0c2946",
+          900: "#071f38",
+        },
       },
     },
     semanticTokens: {

@@ -196,7 +196,7 @@ export default function Shop() {
             <h1 className="text-4xl font-bold text-tch-blue">Shop</h1>
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-3 bg-tch-blue text-white rounded-lg hover:bg-tch-blue/90"
+              className="relative p-3 bg-tch-blue text-white rounded-lg hover:bg-tch-blue/90 hover:cursor-pointer"
             >
               <ShoppingCartIcon className="h-6 w-6" />
               {cartItemCount > 0 && (
