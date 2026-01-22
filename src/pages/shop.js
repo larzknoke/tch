@@ -118,14 +118,12 @@ export default function Shop() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // Use sample data for now
-        setProducts(sampleProducts);
-        // Uncomment below to fetch from API instead:
-        // const response = await fetch("/api/products");
-        // const data = await response.json();
-        // setProducts(data);
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        setProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
+        setProducts([]);
       } finally {
         setLoading(false);
       }

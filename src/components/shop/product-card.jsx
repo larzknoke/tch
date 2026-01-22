@@ -27,10 +27,10 @@ export default function ProductCard({ product, onAddToCart }) {
       {product.image && (
         <div className="relative h-48 bg-gray-100">
           <Image
-            src={product.image}
+            src={`/shop/${product.image}`}
             alt={product.name}
             fill
-            className="object-cover"
+            className="object-contain"
           />
         </div>
       )}

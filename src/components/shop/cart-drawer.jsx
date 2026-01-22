@@ -49,7 +49,7 @@ export default function CartDrawer({
                       {item.image && (
                         <div className="relative h-20 w-20 flex-shrink-0 bg-gray-100 rounded">
                           <Image
-                            src={item.image}
+                            src={`/shop/${item.image}`}
                             alt={item.name}
                             fill
                             className="object-cover rounded"
