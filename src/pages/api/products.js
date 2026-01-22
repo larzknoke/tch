@@ -7,6 +7,7 @@ export default async function handler(req, res) {
         where: {
           active: true,
         },
+        include: { variants: true },
         orderBy: {
           createdAt: "desc",
         },

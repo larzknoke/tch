@@ -16,7 +16,7 @@ export default function ProductCard({ product, onAddToCart }) {
   const getAvailableStock = () => {
     if (!product.hasVariants) return product.stock;
     if (!selectedVariant) return 0;
-    const variant = product.variants.find((v) => v.id === selectedVariant);
+    const variant = product.variants?.find((v) => v.id === selectedVariant);
     return variant?.stock || 0;
   };
 
@@ -44,7 +44,7 @@ export default function ProductCard({ product, onAddToCart }) {
           </p>
         )}
 
-        {product.hasVariants && (
+        {product.hasVariants && product.variants && (
           <div className="mb-4 flex flex-row items-center gap-4 ">
             <label className="text-sm font-medium block">Größe:</label>
             <select
