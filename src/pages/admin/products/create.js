@@ -35,7 +35,8 @@ const schema = yup
       .min(0, "Lager kann nicht negativ sein")
       .required("Lager ist erforderlich"),
     sku: yup.string(),
-    image: yup.string().url("Bitte geben Sie eine gültige URL ein"),
+    // image: yup.string().url("Bitte geben Sie eine gültige URL ein"),
+    image: yup.string(),
     active: yup.boolean().required(),
     hasVariants: yup.boolean().required(),
     variants: yup.array().of(
