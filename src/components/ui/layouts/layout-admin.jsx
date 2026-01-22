@@ -27,6 +27,7 @@ export default function LayoutAdmin({ children }) {
     { href: "/admin/member-registrations", label: "Mitgliedsanträge" },
     { href: "/admin/articles", label: "Artikel" },
     { href: "/admin/products", label: "Produkte" },
+    { href: "/admin/orders", label: "Bestellungen" },
   ];
 
   const handleNavClick = () => {

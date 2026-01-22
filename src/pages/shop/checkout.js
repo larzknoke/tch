@@ -95,8 +95,8 @@ export default function Checkout() {
 
   const onSubmit = async (values) => {
     setLoading(true);
-    console.log("Submitting order with values:", values, "and cart:", cart);
-    return;
+    // console.log("Submitting order with values:", values, "and cart:", cart);
+    // return;
 
     try {
       const response = await fetch("/api/orders", {
@@ -274,9 +274,9 @@ export default function Checkout() {
                               <RadioCard.ItemIndicator />
                             </RadioCard.ItemControl>
                           </RadioCard.Item>
-                          <RadioCard.Item value="PayPal">
+                          <RadioCard.Item value="PayPal" disabled={true}>
                             <RadioCard.ItemHiddenInput />
-                            <RadioCard.ItemControl className="hover:cursor-pointer">
+                            <RadioCard.ItemControl className="hover:cursor-not-allowed">
                               <RadioCard.ItemContent>
                                 <RadioCard.ItemText fontWeight="medium">
                                   PayPal
@@ -409,7 +409,7 @@ export default function Checkout() {
                         <Checkbox.HiddenInput />
                         <Checkbox.Control />
                         <Checkbox.Label className="text-sm font-medium">
-                          Rechnungsadresse ist gleich wie Lieferadresse
+                          Rechnungsadresse ist gleich wie Bestellinformationen
                         </Checkbox.Label>
                       </Checkbox.Root>
                     )}

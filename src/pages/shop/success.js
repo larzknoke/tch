@@ -19,7 +19,7 @@ export default function Success() {
 
       <Layout>
         <div className="container mx-auto px-4 py-16 max-w-2xl text-center">
-          <CheckCircleIcon className="h-20 w-20 text-green-500 mx-auto mb-6" />
+          <CheckCircleIcon className="h-20 w-20 text-tch-blue mx-auto mb-6" />
 
           <h1 className="text-4xl font-bold text-tch-blue mb-4">
             Vielen Dank für Ihre Bestellung!
