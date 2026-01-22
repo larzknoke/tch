@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { HStack, RadioCard } from "@chakra-ui/react";
+import { HStack, RadioCard, Checkbox } from "@chakra-ui/react";
 
 const schema = yup
   .object({
@@ -95,6 +95,8 @@ export default function Checkout() {
 
   const onSubmit = async (values) => {
     setLoading(true);
+    console.log("Submitting order with values:", values, "and cart:", cart);
+    return;
 
     try {
       const response = await fetch("/api/orders", {
@@ -166,7 +168,7 @@ export default function Checkout() {
             {/* Order Summary */}
             <div>
               <h2 className="text-2xl font-semibold mb-4">Bestellübersicht</h2>
-              <div className="border rounded-lg p-4 space-y-4">
+              <div className="border border-gray-300 rounded p-4 space-y-4">
                 {cart.map((item) => (
                   <div
                     key={item.id}
@@ -221,7 +223,7 @@ export default function Checkout() {
                     type="email"
                     id="email"
                     {...register("email")}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                    className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                       errors.email ? "border-red-500" : ""
                     }`}
                   />
@@ -313,7 +315,7 @@ export default function Checkout() {
                         type="text"
                         id="shippingName"
                         {...register("shippingName")}
-                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                        className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                           errors.shippingName ? "border-red-500" : ""
                         }`}
                       />
@@ -335,7 +337,7 @@ export default function Checkout() {
                         type="text"
                         id="shippingStreet"
                         {...register("shippingStreet")}
-                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                        className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                           errors.shippingStreet ? "border-red-500" : ""
                         }`}
                       />
@@ -358,7 +360,7 @@ export default function Checkout() {
                           type="text"
                           id="shippingPlz"
                           {...register("shippingPlz")}
-                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                          className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                             errors.shippingPlz ? "border-red-500" : ""
                           }`}
                         />
@@ -380,7 +382,7 @@ export default function Checkout() {
                           type="text"
                           id="shippingCity"
                           {...register("shippingCity")}
-                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                          className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                             errors.shippingCity ? "border-red-500" : ""
                           }`}
                         />
@@ -395,20 +397,23 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <div className="flex items-center mb-3">
-                    <input
-                      type="checkbox"
-                      id="useSameAddress"
-                      {...register("useSameAddress")}
-                      className="mr-2"
-                    />
-                    <label
-                      htmlFor="useSameAddress"
-                      className="text-sm font-medium"
-                    >
-                      Rechnungsadresse ist gleich wie Lieferadresse
-                    </label>
-                  </div>
+                  <Controller
+                    name="useSameAddress"
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox.Root
+                        checked={field.value}
+                        onCheckedChange={(e) => field.onChange(e.checked)}
+                        className="mb-3"
+                      >
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control />
+                        <Checkbox.Label className="text-sm font-medium">
+                          Rechnungsadresse ist gleich wie Lieferadresse
+                        </Checkbox.Label>
+                      </Checkbox.Root>
+                    )}
+                  />
 
                   {!useSameAddress && (
                     <div className="space-y-3">
@@ -426,7 +431,7 @@ export default function Checkout() {
                           type="text"
                           id="billingName"
                           {...register("billingName")}
-                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                          className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                             errors.billingName ? "border-red-500" : ""
                           }`}
                         />
@@ -448,7 +453,7 @@ export default function Checkout() {
                           type="text"
                           id="billingStreet"
                           {...register("billingStreet")}
-                          className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                          className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                             errors.billingStreet ? "border-red-500" : ""
                           }`}
                         />
@@ -471,7 +476,7 @@ export default function Checkout() {
                             type="text"
                             id="billingPlz"
                             {...register("billingPlz")}
-                            className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                            className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                               errors.billingPlz ? "border-red-500" : ""
                             }`}
                           />
@@ -493,7 +498,7 @@ export default function Checkout() {
                             type="text"
                             id="billingCity"
                             {...register("billingCity")}
-                            className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-tch-blue ${
+                            className={`w-full px-3 py-2 border rounded focus:ring-2 focus:ring-tch-blue ${
                               errors.billingCity ? "border-red-500" : ""
                             }`}
                           />
@@ -511,7 +516,7 @@ export default function Checkout() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="text-xl w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed hover:cursor-pointer"
+                  className="text-xl w-full bg-tch-blue text-white py-3 rounded hover:bg-tch-blue/90 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed hover:cursor-pointer"
                 >
                   {loading
                     ? "Bestellung wird erstellt..."

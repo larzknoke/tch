@@ -23,7 +23,7 @@ export default function ProductCard({ product, onAddToCart }) {
   const isOutOfStock = getAvailableStock() === 0;
 
   return (
-    <div className="bg-gray-100 border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-400">
+    <div className="bg-gray-100 border border-gray-300 rounded overflow-hidden hover:shadow-lg transition-shadow duration-400">
       {product.image && (
         <div className="relative h-48 bg-gray-100">
           <Image
@@ -85,7 +85,7 @@ export default function ProductCard({ product, onAddToCart }) {
           <button
             onClick={handleAddToCart}
             disabled={isOutOfStock || (product.hasVariants && !selectedVariant)}
-            className="bg-tch-blue text-white px-4 py-2 rounded-lg hover:bg-tch-blue/90 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2 hover:cursor-pointer"
+            className="bg-tch-blue text-white px-4 py-2 rounded hover:bg-tch-blue/90 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2 hover:cursor-pointer"
           >
             <ShoppingCartIcon className="h-5 w-5" />
             {/* In den Warenkorb */}
