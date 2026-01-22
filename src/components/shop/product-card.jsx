@@ -1,9 +1,20 @@
+"use client";
+
 import { useState } from "react";
 import Image from "next/image";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { Portal, Select, Spacer, createListCollection } from "@chakra-ui/react";
 
 export default function ProductCard({ product, onAddToCart }) {
   const [selectedVariant, setSelectedVariant] = useState(null);
+
+  const variantCollection = createListCollection({
+    items: (product.variants || []).map((v) => ({
+      label: `${v.size} ${v.stock === 0 ? "(Ausverkauft)" : `(${v.stock} verfügbar)`}`,
+      value: String(v.id),
+      disabled: v.stock === 0,
+    })),
+  });
 
   const handleAddToCart = () => {
     if (product.hasVariants && !selectedVariant) {
@@ -23,7 +34,7 @@ export default function ProductCard({ product, onAddToCart }) {
   const isOutOfStock = getAvailableStock() === 0;
 
   return (
-    <div className="bg-gray-100 border border-gray-300 rounded overflow-hidden hover:shadow-lg transition-shadow duration-400">
+    <div className="bg-gray-100 border border-gray-300 rounded overflow-hidden hover:shadow-lg transition-shadow duration-400 flex flex-col h-full">
       {product.image && (
         <div className="relative h-48 bg-gray-100">
           <Image
@@ -34,7 +45,7 @@ export default function ProductCard({ product, onAddToCart }) {
           />
         </div>
       )}
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-1">
         <h3 className="text-tch-blue  font-semibold text-lg mb-2">
           {product.name}
         </h3>
@@ -46,31 +57,44 @@ export default function ProductCard({ product, onAddToCart }) {
 
         {product.hasVariants && product.variants && (
           <div className="mb-4 flex flex-row items-center gap-4 ">
-            <label className="text-sm font-medium block">Größe:</label>
-            <select
-              value={selectedVariant || ""}
-              onChange={(e) => setSelectedVariant(Number(e.target.value))}
-              className="w-full border rounded px-3 py-2 text-sm"
+            <Select.Root
+              collection={variantCollection}
+              width="100%"
+              value={selectedVariant != null ? [String(selectedVariant)] : []}
+              onValueChange={(selection) => {
+                // `selection.value` can be an array for the new Select API
+                const raw = selection?.value ?? "";
+                const v = Array.isArray(raw) ? (raw[0] ?? "") : raw;
+                setSelectedVariant(v === "" ? null : Number(v));
+              }}
             >
-              <option value="">Bitte wählen</option>
-              {product.variants.map((variant) => (
-                <option
-                  key={variant.id}
-                  value={variant.id}
-                  disabled={variant.stock === 0}
-                >
-                  {variant.size}{" "}
-                  {variant.stock === 0
-                    ? "(Ausverkauft)"
-                    : `(${variant.stock} verfügbar)`}
-                </option>
-              ))}
-            </select>
+              <Select.HiddenSelect />
+              {/* <Select.Label>Größe:</Select.Label> */}
+              <Select.Control>
+                <Select.Trigger>
+                  <Select.ValueText placeholder="Größe wählen" />
+                </Select.Trigger>
+                <Select.IndicatorGroup>
+                  <Select.Indicator />
+                </Select.IndicatorGroup>
+              </Select.Control>
+              <Portal>
+                <Select.Positioner>
+                  <Select.Content>
+                    {variantCollection.items.map((item) => (
+                      <Select.Item item={item} key={item.value}>
+                        {item.label}
+                        <Select.ItemIndicator />
+                      </Select.Item>
+                    ))}
+                  </Select.Content>
+                </Select.Positioner>
+              </Portal>
+            </Select.Root>
           </div>
         )}
-
-        <div className="flex items-center justify-between mt-4">
-          <div>
+        <div className="flex items-center justify-between mt-auto gap-4">
+          <div className="flex flex-row items-center justify-between gap-4 w-full">
             <p className="text-2xl font-bold text-tch-blue">
               {parseFloat(product.price).toFixed(2)} €
             </p>
