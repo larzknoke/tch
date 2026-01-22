@@ -17,6 +17,7 @@ const sampleProducts = [
     active: true,
     image: "https://picsum.photos/seed/racket/400/300",
     sku: "TCH-RACKET-001",
+    hasVariants: false,
   },
   {
     id: 2,
@@ -28,17 +29,24 @@ const sampleProducts = [
     active: true,
     image: "https://picsum.photos/seed/balls/400/300",
     sku: "TCH-BALLS-001",
+    hasVariants: false,
   },
   {
     id: 3,
     name: "TCH Club T-Shirt",
-    description:
-      "Offizielles TCH Vereins-Shirt aus atmungsaktivem Material. In verschiedenen Größen.",
+    description: "Offizielles TCH Vereins-Shirt aus atmungsaktivem Material.",
     price: 24.99,
-    stock: 30,
     active: true,
     image: "https://picsum.photos/seed/shirt/400/300",
-    sku: "TCH-SHIRT-001",
+    hasVariants: true,
+    variants: [
+      { id: 301, size: "XS", stock: 3, sku: "TCH-SHIRT-XS" },
+      { id: 302, size: "S", stock: 8, sku: "TCH-SHIRT-S" },
+      { id: 303, size: "M", stock: 12, sku: "TCH-SHIRT-M" },
+      { id: 304, size: "L", stock: 5, sku: "TCH-SHIRT-L" },
+      { id: 305, size: "XL", stock: 2, sku: "TCH-SHIRT-XL" },
+      { id: 306, size: "XXL", stock: 0, sku: "TCH-SHIRT-XXL" },
+    ],
   },
   {
     id: 4,
@@ -50,6 +58,7 @@ const sampleProducts = [
     active: true,
     image: "https://picsum.photos/seed/socks/400/300",
     sku: "TCH-SOCKS-001",
+    hasVariants: false,
   },
   {
     id: 5,
@@ -60,6 +69,7 @@ const sampleProducts = [
     active: true,
     image: "https://picsum.photos/seed/sweatbands/400/300",
     sku: "TCH-SWEAT-001",
+    hasVariants: false,
   },
   {
     id: 6,
@@ -71,6 +81,7 @@ const sampleProducts = [
     active: true,
     image: "https://picsum.photos/seed/bottle/400/300",
     sku: "TCH-BOTTLE-001",
+    hasVariants: false,
   },
 ];
 
@@ -113,38 +124,56 @@ export default function Shop() {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product, variantId = null) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
+      let variant = null;
+      let actualStock = product.stock;
+
+      if (product.hasVariants && variantId) {
+        variant = product.variants.find((v) => v.id === variantId);
+        actualStock = variant.stock;
+      }
+
+      const cartKey = variantId || product.id;
+      const existingItem = prevCart.find((item) => item.cartKey === cartKey);
+
       if (existingItem) {
-        // Update quantity if already in cart
         return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: Math.min(item.quantity + 1, product.stock) }
+          item.cartKey === cartKey
+            ? { ...item, quantity: Math.min(item.quantity + 1, actualStock) }
             : item,
         );
-      } else {
-        // Add new item to cart
-        return [...prevCart, { ...product, quantity: 1 }];
       }
+
+      return [
+        ...prevCart,
+        {
+          ...product,
+          cartKey,
+          variantId,
+          variant: variant ? variant.size : null,
+          stock: actualStock,
+          quantity: 1,
+        },
+      ];
     });
     setIsCartOpen(true);
   };
 
-  const handleUpdateQuantity = (productId, newQuantity) => {
+  const handleUpdateQuantity = (cartKey, newQuantity) => {
     if (newQuantity === 0) {
-      handleRemoveItem(productId);
+      handleRemoveItem(cartKey);
       return;
     }
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item,
+        item.cartKey === cartKey ? { ...item, quantity: newQuantity } : item,
       ),
     );
   };
 
-  const handleRemoveItem = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  const handleRemoveItem = (cartKey) => {
+    setCart((prevCart) => prevCart.filter((item) => item.cartKey !== cartKey));
   };
 
   const handleCheckout = () => {
@@ -188,7 +217,7 @@ export default function Shop() {
               Keine Produkte verfügbar
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.map((product) => (
                 <ProductCard
                   key={product.id}

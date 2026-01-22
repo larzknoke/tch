@@ -42,7 +42,10 @@ export default function CartDrawer({
               ) : (
                 <div className="space-y-4">
                   {cart.map((item) => (
-                    <div key={item.id} className="flex gap-3 border-b pb-4">
+                    <div
+                      key={item.cartKey}
+                      className="flex gap-3 border-b pb-4"
+                    >
                       {item.image && (
                         <div className="relative h-20 w-20 flex-shrink-0 bg-gray-100 rounded">
                           <Image
@@ -54,14 +57,21 @@ export default function CartDrawer({
                         </div>
                       )}
                       <div className="flex-1">
-                        <h3 className="font-semibold">{item.name}</h3>
+                        <h3 className="font-semibold">
+                          {item.name}
+                          {item.variant && (
+                            <span className="text-sm text-gray-600 ml-2">
+                              - Größe: {item.variant}
+                            </span>
+                          )}
+                        </h3>
                         <p className="text-sm text-gray-600">
                           {parseFloat(item.price).toFixed(2)} €
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
                             onClick={() =>
-                              onUpdateQuantity(item.id, item.quantity - 1)
+                              onUpdateQuantity(item.cartKey, item.quantity - 1)
                             }
                             className="p-1 border rounded hover:bg-gray-100"
                           >
@@ -72,7 +82,7 @@ export default function CartDrawer({
                           </span>
                           <button
                             onClick={() =>
-                              onUpdateQuantity(item.id, item.quantity + 1)
+                              onUpdateQuantity(item.cartKey, item.quantity + 1)
                             }
                             className="p-1 border rounded hover:bg-gray-100"
                             disabled={item.quantity >= item.stock}
@@ -80,7 +90,7 @@ export default function CartDrawer({
                             <PlusIcon className="h-4 w-4" />
                           </button>
                           <button
-                            onClick={() => onRemoveItem(item.id)}
+                            onClick={() => onRemoveItem(item.cartKey)}
                             className="ml-auto text-red-500 hover:text-red-700"
                           >
                             <XMarkIcon className="h-5 w-5" />
