@@ -127,7 +127,8 @@ export default function EditOrder() {
       const res = await fetch("/api/admin/products");
       if (res.status === 200) {
         const data = await res.json();
-        setProducts(data.products || []);
+        const productsArray = Array.isArray(data) ? data : data.products || [];
+        setProducts(productsArray);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -404,11 +405,18 @@ export default function EditOrder() {
                                 }
                               >
                                 <option value="">Produkt wählen</option>
-                                {products.map((product) => (
-                                  <option key={product.id} value={product.id}>
-                                    {product.name}
+                                {Array.isArray(products) &&
+                                products.length > 0 ? (
+                                  products.map((product) => (
+                                    <option key={product.id} value={product.id}>
+                                      {product.name}
+                                    </option>
+                                  ))
+                                ) : (
+                                  <option disabled>
+                                    Keine Produkte verfügbar
                                   </option>
-                                ))}
+                                )}
                               </NativeSelect.Field>
                               <NativeSelect.Indicator />
                             </NativeSelect.Root>
