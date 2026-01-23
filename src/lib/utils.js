@@ -38,3 +38,8 @@ export function verifiedWorker(workers) {
     return 0;
   }
 }
+
+export function normalizeSku(sku) {
+  if (!sku) return "";
+  return sku.toUpperCase().replace(/\s+/g, "-");
+}

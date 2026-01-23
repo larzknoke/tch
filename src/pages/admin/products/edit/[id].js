@@ -19,6 +19,7 @@ import { toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/router";
 import BallLoader from "@/components/ui/loading-ball";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { normalizeSku } from "@/lib/utils";
 
 const schema = yup
   .object({
@@ -135,10 +136,22 @@ export default function EditProduct() {
   async function onSubmit(values) {
     try {
       setLoading(true);
+
+      // Transform SKU to uppercase and replace spaces with dashes
+      const transformedValues = {
+        ...values,
+        sku: normalizeSku(values.sku),
+        variants:
+          values.variants?.map((variant) => ({
+            ...variant,
+            sku: normalizeSku(variant.sku),
+          })) || [],
+      };
+
       const res = await fetch(`/api/admin/products?id=${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify(transformedValues),
       });
 
       if (res.status !== 200) {
