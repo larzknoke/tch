@@ -225,7 +225,7 @@ export default function EditProduct() {
               </HStack>
 
               <Field.Root invalid={!!errors.sku}>
-                <Field.Label>SKU</Field.Label>
+                <Field.Label>SKU / Artikelnummer</Field.Label>
                 <Input {...register("sku")} placeholder="z.B. TCH-001" />
                 {errors.sku && (
                   <Field.ErrorText>{errors.sku.message}</Field.ErrorText>
