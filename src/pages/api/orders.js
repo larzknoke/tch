@@ -28,6 +28,9 @@ export default async function handler(req, res) {
       for (const item of items) {
         const product = await prisma.product.findUnique({
           where: { id: parseInt(item.productId) },
+          include: {
+            variants: true,
+          },
         });
 
         if (!product) {
@@ -36,7 +39,21 @@ export default async function handler(req, res) {
             .json({ error: `Product ${item.productId} not found` });
         }
 
-        if (product.stock < item.quantity) {
+        // Check stock based on whether variant is selected
+        let availableStock = product.stock;
+        if (item.variantId) {
+          const variant = product.variants.find(
+            (v) => v.id === parseInt(item.variantId),
+          );
+          if (!variant) {
+            return res
+              .status(404)
+              .json({ error: `Variant ${item.variantId} not found` });
+          }
+          availableStock = variant.stock;
+        }
+
+        if (availableStock < item.quantity) {
           return res
             .status(400)
             .json({ error: `Insufficient stock for ${product.name}` });
@@ -47,6 +64,7 @@ export default async function handler(req, res) {
 
         orderItems.push({
           productId: product.id,
+          variantId: item.variantId ? parseInt(item.variantId) : null,
           quantity: item.quantity,
           price: product.price,
         });
@@ -66,7 +84,7 @@ export default async function handler(req, res) {
           billingStreet: billingStreet || null,
           billingPlz: billingPlz || null,
           billingCity: billingCity || null,
-          status: "pending",
+          status: "ausstehend",
           items: {
             create: orderItems,
           },
@@ -82,14 +100,27 @@ export default async function handler(req, res) {
 
       // Update stock
       for (const item of items) {
-        await prisma.product.update({
-          where: { id: parseInt(item.productId) },
-          data: {
-            stock: {
-              decrement: item.quantity,
+        if (item.variantId) {
+          // Update variant stock
+          await prisma.productVariant.update({
+            where: { id: parseInt(item.variantId) },
+            data: {
+              stock: {
+                decrement: item.quantity,
+              },
             },
-          },
-        });
+          });
+        } else {
+          // Update product stock
+          await prisma.product.update({
+            where: { id: parseInt(item.productId) },
+            data: {
+              stock: {
+                decrement: item.quantity,
+              },
+            },
+          });
+        }
       }
 
       return res.status(201).json(order);

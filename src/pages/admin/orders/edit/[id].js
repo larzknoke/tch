@@ -245,11 +245,11 @@ export default function EditOrder() {
                       <NativeSelect.Root>
                         <NativeSelect.Field {...field}>
                           <option value="">Bitte wählen</option>
-                          <option value="pending">Ausstehend</option>
-                          <option value="paid">Bezahlt</option>
-                          <option value="shipped">Versendet</option>
-                          <option value="completed">Abgeschlossen</option>
-                          <option value="cancelled">Storniert</option>
+                          <option value="ausstehend">Ausstehend</option>
+                          <option value="bezahlt">Bezahlt</option>
+                          <option value="versendet">Versendet</option>
+                          <option value="abgeschlossen">Abgeschlossen</option>
+                          <option value="storniert">Storniert</option>
                         </NativeSelect.Field>
                         <NativeSelect.Indicator />
                       </NativeSelect.Root>

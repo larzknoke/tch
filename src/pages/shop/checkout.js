@@ -95,8 +95,6 @@ export default function Checkout() {
 
   const onSubmit = async (values) => {
     setLoading(true);
-    // console.log("Submitting order with values:", values, "and cart:", cart);
-    // return;
 
     try {
       const response = await fetch("/api/orders", {
@@ -125,6 +123,7 @@ export default function Checkout() {
             : values.billingCity,
           items: cart.map((item) => ({
             productId: item.id,
+            variantId: item.variantId || null,
             quantity: item.quantity,
           })),
         }),

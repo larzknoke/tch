@@ -33,7 +33,10 @@ async function getOrders(req, res) {
     if (id) {
       const order = await prisma.order.findUnique({
         where: { id: parseInt(id) },
-        include: { items: { include: { product: true } }, user: true },
+        include: {
+          items: { include: { product: true, variant: true } },
+          user: true,
+        },
       });
 
       if (!order) {
@@ -45,7 +48,10 @@ async function getOrders(req, res) {
 
     const orders = await prisma.order.findMany({
       orderBy: { createdAt: "desc" },
-      include: { items: { include: { product: true } }, user: true },
+      include: {
+        items: { include: { product: true, variant: true } },
+        user: true,
+      },
     });
 
     return res.status(200).json(orders);
@@ -81,7 +87,7 @@ async function createOrder(req, res) {
     const order = await prisma.order.create({
       data: {
         userId: userId || null,
-        status: status || "pending",
+        status: status || "ausstehend",
         total: total ? parseFloat(total) : 0,
         email,
         payment: payment || undefined,
