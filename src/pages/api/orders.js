@@ -1,4 +1,7 @@
 import prisma from "@/lib/prisma";
+import { sendEmail } from "@/lib/email";
+import { render } from "@react-email/render";
+import AdminNotifyOrderEmail from "@/email/adminNotifyOrderEmail";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -93,6 +96,7 @@ export default async function handler(req, res) {
           items: {
             include: {
               product: true,
+              variant: true,
             },
           },
         },
@@ -121,6 +125,17 @@ export default async function handler(req, res) {
             },
           });
         }
+      }
+      // Send admin notification email
+      try {
+        await sendEmail({
+          to: "info@larsknoke.com",
+          subject: `Neue Bestellung #${order.id} - TC Holzminden von 1928 e.V.`,
+          html: await render(<AdminNotifyOrderEmail order={order} />),
+        });
+      } catch (emailError) {
+        console.log("Failed to send admin notification email:", emailError);
+        // Don't fail the request if email fails
       }
 
       return res.status(201).json(order);

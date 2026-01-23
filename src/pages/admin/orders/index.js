@@ -102,11 +102,11 @@ export default function OrdersAdmin() {
 
   return (
     <VStack py={5} gap={5} placeItems="flex-start">
-      <HStack>
+      {/* <HStack>
         <Link href="/admin/orders/create">
           <Button colorPalette="blue">Neue Bestellung</Button>
         </Link>
-      </HStack>
+      </HStack> */}
 
       {orders && !loading ? (
         <Table.Root>
