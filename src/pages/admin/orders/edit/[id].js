@@ -262,7 +262,21 @@ export default function EditOrder() {
 
                 <Field.Root invalid={!!errors.payment} flex={1}>
                   <Field.Label>Zahlungsart</Field.Label>
-                  <Input {...register("payment")} placeholder="Barzahlung" />
+                  <Controller
+                    name="payment"
+                    control={control}
+                    render={({ field }) => (
+                      <NativeSelect.Root>
+                        <NativeSelect.Field {...field}>
+                          <option value="">Bitte wählen</option>
+                          <option value="Barzahlung">Barzahlung</option>
+                          <option value="Ueberweisung">Überweisung</option>
+                          <option value="PayPal">PayPal</option>
+                        </NativeSelect.Field>
+                        <NativeSelect.Indicator />
+                      </NativeSelect.Root>
+                    )}
+                  />
                   {errors.payment && (
                     <Field.ErrorText>{errors.payment.message}</Field.ErrorText>
                   )}

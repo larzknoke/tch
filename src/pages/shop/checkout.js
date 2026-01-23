@@ -260,7 +260,7 @@ export default function Checkout() {
                               <RadioCard.ItemIndicator />
                             </RadioCard.ItemControl>
                           </RadioCard.Item>
-                          <RadioCard.Item value="Überweisung">
+                          <RadioCard.Item value="Ueberweisung">
                             <RadioCard.ItemHiddenInput />
                             <RadioCard.ItemControl className="hover:cursor-pointer">
                               <RadioCard.ItemContent>
