@@ -118,7 +118,7 @@ export default function CartDrawer({
                 </div>
                 <button
                   onClick={onCheckout}
-                  className="w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold"
+                  className="w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold hover:cursor-pointer"
                 >
                   Zur Kasse
                 </button>
