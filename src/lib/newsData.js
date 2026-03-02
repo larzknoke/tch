@@ -239,4 +239,15 @@ export const newsData = [
     preview:
       "Starker Auftritt des TCH bei den 46. TNB-Regions-Jugendmeisterschaften Südniedersachsen Winter 2025/26.",
   },
+  {
+    id: 15,
+    title: "Einladung zur JHV 2026",
+    date: "2026-03-02",
+    content:
+      '<h1>Einladung zur Jahreshauptversammlung</h1><h2>des TC Holzminden von 1928 e.V. <br /> am Freitag, den 20.03.2026 um 19.00 Uhr <br /> im Clubheim, Liebigstra&szlig;e 111</h2><strong>Tagesordnung:</strong><ol start="1" style="list-style: auto;list-style-position: inside;font-size:18px"><li>Feststellung der ordnungsgem&auml;&szlig;en Einladung, Tagesordnung und Beschlussf&auml;higkeit</li><li>Genehmigung des Protokolls der Jahreshauptversammlung vom 28.03.2025</li><li>Rechenschaftsbericht des Vorstandes</li><li>Bericht der Kassenpr&uuml;fer</li><li>Entlastung des Vorstandes</li><li>Satzungsgem&auml;&szlig;e Neuwahl des Vorsitzenden, des Kassenwarts, der Sportwarte</li><li>Ehrungen</li><li>Beschluss zur Ernennung einer Ehrenmitgliedschaft f&uuml;r den ausscheidenden Vorsitzenden Rolf Gans</li><li>Aussetzen der Aufnahmegeb&uuml;hr f&uuml;r das Jahr 2026</li><li>Haushaltsplan 2026</li><li>Antr&auml;ge</li><li>Verschiedenes</li></ol><p>Antr&auml;ge zur Tagesordnung sind bis zum 16.03.2026 schriftlich beim Vorstand einzureichen.</p><p>Mit sportlichen Gr&uuml;&szlig;en</p><p>F&uuml;r den Vorstand<br />Rolf Gans</p>',
+    image: "JHV26_News_1000.jpg",
+    slug: "einladung-jahreshauptversammlung-2026",
+    preview:
+      "Einladung zur Jahreshauptversammlung 2026 – Wichtige Informationen und Tagesordnung",
+  },
 ];
