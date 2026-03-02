@@ -51,7 +51,7 @@ export const calendarData = [
   },
   {
     id: 11,
-    title: "Jahreshautpversammlung 2026",
+    title: "Jahreshauptversammlung 2026 - 19.00 Uhr",
     date: "2026-03-20",
   },
 ];
