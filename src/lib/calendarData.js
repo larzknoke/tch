@@ -34,24 +34,34 @@ export const calendarData = [
   //   title: "6. Arbeitseinsatz (Laubbeseitigung)",
   //   date: "2025-12-13",
   // },
-  {
-    id: 8,
-    title: "Weihnachtsfeier 2025",
-    date: "2025-12-20",
-  },
-  {
-    id: 9,
-    title: "TNB-Regionsmeisterschaften-Südniedersachsen",
-    date: "2026-03-14",
-  },
-  {
-    id: 10,
-    title: "Jugendturnier - Holzminden Sylvester Finale 2025",
-    date: "2025-12-27",
-  },
+  // {
+  //   id: 8,
+  //   title: "Weihnachtsfeier 2025",
+  //   date: "2025-12-20",
+  // },
+  // {
+  //   id: 9,
+  //   title: "TNB-Regionsmeisterschaften-Südniedersachsen",
+  //   date: "2026-03-14",
+  // },
+  // {
+  //   id: 10,
+  //   title: "Jugendturnier - Holzminden Sylvester Finale 2025",
+  //   date: "2025-12-27",
+  // },
   {
     id: 11,
     title: "Jahreshauptversammlung 2026 - 19.00 Uhr",
     date: "2026-03-20",
+  },
+  {
+    id: 12,
+    title: "TNB-Regionsmeisterschaften Alterskklassen - 14.03 & 15.03.",
+    date: "2026-03-14",
+  },
+  {
+    id: 13,
+    title: "1. Arbeitseinsatz 2026 - 27.03 & 28.03",
+    date: "2026-03-27",
   },
 ];
