@@ -25,7 +25,11 @@ export default function Termine() {
             .map((date) => (
               <div key={date.id} className="mb-6 border-b border-tch-blue pt-3">
                 <p className="text-tch-gold font-semibold">
-                  {new Date(date.date).toLocaleDateString()}
+                  {new Date(date.date).toLocaleDateString("de-DE", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
                 </p>
                 <h3 className="text-xl font-semibold mb-1 text-tch-blue">
                   {date.title}
