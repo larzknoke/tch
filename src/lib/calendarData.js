@@ -61,7 +61,7 @@ export const calendarData = [
   },
   {
     id: 13,
-    title: "1. Arbeitseinsatz 2026 - 27.03 & 28.03",
+    title: "1. Arbeitseinsatz 2026 - 27.03. & 28.03.",
     date: "2026-03-27",
   },
 ];
