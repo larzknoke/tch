@@ -56,7 +56,7 @@ export const calendarData = [
   },
   {
     id: 12,
-    title: "TNB-Regionsmeisterschaften Alterskklassen - 14.03 & 15.03.",
+    title: "TNB-Regionsmeisterschaften Altersklassen - 14.03 & 15.03.",
     date: "2026-03-14",
   },
   {
