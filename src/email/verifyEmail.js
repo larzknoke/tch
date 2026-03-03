@@ -40,6 +40,24 @@ export default function VerifyEmail({ worker, effort }) {
 
           <Section style={section}>
             <Text style={text}>
+              <strong>Ihre Angaben</strong>
+            </Text>
+            <Text style={text}>
+              <strong>Name:</strong> {worker.name || "Nicht angegeben"}
+            </Text>
+            <Text style={text}>
+              <strong>Email:</strong> {worker.email || "Nicht angegeben"}
+            </Text>
+            <Text style={text}>
+              <strong>Telefon:</strong> {worker.phone || "Nicht angegeben"}
+            </Text>
+            <Text style={text}>
+              <strong>Notiz:</strong> {worker.note || "Nicht angegeben"}
+            </Text>
+          </Section>
+
+          <Section style={section}>
+            <Text style={text}>
               Um Ihren Arbeitseinsatz zu aktivieren, klicken Sie bitte auf
               folgenden Link:
             </Text>

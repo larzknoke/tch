@@ -1,6 +1,16 @@
 import prisma from "@/lib/prisma";
 
 export default async function handler(req, res) {
+  const normalizeWorkerPayload = (data = {}) => {
+    const parsedEffortId = Number.parseInt(data.effortId, 10);
+
+    return {
+      ...data,
+      note: data.note?.trim() || null,
+      effortId: Number.isNaN(parsedEffortId) ? null : parsedEffortId,
+    };
+  };
+
   if (req.method == "GET") {
     try {
       const result = await prisma.worker.findMany({
@@ -25,7 +35,9 @@ export default async function handler(req, res) {
     try {
       const data = req.body;
       console.log("data: ", data);
-      const result = await prisma.worker.create({ data: data });
+      const result = await prisma.worker.create({
+        data: normalizeWorkerPayload(data),
+      });
       console.log("result: ", result);
       return res.status(200).json(result);
     } catch (error) {
@@ -52,9 +64,10 @@ export default async function handler(req, res) {
     try {
       const data = req.body;
       console.log("data: ", data);
+      const normalizedData = normalizeWorkerPayload(data);
       const result = await prisma.worker.update({
         where: { id: parseInt(data.id) },
-        data: { ...data, effortId: parseInt(data.effortId) },
+        data: normalizedData,
       });
       console.log("result: ", result);
       return res.status(200).json(result);

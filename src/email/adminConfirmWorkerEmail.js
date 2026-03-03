@@ -62,6 +62,9 @@ export default function AdminConfirmWorkerEmail({ worker, effort }) {
               <strong>Telefon:</strong> {worker.phone || "Nicht angegeben"}
             </Text>
             <Text style={text}>
+              <strong>Notiz:</strong> {worker.note || "Nicht angegeben"}
+            </Text>
+            <Text style={text}>
               <strong>Status:</strong> Bestätigt
             </Text>
           </Section>

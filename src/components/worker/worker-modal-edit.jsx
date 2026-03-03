@@ -138,6 +138,10 @@ export const WorkerModalEdit = ({ worker, open, setOpen, getWorkers }) => {
                             </Field.Label>
                             <Input name="phone" {...register("phone")} />
                           </Field.Root>
+                          <Field.Root>
+                            <Field.Label>Notiz/Bemerkung</Field.Label>
+                            <Textarea name="note" {...register("note")} />
+                          </Field.Root>
                           {/* <Field.Root>
                             <Field.Label>
                               Arbeitseinsätze

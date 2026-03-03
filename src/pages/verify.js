@@ -89,7 +89,7 @@ function VerifyWorker() {
         <VStack>
           <HeaderText text={"Sie sind nun als Teilnehmer registriert."} />
           <Text fontSize={"lg"} fontWeight={700} mb={4}>
-            Sie erhalten in Kürze eine Bestätigungs-Email.
+            Vielen Dank für Ihre Unterstützung! <br />
           </Text>
         </VStack>
       )}

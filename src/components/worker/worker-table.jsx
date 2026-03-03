@@ -32,6 +32,7 @@ export default function WorkerTable({
         worker.name?.toLowerCase().includes(query) ||
         worker.email?.toLowerCase().includes(query) ||
         worker.phone?.toLowerCase().includes(query) ||
+        worker.note?.toLowerCase().includes(query) ||
         worker.effort?.title?.toLowerCase().includes(query)
       );
     });
@@ -61,6 +62,7 @@ export default function WorkerTable({
             <Table.ColumnHeader>Name</Table.ColumnHeader>
             <Table.ColumnHeader>Email</Table.ColumnHeader>
             <Table.ColumnHeader>Telefon</Table.ColumnHeader>
+            <Table.ColumnHeader>Notiz</Table.ColumnHeader>
             <Table.ColumnHeader> Bestätigt</Table.ColumnHeader>
             <Table.ColumnHeader> Einsatz</Table.ColumnHeader>
             <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
@@ -73,6 +75,7 @@ export default function WorkerTable({
                 <Table.Cell>{item.name}</Table.Cell>
                 <Table.Cell>{item.email}</Table.Cell>
                 <Table.Cell>{item.phone}</Table.Cell>
+                <Table.Cell>{item.note || "-"}</Table.Cell>
                 <Table.Cell>{Checker(item.verified)}</Table.Cell>
                 <Table.Cell>{item.effort?.title || "-"}</Table.Cell>
                 <Table.Cell textAlign="end">
@@ -102,7 +105,7 @@ export default function WorkerTable({
             ))
           ) : (
             <Table.Row>
-              <Table.Cell colSpan={6} textAlign="center" color="gray.500">
+              <Table.Cell colSpan={7} textAlign="center" color="gray.500">
                 Keine Teilnehmer vorhanden
               </Table.Cell>
             </Table.Row>
@@ -126,7 +129,7 @@ export default function WorkerTable({
           <MagnifyingGlassIcon />
         </Icon>
         <Input
-          placeholder="Suche nach Name, Email, Telefon oder Einsatz..."
+          placeholder="Suche nach Name, Email, Telefon, Notiz oder Einsatz..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           paddingLeft="10"

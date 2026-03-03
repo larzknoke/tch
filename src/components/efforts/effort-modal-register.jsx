@@ -172,6 +172,10 @@ export const EffortModalRegister = ({ effort }) => {
                       {errors.phone?.message && errors.phone?.message}
                     </Field.ErrorMessage> */}
                     </Field.Root>
+                    <Field.Root>
+                      <Field.Label>Notiz/Bemerkung</Field.Label>
+                      <Textarea name="note" {...register("note")} />
+                    </Field.Root>
                   </VStack>
                 </form>
               ) : (

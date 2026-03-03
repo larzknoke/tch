@@ -140,6 +140,10 @@ export const WorkerModalCreate = ({ getWorkers }) => {
                             </Field.Label>
                             <Input name="phone" {...register("phone")} />
                           </Field.Root>
+                          <Field.Root>
+                            <Field.Label>Notiz/Bemerkung</Field.Label>
+                            <Textarea name="note" {...register("note")} />
+                          </Field.Root>
                           <EffortSelect
                             errors={errors}
                             control={control}
