@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/ui/layouts/layout";
 import EffortWrapper from "@/components/efforts/effort-wrapper";
 import { calendarData } from "@/lib/calendarData";
@@ -17,6 +17,36 @@ import GoogleCalendar from "@/components/googlecalendar/GoogleCalendar";
 
 export default function Termine() {
   const [selectedTag, setSelectedTag] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [effortsData, setEffortsData] = useState(null);
+
+  async function getEfforts() {
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/active-efforts`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (res.status != 200) {
+        setLoading(false);
+      } else {
+        const resData = await res.json();
+        setEffortsData(resData);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log("api fetch error");
+      console.error("Err", error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getEfforts();
+  }, []);
+
+  const hasActiveEfforts = effortsData && effortsData.length > 0;
 
   // Get unique tags from calendarData
   const uniqueTags = [
@@ -30,8 +60,10 @@ export default function Termine() {
 
   return (
     <div className="flex flex-col gap-8 md:gap-16 md:p-0 p-5">
-      <div className="flex flex-col-reverse md:flex-row gap-12 md:gap-16 ">
-        <div className="w-full md:w-1/2">
+      <div
+        className={`flex ${hasActiveEfforts ? "flex-col-reverse" : "flex-col"} md:flex-row gap-12 md:gap-16`}
+      >
+        <div className={`w-full md:w-1/2 ${hasActiveEfforts ? "" : " mt-8"}`}>
           <h2 className="mb-3 uppercase ">Kalender/Termine</h2>
 
           {/* Tag Filter */}
@@ -88,8 +120,10 @@ export default function Termine() {
             ))}
           {/* Placeholder items for demonstration */}
         </div>
-        <div className="w-full md:w-1/2 gap-12 flex flex-col -mx-4 md:mx-0 mt-8 md:mt-0">
-          <EffortWrapper />
+        <div
+          className={`w-full md:w-1/2 gap-12 flex flex-col  md:mx-0 ${hasActiveEfforts ? " mt-8 -mx-4 " : ""}  md:mt-8 mb-8`}
+        >
+          <EffortWrapper loading={loading} effortsData={effortsData} />
         </div>
       </div>
       <div>

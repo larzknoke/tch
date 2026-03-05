@@ -3,40 +3,8 @@ import BallLoader from "../ui/loading-ball";
 import EffortHeader from "./effort-header";
 import EffortItem from "./effort-item";
 import { ChevronDoubleRightIcon } from "@heroicons/react/16/solid";
-import { useState, useEffect } from "react";
 
-function EffortWrapper() {
-  const [loading, setLoading] = useState(false);
-  const [effortsData, setEffortsData] = useState(null);
-
-  async function getEfforts() {
-    try {
-      setLoading(true);
-      const res = await fetch(`/api/active-efforts`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (res.status != 200) {
-        // setLoading(false);
-        // setInviteError(true);
-      } else {
-        const resData = await res.json();
-        setEffortsData(resData);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log("api fetch error");
-      console.error("Err", error);
-      setLoading(false);
-      // setInviteError(true);
-    }
-  }
-
-  useEffect(() => {
-    getEfforts();
-  }, []);
-
+function EffortWrapper({ loading, effortsData }) {
   return (
     <div className=" relative w-full rounded-sm px-4 md:px-0">
       {/* <EffortHeader /> */}
