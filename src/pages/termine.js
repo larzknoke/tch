@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Layout from "@/components/ui/layouts/layout";
 import EffortWrapper from "@/components/efforts/effort-wrapper";
 import { calendarData } from "@/lib/calendarData";
@@ -15,22 +16,70 @@ import GoogleCalendar from "@/components/googlecalendar/GoogleCalendar";
 // });
 
 export default function Termine() {
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  // Get unique tags from calendarData
+  const uniqueTags = [
+    ...new Set(calendarData.map((date) => date.tag || "Allgemein")),
+  ];
+
+  // Filter dates based on selected tag
+  const filteredDates = selectedTag
+    ? calendarData.filter((date) => (date.tag || "Allgemein") === selectedTag)
+    : calendarData;
+
   return (
     <div className="flex flex-col gap-8 md:gap-16 md:p-0 p-5">
       <div className="flex flex-col-reverse md:flex-row gap-12 md:gap-16 ">
         <div className="w-full md:w-1/2">
           <h2 className="mb-3 uppercase ">Kalender/Termine</h2>
-          {calendarData
+
+          {/* Tag Filter */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            <button
+              onClick={() => setSelectedTag(null)}
+              className={`text-xs rounded-xl px-3 py-1.5 uppercase font-semibold transition-colors hover:cursor-pointer ${
+                selectedTag === null
+                  ? "bg-tch-blue text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              Alle
+            </button>
+            {uniqueTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`text-xs rounded-xl px-3 py-1.5 uppercase font-semibold transition-colors hover:cursor-pointer ${
+                  selectedTag === tag
+                    ? "bg-tch-blue text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          {filteredDates
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .map((date) => (
               <div key={date.id} className="mb-6 border-b border-tch-blue pt-3">
-                <p className="text-tch-gold font-semibold">
-                  {new Date(date.date).toLocaleDateString("de-DE", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                </p>
+                <div className="flex flex-row items-center gap-4">
+                  <p
+                    className="text-tch-gold font-semibold"
+                    suppressHydrationWarning
+                  >
+                    {new Date(date.date).toLocaleDateString("de-DE", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <span className=" text-[9px] bg-tch-blue text-white rounded-xl px-3 py-0.5 uppercase font-semibold">
+                    {date.tag || "Allgemein"}
+                  </span>
+                </div>
                 <h3 className="text-xl font-semibold mb-1 text-tch-blue">
                   {date.title}
                 </h3>

@@ -58,6 +58,7 @@ export const calendarData = [
     id: 12,
     title: "TNB-Regionsmeisterschaften Altersklassen, 14.-15.03.",
     date: "2026-03-14",
+    tag: "Senior",
   },
   {
     id: 13,
@@ -68,30 +69,36 @@ export const calendarData = [
     id: 14,
     title: "Spring Junior Challenge 2026, 09.-12.04.",
     date: "2026-04-09",
+    tag: "Junior",
   },
   {
     id: 15,
     title: "Blau Weiss Junior Classics 2026, 02.-05.07.",
     date: "2026-07-02",
+    tag: "Junior",
   },
   {
     id: 16,
     title: "TCH LK Race Finale 2026, 24.-27.09.",
     date: "2026-09-24",
+    tag: "Junior",
   },
   {
     id: 17,
     title: "Holzminden Indoor Open 2026, 30.10-01.11.",
     date: "2026-10-30",
+    tag: "Junior",
   },
   {
     id: 18,
     title: "Holzminden Sylvester Finale 2026, 18.-20.12.",
     date: "2026-12-18",
+    tag: "Junior",
   },
   {
     id: 19,
     title: "29. Cup der Sparkasse Einbeck/Holzminden, 24.-26.04.",
     date: "2026-04-24",
+    tag: "Junior",
   },
 ];
