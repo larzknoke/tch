@@ -76,7 +76,7 @@ export default function Termine() {
                       year: "numeric",
                     })}
                   </p>
-                  <span className=" text-[9px] bg-tch-blue text-white rounded-xl px-3 py-0.5 uppercase font-semibold">
+                  <span className=" text-[9px] bg-tch-blue/50 text-white rounded-xl px-2 py-0.5 uppercase font-semibold tracking-wider">
                     {date.tag || "Allgemein"}
                   </span>
                 </div>
