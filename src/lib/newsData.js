@@ -250,4 +250,25 @@ export const newsData = [
     preview:
       "Einladung zur Jahreshauptversammlung 2026 – Wichtige Informationen und Tagesordnung",
   },
+  {
+    id: 16,
+    title: "Regionsmeisterschaften in Holzminden",
+    date: "2026-03-16",
+    content:
+      "<h2>Regionsmeisterschaften des TNB S&uuml;dniedersachsen in Holzminden</h2><h3>Gastgeber stellen mehrere Titeltr&auml;ger</h3><p>Holzminden. Am Wochenende des 14. und 15. M&auml;rz 2026 war die Tennishalle des TC Holzminden Austragungsort der TNB-Regionsmeisterschaften S&uuml;dniedersachsen in den Altersklassen der Wintersaison 2025/26. Spieler aus mehreren Vereinen der Region k&auml;mpften in spannenden Begegnungen um die Titel in den Konkurrenzen Herren 40, Herren 50 und Herren 60.</p><h3>B&ouml;hmer gewinnt souver&auml;n bei den Herren 40</h3><p>In der Konkurrenz der Herren 40 setzte sich Dennis B&ouml;hmer vom TC Alfeld mit klaren Siegen durch und sicherte sich ohne Satzverlust den Titel. Mit beeindruckendem Spiel dominierte er die Konkurrenz deutlich.</p><p>Auf Platz zwei landete Dirk Nahrwold vom TC Holzminden von 1928 e.V. Rang drei belegte Michael Kleemann, ebenfalls TC Alfeld.</p><h3>Matyssek triumphiert bei den Herren 50</h3><p>In der Konkurrenz der Herren 50 setzte sich Peter Matyssek vom TC Holzminden mit einer makellosen Bilanz durch. Besonders bemerkenswert war sein Auftakterfolg gegen Stefan Schleicher, den er nach verlorenem ersten Satz noch im Match-Tiebreak drehen konnte.</p><p>Den zweiten Platz sicherte sich Karsten Jung, ebenfalls vom TC Holzminden, der nur im Finale gegen Matyssek den K&uuml;rzeren zog.</p><p>Auf Rang drei folgte Stefan Schleicher vom TV N&ouml;rten-Hardenberg.</p><h3>J&auml;ger dominiert bei den Herren 60</h3><p>In der Altersklasse Herren 60 setzte sich Favorit Stefan J&auml;ger vom TC Northeim souver&auml;n durch. Er blieb ohne Satzverlust und sicherte sich verdient den Regionsmeistertitel.</p><p>Holger Deiters vom Tennis- und Skiclub G&ouml;ttingen belegte Platz 2. Dritter wurde Volker Gundelach vom TSV Sch&ouml;nhagen.</p><h3>Erfolgreiches Turnierwochenende f&uuml;r den TC Holzminden von 1928 e.V.</h3><p>Die Veranstaltung in der Tennishalle des TC Holzminden bot den Zuschauern zahlreiche spannende Ballwechsel und sportlich faire Begegnungen. Besonders f&uuml;r den Gastgeberverein verlief das Wochenende erfolgreich: Mit Peter Matyssek und Karsten Jung standen gleich zwei Spieler des TC Holzminden auf dem Podium der Herren-50-Konkurrenz.</p><p>Die Regionsmeisterschaften best&auml;tigten einmal mehr die hohe Spielst&auml;rke der Senioren im s&uuml;dnieders&auml;chsischen Tennissport und boten einen gelungenen Abschluss der Wintersaison.</p>",
+    image: "RegionsmeisterschftenAKWinter2026/RegioHol1.jpg",
+    images: [
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol1.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol2.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol3.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol4.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol5.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol6.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol7.jpg" },
+      { src: "RegionsmeisterschftenAKWinter2026/RegioHol8.jpg" },
+    ],
+    slug: "regionsmeisterschaften-tnb-suedniedersachsen-holzminden",
+    preview:
+      "Am Wochenende war die Tennishalle des TC Holzminden Austragungsort der TNB-Regionsmeisterschaften",
+  },
 ];
