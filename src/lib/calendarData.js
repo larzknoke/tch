@@ -54,12 +54,12 @@ export const calendarData = [
     title: "Jahreshauptversammlung 2026, 19.00 Uhr",
     date: "2026-03-20",
   },
-  {
-    id: 12,
-    title: "TNB-Regionsmeisterschaften Altersklassen, 14.-15.03.",
-    date: "2026-03-14",
-    tag: "Senior",
-  },
+  // {
+  //   id: 12,
+  //   title: "TNB-Regionsmeisterschaften Altersklassen, 14.-15.03.",
+  //   date: "2026-03-14",
+  //   tag: "Senior",
+  // },
   {
     id: 13,
     title: "1. Arbeitseinsatz 2026, 27.-28.03.",
