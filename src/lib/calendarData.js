@@ -66,6 +66,11 @@ export const calendarData = [
     date: "2026-03-27",
   },
   {
+    id: 20,
+    title: "2. Arbeitseinsatz 2026, 04.04.",
+    date: "2026-04-04",
+  },
+  {
     id: 14,
     title: "Spring Junior Challenge 2026, 09.-12.04.",
     date: "2026-04-09",
