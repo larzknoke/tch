@@ -19,7 +19,7 @@ function Vorstand() {
     {
       position: "2. Vorsitzender",
       name: "Erdal Kilic",
-      taetigkeit: "Sponsoring",
+      taetigkeit: "Anlagenpflege und Instandhaltung",
       email: "info@tc1928.com",
       image: "/images/vorstand/ek.jpg",
     },
