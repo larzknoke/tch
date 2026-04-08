@@ -42,7 +42,7 @@ function Vorstand() {
       name: "Pierre Henf",
       taetigkeit: "Unterstützung des Sportwarts",
       email: "sportwart@tc1928.com",
-      image: "/images/vorstand/vorstand-mann.svg",
+      image: "/images/vorstand/ph.jpg",
     },
     {
       position: "Jugendwart",
