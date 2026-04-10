@@ -11,15 +11,15 @@ function Vorstand() {
   const vorstand = [
     {
       position: "1. Vorsitzender",
-      name: "Rolf Gans",
+      name: "Karsten Jung",
       taetigkeit: "Leitung der Vereinsgeschäfte",
       email: "info@tc1928.com",
-      image: "/images/vorstand/rg.jpg",
+      image: "/images/vorstand/kj.jpg",
     },
     {
       position: "2. Vorsitzender",
       name: "Erdal Kilic",
-      taetigkeit: "Sponsoring",
+      taetigkeit: "Anlagenpflege und Instandhaltung",
       email: "info@tc1928.com",
       image: "/images/vorstand/ek.jpg",
     },
@@ -39,10 +39,10 @@ function Vorstand() {
     },
     {
       position: "2. Sportwart",
-      name: "Karsten Jung",
+      name: "Pierre Henf",
       taetigkeit: "Unterstützung des Sportwarts",
       email: "sportwart@tc1928.com",
-      image: "/images/vorstand/kj.jpg",
+      image: "/images/vorstand/ph.jpg",
     },
     {
       position: "Jugendwart",
