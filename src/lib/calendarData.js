@@ -49,33 +49,33 @@ export const calendarData = [
   //   title: "Jugendturnier - Holzminden Sylvester Finale 2025",
   //   date: "2025-12-27",
   // },
-  {
-    id: 11,
-    title: "Jahreshauptversammlung 2026, 19.00 Uhr",
-    date: "2026-03-20",
-  },
+  // {
+  //   id: 11,
+  //   title: "Jahreshauptversammlung 2026, 19.00 Uhr",
+  //   date: "2026-03-20",
+  // },
   // {
   //   id: 12,
   //   title: "TNB-Regionsmeisterschaften Altersklassen, 14.-15.03.",
   //   date: "2026-03-14",
   //   tag: "Senior",
   // },
-  {
-    id: 13,
-    title: "1. Arbeitseinsatz 2026, 27.-28.03.",
-    date: "2026-03-27",
-  },
-  {
-    id: 20,
-    title: "2. Arbeitseinsatz 2026, 04.04.",
-    date: "2026-04-04",
-  },
-  {
-    id: 14,
-    title: "Spring Junior Challenge 2026, 09.-12.04.",
-    date: "2026-04-09",
-    tag: "Junior",
-  },
+  // {
+  //   id: 13,
+  //   title: "1. Arbeitseinsatz 2026, 27.-28.03.",
+  //   date: "2026-03-27",
+  // },
+  // {
+  //   id: 20,
+  //   title: "2. Arbeitseinsatz 2026, 04.04.",
+  //   date: "2026-04-04",
+  // },
+  // {
+  //   id: 14,
+  //   title: "Spring Junior Challenge 2026, 09.-12.04.",
+  //   date: "2026-04-09",
+  //   tag: "Junior",
+  // },
   {
     id: 15,
     title: "Blau Weiss Junior Classics 2026, 02.-05.07.",
@@ -108,8 +108,13 @@ export const calendarData = [
   },
   {
     id: 20,
-    title: "TNB-Regions-Jugendmeisterschaften Südniedersachsen, 05.-07.06.",
+    title: "TNB-Regions-Jugendmeisterschaften Süd-Nds., 05.-07.06.",
     date: "2026-06-05",
     tag: "Junior",
+  },
+  {
+    id: 21,
+    title: "Sommer-Saisoneröffnung 2026 mit Grillen",
+    date: "2026-04-23",
   },
 ];
