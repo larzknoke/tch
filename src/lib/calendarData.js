@@ -106,4 +106,10 @@ export const calendarData = [
     date: "2026-04-24",
     tag: "Junior",
   },
+  {
+    id: 20,
+    title: "TNB-Regions-Jugendmeisterschaften Südniedersachsen, 05.-07.06.",
+    date: "2026-06-05",
+    tag: "Junior",
+  },
 ];
