@@ -305,4 +305,17 @@ export const newsData = [
     preview:
       "Die Spring Junior Challenge 2026 in Holzminden bot hochklassigen Jugendtennis-Sport, spannende Matches und ein starkes Teilnehmerfeld aus ganz Deutschland.",
   },
+  {
+    id: 19,
+    title: "Jahreshauptversammlung 2026",
+    date: "2026-04-15",
+    portrait: true,
+    content:
+      "<h2>Generationswechsel beim Tennisclub TC Holzminden: Karsten Jung übernimmt den Vereinsvorsitz</h2><p>Der TC Holzminden blickt sportlich auf ein erfolgreiches Jahr zurück. U.a. konnten die Herren AK40 dank starker Leistungen den Aufstieg in die Oberliga feiern und Michael Köhne wurde Deutscher Vizemeister in der Altersklasse AK70. Im Jugendbereich konnte der Verein insgesamt 7 Regionsmeistertitel gewinnen und war zum wiederholten Male mit über 160 Kindern und Jugendlichen im Trainingsbetrieb der erfolgreichste Verein der Tennisregion Südniedersachsen.</p><p>Bei der Jahreshauptversammlung des TC Holzminden von 1928 e.V. am 20. März 2026 stand nun ein bedeutender Wechsel an der Spitze des Vereins im Vordergrund.</p><p>Nach 18 Jahren herausragenden Engagements schied Rolf Gans altersbedingt aus dem Amt des 1. Vorsitzenden aus. In Anerkennung seiner Verdienste für den Verein und für die Förderung des Tennissports wurde ihm die Ehrenurkunde und die silberne Ehrennadel des Tennisverbandes Niedersachsen-Bremen verliehen. Die Mitgliederversammlung würdigte seine Verdienste und ernannte ihn im Weiteren einstimmig zum Ehrenmitglied des TC Holzminden.</p><p>Als sein Nachfolger wurde Karsten Jung von der Mitgliederversammlung einstimmig zum neuen 1. Vorsitzenden gewählt. Die bisherige Kassenwartin Uta Holtz wurde für weitere zwei Jahre in ihrem Amt bestätigt und Pierre Henf rückt als 2. Sportwart neu in den Vorstand auf.</p><p>Dem Vorstand gehören weiterhin an: Als 2. Vorsitzender Erdal Kilic, als 1. Sportwart Christian Henning, als Jugendwart Frank Klingspor, als Pressewart Lars Knoke sowie als Schriftführerin Daniela Klingspor.</p><p>Mit dem nun neu konstituierten Vorstand startet der TC Holzminden motiviert in kommende Saison.</p>",
+    image: "JHV26_2.jpg",
+    images: [{ src: "JHV26_1.jpg" }, { src: "JHV26_2.jpg" }],
+    slug: "jahreshauptversammlung-2026",
+    preview:
+      "Die Jahreshauptversammlung 2026 des TC Holzminden brachte einen Wechsel an der Vereinsführung mit sich.",
+  },
 ];
