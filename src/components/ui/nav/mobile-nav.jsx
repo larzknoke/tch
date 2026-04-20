@@ -148,6 +148,9 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/spielordnung"} onClick={() => resetNav()}>
               Spielordnung
             </Link>
+            <Link href={"/teams"} onClick={() => resetNav()}>
+              Mannschaften
+            </Link>
             <Link href={"/jugend-training"} onClick={() => resetNav()}>
               Jugendtraining
             </Link>
