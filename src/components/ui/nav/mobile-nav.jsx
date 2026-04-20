@@ -145,11 +145,11 @@ function MobileNav({ navOpen = false, setNavOpen }) {
                 : " opacity-0 z-20  translate-x-10"
             }`}
           >
-            <Link href={"/spielordnung"} onClick={() => resetNav()}>
-              Spielordnung
-            </Link>
             <Link href={"/teams"} onClick={() => resetNav()}>
               Mannschaften
+            </Link>
+            <Link href={"/spielordnung"} onClick={() => resetNav()}>
+              Spielordnung
             </Link>
             <Link href={"/jugend-training"} onClick={() => resetNav()}>
               Jugendtraining
