@@ -13,7 +13,7 @@ function NavItemTraining() {
 
     const observer = new MutationObserver((mutations) => {
       const hovered = mutations.find(
-        ({ attributeName }) => attributeName === "data-hover"
+        ({ attributeName }) => attributeName === "data-hover",
       );
       const active = current.hasAttribute("data-active");
 
@@ -43,6 +43,9 @@ function NavItemTraining() {
         transition
         className="nav-item-dropdown"
       >
+        <a className="nav-item group" href="/teams">
+          <span className="group-hover:bg-[length:100%_2px]">Mannschaften</span>
+        </a>
         <a className="nav-item group" href="/spielordnung">
           <span className="group-hover:bg-[length:100%_2px]">Spielordnung</span>
         </a>
