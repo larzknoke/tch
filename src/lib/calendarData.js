@@ -112,4 +112,10 @@ export const calendarData = [
     date: "2026-06-05",
     tag: "Junior",
   },
+  {
+    id: 21,
+    title: "Bikeleasing.de Open Uslar, 13.-19.07.",
+    date: "2026-07-13",
+    tag: "Allgemein",
+  },
 ];
