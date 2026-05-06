@@ -123,4 +123,10 @@ export const calendarData = [
     date: "2026-07-13",
     tag: "Allgemein",
   },
+  {
+    id: 23,
+    title: "Training mit Nicolas Kiefer, 25.06.",
+    date: "2026-06-25",
+    tag: "Allgemein",
+  },
 ];
