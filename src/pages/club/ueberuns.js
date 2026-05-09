@@ -53,11 +53,11 @@ function UeberUns() {
               <p>
                 Der Verein verfügt über ein hervorragend ausgebildetes
                 Trainerteam, bestehend aus Constantin Meier, Martin Krzempek,
-                Claudia Gronemeyer, Lena Timmermann und Yannick Klingspor. Diese
-                Trainer arbeiten eng mit den Kindern zusammen, um ihre
-                Fähigkeiten zu verbessern. Im Erwachsenenbereich konnte Mischa
-                Pietrzyk als Trainer gewonnen werden, was zu einer starken
-                Steigerung der Mitgliederzahlen geführt hat.
+                Thomas König, Sebastian Aickele, Emma Langguth, Claudia
+                Gronemeyer und Lena Timmermann. Diese Trainer arbeiten eng mit
+                den Kindern zusammen, um ihre Fähigkeiten zu verbessern. Yannick
+                Klingspor fungiert zudem als Standby-Trainer, ebenso wie Leon
+                Schwertfeger.
               </p>
             </div>
 
