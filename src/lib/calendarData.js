@@ -117,4 +117,16 @@ export const calendarData = [
     title: "Sommer-Saisoneröffnung 2026 mit Grillen",
     date: "2026-04-23",
   },
+  {
+    id: 22,
+    title: "Bikeleasing.de Open Uslar, 13.-19.07.",
+    date: "2026-07-13",
+    tag: "Allgemein",
+  },
+  {
+    id: 23,
+    title: "Training mit Nicolas Kiefer, 25.06.",
+    date: "2026-06-25",
+    tag: "Allgemein",
+  },
 ];
