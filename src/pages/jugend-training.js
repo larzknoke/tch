@@ -17,7 +17,7 @@ function JugendTraining() {
       <div className="w-full md:w-1/2 gap-5 flex flex-col">
         <HeaderText text="Jugendtraining & Kooperationen" />
         <Link
-          href="Jugendleitlinie_2025.pdf"
+          href="Jugendleitlinie_2026.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="text-tch-blue underline text-2xl"
