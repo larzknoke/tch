@@ -318,4 +318,15 @@ export const newsData = [
     preview:
       "Die Jahreshauptversammlung 2026 des TC Holzminden brachte einen Wechsel an der Vereinsführung mit sich.",
   },
+  {
+    id: 20,
+    content:
+      "<div><p>Der Saisonauftakt in der Oberliga verlief für unsere Mannschaft eher ernüchternd. Beim ersten Punktspiel der neuen Spielzeit mussten wir eine deutliche 1:8-Niederlage hinnehmen und erwischten damit einen klassischen Fehlstart.</p><p>Von Beginn an trafen wir auf durchweg starke Gegner, die an sämtlichen Positionen ihre Klasse unter Beweis stellten. Wir fanden nur schwer in die Begegnung und wirkten insbesondere in den entscheidenden Momenten zu nervös. Zudem war der Respekt vor der großen Aufgabe deutlich spürbar, sodass es kaum gelang, das eigene Leistungsvermögen konstant auf den Platz zu bringen.</p><br><p>Die Gelegenheit zur Wiedergutmachung bietet sich bereits am 31.05. um 10:30 Uhr im ersten Heimspiel gegen den DTV Hannover. Vor heimischer Kulisse wollen wir wieder zu unserer gewohnten Stärke finden und den Fans eine deutlich verbesserte Leistung präsentieren. Mit der Unterstützung der Zuschauer hofft die Mannschaft auf die ersten wichtigen Punkte der noch jungen Oberliga-Saison.</p><br><h3>Ergebnis</h3><p>Herren 40 Oberliga Gr. 392<br>Oldenburger TeV : TC Holzminden 8:1</p><br><h3>Einzelspiele</h3><p>1. Tim Ludwig – Andreas Klinke 6:1, 6:1<br>2. Philipp von Kaldenberg – Dirk Nahrwold 6:2, 6:2<br>3. Christoph Kimmich – Sascha Roti 6:0, 6:1<br>4. Ralf Kendziorra – Andre Höllermann 6:3, 6:2<br>5. Marc-Oliver Cyganek – Tobias Heyer 6:0, 6:2<br>6. Lars Heitmann – Peter Matyssek 6:3, 6:1</p><br><h3>Doppelspiele</h3><p>Ludwig/von Kaldenberg – Klinke/Nahrwold 1:0<br>Kimmich/Kendziorra – Roti/Höllermann 0:1<br>Cyganek/Heitmann – Heyer/Matyssek 1:0</p><br><h3>Gesamt</h3><p>Oldenburger TeV – TC Holzminden 8:1</p></div>",
+    image: "Herren40/H40_OL_Spieltag1.jpg",
+    slug: "h40-oberliga-2026-erster-spieltag",
+    preview:
+      "Saisonauftakt der Herren 40 endet mit 1:8-Niederlage beim Oldenburger TeV.",
+    date: "2026-05-11",
+    title: "Herren 40 Oberliga, 1. Spieltag",
+  },
 ];
