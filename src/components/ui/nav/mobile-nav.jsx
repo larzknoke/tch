@@ -154,8 +154,11 @@ function MobileNav({ navOpen = false, setNavOpen }) {
             <Link href={"/jugend-training"} onClick={() => resetNav()}>
               Jugendtraining
             </Link>
+            <Link href={"/play-stay-senior"} onClick={() => resetNav()}>
+              Play & Stay Senior
+            </Link>
             <Link href={"/play-stay"} onClick={() => resetNav()}>
-              Play & Stay
+              Play & Stay Junior
             </Link>
             {/* <Link href={"/club/vorstand"} onClick={() => resetNav()}>
               Seniorentraining
