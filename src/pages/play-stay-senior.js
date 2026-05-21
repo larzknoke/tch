@@ -71,7 +71,7 @@ function PlayStaySenior() {
       <div className="w-full md:w-1/2">
         <div className="flex flex-col gap-8">
           <Image
-            src="/images/PlayStaySenior/play-stay-senior.jpg"
+            src="/images/PlayStaySenior/play-stay-senior-plakat.jpg"
             alt="Geländer 1"
             width="1000"
             height="645"
@@ -83,7 +83,9 @@ function PlayStaySenior() {
             open={open}
             close={() => setOpen(false)}
             plugins={[Thumbnails]}
-            slides={[{ src: "/images/jugendtraining/PlayStay.jpg" }]}
+            slides={[
+              { src: "/images/PlayStaySenior/play-stay-senior-plakat.jpg" },
+            ]}
           />
         </div>
       </div>
