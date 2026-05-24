@@ -6,14 +6,14 @@ import CartDrawer from "@/components/shop/cart-drawer";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 
-export const getServerSideProps = async () => {
-  return {
-    redirect: {
-      destination: "/", // Startseite
-      permanent: false, // temporär
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   return {
+//     redirect: {
+//       destination: "/", // Startseite
+//       permanent: false, // temporär
+//     },
+//   };
+// };
 
 const sampleProducts = [
   {
@@ -139,6 +139,11 @@ export default function Shop() {
       if (product.hasVariants && variantId) {
         variant = product.variants.find((v) => v.id === variantId);
         actualStock = variant.stock;
+      }
+
+      // Group order products have unlimited "stock" for cart purposes
+      if (product.isGroupOrder) {
+        actualStock = Infinity;
       }
 
       const cartKey = variantId || product.id;

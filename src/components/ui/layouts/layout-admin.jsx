@@ -28,6 +28,7 @@ export default function LayoutAdmin({ children }) {
     { href: "/admin/articles", label: "Artikel" },
     { href: "/admin/products", label: "Produkte" },
     { href: "/admin/orders", label: "Bestellungen" },
+    { href: "/admin/group-orders", label: "Sammelbestellungen" },
   ];
 
   const handleNavClick = () => {

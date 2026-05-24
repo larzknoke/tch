@@ -24,9 +24,10 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
-      // Calculate total
+      // Calculate total — group order items have price 0 until finalised
       let total = 0;
       const orderItems = [];
+      const isGroupOrder = items.some((item) => item.isGroupOrder);
 
       for (const item of items) {
         const product = await prisma.product.findUnique({
@@ -42,34 +43,39 @@ export default async function handler(req, res) {
             .json({ error: `Product ${item.productId} not found` });
         }
 
-        // Check stock based on whether variant is selected
-        let availableStock = product.stock;
-        if (item.variantId) {
-          const variant = product.variants.find(
-            (v) => v.id === parseInt(item.variantId),
-          );
-          if (!variant) {
-            return res
-              .status(404)
-              .json({ error: `Variant ${item.variantId} not found` });
+        // Group order items skip stock check — no stock is reserved until fulfilled
+        if (!item.isGroupOrder) {
+          // Check stock based on whether variant is selected
+          let availableStock = product.stock;
+          if (item.variantId) {
+            const variant = product.variants.find(
+              (v) => v.id === parseInt(item.variantId),
+            );
+            if (!variant) {
+              return res
+                .status(404)
+                .json({ error: `Variant ${item.variantId} not found` });
+            }
+            availableStock = variant.stock;
           }
-          availableStock = variant.stock;
+
+          if (availableStock < item.quantity) {
+            return res
+              .status(400)
+              .json({ error: `Insufficient stock for ${product.name}` });
+          }
         }
 
-        if (availableStock < item.quantity) {
-          return res
-            .status(400)
-            .json({ error: `Insufficient stock for ${product.name}` });
-        }
-
-        const itemTotal = parseFloat(product.price) * item.quantity;
+        // Group order: price=0 until admin sets final price
+        const itemPrice = item.isGroupOrder ? 0 : parseFloat(product.price);
+        const itemTotal = itemPrice * item.quantity;
         total += itemTotal;
 
         orderItems.push({
           productId: product.id,
           variantId: item.variantId ? parseInt(item.variantId) : null,
           quantity: item.quantity,
-          price: product.price,
+          price: itemPrice,
         });
       }
 
@@ -79,6 +85,7 @@ export default async function handler(req, res) {
           email,
           total,
           payment: payment || "Barzahlung",
+          isGroupOrder,
           shippingName: shippingName || null,
           shippingStreet: shippingStreet || null,
           shippingPlz: shippingPlz || null,
@@ -102,28 +109,20 @@ export default async function handler(req, res) {
         },
       });
 
-      // Update stock
-      for (const item of items) {
-        if (item.variantId) {
-          // Update variant stock
-          await prisma.productVariant.update({
-            where: { id: parseInt(item.variantId) },
-            data: {
-              stock: {
-                decrement: item.quantity,
-              },
-            },
-          });
-        } else {
-          // Update product stock
-          await prisma.product.update({
-            where: { id: parseInt(item.productId) },
-            data: {
-              stock: {
-                decrement: item.quantity,
-              },
-            },
-          });
+      // Update stock — group orders don't reduce stock until fulfilled
+      if (!isGroupOrder) {
+        for (const item of items) {
+          if (item.variantId) {
+            await prisma.productVariant.update({
+              where: { id: parseInt(item.variantId) },
+              data: { stock: { decrement: item.quantity } },
+            });
+          } else {
+            await prisma.product.update({
+              where: { id: parseInt(item.productId) },
+              data: { stock: { decrement: item.quantity } },
+            });
+          }
         }
       }
       // Send admin notification email
