@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { HStack, RadioCard, Checkbox } from "@chakra-ui/react";
+import { Stack, RadioCard, Checkbox } from "@chakra-ui/react";
 
 const schema = yup
   .object({
@@ -288,7 +288,10 @@ export default function Checkout() {
                         colorPalette="blue"
                       >
                         <RadioCard.Label>Zahlungsmethode *</RadioCard.Label>
-                        <HStack align="stretch">
+                        <Stack
+                          align="stretch"
+                          direction={{ base: "column", md: "row" }}
+                        >
                           <RadioCard.Item value="Barzahlung">
                             <RadioCard.ItemHiddenInput />
                             <RadioCard.ItemControl className="hover:cursor-pointer">
@@ -347,7 +350,7 @@ export default function Checkout() {
                               <RadioCard.ItemIndicator />
                             </RadioCard.ItemControl>
                           </RadioCard.Item> */}
-                        </HStack>
+                        </Stack>
                       </RadioCard.Root>
                     )}
                   />
