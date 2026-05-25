@@ -137,7 +137,7 @@ export default function OrdersAdmin() {
                   {order.user?.name || order.shippingName || order.email || "-"}
                 </Table.Cell>
                 <Table.Cell>
-                  {order.total != null
+                  {!order.isGroupOrder && order.total != null
                     ? parseFloat(order.total).toFixed(2) + " €"
                     : "-"}
                 </Table.Cell>
@@ -359,12 +359,15 @@ export default function OrdersAdmin() {
                                 </Table.Cell>
                                 <Table.Cell>{item.quantity}</Table.Cell>
                                 <Table.Cell textAlign={"end"}>
-                                  {item.price != null
+                                  {!item.product?.isGroupOrder &&
+                                  item.price != null
                                     ? parseFloat(item.price).toFixed(2) + " €"
                                     : "-"}
                                 </Table.Cell>
                                 <Table.Cell textAlign={"end"}>
-                                  {item.price != null && item.quantity
+                                  {!item.product?.isGroupOrder &&
+                                  item.price != null &&
+                                  item.quantity
                                     ? (
                                         parseFloat(item.price) * item.quantity
                                       ).toFixed(2) + " €"
@@ -385,9 +388,10 @@ export default function OrdersAdmin() {
                       >
                         <Text>Gesamtbetrag:</Text>
                         <Text>
-                          {selectedOrder.total != null
+                          {!selectedOrder.isGroupOrder &&
+                          selectedOrder.total != null
                             ? parseFloat(selectedOrder.total).toFixed(2) + " €"
-                            : "-"}
+                            : "--"}
                         </Text>
                       </HStack>
                     </Box>

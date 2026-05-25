@@ -122,6 +122,12 @@ model Product {
   variants    ProductVariant[]
   cartItems   CartItem[]
   orderItems  OrderItem[]
+
+  // Sammelbestellung
+  isGroupOrder         Boolean   @default(false)
+  groupOrderDeadline   DateTime?
+  groupOrderStatus     String?   // "open" | "closed" | "priced" | "fulfilled" | "cancelled"
+  groupOrderFinalPrice Decimal?  @db.Decimal(10, 2)
 }
 
 model ProductVariant {
@@ -168,6 +174,7 @@ model Order {
   total     Decimal  @db.Decimal(10, 2)
   email     String
   payment   String?  @default("Barzahlung")
+  isGroupOrder Boolean @default(false)
 
   // Shipping Address
   shippingName   String?

@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import Layout from "@/components/ui/layouts/layout";
 import ProductCard from "@/components/shop/product-card";
 import CartDrawer from "@/components/shop/cart-drawer";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import Lightbox from "yet-another-react-lightbox";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 // export const getServerSideProps = async () => {
 //   return {
@@ -100,6 +105,29 @@ export default function Shop() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [openSizeGuide, setOpenSizeGuide] = useState(false);
+  const [sizeGuideIndex, setSizeGuideIndex] = useState(0);
+
+  const sizeGuides = [
+    {
+      id: "damen",
+      title: "Damen",
+      src: "/shop/Groessen/DamenGroessen.jpeg",
+      alt: "Größentabelle Damen",
+    },
+    {
+      id: "herren",
+      title: "Herren",
+      src: "/shop/Groessen/HerrenGroessen.jpeg",
+      alt: "Größentabelle Herren",
+    },
+    {
+      id: "jugend",
+      title: "Jugend",
+      src: "/shop/Groessen/KinderGroessen.jpeg",
+      alt: "Größentabelle Jugend",
+    },
+  ];
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -139,6 +167,11 @@ export default function Shop() {
       if (product.hasVariants && variantId) {
         variant = product.variants.find((v) => v.id === variantId);
         actualStock = variant.stock;
+      }
+
+      // Group order products have unlimited "stock" for cart purposes
+      if (product.isGroupOrder) {
+        actualStock = Infinity;
       }
 
       const cartKey = variantId || product.id;
@@ -234,7 +267,62 @@ export default function Shop() {
               ))}
             </div>
           )}
+
+          <div className="mt-12 border border-gray-200 rounded-lg bg-gray-50 p-5 md:p-7">
+            <div className="flex flex-col gap-2 mb-6">
+              <h2 className="text-2xl font-bold text-tch-blue">Größenguide</h2>
+              <p className="text-sm text-gray-600">
+                Damen, Herren und Jugend. Zum Vergrößern einfach auf ein Bild
+                klicken.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {sizeGuides.map((guide) => (
+                <button
+                  key={guide.id}
+                  type="button"
+                  onClick={() => {
+                    setSizeGuideIndex(
+                      sizeGuides.findIndex((g) => g.id === guide.id),
+                    );
+                    setOpenSizeGuide(true);
+                  }}
+                  className="group text-left bg-white rounded border border-gray-200 overflow-hidden hover:shadow-md transition-shadow hover:cursor-pointer"
+                >
+                  <div className="relative aspect-[4/3] bg-gray-100">
+                    <Image
+                      src={guide.src}
+                      alt={guide.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="px-4 py-3 flex items-center justify-between">
+                    <span className="font-semibold text-tch-blue">
+                      {guide.title}
+                    </span>
+                    <span className="text-sm text-gray-500 group-hover:text-gray-700">
+                      Vergrößern
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
+
+        <Lightbox
+          controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
+          open={openSizeGuide}
+          close={() => setOpenSizeGuide(false)}
+          plugins={[Thumbnails]}
+          index={sizeGuideIndex}
+          slides={sizeGuides.map((guide) => ({
+            src: guide.src,
+            alt: guide.alt,
+          }))}
+        />
 
         {/* Cart Drawer */}
         <CartDrawer

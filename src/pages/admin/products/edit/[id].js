@@ -37,10 +37,11 @@ const schema = yup
       .min(0, "Lager kann nicht negativ sein")
       .required("Lager ist erforderlich"),
     sku: yup.string(),
-    // image: yup.string().url("Bitte geben Sie eine gültige URL ein"),
     image: yup.string(),
     active: yup.boolean().required(),
     hasVariants: yup.boolean().required(),
+    isGroupOrder: yup.boolean().required(),
+    groupOrderDeadline: yup.string(),
     variants: yup.array().of(
       yup.object({
         size: yup.string().required("Größe ist erforderlich"),
@@ -80,6 +81,8 @@ export default function EditProduct() {
       image: "",
       active: true,
       hasVariants: false,
+      isGroupOrder: false,
+      groupOrderDeadline: "",
       variants: [],
     },
   });
@@ -90,6 +93,7 @@ export default function EditProduct() {
   });
 
   const hasVariants = watch("hasVariants");
+  const isGroupOrder = watch("isGroupOrder");
 
   useEffect(() => {
     if (id) {
@@ -119,6 +123,10 @@ export default function EditProduct() {
           image: data.image || "",
           active: data.active,
           hasVariants: data.hasVariants || false,
+          isGroupOrder: data.isGroupOrder || false,
+          groupOrderDeadline: data.groupOrderDeadline
+            ? new Date(data.groupOrderDeadline).toISOString().slice(0, 16)
+            : "",
           variants: data.variants || [],
         });
       }
@@ -258,6 +266,41 @@ export default function EditProduct() {
                   <Field.ErrorText>{errors.image.message}</Field.ErrorText>
                 )}
               </Field.Root>
+
+              <Field.Root>
+                <Controller
+                  name="isGroupOrder"
+                  control={control}
+                  render={({ field }) => (
+                    <Switch.Root
+                      checked={field.value}
+                      onCheckedChange={(e) => field.onChange(e.checked)}
+                    >
+                      <Switch.HiddenInput />
+                      <Switch.Control />
+                      <Switch.Label>Sammelbestellung</Switch.Label>
+                    </Switch.Root>
+                  )}
+                />
+                <Field.HelperText>
+                  Preis wird erst nach Bestellschluss vom Produzenten festgelegt
+                </Field.HelperText>
+              </Field.Root>
+
+              {isGroupOrder && (
+                <Field.Root invalid={!!errors.groupOrderDeadline}>
+                  <Field.Label>Bestellschluss</Field.Label>
+                  <Input
+                    {...register("groupOrderDeadline")}
+                    type="datetime-local"
+                  />
+                  {errors.groupOrderDeadline && (
+                    <Field.ErrorText>
+                      {errors.groupOrderDeadline.message}
+                    </Field.ErrorText>
+                  )}
+                </Field.Root>
+              )}
 
               <Field.Root>
                 <Controller

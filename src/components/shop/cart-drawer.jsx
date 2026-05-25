@@ -14,10 +14,11 @@ export default function CartDrawer({
   onRemoveItem,
   onCheckout,
 }) {
-  const total = cart.reduce(
-    (sum, item) => sum + parseFloat(item.price) * item.quantity,
-    0,
-  );
+  const hasGroupOrders = cart.some((item) => item.isGroupOrder);
+  const total = cart.reduce((sum, item) => {
+    if (item.isGroupOrder) return sum;
+    return sum + parseFloat(item.price) * item.quantity;
+  }, 0);
 
   return (
     <Drawer.Root
@@ -66,7 +67,9 @@ export default function CartDrawer({
                           )}
                         </h3>
                         <p className="text-sm text-gray-600">
-                          {parseFloat(item.price).toFixed(2)} €
+                          {item.isGroupOrder
+                            ? "Preis wird nach Bestellschluss festgelegt"
+                            : `${parseFloat(item.price).toFixed(2)} €`}
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
@@ -111,11 +114,21 @@ export default function CartDrawer({
                 gap={4}
               >
                 <div className="flex justify-between">
-                  <span className="font-semibold">Gesamtsumme:</span>
+                  <span className="font-semibold">
+                    {hasGroupOrders
+                      ? "Zwischensumme (ohne Sammelbestellungen):"
+                      : "Gesamtsumme:"}
+                  </span>
                   <span className="text-2xl font-bold text-tch-blue">
                     {total.toFixed(2)} €
                   </span>
                 </div>
+                {hasGroupOrders && (
+                  <p className="text-sm text-gray-500">
+                    Preise für Sammelbestellungen werden erst nach
+                    Bestellschluss festgelegt.
+                  </p>
+                )}
                 <button
                   onClick={onCheckout}
                   className="w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold hover:cursor-pointer"

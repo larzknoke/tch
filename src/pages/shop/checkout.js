@@ -17,32 +17,48 @@ const schema = yup
     payment: yup
       .string()
       .oneOf(
-        ["Barzahlung", "Überweisung", "PayPal"],
+        ["Barzahlung", "Überweisung", "PayPal", "Sammelbestellung"],
         "Bitte wählen Sie eine Zahlungsmethode",
       )
       .required("Zahlungsmethode ist erforderlich"),
     shippingName: yup.string().required("Name ist erforderlich"),
-    shippingStreet: yup.string().required("Straße ist erforderlich"),
-    shippingPlz: yup.string().required("PLZ ist erforderlich"),
-    shippingCity: yup.string().required("Stadt ist erforderlich"),
+    shippingStreet: yup.string().when("payment", {
+      is: "Sammelbestellung",
+      then: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required("Straße ist erforderlich"),
+    }),
+    shippingPlz: yup.string().when("payment", {
+      is: "Sammelbestellung",
+      then: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required("PLZ ist erforderlich"),
+    }),
+    shippingCity: yup.string().when("payment", {
+      is: "Sammelbestellung",
+      then: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required("Stadt ist erforderlich"),
+    }),
     useSameAddress: yup.boolean().default(true),
-    billingName: yup.string().when("useSameAddress", {
-      is: false,
+    billingName: yup.string().when(["useSameAddress", "payment"], {
+      is: (useSameAddress, payment) =>
+        useSameAddress === false && payment !== "Sammelbestellung",
       then: (schema) => schema.required("Name ist erforderlich"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    billingStreet: yup.string().when("useSameAddress", {
-      is: false,
+    billingStreet: yup.string().when(["useSameAddress", "payment"], {
+      is: (useSameAddress, payment) =>
+        useSameAddress === false && payment !== "Sammelbestellung",
       then: (schema) => schema.required("Straße ist erforderlich"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    billingPlz: yup.string().when("useSameAddress", {
-      is: false,
+    billingPlz: yup.string().when(["useSameAddress", "payment"], {
+      is: (useSameAddress, payment) =>
+        useSameAddress === false && payment !== "Sammelbestellung",
       then: (schema) => schema.required("PLZ ist erforderlich"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    billingCity: yup.string().when("useSameAddress", {
-      is: false,
+    billingCity: yup.string().when(["useSameAddress", "payment"], {
+      is: (useSameAddress, payment) =>
+        useSameAddress === false && payment !== "Sammelbestellung",
       then: (schema) => schema.required("Stadt ist erforderlich"),
       otherwise: (schema) => schema.notRequired(),
     }),
@@ -59,6 +75,7 @@ export default function Checkout() {
     handleSubmit,
     watch,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -78,6 +95,8 @@ export default function Checkout() {
   });
 
   const useSameAddress = watch("useSameAddress");
+  const selectedPayment = watch("payment");
+  const isGroupOrderPayment = selectedPayment === "Sammelbestellung";
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -88,10 +107,23 @@ export default function Checkout() {
     }
   }, [router]);
 
-  const total = cart.reduce(
-    (sum, item) => sum + parseFloat(item.price) * item.quantity,
-    0,
-  );
+  const hasGroupOrders = cart.some((item) => item.isGroupOrder);
+  const onlyGroupOrders =
+    cart.length > 0 && cart.every((item) => item.isGroupOrder);
+  const total = cart.reduce((sum, item) => {
+    if (item.isGroupOrder) return sum;
+    return sum + parseFloat(item.price) * item.quantity;
+  }, 0);
+
+  useEffect(() => {
+    if (onlyGroupOrders && selectedPayment !== "Sammelbestellung") {
+      setValue("payment", "Sammelbestellung");
+    }
+
+    if (!hasGroupOrders && selectedPayment === "Sammelbestellung") {
+      setValue("payment", "Barzahlung");
+    }
+  }, [hasGroupOrders, onlyGroupOrders, selectedPayment, setValue]);
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -191,16 +223,28 @@ export default function Checkout() {
                         Menge: {item.quantity}
                       </p>
                       <p className="text-sm font-semibold mt-1">
-                        {(parseFloat(item.price) * item.quantity).toFixed(2)} €
+                        {item.isGroupOrder
+                          ? "Preis wird nach Bestellschluss festgelegt"
+                          : `${(parseFloat(item.price) * item.quantity).toFixed(2)} €`}
                       </p>
                     </div>
                   </div>
                 ))}
                 <div className="pt-4 border-t">
                   <div className="flex justify-between text-xl font-bold text-tch-blue">
-                    <span>Gesamtsumme:</span>
+                    <span>
+                      {hasGroupOrders
+                        ? "Zwischensumme (ohne Sammelbestellungen):"
+                        : "Gesamtsumme:"}
+                    </span>
                     <span>{total.toFixed(2)} €</span>
                   </div>
+                  {hasGroupOrders && (
+                    <p className="text-sm text-gray-500 mt-2">
+                      Preise für Sammelbestellungen werden erst nach
+                      Bestellschluss festgelegt.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -259,7 +303,7 @@ export default function Checkout() {
                               <RadioCard.ItemIndicator />
                             </RadioCard.ItemControl>
                           </RadioCard.Item>
-                          <RadioCard.Item value="Ueberweisung">
+                          <RadioCard.Item value="Überweisung">
                             <RadioCard.ItemHiddenInput />
                             <RadioCard.ItemControl className="hover:cursor-pointer">
                               <RadioCard.ItemContent>
@@ -273,7 +317,23 @@ export default function Checkout() {
                               <RadioCard.ItemIndicator />
                             </RadioCard.ItemControl>
                           </RadioCard.Item>
-                          <RadioCard.Item value="PayPal" disabled={true}>
+                          {hasGroupOrders && (
+                            <RadioCard.Item value="Sammelbestellung">
+                              <RadioCard.ItemHiddenInput />
+                              <RadioCard.ItemControl className="hover:cursor-pointer">
+                                <RadioCard.ItemContent>
+                                  <RadioCard.ItemText fontWeight="medium">
+                                    Sammelbestellung
+                                  </RadioCard.ItemText>
+                                  <RadioCard.ItemDescription>
+                                    Zahlung nach Preisfestlegung
+                                  </RadioCard.ItemDescription>
+                                </RadioCard.ItemContent>
+                                <RadioCard.ItemIndicator />
+                              </RadioCard.ItemControl>
+                            </RadioCard.Item>
+                          )}
+                          {/* <RadioCard.Item value="PayPal" disabled={true}>
                             <RadioCard.ItemHiddenInput />
                             <RadioCard.ItemControl className="hover:cursor-not-allowed">
                               <RadioCard.ItemContent>
@@ -286,7 +346,7 @@ export default function Checkout() {
                               </RadioCard.ItemContent>
                               <RadioCard.ItemIndicator />
                             </RadioCard.ItemControl>
-                          </RadioCard.Item>
+                          </RadioCard.Item> */}
                         </HStack>
                       </RadioCard.Root>
                     )}
@@ -330,7 +390,7 @@ export default function Checkout() {
                         htmlFor="shippingStreet"
                         className="block text-sm font-medium mb-1"
                       >
-                        Straße, Hausnummer *
+                        Straße, Hausnummer {isGroupOrderPayment ? "" : "*"}
                       </label>
                       <input
                         type="text"
@@ -353,7 +413,7 @@ export default function Checkout() {
                           htmlFor="shippingPlz"
                           className="block text-sm font-medium mb-1"
                         >
-                          PLZ *
+                          PLZ {isGroupOrderPayment ? "" : "*"}
                         </label>
                         <input
                           type="text"
@@ -375,7 +435,7 @@ export default function Checkout() {
                           htmlFor="shippingCity"
                           className="block text-sm font-medium mb-1"
                         >
-                          Stadt *
+                          Stadt {isGroupOrderPayment ? "" : "*"}
                         </label>
                         <input
                           type="text"
@@ -424,7 +484,7 @@ export default function Checkout() {
                           htmlFor="billingName"
                           className="block text-sm font-medium mb-1"
                         >
-                          Name *
+                          Name {isGroupOrderPayment ? "" : "*"}
                         </label>
                         <input
                           type="text"
@@ -446,7 +506,7 @@ export default function Checkout() {
                           htmlFor="billingStreet"
                           className="block text-sm font-medium mb-1"
                         >
-                          Straße, Hausnummer *
+                          Straße, Hausnummer {isGroupOrderPayment ? "" : "*"}
                         </label>
                         <input
                           type="text"
@@ -469,7 +529,7 @@ export default function Checkout() {
                             htmlFor="billingPlz"
                             className="block text-sm font-medium mb-1"
                           >
-                            PLZ *
+                            PLZ {isGroupOrderPayment ? "" : "*"}
                           </label>
                           <input
                             type="text"
@@ -491,7 +551,7 @@ export default function Checkout() {
                             htmlFor="billingCity"
                             className="block text-sm font-medium mb-1"
                           >
-                            Stadt *
+                            Stadt {isGroupOrderPayment ? "" : "*"}
                           </label>
                           <input
                             type="text"
@@ -519,7 +579,9 @@ export default function Checkout() {
                 >
                   {loading
                     ? "Bestellung wird erstellt..."
-                    : "Kostenpflichtig bestellen"}
+                    : selectedPayment === "Sammelbestellung"
+                      ? "Verbindlich für Sammelbestellung anmelden"
+                      : "Kostenpflichtig bestellen"}
                 </button>
               </form>
             </div>

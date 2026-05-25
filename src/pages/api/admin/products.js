@@ -67,6 +67,9 @@ async function createProduct(req, res) {
       sku,
       hasVariants,
       variants,
+      isGroupOrder,
+      groupOrderDeadline,
+      groupOrderStatus,
     } = req.body;
 
     if (!name || !price) {
@@ -83,6 +86,11 @@ async function createProduct(req, res) {
         image: image || null,
         sku: sku || null,
         hasVariants: hasVariants || false,
+        isGroupOrder: isGroupOrder || false,
+        groupOrderDeadline: groupOrderDeadline
+          ? new Date(groupOrderDeadline)
+          : null,
+        groupOrderStatus: isGroupOrder ? groupOrderStatus || "open" : null,
         variants:
           hasVariants && variants
             ? {
@@ -117,6 +125,10 @@ async function updateProduct(req, res) {
       sku,
       hasVariants,
       variants,
+      isGroupOrder,
+      groupOrderDeadline,
+      groupOrderStatus,
+      groupOrderFinalPrice,
     } = req.body;
 
     if (!id) {
@@ -141,6 +153,15 @@ async function updateProduct(req, res) {
         image: image || null,
         sku: sku || null,
         hasVariants: hasVariants || false,
+        isGroupOrder: isGroupOrder || false,
+        groupOrderDeadline: groupOrderDeadline
+          ? new Date(groupOrderDeadline)
+          : null,
+        groupOrderStatus: isGroupOrder ? groupOrderStatus || "open" : null,
+        groupOrderFinalPrice:
+          groupOrderFinalPrice != null
+            ? parseFloat(groupOrderFinalPrice)
+            : null,
         variants:
           hasVariants && variants
             ? {

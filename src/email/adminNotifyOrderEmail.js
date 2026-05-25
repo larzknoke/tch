@@ -106,6 +106,13 @@ export default function AdminNotifyOrderEmail({ order }) {
                     <Text style={textSmall}>Größe: {item.variant.size}</Text>
                   )}
                   <Text style={textSmall}>
+                    SKU: {item.variant?.sku || item.product?.sku || "-"}
+                  </Text>
+                  <Text style={textSmall}>
+                    Sammelbestellung:{" "}
+                    {item.product?.isGroupOrder ? "Ja" : "Nein"}
+                  </Text>
+                  <Text style={textSmall}>
                     Menge: {item.quantity} × {parseFloat(item.price).toFixed(2)}{" "}
                     € = {(parseFloat(item.price) * item.quantity).toFixed(2)} €
                   </Text>

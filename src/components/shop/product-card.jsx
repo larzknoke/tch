@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { ShoppingCartIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { Portal, Select, Spacer, createListCollection } from "@chakra-ui/react";
 
 export default function ProductCard({ product, onAddToCart }) {
@@ -10,9 +10,11 @@ export default function ProductCard({ product, onAddToCart }) {
 
   const variantCollection = createListCollection({
     items: (product.variants || []).map((v) => ({
-      label: `${v.size} ${v.stock === 0 ? "(Ausverkauft)" : `(${v.stock} verfügbar)`}`,
+      label: product.isGroupOrder
+        ? `${v.size}`
+        : `${v.size} ${v.stock === 0 ? "(Ausverkauft)" : `(${v.stock} verfügbar)`}`,
       value: String(v.id),
-      disabled: v.stock === 0,
+      disabled: !product.isGroupOrder && v.stock === 0,
     })),
   });
 
@@ -31,12 +33,16 @@ export default function ProductCard({ product, onAddToCart }) {
     return variant?.stock || 0;
   };
 
-  const isOutOfStock = getAvailableStock() === 0;
+  const isOutOfStock = !product.isGroupOrder && getAvailableStock() === 0;
+  const isGroupOrderClosed =
+    product.isGroupOrder &&
+    product.groupOrderStatus !== "open" &&
+    product.groupOrderStatus !== null;
 
   return (
     <div className="bg-gray-100 border border-gray-300 rounded overflow-hidden hover:shadow-lg transition-shadow duration-400 flex flex-col h-full">
       {product.image && (
-        <div className="relative h-48 bg-gray-100">
+        <div className="relative h-48 bg-white border-b border-gray-200">
           <Image
             src={`/shop/${product.image}`}
             alt={product.name}
@@ -53,6 +59,48 @@ export default function ProductCard({ product, onAddToCart }) {
           <p className="text-gray-600 text-sm mb-3 line-clamp-2">
             {product.description}
           </p>
+        )}
+
+        {/* Group Order Info */}
+        {product.isGroupOrder && (
+          <div className="mb-4 bg-blue-50 border border-blue-200 rounded p-3 text-sm">
+            <p className="font-semibold text-tch-blue mb-1 text-sm">
+              <UserGroupIcon className="h-4 w-4 inline-block mr-1 mb-1 text-tch-blue" />
+              Sammelbestellung
+            </p>
+            {product.groupOrderStatus === "priced" ||
+            product.groupOrderStatus === "fulfilled" ? (
+              <p className="text-green-700 font-semibold text-sm">
+                Preis: {parseFloat(product.groupOrderFinalPrice).toFixed(2)} €
+              </p>
+            ) : (
+              <p className="text-gray-600 text-sm">
+                Preis wird nach Bestellschluss festgelegt.
+              </p>
+            )}
+            {product.groupOrderDeadline && (
+              <p className="text-gray-500 mt-1 text-sm">
+                Bestellschluss:{" "}
+                {new Date(product.groupOrderDeadline).toLocaleDateString(
+                  "de-DE",
+                  {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  },
+                )}
+              </p>
+            )}
+            {/* <p className="text-gray-500 mt-1 text-sm">
+              Bisher bestellt: <strong>{product.groupOrderCount || 0}</strong>{" "}
+              Stück
+            </p> */}
+            {isGroupOrderClosed && (
+              <p className="text-orange-600 font-semibold mt-1">
+                Bestellung geschlossen
+              </p>
+            )}
+          </div>
         )}
 
         {product.hasVariants && product.variants && (
@@ -95,10 +143,14 @@ export default function ProductCard({ product, onAddToCart }) {
         )}
         <div className="flex items-center justify-between mt-auto gap-4">
           <div className="flex flex-row items-center justify-between gap-4 w-full">
-            <p className="text-2xl font-bold text-tch-blue">
-              {parseFloat(product.price).toFixed(2)} €
-            </p>
-            {!product.hasVariants && (
+            {product.isGroupOrder ? (
+              <p className="text-sm text-gray-500 italic">Preis noch offen</p>
+            ) : (
+              <p className="text-2xl font-bold text-tch-blue">
+                {parseFloat(product.price).toFixed(2)} €
+              </p>
+            )}
+            {!product.isGroupOrder && !product.hasVariants && (
               <p className="text-sm text-gray-500">
                 {product.stock > 0
                   ? `Auf Lager: ${product.stock}`
@@ -108,11 +160,14 @@ export default function ProductCard({ product, onAddToCart }) {
           </div>
           <button
             onClick={handleAddToCart}
-            disabled={isOutOfStock || (product.hasVariants && !selectedVariant)}
+            disabled={
+              isGroupOrderClosed ||
+              isOutOfStock ||
+              (product.hasVariants && !selectedVariant)
+            }
             className="bg-tch-blue text-white px-4 py-2 rounded hover:bg-tch-blue/90 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2 hover:cursor-pointer"
           >
             <ShoppingCartIcon className="h-5 w-5" />
-            {/* In den Warenkorb */}
           </button>
         </div>
       </div>
