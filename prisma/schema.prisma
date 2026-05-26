@@ -8,6 +8,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ProductType {
+  HOODIE
+  TRIKOT
+  SHIRT
+  HOSE
+  JACKE
+  ACCESSOIRE
+}
+
+enum ProductAudience {
+  DAMEN
+  HERREN
+  UNISEX
+  JUGEND
+  KINDER
+}
+
 model Effort {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -122,6 +139,8 @@ model Product {
   variants    ProductVariant[]
   cartItems   CartItem[]
   orderItems  OrderItem[]
+  productType ProductType?
+  audiences   ProductAudience[] @default([])
 
   // Sammelbestellung
   isGroupOrder         Boolean   @default(false)

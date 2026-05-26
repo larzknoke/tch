@@ -1,6 +1,10 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import prisma from "@/lib/prisma";
+import {
+  normalizeProductType,
+  normalizeAudiences,
+} from "@/lib/product-taxonomy";
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
@@ -70,10 +74,19 @@ async function createProduct(req, res) {
       isGroupOrder,
       groupOrderDeadline,
       groupOrderStatus,
+      productType,
+      audiences,
     } = req.body;
 
     if (!name || !price) {
       return res.status(400).json({ error: "Name and price are required" });
+    }
+
+    const normalizedProductType = normalizeProductType(productType);
+    const normalizedAudiences = normalizeAudiences(audiences);
+
+    if (productType && !normalizedProductType) {
+      return res.status(400).json({ error: "Invalid product type" });
     }
 
     const product = await prisma.product.create({
@@ -86,6 +99,8 @@ async function createProduct(req, res) {
         image: image || null,
         sku: sku || null,
         hasVariants: hasVariants || false,
+        productType: normalizedProductType,
+        audiences: normalizedAudiences,
         isGroupOrder: isGroupOrder || false,
         groupOrderDeadline: groupOrderDeadline
           ? new Date(groupOrderDeadline)
@@ -129,10 +144,19 @@ async function updateProduct(req, res) {
       groupOrderDeadline,
       groupOrderStatus,
       groupOrderFinalPrice,
+      productType,
+      audiences,
     } = req.body;
 
     if (!id) {
       return res.status(400).json({ error: "Product ID is required" });
+    }
+
+    const normalizedProductType = normalizeProductType(productType);
+    const normalizedAudiences = normalizeAudiences(audiences);
+
+    if (productType && !normalizedProductType) {
+      return res.status(400).json({ error: "Invalid product type" });
     }
 
     // Delete existing variants if hasVariants changed or if updating variants
@@ -153,6 +177,8 @@ async function updateProduct(req, res) {
         image: image || null,
         sku: sku || null,
         hasVariants: hasVariants || false,
+        productType: normalizedProductType,
+        audiences: normalizedAudiences,
         isGroupOrder: isGroupOrder || false,
         groupOrderDeadline: groupOrderDeadline
           ? new Date(groupOrderDeadline)

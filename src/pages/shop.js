@@ -8,8 +8,23 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import { NativeSelect } from "@chakra-ui/react";
+import {
+  PRODUCT_TYPE_OPTIONS,
+  AUDIENCE_OPTIONS,
+} from "@/lib/product-taxonomy";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+
+const PRODUCT_TYPE_FILTER_OPTIONS = [
+  { value: "", label: "Alle Produktarten" },
+  ...PRODUCT_TYPE_OPTIONS,
+];
+
+const AUDIENCE_FILTER_OPTIONS = [
+  { value: "", label: "Alle Zielgruppen" },
+  ...AUDIENCE_OPTIONS,
+];
 
 // export const getServerSideProps = async () => {
 //   return {
@@ -107,6 +122,8 @@ export default function Shop() {
   const [loading, setLoading] = useState(true);
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const [sizeGuideIndex, setSizeGuideIndex] = useState(0);
+  const [selectedProductType, setSelectedProductType] = useState("");
+  const [selectedAudience, setSelectedAudience] = useState("");
 
   const sizeGuides = [
     {
@@ -146,7 +163,18 @@ export default function Shop() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch("/api/products");
+        setLoading(true);
+
+        const params = new URLSearchParams();
+        if (selectedProductType) {
+          params.set("productType", selectedProductType);
+        }
+        if (selectedAudience) {
+          params.set("audience", selectedAudience);
+        }
+
+        const query = params.toString();
+        const response = await fetch(`/api/products${query ? `?${query}` : ""}`);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -157,7 +185,7 @@ export default function Shop() {
       }
     }
     fetchProducts();
-  }, []);
+  }, [selectedProductType, selectedAudience]);
 
   const handleAddToCart = (product, variantId = null) => {
     setCart((prevCart) => {
@@ -251,6 +279,44 @@ export default function Shop() {
                 </span>
               )}
             </button>
+          </div>
+
+          <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <label className="text-sm text-gray-700">
+              <span className="mb-1 block font-medium">Produktart</span>
+              <NativeSelect.Root>
+                <NativeSelect.Field
+                  value={selectedProductType}
+                  onChange={(event) =>
+                    setSelectedProductType(event.target.value)
+                  }
+                >
+                  {PRODUCT_TYPE_FILTER_OPTIONS.map((option) => (
+                    <option key={option.value || "all"} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </NativeSelect.Field>
+                <NativeSelect.Indicator />
+              </NativeSelect.Root>
+            </label>
+
+            <label className="text-sm text-gray-700">
+              <span className="mb-1 block font-medium">Geschlecht / Zielgruppe</span>
+              <NativeSelect.Root>
+                <NativeSelect.Field
+                  value={selectedAudience}
+                  onChange={(event) => setSelectedAudience(event.target.value)}
+                >
+                  {AUDIENCE_FILTER_OPTIONS.map((option) => (
+                    <option key={option.value || "all"} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </NativeSelect.Field>
+                <NativeSelect.Indicator />
+              </NativeSelect.Root>
+            </label>
           </div>
 
           {/* Products Grid */}

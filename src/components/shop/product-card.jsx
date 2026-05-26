@@ -4,9 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { ShoppingCartIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { Portal, Select, Spacer, createListCollection } from "@chakra-ui/react";
+import { formatProductType, formatAudience } from "@/lib/product-taxonomy";
 
 export default function ProductCard({ product, onAddToCart }) {
   const [selectedVariant, setSelectedVariant] = useState(null);
+
+  const productTypeLabel = formatProductType(product.productType);
 
   const variantCollection = createListCollection({
     items: (product.variants || []).map((v) => ({
@@ -55,6 +58,23 @@ export default function ProductCard({ product, onAddToCart }) {
         <h3 className="text-tch-blue  font-semibold text-lg mb-2">
           {product.name}
         </h3>
+        {(productTypeLabel || (product.audiences && product.audiences.length > 0)) && (
+          <div className="mb-3 flex flex-wrap gap-2">
+            {productTypeLabel && (
+              <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                {productTypeLabel}
+              </span>
+            )}
+            {(product.audiences || []).map((audience) => (
+              <span
+                key={audience}
+                className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-700"
+              >
+                {formatAudience(audience)}
+              </span>
+            ))}
+          </div>
+        )}
         {product.description && (
           <p className="text-gray-600 text-sm mb-3 line-clamp-2">
             {product.description}

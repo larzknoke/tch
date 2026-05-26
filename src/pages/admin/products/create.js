@@ -10,6 +10,7 @@ import {
   HStack,
   Switch,
   IconButton,
+  NativeSelect,
 } from "@chakra-ui/react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +20,7 @@ import { toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/router";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { normalizeSku } from "@/lib/utils";
+import { PRODUCT_TYPE_OPTIONS, AUDIENCE_OPTIONS } from "@/lib/product-taxonomy";
 
 const schema = yup
   .object({
@@ -37,6 +39,8 @@ const schema = yup
       .required("Lager ist erforderlich"),
     sku: yup.string(),
     image: yup.string(),
+    productType: yup.string().oneOf(["", ...PRODUCT_TYPE_OPTIONS.map((o) => o.value)]),
+    audiences: yup.array().of(yup.string().oneOf(AUDIENCE_OPTIONS.map((o) => o.value))),
     active: yup.boolean().required(),
     hasVariants: yup.boolean().required(),
     isGroupOrder: yup.boolean().required(),
@@ -75,6 +79,8 @@ export default function CreateProduct() {
       stock: 0,
       sku: "",
       image: "",
+      productType: "",
+      audiences: [],
       active: true,
       hasVariants: false,
       isGroupOrder: false,
@@ -98,6 +104,8 @@ export default function CreateProduct() {
       // Transform SKU to uppercase and replace spaces with dashes
       const transformedValues = {
         ...values,
+        productType: values.productType || null,
+        audiences: values.audiences || [],
         sku: normalizeSku(values.sku),
         variants:
           values.variants?.map((variant) => ({
@@ -206,6 +214,78 @@ export default function CreateProduct() {
                 </Field.HelperText>
                 {errors.image && (
                   <Field.ErrorText>{errors.image.message}</Field.ErrorText>
+                )}
+              </Field.Root>
+
+              <Field.Root invalid={!!errors.productType}>
+                <Field.Label>Produktart</Field.Label>
+                <Controller
+                  name="productType"
+                  control={control}
+                  render={({ field }) => (
+                    <NativeSelect.Root>
+                      <NativeSelect.Field
+                        value={field.value || ""}
+                        onChange={(e) => field.onChange(e.target.value)}
+                      >
+                        <option value="">Bitte auswählen</option>
+                        {PRODUCT_TYPE_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </NativeSelect.Field>
+                      <NativeSelect.Indicator />
+                    </NativeSelect.Root>
+                  )}
+                />
+                {errors.productType && (
+                  <Field.ErrorText>{errors.productType.message}</Field.ErrorText>
+                )}
+              </Field.Root>
+
+              <Field.Root invalid={!!errors.audiences}>
+                <Field.Label>Geschlecht / Zielgruppe (Tags)</Field.Label>
+                <Controller
+                  name="audiences"
+                  control={control}
+                  render={({ field }) => {
+                    const values = Array.isArray(field.value) ? field.value : [];
+
+                    return (
+                      <HStack wrap="wrap" gap={3} align="start">
+                        {AUDIENCE_OPTIONS.map((option) => (
+                          <label
+                            key={option.value}
+                            className="inline-flex items-center gap-2 rounded border border-gray-200 px-3 py-2"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={values.includes(option.value)}
+                              onChange={(event) => {
+                                if (event.target.checked) {
+                                  field.onChange(
+                                    Array.from(new Set([...values, option.value])),
+                                  );
+                                  return;
+                                }
+                                field.onChange(
+                                  values.filter((value) => value !== option.value),
+                                );
+                              }}
+                            />
+                            <span>{option.label}</span>
+                          </label>
+                        ))}
+                      </HStack>
+                    );
+                  }}
+                />
+                <Field.HelperText>
+                  Mehrfachauswahl möglich, z.B. Unisex + Jugend.
+                </Field.HelperText>
+                {errors.audiences && (
+                  <Field.ErrorText>{errors.audiences.message}</Field.ErrorText>
                 )}
               </Field.Root>
 

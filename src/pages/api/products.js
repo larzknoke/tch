@@ -1,11 +1,36 @@
 import prisma from "@/lib/prisma";
+import { isValidProductType, isValidAudience } from "@/lib/product-taxonomy";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
+      const { productType, audience } = req.query;
+
+      const normalizedProductType = productType
+        ? String(productType).trim().toUpperCase()
+        : null;
+
+      const normalizedAudience = audience
+        ? String(audience).trim().toUpperCase()
+        : null;
+
+      if (normalizedProductType && !isValidProductType(normalizedProductType)) {
+        return res.status(400).json({ error: "Invalid productType filter" });
+      }
+
+      if (normalizedAudience && !isValidAudience(normalizedAudience)) {
+        return res.status(400).json({ error: "Invalid audience filter" });
+      }
+
       const products = await prisma.product.findMany({
         where: {
           active: true,
+          ...(normalizedProductType
+            ? { productType: normalizedProductType }
+            : {}),
+          ...(normalizedAudience
+            ? { audiences: { has: normalizedAudience } }
+            : {}),
         },
         include: { variants: true },
         orderBy: {
