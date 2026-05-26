@@ -231,6 +231,12 @@ export default function Shop() {
 
       <Layout>
         <div className="container mx-auto px-4 py-8">
+          <div className="mb-6 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
+            <p className="text-sm md:text-base font-semibold">
+              TEST-MODUS: Bestellungen werden zu Testzwecken erfasst und per
+              E-Mail bestaetigt (nicht verbindlich).
+            </p>
+          </div>
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-4xl font-bold text-tch-blue">Shop</h1>

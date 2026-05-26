@@ -193,6 +193,12 @@ export default function Checkout() {
 
       <Layout>
         <div className="container mx-auto px-4 py-8 max-w-6xl">
+          <div className="mb-6 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
+            <p className="text-sm md:text-base font-semibold">
+              TEST-MODUS: Bestellungen werden zu Testzwecken erfasst und per
+              E-Mail bestaetigt (nicht verbindlich).
+            </p>
+          </div>
           <h1 className="text-4xl font-bold text-tch-blue mb-8">Kasse</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
