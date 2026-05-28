@@ -8,10 +8,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import {
-  PRODUCT_TYPE_OPTIONS,
-  AUDIENCE_OPTIONS,
-} from "@/lib/product-taxonomy";
+import { PRODUCT_TYPE_OPTIONS, AUDIENCE_OPTIONS } from "@/lib/product-taxonomy";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
@@ -119,28 +116,53 @@ export default function Shop() {
   const [loading, setLoading] = useState(true);
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const [sizeGuideIndex, setSizeGuideIndex] = useState(0);
+  const [activeSizeGuideType, setActiveSizeGuideType] = useState("HOODIE");
   const [selectedProductTypes, setSelectedProductTypes] = useState([]);
   const [selectedAudiences, setSelectedAudiences] = useState([]);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   const sizeGuides = [
     {
-      id: "damen",
-      title: "Damen",
-      src: "/shop/Groessen/DamenGroessen.jpeg",
+      id: "damen-hoodie",
+      typ: "HOODIE",
+      title: "Damen Hoodie",
+      src: "/shop/Groessen/DamenGroessenHoodie.jpeg",
       alt: "Größentabelle Damen",
     },
     {
-      id: "herren",
-      title: "Herren",
-      src: "/shop/Groessen/HerrenGroessen.jpeg",
+      id: "herren-hoodie",
+      typ: "HOODIE",
+      title: "Herren Hoodie",
+      src: "/shop/Groessen/HerrenGroessenHoodie.jpeg",
       alt: "Größentabelle Herren",
     },
     {
-      id: "jugend",
-      title: "Jugend",
-      src: "/shop/Groessen/KinderGroessen.jpeg",
+      id: "jugend-hoodie",
+      typ: "HOODIE",
+      title: "Jugend Hoodie",
+      src: "/shop/Groessen/KinderGroessenHoodie.jpeg",
       alt: "Größentabelle Jugend",
+    },
+    {
+      id: "jugend-trikot",
+      typ: "TRIKOT",
+      title: "Jugend Trikot",
+      src: "/shop/Groessen/KinderGroessenTrikot.jpeg",
+      alt: "Größentabelle Jugend",
+    },
+    {
+      id: "damen-trikot",
+      typ: "TRIKOT",
+      title: "Damen Trikot",
+      src: "/shop/Groessen/DamenGroessenTrikot.jpeg",
+      alt: "Größentabelle Damen",
+    },
+    {
+      id: "herren-trikot",
+      typ: "TRIKOT",
+      title: "Herren Trikot",
+      src: "/shop/Groessen/HerrenGroessenTrikot.jpeg",
+      alt: "Größentabelle Herren",
     },
   ];
 
@@ -172,7 +194,9 @@ export default function Shop() {
         });
 
         const query = params.toString();
-        const response = await fetch(`/api/products${query ? `?${query}` : ""}`);
+        const response = await fetch(
+          `/api/products${query ? `?${query}` : ""}`,
+        );
         const data = await response.json();
 
         if (!response.ok) {
@@ -213,6 +237,14 @@ export default function Shop() {
 
   const totalActiveFilters =
     selectedProductTypes.length + selectedAudiences.length;
+  const sizeGuideTypes = [...new Set(sizeGuides.map((guide) => guide.typ))];
+  const activeGuides = sizeGuides.filter(
+    (guide) => guide.typ === activeSizeGuideType,
+  );
+  const sizeGuideTypeLabels = {
+    HOODIE: "Hoodie",
+    TRIKOT: "Trikot",
+  };
 
   const renderFilterContent = ({ showCloseButton = false } = {}) => (
     <>
@@ -406,7 +438,7 @@ export default function Shop() {
             </button>
           </div>
 
-          <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]">
+          <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-[230px_1fr]">
             <aside className="hidden h-fit rounded-lg border border-gray-200 bg-gray-50 p-5 lg:block">
               {renderFilterContent()}
             </aside>
@@ -425,7 +457,8 @@ export default function Shop() {
                       }
                       className="inline-flex items-center gap-2 rounded-full border border-tch-blue/20 bg-tch-blue/10 px-3 py-1 text-xs font-medium text-tch-blue hover:bg-tch-blue/20 hover:cursor-pointer"
                     >
-                      Produktart: {PRODUCT_TYPE_LABELS[productType] || productType}
+                      Produktart:{" "}
+                      {PRODUCT_TYPE_LABELS[productType] || productType}
                       <span aria-hidden="true">x</span>
                     </button>
                   ))}
@@ -470,7 +503,11 @@ export default function Shop() {
           </div>
 
           {isMobileFiltersOpen && (
-            <div className="fixed inset-0 z-40 lg:hidden" aria-modal="true" role="dialog">
+            <div
+              className="fixed inset-0 z-40 lg:hidden"
+              aria-modal="true"
+              role="dialog"
+            >
               <button
                 type="button"
                 onClick={() => setIsMobileFiltersOpen(false)}
@@ -492,14 +529,38 @@ export default function Shop() {
               </p>
             </div>
 
+            <div className="mb-6 flex flex-wrap gap-3">
+              {sizeGuideTypes.map((type) => {
+                const isActive = type === activeSizeGuideType;
+
+                return (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => {
+                      setActiveSizeGuideType(type);
+                      setSizeGuideIndex(0);
+                    }}
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors hover:cursor-pointer ${
+                      isActive
+                        ? "border-tch-blue bg-tch-blue text-white"
+                        : "border-gray-300 bg-white text-gray-700 hover:border-tch-blue hover:text-tch-blue"
+                    }`}
+                  >
+                    {sizeGuideTypeLabels[type] || type}
+                  </button>
+                );
+              })}
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {sizeGuides.map((guide) => (
+              {activeGuides.map((guide) => (
                 <button
                   key={guide.id}
                   type="button"
                   onClick={() => {
                     setSizeGuideIndex(
-                      sizeGuides.findIndex((g) => g.id === guide.id),
+                      activeGuides.findIndex((g) => g.id === guide.id),
                     );
                     setOpenSizeGuide(true);
                   }}
@@ -533,7 +594,7 @@ export default function Shop() {
           close={() => setOpenSizeGuide(false)}
           plugins={[Thumbnails]}
           index={sizeGuideIndex}
-          slides={sizeGuides.map((guide) => ({
+          slides={activeGuides.map((guide) => ({
             src: guide.src,
             alt: guide.alt,
           }))}

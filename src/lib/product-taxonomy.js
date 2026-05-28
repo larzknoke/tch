@@ -18,10 +18,10 @@ export const PRODUCT_AUDIENCE_VALUES = [
 export const PRODUCT_TYPE_OPTIONS = [
   { value: "HOODIE", label: "Hoodie" },
   { value: "TRIKOT", label: "Trikot" },
-  { value: "SHIRT", label: "Shirt" },
-  { value: "HOSE", label: "Hose" },
-  { value: "JACKE", label: "Jacke" },
-  { value: "ACCESSOIRE", label: "Accessoire" },
+  // { value: "SHIRT", label: "Shirt" },
+  // { value: "HOSE", label: "Hose" },
+  // { value: "JACKE", label: "Jacke" },
+  // { value: "ACCESSOIRE", label: "Accessoire" },
 ];
 
 export const AUDIENCE_OPTIONS = [
