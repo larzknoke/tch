@@ -13,14 +13,13 @@ export default function ProductCard({ product, onAddToCart }) {
 
   const variantCollection = createListCollection({
     items: (product.variants || []).map((v) => ({
-      label: product.isGroupOrder
-        ? `${v.size}`
-        : `${v.size} ${v.stock === 0 ? "(Ausverkauft)" : `(${v.stock} verfügbar)`}`,
+      label: product.isGroupOrder ? `${v.size}` : `${v.size}`,
       value: String(v.id),
       disabled: !product.isGroupOrder && v.stock === 0,
     })),
   });
 
+  // : `${v.size} ${v.stock === 0 ? "(Ausverkauft)" : `(${v.stock} verfügbar)`}`,
   const handleAddToCart = () => {
     if (product.hasVariants && !selectedVariant) {
       alert("Bitte wählen Sie eine Größe");
@@ -58,7 +57,8 @@ export default function ProductCard({ product, onAddToCart }) {
         <h3 className="text-tch-blue  font-semibold text-lg mb-2">
           {product.name}
         </h3>
-        {(productTypeLabel || (product.audiences && product.audiences.length > 0)) && (
+        {(productTypeLabel ||
+          (product.audiences && product.audiences.length > 0)) && (
           <div className="mb-3 flex flex-wrap gap-2">
             {productTypeLabel && (
               <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
