@@ -6,30 +6,48 @@ export default async function handler(req, res) {
     try {
       const { productType, audience } = req.query;
 
-      const normalizedProductType = productType
-        ? String(productType).trim().toUpperCase()
-        : null;
+      const rawProductTypes = Array.isArray(productType)
+        ? productType
+        : productType
+          ? [productType]
+          : [];
 
-      const normalizedAudience = audience
-        ? String(audience).trim().toUpperCase()
-        : null;
+      const rawAudiences = Array.isArray(audience)
+        ? audience
+        : audience
+          ? [audience]
+          : [];
 
-      if (normalizedProductType && !isValidProductType(normalizedProductType)) {
+      const normalizedProductTypes = rawProductTypes.map((value) =>
+        String(value).trim().toUpperCase(),
+      );
+
+      const normalizedAudiences = rawAudiences.map((value) =>
+        String(value).trim().toUpperCase(),
+      );
+
+      const hasInvalidProductType = normalizedProductTypes.some(
+        (value) => !isValidProductType(value),
+      );
+      if (hasInvalidProductType) {
         return res.status(400).json({ error: "Invalid productType filter" });
       }
 
-      if (normalizedAudience && !isValidAudience(normalizedAudience)) {
+      const hasInvalidAudience = normalizedAudiences.some(
+        (value) => !isValidAudience(value),
+      );
+      if (hasInvalidAudience) {
         return res.status(400).json({ error: "Invalid audience filter" });
       }
 
       const products = await prisma.product.findMany({
         where: {
           active: true,
-          ...(normalizedProductType
-            ? { productType: normalizedProductType }
+          ...(normalizedProductTypes.length > 0
+            ? { productType: { in: normalizedProductTypes } }
             : {}),
-          ...(normalizedAudience
-            ? { audiences: { has: normalizedAudience } }
+          ...(normalizedAudiences.length > 0
+            ? { audiences: { hasSome: normalizedAudiences } }
             : {}),
         },
         include: { variants: true },
