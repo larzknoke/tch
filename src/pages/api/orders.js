@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { sendEmail } from "@/lib/email";
 import { render } from "@react-email/render";
 import AdminNotifyOrderEmail from "@/email/adminNotifyOrderEmail";
+import OrderConfirmationEmail from "@/email/orderConfirmationEmail";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -150,6 +151,18 @@ export default async function handler(req, res) {
         });
       } catch (emailError) {
         console.log("Failed to send admin notification email:", emailError);
+        // Don't fail the request if email fails
+      }
+
+      // Send customer order confirmation email
+      try {
+        await sendEmail({
+          to: order.email,
+          subject: `Ihre Bestellbestaetigung #${order.id} - TC Holzminden von 1928 e.V.`,
+          html: await render(<OrderConfirmationEmail order={order} />),
+        });
+      } catch (emailError) {
+        console.log("Failed to send customer confirmation email:", emailError);
         // Don't fail the request if email fails
       }
 
