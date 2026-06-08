@@ -77,7 +77,9 @@ export default function OrderConfirmationEmail({ order }) {
             order.shippingCity) && (
             <Section style={section}>
               <Text style={sectionTitle}>Lieferadresse</Text>
-              {order.shippingName && <Text style={text}>{order.shippingName}</Text>}
+              {order.shippingName && (
+                <Text style={text}>{order.shippingName}</Text>
+              )}
               {order.shippingStreet && (
                 <Text style={text}>{order.shippingStreet}</Text>
               )}
@@ -95,8 +97,12 @@ export default function OrderConfirmationEmail({ order }) {
             order.billingCity) && (
             <Section style={section}>
               <Text style={sectionTitle}>Rechnungsadresse</Text>
-              {order.billingName && <Text style={text}>{order.billingName}</Text>}
-              {order.billingStreet && <Text style={text}>{order.billingStreet}</Text>}
+              {order.billingName && (
+                <Text style={text}>{order.billingName}</Text>
+              )}
+              {order.billingStreet && (
+                <Text style={text}>{order.billingStreet}</Text>
+              )}
               {(order.billingPlz || order.billingCity) && (
                 <Text style={text}>
                   {order.billingPlz || ""} {order.billingCity || ""}
@@ -133,7 +139,9 @@ export default function OrderConfirmationEmail({ order }) {
                       kann erst nach Abschluss der Sammelphase feststehen.
                     </Text>
                   )}
-                  {index < (order.items?.length || 0) - 1 && <Hr style={divider} />}
+                  {index < (order.items?.length || 0) - 1 && (
+                    <Hr style={divider} />
+                  )}
                 </Section>
               );
             })}
