@@ -52,7 +52,7 @@ export default function NewsPage({ newsItem }) {
               carousel={{
                 padding: 0,
                 spacing: 0,
-                imageFit: "contain",
+                imageFit: newsItem.imageFit ?? "contain",
               }}
               inline={{
                 style: {
