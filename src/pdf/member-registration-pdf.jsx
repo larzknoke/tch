@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
+import { getHerkunftLabel } from "@/lib/member-registration-helpers";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -179,6 +180,12 @@ export const MemberRegistrationPDF = ({ registration }) => {
             <Text style={styles.label}>Status:</Text>
             <Text style={styles.value}>
               {statusLabels[registration.status] || registration.status}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Wie zum TCH gekommen:</Text>
+            <Text style={styles.value}>
+              {getHerkunftLabel(registration.herkunft)}
             </Text>
           </View>
         </View>

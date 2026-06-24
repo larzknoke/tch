@@ -18,6 +18,7 @@ export default async function handle(req, res) {
         telefon,
         geburtsdatum,
         mitgliedsart,
+        herkunft,
         status,
         sepa_vorname,
         sepa_name,
@@ -43,6 +44,7 @@ export default async function handle(req, res) {
           telefon,
           geburtsdatum,
           mitgliedsart,
+          herkunft: herkunft || null,
           status,
           sepaVorname: sepa_vorname,
           sepaName: sepa_name,
@@ -67,7 +69,7 @@ export default async function handle(req, res) {
               : email,
           subject: "Mitgliedsantrag bestätigen - TC Holzminden von 1928 e.V.",
           html: await render(
-            <VerifyMemberRegistrationEmail registration={memberRegistration} />
+            <VerifyMemberRegistrationEmail registration={memberRegistration} />,
           ),
         });
       } catch (emailError) {

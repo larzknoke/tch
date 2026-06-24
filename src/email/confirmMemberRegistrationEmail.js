@@ -9,6 +9,7 @@ import {
   Text,
   Hr,
 } from "@react-email/components";
+import { getHerkunftLabel } from "@/lib/member-registration-helpers";
 
 export default function ConfirmMemberRegistrationEmail({ registration }) {
   // Map mitgliedsart values to readable labels
@@ -98,6 +99,10 @@ export default function ConfirmMemberRegistrationEmail({ registration }) {
             <Text style={dataText}>
               <strong>Status:</strong>{" "}
               {statusLabels[registration.status] || registration.status}
+            </Text>
+            <Text style={dataText}>
+              <strong>Wie bin ich zum TCH gekommen?:</strong>{" "}
+              {getHerkunftLabel(registration.herkunft)}
             </Text>
 
             <Hr style={hr} />

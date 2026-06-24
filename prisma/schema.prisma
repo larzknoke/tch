@@ -241,6 +241,7 @@ model MemberRegistration {
 
   // Mitgliedschaft
   mitgliedsart String
+  herkunft     String?
   status       String
 
   // SEPA-Lastschriftmandat
