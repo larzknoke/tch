@@ -174,7 +174,7 @@ export default function Checkout() {
       router.push(`/shop/success?orderId=${order.id}`);
     } catch (error) {
       console.error("Order error:", error);
-      alert("Bestellung fehlgeschlagen. Bitte versuchen Sie es erneut.");
+      alert("Anfrage fehlgeschlagen. Bitte versuchen Sie es erneut.");
     } finally {
       setLoading(false);
     }
@@ -187,24 +187,29 @@ export default function Checkout() {
   return (
     <>
       <Head>
-        <title>Kasse | Tennis Club Holzminden von 1928 e.V</title>
-        <meta name="description" content="Checkout" />
+        <title>Anfrage Vereinsausstattung | Tennis Club Holzminden von 1928 e.V</title>
+        <meta
+          name="description"
+          content="Abschluss der Anfrage fuer Vereinsausstattung"
+        />
       </Head>
 
       <Layout>
         <div className="container mx-auto px-4 py-8 max-w-6xl">
           <div className="mb-6 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
             <p className="text-sm md:text-base font-semibold">
-              TEST-MODUS: Bestellungen werden zu Testzwecken erfasst und per
-              E-Mail bestaetigt (nicht verbindlich).
+              HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
+              kein kommerzieller Shop.
             </p>
           </div>
-          <h1 className="text-4xl font-bold text-tch-blue mb-8">Kasse</h1>
+          <h1 className="text-4xl font-bold text-tch-blue mb-8">
+            Anfrage Vereinsausstattung
+          </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Order Summary */}
+            {/* Selection Summary */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Bestellübersicht</h2>
+              <h2 className="text-2xl font-semibold mb-4">Auswahlübersicht</h2>
               <div className="border border-gray-300 rounded p-4 space-y-4">
                 {cart.map((item) => (
                   <div
@@ -230,7 +235,7 @@ export default function Checkout() {
                       </p>
                       <p className="text-sm font-semibold mt-1">
                         {item.isGroupOrder
-                          ? "Preis wird nach Bestellschluss festgelegt"
+                          ? "Betrag wird nach Ende der Sammelphase festgelegt"
                           : `${(parseFloat(item.price) * item.quantity).toFixed(2)} €`}
                       </p>
                     </div>
@@ -247,18 +252,18 @@ export default function Checkout() {
                   </div>
                   {hasGroupOrders && (
                     <p className="text-sm text-gray-500 mt-2">
-                      Preise für Sammelbestellungen werden erst nach
-                      Bestellschluss festgelegt.
+                      Betraege fuer Sammelbestellungen werden erst nach Ende
+                      der Sammelphase festgelegt.
                     </p>
                   )}
                 </div>
               </div>
             </div>
 
-            {/* Checkout Form */}
+            {/* Request Form */}
             <div>
               <h2 className="text-2xl font-semibold mb-4">
-                Bestell- & Zahlungsinformationen
+                Anfrage- & Abwicklungsinformationen
               </h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
@@ -320,7 +325,7 @@ export default function Checkout() {
                                   Überweisung
                                 </RadioCard.ItemText>
                                 <RadioCard.ItemDescription>
-                                  Banküberweisung nach Bestellung
+                                  Bankueberweisung nach Rueckmeldung
                                 </RadioCard.ItemDescription>
                               </RadioCard.ItemContent>
                               <RadioCard.ItemIndicator />
@@ -369,7 +374,7 @@ export default function Checkout() {
 
                 <div>
                   <h3 className="text-lg font-semibold mb-3">
-                    Besteller Informationen
+                    Ansprechpartner Informationen
                   </h3>
                   <div className="space-y-3">
                     <div>
@@ -477,7 +482,8 @@ export default function Checkout() {
                         <Checkbox.HiddenInput />
                         <Checkbox.Control />
                         <Checkbox.Label className="text-sm font-medium">
-                          Rechnungsadresse ist gleich wie Bestellinformationen
+                          Rechnungsadresse ist gleich wie
+                          Ansprechpartnerinformationen
                         </Checkbox.Label>
                       </Checkbox.Root>
                     )}
@@ -587,10 +593,10 @@ export default function Checkout() {
                   className="text-xl w-full bg-tch-blue text-white py-3 rounded hover:bg-tch-blue/90 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed hover:cursor-pointer"
                 >
                   {loading
-                    ? "Bestellung wird erstellt..."
+                    ? "Anfrage wird uebermittelt..."
                     : selectedPayment === "Sammelbestellung"
-                      ? "Verbindlich für Sammelbestellung anmelden"
-                      : "Kostenpflichtig bestellen"}
+                      ? "Fuer Sammelbestellung vormerken"
+                      : "Anfrage absenden"}
                 </button>
               </form>
             </div>

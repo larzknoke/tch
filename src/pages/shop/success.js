@@ -12,9 +12,9 @@ export default function Success() {
     <>
       <Head>
         <title>
-          Bestellung erfolgreich | Tennis Club Holzminden von 1928 e.V
+          Anfrage erfolgreich | Tennis Club Holzminden von 1928 e.V
         </title>
-        <meta name="description" content="Bestellung erfolgreich" />
+        <meta name="description" content="Anfrage erfolgreich" />
       </Head>
 
       <Layout>
@@ -22,16 +22,16 @@ export default function Success() {
           <CheckCircleIcon className="h-20 w-20 text-tch-blue mx-auto mb-6" />
 
           <h1 className="text-4xl font-bold text-tch-blue mb-4">
-            Vielen Dank für Ihre Bestellung!
+            Vielen Dank fuer Ihre Anfrage!
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">
-            Ihre Bestellung wurde erfolgreich aufgenommen.
+            Ihre Anfrage wurde erfolgreich aufgenommen.
           </p>
 
           {orderId && (
             <div className="bg-gray-100 rounded-lg p-6 mb-8">
-              <p className="text-sm text-gray-600 mb-2">Bestellnummer:</p>
+              <p className="text-sm text-gray-600 mb-2">Anfrage-Nr.:</p>
               <p className="text-2xl font-bold text-tch-blue">#{orderId}</p>
             </div>
           )}
@@ -39,7 +39,7 @@ export default function Success() {
           <div className="space-y-4 text-gray-600 mb-8">
             <p>
               Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details
-              zu Ihrer Bestellung.
+              zu Ihrer Anfrage.
             </p>
             <p>Bei Fragen können Sie sich gerne an uns wenden.</p>
           </div>
@@ -49,7 +49,7 @@ export default function Success() {
               href="/shop"
               className="px-6 py-3 bg-tch-blue text-white rounded-lg hover:bg-tch-blue/90 font-semibold"
             >
-              Weiter einkaufen
+              Weitere Artikel auswaehlen
             </Link>
             <Link
               href="/"

@@ -32,13 +32,13 @@ export default function CartDrawer({
         <Drawer.Positioner>
           <Drawer.Content className={roboto_cond.className}>
             <Drawer.Header borderBottomWidth="1px">
-              <Drawer.Title>Warenkorb ({cart.length})</Drawer.Title>
+              <Drawer.Title>Auswahl ({cart.length})</Drawer.Title>
             </Drawer.Header>
 
             <Drawer.Body>
               {cart.length === 0 ? (
                 <p className="text-gray-500 text-center mt-8">
-                  Ihr Warenkorb ist leer
+                  Ihre Auswahl ist leer
                 </p>
               ) : (
                 <div className="space-y-4">
@@ -133,7 +133,7 @@ export default function CartDrawer({
                   onClick={onCheckout}
                   className="w-full bg-tch-blue text-white py-3 rounded-lg hover:bg-tch-blue/90 font-semibold hover:cursor-pointer"
                 >
-                  Zur Kasse
+                  Zur Anfrage
                 </button>
               </Drawer.Footer>
             )}

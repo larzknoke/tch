@@ -395,19 +395,24 @@ export default function Shop() {
   return (
     <>
       <Head>
-        <title>Shop | Tennis Club Holzminden von 1928 e.V</title>
-        <meta name="description" content="Unser Tennis Shop" />
+        <title>Vereinsausstattung | Tennis Club Holzminden von 1928 e.V</title>
+        <meta
+          name="description"
+          content="Vereinsausstattung fuer Mitglieder"
+        />
       </Head>
 
       <Layout>
         <div className="container mx-auto px-4 py-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
-            <h1 className="text-4xl font-bold text-tch-blue">Shop</h1>
+            <h1 className="text-4xl font-bold text-tch-blue">
+              Vereinsausstattung
+            </h1>
             <div className="mx-3 mb-0 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
               <p className="text-sm md:text-base font-semibold">
-                TEST-MODUS: Bestellungen werden zu Testzwecken erfasst und per
-                E-Mail bestaetigt (nicht verbindlich).
+                HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
+                kein kommerzieller Shop.
               </p>
             </div>
             <button
@@ -493,11 +498,11 @@ export default function Shop() {
 
               {loading ? (
                 <p className="text-center text-gray-500">
-                  Produkte werden geladen...
+                  Artikel werden geladen...
                 </p>
               ) : safeProducts.length === 0 ? (
                 <p className="text-center text-gray-500">
-                  Keine Produkte verfügbar
+                  Keine Artikel verfuegbar
                 </p>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
