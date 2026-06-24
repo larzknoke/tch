@@ -406,12 +406,6 @@ export default function Shop() {
             <h1 className="text-4xl font-bold text-tch-blue">
               Vereinsausstattung
             </h1>
-            <div className="mx-3 mb-0 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
-              <p className="text-sm md:text-base font-semibold">
-                HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
-                kein kommerzieller Shop.
-              </p>
-            </div>
             <button
               onClick={() => setIsCartOpen(true)}
               className="relative p-3 bg-tch-blue text-white rounded hover:bg-tch-blue/90 hover:cursor-pointer"
@@ -423,6 +417,12 @@ export default function Shop() {
                 </span>
               )}
             </button>
+          </div>
+          <div className="mb-8 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
+            <p className="text-sm font-semibold md:text-base">
+              HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
+              kein kommerzieller Shop.
+            </p>
           </div>
           <div className="mb-8 overflow-hidden rounded-lg border border-gray-200">
             <div className="relative h-40 w-full md:h-56 lg:h-80">
