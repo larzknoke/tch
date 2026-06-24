@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Stack, RadioCard, Checkbox } from "@chakra-ui/react";
+import { Checkbox } from "@chakra-ui/react";
 
 const schema = yup
   .object({
@@ -95,7 +95,7 @@ export default function Checkout() {
   });
 
   const useSameAddress = watch("useSameAddress");
-  const selectedPayment = watch("payment");
+  const selectedPayment = "Barzahlung";
   const isGroupOrderPayment = selectedPayment === "Sammelbestellung";
 
   useEffect(() => {
@@ -116,14 +116,8 @@ export default function Checkout() {
   }, 0);
 
   useEffect(() => {
-    if (onlyGroupOrders && selectedPayment !== "Sammelbestellung") {
-      setValue("payment", "Sammelbestellung");
-    }
-
-    if (!hasGroupOrders && selectedPayment === "Sammelbestellung") {
-      setValue("payment", "Barzahlung");
-    }
-  }, [hasGroupOrders, onlyGroupOrders, selectedPayment, setValue]);
+    setValue("payment", "Barzahlung");
+  }, [setValue]);
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -136,7 +130,7 @@ export default function Checkout() {
         },
         body: JSON.stringify({
           email: values.email,
-          payment: values.payment,
+          payment: "Barzahlung",
           shippingName: values.shippingName,
           shippingStreet: values.shippingStreet,
           shippingPlz: values.shippingPlz,
@@ -290,6 +284,12 @@ export default function Checkout() {
                   )}
                 </div>
 
+                <div className="mb-8 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+                  Die Abrechnung erfolgt direkt mit dem Hersteller. Infos bitte
+                  bei erfolgreicher Anfrage der Bestätigung entnehmen.
+                </div>
+
+                {/*
                 <div className="mb-8">
                   <Controller
                     name="payment"
@@ -349,20 +349,6 @@ export default function Checkout() {
                               </RadioCard.ItemControl>
                             </RadioCard.Item>
                           )}
-                          {/* <RadioCard.Item value="PayPal" disabled={true}>
-                            <RadioCard.ItemHiddenInput />
-                            <RadioCard.ItemControl className="hover:cursor-not-allowed">
-                              <RadioCard.ItemContent>
-                                <RadioCard.ItemText fontWeight="medium">
-                                  PayPal
-                                </RadioCard.ItemText>
-                                <RadioCard.ItemDescription>
-                                  Schnelle und sichere Online-Zahlung
-                                </RadioCard.ItemDescription>
-                              </RadioCard.ItemContent>
-                              <RadioCard.ItemIndicator />
-                            </RadioCard.ItemControl>
-                          </RadioCard.Item> */}
                         </Stack>
                       </RadioCard.Root>
                     )}
@@ -373,6 +359,7 @@ export default function Checkout() {
                     </p>
                   )}
                 </div>
+                */}
 
                 <div>
                   <h3 className="text-lg font-semibold mb-3">
