@@ -386,7 +386,7 @@ export default function Shop() {
   };
 
   const handleCheckout = () => {
-    router.push("/shop/checkout");
+    router.push("/vereinsausstattung/checkout");
   };
 
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -396,10 +396,7 @@ export default function Shop() {
     <>
       <Head>
         <title>Vereinsausstattung | Tennis Club Holzminden von 1928 e.V</title>
-        <meta
-          name="description"
-          content="Vereinsausstattung fuer Mitglieder"
-        />
+        <meta name="description" content="Vereinsausstattung fuer Mitglieder" />
       </Head>
 
       <Layout>

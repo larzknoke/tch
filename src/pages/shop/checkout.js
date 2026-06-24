@@ -103,7 +103,7 @@ export default function Checkout() {
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     } else {
-      router.push("/shop");
+      router.push("/vereinsausstattung");
     }
   }, [router]);
 
@@ -171,7 +171,7 @@ export default function Checkout() {
       localStorage.removeItem("cart");
 
       // Redirect to success page
-      router.push(`/shop/success?orderId=${order.id}`);
+      router.push(`/vereinsausstattung/success?orderId=${order.id}`);
     } catch (error) {
       console.error("Order error:", error);
       alert("Anfrage fehlgeschlagen. Bitte versuchen Sie es erneut.");
@@ -187,7 +187,9 @@ export default function Checkout() {
   return (
     <>
       <Head>
-        <title>Anfrage Vereinsausstattung | Tennis Club Holzminden von 1928 e.V</title>
+        <title>
+          Anfrage Vereinsausstattung | Tennis Club Holzminden von 1928 e.V
+        </title>
         <meta
           name="description"
           content="Abschluss der Anfrage fuer Vereinsausstattung"
@@ -252,8 +254,8 @@ export default function Checkout() {
                   </div>
                   {hasGroupOrders && (
                     <p className="text-sm text-gray-500 mt-2">
-                      Betraege fuer Sammelbestellungen werden erst nach Ende
-                      der Sammelphase festgelegt.
+                      Betraege fuer Sammelbestellungen werden erst nach Ende der
+                      Sammelphase festgelegt.
                     </p>
                   )}
                 </div>

@@ -91,8 +91,8 @@ export default function ProductCard({ product, onAddToCart }) {
             {product.groupOrderStatus === "priced" ||
             product.groupOrderStatus === "fulfilled" ? (
               <p className="text-green-700 font-semibold text-sm">
-                Richtwert: {parseFloat(product.groupOrderFinalPrice).toFixed(2)}
-                {" "}€
+                Richtwert: {parseFloat(product.groupOrderFinalPrice).toFixed(2)}{" "}
+                €
               </p>
             ) : (
               <p className="text-gray-600 text-sm">
@@ -165,9 +165,7 @@ export default function ProductCard({ product, onAddToCart }) {
         <div className="flex items-center justify-between mt-auto gap-4">
           <div className="flex flex-row items-center justify-between gap-4 w-full">
             {product.isGroupOrder ? (
-              <p className="text-sm text-gray-500 italic">
-                Betrag noch offen
-              </p>
+              <p className="text-sm text-gray-500 italic">Betrag noch offen</p>
             ) : (
               <p className="text-2xl font-bold text-tch-blue">
                 {parseFloat(product.price).toFixed(2)} €

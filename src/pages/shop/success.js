@@ -11,9 +11,7 @@ export default function Success() {
   return (
     <>
       <Head>
-        <title>
-          Anfrage erfolgreich | Tennis Club Holzminden von 1928 e.V
-        </title>
+        <title>Anfrage erfolgreich | Tennis Club Holzminden von 1928 e.V</title>
         <meta name="description" content="Anfrage erfolgreich" />
       </Head>
 
@@ -46,7 +44,7 @@ export default function Success() {
 
           <div className="flex gap-4 justify-center">
             <Link
-              href="/shop"
+              href="/vereinsausstattung"
               className="px-6 py-3 bg-tch-blue text-white rounded-lg hover:bg-tch-blue/90 font-semibold"
             >
               Weitere Artikel auswaehlen
