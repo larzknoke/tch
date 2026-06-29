@@ -100,23 +100,23 @@ export const calendarData = [
     date: "2026-12-18",
     tag: "Junior",
   },
-  {
-    id: 19,
-    title: "29. Cup der Sparkasse Einbeck/Holzminden, 24.-26.04.",
-    date: "2026-04-24",
-    tag: "Junior",
-  },
-  {
-    id: 20,
-    title: "TNB-Regions-Jugendmeisterschaften Süd-Nds., 05.-07.06.",
-    date: "2026-06-05",
-    tag: "Junior",
-  },
-  {
-    id: 21,
-    title: "Sommer-Saisoneröffnung 2026 mit Grillen",
-    date: "2026-04-23",
-  },
+  // {
+  //   id: 19,
+  //   title: "29. Cup der Sparkasse Einbeck/Holzminden, 24.-26.04.",
+  //   date: "2026-04-24",
+  //   tag: "Junior",
+  // },
+  // {
+  //   id: 20,
+  //   title: "TNB-Regions-Jugendmeisterschaften Süd-Nds., 05.-07.06.",
+  //   date: "2026-06-05",
+  //   tag: "Junior",
+  // },
+  // {
+  //   id: 21,
+  //   title: "Sommer-Saisoneröffnung 2026 mit Grillen",
+  //   date: "2026-04-23",
+  // },
   {
     id: 22,
     title: "Bikeleasing.de Open Uslar, 13.-19.07.",
