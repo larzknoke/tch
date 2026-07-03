@@ -29,8 +29,7 @@ function Footer() {
               37603 Holzminden
             </p>
             <p>
-              Telefon: +49 170 / 766 2112 <br />
-              E-Mail sport@tc1928.com
+              E-Mail: <a href="mailto:sport@tc1928.com">sport@tc1928.com</a>
             </p>
           </div>
           <div className="flex flex-row  md:flex-col w-full md:w-1/4 gap-3">

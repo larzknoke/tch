@@ -20,11 +20,19 @@ function Kontakt() {
               37603 Holzminden <br />
             </p>
             <p>
-              Telefon: +49 1707662112 <br /> E-Mail: sport@tc1928.com <br />
-              Internet: www.tc1928.com
+              E-Mail: <a href="mailto:sport@tc1928.com">sport@tc1928.com</a>{" "}
+              <br />
+              Internet:{" "}
+              <a
+                href="https://www.tc1928.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                www.tc1928.com
+              </a>
               <br />
             </p>
-            <p>Vertretungsberechtigter: Rolf Gans</p>
+            <p>Vertretungsberechtigter: Karsten Jung</p>
             <p>
               Inhaltlich Verantwortlicher gemäß § 55 Abs. 2 RStV: Frank
               Klingspor

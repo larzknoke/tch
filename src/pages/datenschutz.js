@@ -328,11 +328,16 @@ function Datenschutz() {
             <br />
             Deutschland
             <br />
-            Tel.: 01707662112
+            E-Mail: <a href="mailto:sport@tc1928.com">sport@tc1928.com</a>
             <br />
-            E-Mail: sport@tc1928.com
-            <br />
-            Website: www.tc1928.com
+            Website:{" "}
+            <a
+              href="https://www.tc1928.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              www.tc1928.com
+            </a>
             <br />
             <h2 id="erfassung" className="mt-10 text-xl font-semibold">
               3. Erfassung von allgemeinen Daten und Informationen{" "}

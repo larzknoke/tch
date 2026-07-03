@@ -193,8 +193,7 @@ function MobileNav({ navOpen = false, setNavOpen }) {
         Liebgstraße 111 <br />
         37603 Holzminden <br />
         <span className="h-3"></span>
-        Telefon: +49 170 / 766 2112 <br />
-        E-Mail sport@tc1928.com
+        E-Mail: <a href="mailto:sport@tc1928.com">sport@tc1928.com</a>
       </div>
     </div>
   );
