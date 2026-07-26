@@ -11,6 +11,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import { PRODUCT_TYPE_OPTIONS, AUDIENCE_OPTIONS } from "@/lib/product-taxonomy";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Link from "next/link";
 
 const PRODUCT_TYPE_LABELS = Object.fromEntries(
   PRODUCT_TYPE_OPTIONS.map((option) => [option.value, option.label]),
@@ -418,12 +419,42 @@ export default function Shop() {
               )}
             </button>
           </div>
-          <div className="mb-8 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
+          {/* <div className="mb-8 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
             <p className="text-sm font-semibold md:text-base">
               HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
               kein kommerzieller Shop.
             </p>
-          </div>
+          </div> */}
+
+          <section className="mb-8 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 text-blue-950 md:px-6 md:py-5">
+            <h2 className="mb-2 text-lg font-bold text-tch-blue md:text-xl">
+              Unser Partner & Wichtiger Hinweis
+            </h2>
+            <p className="mb-3 text-sm leading-relaxed md:text-lg">
+              Als gemeinnütziger Sportverein dürfen wir mit Vereinskleidung
+              keinen eigenen Gewinn erzielen. Deshalb betreiben wir diesen Shop
+              nicht selbst.
+            </p>
+            <p className="mb-3 text-sm leading-relaxed md:text-lg">
+              Die komplette Abwicklung übernimmt unser Kooperationspartner{" "}
+              <Link
+                href="https://www.druck-sport.de/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-tch-blue hover:underline"
+              >
+                <span className="font-semibold">
+                  Druck &amp; Sport Service Grote
+                </span>{" "}
+              </Link>
+              aus Beverungen: von Veredelung und Bereitstellung über Bestellung
+              und Bezahlung bis zur Ausgabe der Vereinsausstattung.
+            </p>
+            <p className="text-sm leading-relaxed md:text-lg">
+              So können Mitglieder bequem Vereinsausstattung bestellen, ohne
+              dass für den TC Holzminden ein unzulässiger Shop-Gewinn entsteht.
+            </p>
+          </section>
           <div className="mb-8 overflow-hidden rounded-lg border border-gray-200">
             <div className="relative h-40 w-full md:h-56 lg:h-80">
               <Image
