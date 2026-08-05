@@ -21,7 +21,7 @@ export default function VerifyMemberRegistrationEmail({ registration }) {
         <Container style={container}>
           <Img
             src={`https://www.tc1928.com/tch_logo.png`}
-            alt="TC Holzminden von 1928 e.V."
+            alt="TC Holzminden von 1928 e.V. Logo"
             width={250}
             height={66}
             priority
@@ -63,6 +63,12 @@ export default function VerifyMemberRegistrationEmail({ registration }) {
 
             <Text style={text}>
               Nach Bestätigung wird Ihr Antrag geprüft und bearbeitet.
+            </Text>
+
+            <Text style={text}>
+              Diese automatische E-Mail wurde nach Ihrem Mitgliedsantrag auf
+              unserer Webseite versendet. Falls Sie keinen Antrag gestellt
+              haben, können Sie diese Nachricht ignorieren.
             </Text>
           </Section>
 

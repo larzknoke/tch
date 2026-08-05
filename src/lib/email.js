@@ -18,7 +18,7 @@ export const sendEmail = async (data, pool = false) => {
   });
 
   return await transporter.sendMail({
-    from: `Presse  TC Holzminden von 1928 e.V. <${process.env.SMTP_FROM_EMAIL}>`,
+    from: `TC Holzminden von 1928 e.V. <${process.env.SMTP_FROM_EMAIL}>`,
     ...data,
   });
 };
