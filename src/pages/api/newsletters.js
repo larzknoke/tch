@@ -34,10 +34,23 @@ export default async function handler(req, res) {
   if (req.method == "DELETE") {
     try {
       const id = req.query.id;
-      console.log("id: ", id);
-      const result = await prisma.newsletter.delete({
-        where: { id: parseInt(id) },
-      });
+      const verified = req.query.verified;
+      let result;
+
+      if (typeof id !== "undefined") {
+        console.log("id: ", id);
+        result = await prisma.newsletter.delete({
+          where: { id: parseInt(id) },
+        });
+      } else if (typeof verified !== "undefined") {
+        console.log("verified: ", verified);
+        result = await prisma.newsletter.deleteMany({
+          where: { verified: verified === "true" },
+        });
+      } else {
+        return res.status(400).json({ message: "Missing delete filter" });
+      }
+
       console.log("result: ", result);
       return res.status(200).json(result);
     } catch (error) {

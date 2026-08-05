@@ -14,8 +14,22 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Checker } from "@/lib/utils";
 import { useMemo, useState } from "react";
 
-export const NewsletterTable = ({ newsletterData, onEdit, onDelete }) => {
+export const NewsletterTable = ({
+  newsletterData,
+  onEdit,
+  onDelete,
+  onDeleteByVerified,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeTab, setActiveTab] = useState("verified");
+
+  const allVerifiedNewsletters = useMemo(() => {
+    return newsletterData?.filter((newsletter) => newsletter.verified) || [];
+  }, [newsletterData]);
+
+  const allUnverifiedNewsletters = useMemo(() => {
+    return newsletterData?.filter((newsletter) => !newsletter.verified) || [];
+  }, [newsletterData]);
 
   const filteredNewsletters = useMemo(() => {
     if (!searchQuery.trim()) return newsletterData;
@@ -37,6 +51,28 @@ export const NewsletterTable = ({ newsletterData, onEdit, onDelete }) => {
       filteredNewsletters?.filter((newsletter) => !newsletter.verified) || []
     );
   }, [filteredNewsletters]);
+
+  const activeNewsletters =
+    activeTab === "verified" ? allVerifiedNewsletters : allUnverifiedNewsletters;
+
+  const activeTabLabel =
+    activeTab === "verified" ? "bestätigten" : "unbestätigten";
+
+  function handleDeleteAll() {
+    if (activeNewsletters.length === 0) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Alle ${activeTabLabel} Newsletter-Einträge löschen?`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    onDeleteByVerified(activeTab === "verified");
+  }
 
   const renderTable = (data) => (
     <Box overflowX="auto" width="100%">
@@ -93,25 +129,51 @@ export const NewsletterTable = ({ newsletterData, onEdit, onDelete }) => {
 
   return (
     <VStack width="100%" gap={4}>
-      <Flex width="100%" position="relative">
-        <Icon
-          position="absolute"
-          left="3"
-          top="50%"
-          transform="translateY(-50%)"
-          color="gray.400"
-          size="sm"
-        >
-          <MagnifyingGlassIcon />
-        </Icon>
-        <Input
-          placeholder="Suche nach Email..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          paddingLeft="10"
-        />
+      <Flex width="100%" gap={3} direction={{ base: "column", md: "row" }}>
+        <Flex flex="1" position="relative">
+          <Icon
+            position="absolute"
+            left="3"
+            top="50%"
+            transform="translateY(-50%)"
+            color="gray.400"
+            size="sm"
+          >
+            <MagnifyingGlassIcon />
+          </Icon>
+          <Input
+            placeholder="Suche nach Email..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            paddingLeft="10"
+          />
+        </Flex>
+        <Flex justify={{ base: "stretch", md: "flex-end" }}>
+          <Tooltip content={`Alle ${activeTabLabel} Einträge löschen`}>
+            <Box
+              as="button"
+              type="button"
+              onClick={handleDeleteAll}
+              disabled={activeNewsletters.length === 0}
+              px={4}
+              py={2}
+              borderWidth="1px"
+              borderColor="red.200"
+              borderRadius="md"
+              color={activeNewsletters.length === 0 ? "gray.400" : "red.600"}
+              cursor={activeNewsletters.length === 0 ? "not-allowed" : "pointer"}
+            >
+              Alle im Tab löschen
+            </Box>
+          </Tooltip>
+        </Flex>
       </Flex>
-      <Tabs.Root defaultValue="verified" width="100%">
+      <Tabs.Root
+        defaultValue="verified"
+        value={activeTab}
+        onValueChange={({ value }) => setActiveTab(value)}
+        width="100%"
+      >
         <Tabs.List>
           <Tabs.Trigger value="verified">
             Bestätigt ({verifiedNewsletters.length})

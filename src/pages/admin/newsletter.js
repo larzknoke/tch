@@ -58,6 +58,30 @@ function Newsletter() {
     }
   }
 
+  async function deleteNewslettersByVerified(verified) {
+    setLoading(true);
+    const resData = await fetch("/api/newsletters?verified=" + verified, {
+      method: "DELETE",
+    });
+
+    if (resData.status != 200) {
+      toaster.create({
+        description: `Ein Fehler ist aufgetreten`,
+        type: "error",
+      });
+      setLoading(false);
+    } else {
+      const tabLabel = verified ? "Bestätigte" : "Unbestätigte";
+
+      toaster.create({
+        description: `${tabLabel} Newsletter gelöscht.`,
+        type: "success",
+      });
+      getNewsletters();
+      setLoading(false);
+    }
+  }
+
   function handleEdit(newsletter) {
     setSelectedWorker(newsletter);
     setOpenEditModal(true);
@@ -74,6 +98,7 @@ function Newsletter() {
           newsletterData={newsletterData}
           onEdit={handleEdit}
           onDelete={deleteWorker}
+          onDeleteByVerified={deleteNewslettersByVerified}
         />
       ) : (
         <Flex justify="center" w={"100%"}>
