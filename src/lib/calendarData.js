@@ -100,6 +100,18 @@ export const calendarData = [
     date: "2026-12-18",
     tag: "Junior",
   },
+  {
+    id: 19,
+    title: "Arbeitseinsatz Halle Teil 1",
+    date: "2026-09-19",
+    tag: "Allgemein",
+  },
+  {
+    id: 20,
+    title: "Arbeitseinsatz Halle Teil 2",
+    date: "2026-09-26",
+    tag: "Allgemein",
+  },
   // {
   //   id: 19,
   //   title: "29. Cup der Sparkasse Einbeck/Holzminden, 24.-26.04.",
