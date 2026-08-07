@@ -43,7 +43,21 @@ export default function Termine() {
   }
 
   useEffect(() => {
+    const refreshEfforts = () => {
+      getEfforts();
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("efforts:updated", refreshEfforts);
+    }
+
     getEfforts();
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("efforts:updated", refreshEfforts);
+      }
+    };
   }, []);
 
   const hasActiveEfforts = effortsData && effortsData.length > 0;
@@ -57,6 +71,9 @@ export default function Termine() {
   const filteredDates = selectedTag
     ? calendarData.filter((date) => (date.tag || "Allgemein") === selectedTag)
     : calendarData;
+  const sortedDates = [...filteredDates].sort(
+    (a, b) => new Date(a.date) - new Date(b.date),
+  );
 
   return (
     <div className="flex flex-col gap-8 md:gap-16 md:p-0 p-5">
@@ -93,31 +110,29 @@ export default function Termine() {
             ))}
           </div>
 
-          {filteredDates
-            .sort((a, b) => new Date(a.date) - new Date(b.date))
-            .map((date) => (
-              <div key={date.id} className="mb-6 border-b border-tch-blue pt-3">
-                <div className="flex flex-row items-center gap-4">
-                  <p
-                    className="text-tch-gold font-semibold"
-                    suppressHydrationWarning
-                  >
-                    {new Date(date.date).toLocaleDateString("de-DE", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
-                  </p>
-                  <span className=" text-[9px] bg-tch-blue/50 text-white rounded-xl px-2 py-0.5 uppercase font-semibold tracking-wider">
-                    {date.tag || "Allgemein"}
-                  </span>
-                </div>
-                <h3 className="text-xl font-semibold mb-1 text-tch-blue">
-                  {date.title}
-                </h3>
-                <p className="text-gray-600 mt-1">{date.description}</p>
+          {sortedDates.map((date) => (
+            <div key={date.id} className="mb-6 border-b border-tch-blue pt-3">
+              <div className="flex flex-row items-center gap-4">
+                <p
+                  className="text-tch-gold font-semibold"
+                  suppressHydrationWarning
+                >
+                  {new Date(date.date).toLocaleDateString("de-DE", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })}
+                </p>
+                <span className=" text-[9px] bg-tch-blue/50 text-white rounded-xl px-2 py-0.5 uppercase font-semibold tracking-wider">
+                  {date.tag || "Allgemein"}
+                </span>
               </div>
-            ))}
+              <h3 className="text-xl font-semibold mb-1 text-tch-blue">
+                {date.title}
+              </h3>
+              <p className="text-gray-600 mt-1">{date.description}</p>
+            </div>
+          ))}
           {/* Placeholder items for demonstration */}
         </div>
         <div

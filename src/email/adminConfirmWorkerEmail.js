@@ -17,7 +17,7 @@ export default function AdminConfirmWorkerEmail({ worker, effort }) {
     <Html>
       <Head />
       <Preview>
-        Neuer Teilnehmer bestätigt - TC Holzminden von 1928 e.V.
+        Neue Anmeldung für Arbeitseinsatz - TC Holzminden von 1928 e.V.
       </Preview>
       <Body style={main}>
         <Container style={container}>
@@ -29,9 +29,7 @@ export default function AdminConfirmWorkerEmail({ worker, effort }) {
             priority
           />
 
-          <Text style={title}>
-            Neuer Teilnehmer für Arbeitseinsatz bestätigt
-          </Text>
+          <Text style={title}>Neue Anmeldung für Arbeitseinsatz</Text>
 
           <Section style={section}>
             <Text style={sectionTitle}>Arbeitseinsatz</Text>
@@ -65,7 +63,7 @@ export default function AdminConfirmWorkerEmail({ worker, effort }) {
               <strong>Notiz:</strong> {worker.note || "Nicht angegeben"}
             </Text>
             <Text style={text}>
-              <strong>Status:</strong> Bestätigt
+              <strong>Status:</strong> Registriert
             </Text>
           </Section>
         </Container>

@@ -1,4 +1,7 @@
 import prisma from "@/lib/prisma";
+import { sendEmail } from "@/lib/email";
+import { render } from "@react-email/render";
+import AdminConfirmWorkerEmail from "@/email/adminConfirmWorkerEmail";
 
 export default async function handler(req, res) {
   const normalizeWorkerPayload = (data = {}) => {
@@ -36,8 +39,36 @@ export default async function handler(req, res) {
       const data = req.body;
       console.log("data: ", data);
       const result = await prisma.worker.create({
-        data: normalizeWorkerPayload(data),
+        data: {
+          ...normalizeWorkerPayload(data),
+          verified: true,
+          verifyId: null,
+        },
+        include: {
+          effort: true,
+        },
       });
+
+      // Double-Opt-In ist aktuell deaktiviert: Admin wird direkt nach Registrierung informiert.
+      if (result?.effort) {
+        try {
+          await sendEmail({
+            to: "info@larsknoke.com",
+            subject:
+              "Neue Anmeldung für Arbeitseinsatz - TC Holzminden von 1928 e.V.",
+            html: await render(
+              <AdminConfirmWorkerEmail
+                worker={result}
+                effort={result.effort}
+              />,
+            ),
+          });
+        } catch (emailError) {
+          console.log("Failed to send admin registration email:", emailError);
+          // Registrierung soll erfolgreich bleiben, auch wenn der Mailversand fehlschlägt.
+        }
+      }
+
       console.log("result: ", result);
       return res.status(200).json(result);
     } catch (error) {

@@ -53,7 +53,9 @@ export const NewsletterTable = ({
   }, [filteredNewsletters]);
 
   const activeNewsletters =
-    activeTab === "verified" ? allVerifiedNewsletters : allUnverifiedNewsletters;
+    activeTab === "verified"
+      ? allVerifiedNewsletters
+      : allUnverifiedNewsletters;
 
   const activeTabLabel =
     activeTab === "verified" ? "bestätigten" : "unbestätigten";
@@ -64,7 +66,7 @@ export const NewsletterTable = ({
     }
 
     const confirmed = window.confirm(
-      `Alle ${activeTabLabel} Newsletter-Einträge löschen?`
+      `Alle ${activeTabLabel} Newsletter-Einträge löschen?`,
     );
 
     if (!confirmed) {
@@ -161,7 +163,9 @@ export const NewsletterTable = ({
               borderColor="red.200"
               borderRadius="md"
               color={activeNewsletters.length === 0 ? "gray.400" : "red.600"}
-              cursor={activeNewsletters.length === 0 ? "not-allowed" : "pointer"}
+              cursor={
+                activeNewsletters.length === 0 ? "not-allowed" : "pointer"
+              }
             >
               Alle im Tab löschen
             </Box>
