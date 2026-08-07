@@ -121,22 +121,22 @@ export const EffortModalRegister = ({ effort }) => {
                 <form id="effort-form" onSubmit={handleSubmit(onSubmit)}>
                   <VStack gap={4}>
                     <Field.Root>
-                      <Field.Label>Email</Field.Label>
-                      <Input name="email" {...register("email")} />
-                      {/* <Field.ErrorMessage>
-                      {errors.email?.message && errors.email?.message}
-                    </Field.ErrorMessage> */}
-                    </Field.Root>
-                    <Field.Root>
                       <Field.Label>Name</Field.Label>
                       <Input name="name" {...register("name")} />
                       {/* <Field.ErrorMessage>
                       {errors.title?.message && errors.title?.message}
                     </Field.ErrorMessage> */}
                     </Field.Root>
+                    <Field.Root>
+                      <Field.Label>Email (optional)</Field.Label>
+                      <Input name="email" {...register("email")} />
+                      {/* <Field.ErrorMessage>
+                      {errors.email?.message && errors.email?.message}
+                    </Field.ErrorMessage> */}
+                    </Field.Root>
                     {/* Telefon ist vorerst deaktiviert und ausgeblendet. */}
                     <Field.Root>
-                      <Field.Label>Notiz/Bemerkung</Field.Label>
+                      <Field.Label>Notiz/Bemerkung (optional)</Field.Label>
                       <Textarea name="note" {...register("note")} />
                     </Field.Root>
                   </VStack>
