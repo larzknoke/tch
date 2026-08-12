@@ -154,7 +154,7 @@ export default function OrderConfirmationEmail({ order }) {
           <Section style={section}>
             <Text style={text}>
               Bei Fragen antworten Sie gerne direkt auf diese E-Mail oder
-              schreiben Sie an vorstand@tc1928.com.
+              schreiben Sie an presse@tc1928.com.
             </Text>
             <Text style={text}>
               Freundliche Gruesse
