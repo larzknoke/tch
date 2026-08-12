@@ -74,9 +74,13 @@ function MobileNav({ navOpen = false, setNavOpen }) {
               TRAINING & Spielen <ChevronRightIcon className="size-5" />
             </span>
 
+            <Link href={"/vereinsausstattung"} onClick={() => resetNav()}>
+              Vereinsausstattung
+            </Link>
             <Link href={"/kontakt"} onClick={() => resetNav()}>
               Kontakt
             </Link>
+
             <Link href={"/impressum"} onClick={() => resetNav()}>
               Impressum
             </Link>

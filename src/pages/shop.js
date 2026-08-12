@@ -397,7 +397,7 @@ export default function Shop() {
     <>
       <Head>
         <title>Vereinsausstattung | Tennis Club Holzminden von 1928 e.V</title>
-        <meta name="description" content="Vereinsausstattung fuer Mitglieder" />
+        <meta name="description" content="Vereinsausstattung für Mitglieder" />
       </Head>
 
       <Layout>
@@ -421,7 +421,7 @@ export default function Shop() {
           </div>
           {/* <div className="mb-8 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
             <p className="text-sm font-semibold md:text-base">
-              HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
+              HINWEIS: Dies ist eine interne Bereitstellung für Mitglieder,
               kein kommerzieller Shop.
             </p>
           </div> */}

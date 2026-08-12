@@ -45,7 +45,7 @@ export default function OrderConfirmationEmail({ order }) {
             priority
           />
 
-          <Text style={title}>Vielen Dank fuer Ihre Bestellung!</Text>
+          <Text style={title}>Vielen Dank für Ihre Bestellung!</Text>
 
           <Section style={section}>
             <Text style={text}>Hallo {customerName},</Text>
