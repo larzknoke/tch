@@ -29,6 +29,7 @@ function SignIn() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const didRedirectRef = useRef(false);
+  const didCleanupQueryRef = useRef(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -54,7 +55,7 @@ function SignIn() {
         callbackUrl: DEFAULT_REDIRECT_PATH,
       });
       console.log(`signing:onsubmit:res`, res);
-      
+
       if (res?.error) {
         setError("Email oder Passwort ist falsch");
         toaster.create({
@@ -86,6 +87,25 @@ function SignIn() {
       setIsLoading(false);
     }
   }
+  useEffect(() => {
+    if (
+      router.isReady &&
+      router.query.callbackUrl &&
+      !didCleanupQueryRef.current
+    ) {
+      didCleanupQueryRef.current = true;
+
+      const nextQuery = { ...router.query };
+      delete nextQuery.callbackUrl;
+
+      const target = Object.keys(nextQuery).length
+        ? { pathname: router.pathname, query: nextQuery }
+        : { pathname: router.pathname };
+
+      router.replace(target, undefined, { shallow: true });
+    }
+  }, [router]);
+
   useEffect(() => {
     if (status === "authenticated" && !didRedirectRef.current) {
       didRedirectRef.current = true;

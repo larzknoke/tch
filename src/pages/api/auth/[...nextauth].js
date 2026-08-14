@@ -28,7 +28,9 @@ export const authOptions = {
       authorize: async (credentials, req) => {
         console.log("credentials: ", credentials);
         const authBaseUrl =
-          process.env.NEXTAUTH_URL || process.env.AUTH_URL || "http://localhost:3000";
+          process.env.NEXTAUTH_URL ||
+          process.env.AUTH_URL ||
+          "http://localhost:3000";
         const user = await fetch(`${authBaseUrl}/api/user/check-credentials`, {
           method: "POST",
           headers: {
