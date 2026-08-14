@@ -16,7 +16,7 @@ import {
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PasswordInput } from "@/components/ui/password-input";
 import { toaster } from "@/components/ui/toaster";
 
@@ -26,6 +26,7 @@ function SignIn() {
   // const { isOpen: isOpenEmail, onToggle: onToggleEmail } = useDisclosure();
   const { data: session, status } = useSession();
   const router = useRouter();
+  const didRedirectRef = useRef(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -104,7 +105,8 @@ function SignIn() {
     }
   }
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "authenticated" && !didRedirectRef.current) {
+      didRedirectRef.current = true;
       router.replace(callbackUrl);
     }
   }, [status, callbackUrl, router]);
