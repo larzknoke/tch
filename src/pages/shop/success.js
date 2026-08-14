@@ -20,7 +20,7 @@ export default function Success() {
           <CheckCircleIcon className="h-20 w-20 text-tch-blue mx-auto mb-6" />
 
           <h1 className="text-4xl font-bold text-tch-blue mb-4">
-            Vielen Dank fuer Ihre Anfrage!
+            Vielen Dank für Ihre Anfrage!
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">

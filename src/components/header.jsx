@@ -124,6 +124,7 @@ function HeaderHome() {
           {/* <NavItemTeams /> */}
           <NavItemTraining />
           <Link href={"/kontakt"}>Kontakt</Link>
+          <Link href={"/vereinsausstattung"}>Vereinsausstattung</Link>
         </nav>
       </div>
       <MobileNav navOpen={navOpen} setNavOpen={setNavOpen} />

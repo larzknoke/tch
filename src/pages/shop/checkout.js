@@ -186,7 +186,7 @@ export default function Checkout() {
         </title>
         <meta
           name="description"
-          content="Abschluss der Anfrage fuer Vereinsausstattung"
+          content="Abschluss der Anfrage für Vereinsausstattung"
         />
       </Head>
 
@@ -194,8 +194,8 @@ export default function Checkout() {
         <div className="container mx-auto px-4 py-8 max-w-6xl">
           <div className="mb-6 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
             <p className="text-sm md:text-base font-semibold">
-              HINWEIS: Dies ist eine interne Bereitstellung fuer Mitglieder,
-              kein kommerzieller Shop.
+              HINWEIS: Dies ist eine interne Bereitstellung für Mitglieder, kein
+              kommerzieller Shop.
             </p>
           </div>
           <h1 className="text-4xl font-bold text-tch-blue mb-8">
@@ -248,7 +248,7 @@ export default function Checkout() {
                   </div>
                   {hasGroupOrders && (
                     <p className="text-sm text-gray-500 mt-2">
-                      Betraege fuer Sammelbestellungen werden erst nach Ende der
+                      Betraege für Sammelbestellungen werden erst nach Ende der
                       Sammelphase festgelegt.
                     </p>
                   )}
@@ -584,7 +584,7 @@ export default function Checkout() {
                   {loading
                     ? "Anfrage wird uebermittelt..."
                     : selectedPayment === "Sammelbestellung"
-                      ? "Fuer Sammelbestellung vormerken"
+                      ? "Für Sammelbestellung vormerken"
                       : "Anfrage absenden"}
                 </button>
               </form>
