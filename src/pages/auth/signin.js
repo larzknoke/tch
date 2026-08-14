@@ -16,9 +16,11 @@ import {
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PasswordInput } from "@/components/ui/password-input";
 import { toaster } from "@/components/ui/toaster";
+
+const DEFAULT_REDIRECT_PATH = "/admin/member-registrations";
 
 function SignIn() {
   // const [showPassword, setShowPassword] = useState(false);
@@ -30,26 +32,6 @@ function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const callbackUrl = useMemo(() => {
-    const rawCallbackUrl = Array.isArray(router.query.callbackUrl)
-      ? router.query.callbackUrl[0]
-      : router.query.callbackUrl;
-
-    if (!rawCallbackUrl) {
-      return "/admin";
-    }
-
-    if (rawCallbackUrl.startsWith("http://") || rawCallbackUrl.startsWith("https://")) {
-      try {
-        const url = new URL(rawCallbackUrl);
-        return `${url.pathname}${url.search}${url.hash}` || "/admin";
-      } catch (error) {
-        return "/admin";
-      }
-    }
-
-    return rawCallbackUrl;
-  }, [router.query.callbackUrl]);
 
   const {
     handleSubmit,
@@ -69,7 +51,7 @@ function SignIn() {
       let res = await signIn("credentials", {
         ...body,
         redirect: false,
-        callbackUrl,
+        callbackUrl: DEFAULT_REDIRECT_PATH,
       });
       console.log(`signing:onsubmit:res`, res);
       
@@ -89,7 +71,7 @@ function SignIn() {
           type: "success",
           duration: 3000,
         });
-        const redirectTarget = res?.url || callbackUrl;
+        const redirectTarget = res?.url || DEFAULT_REDIRECT_PATH;
         await router.replace(redirectTarget);
       }
     } catch (error) {
@@ -107,9 +89,9 @@ function SignIn() {
   useEffect(() => {
     if (status === "authenticated" && !didRedirectRef.current) {
       didRedirectRef.current = true;
-      router.replace(callbackUrl);
+      router.replace(DEFAULT_REDIRECT_PATH);
     }
-  }, [status, callbackUrl, router]);
+  }, [status, router]);
 
   return (
     <div>
