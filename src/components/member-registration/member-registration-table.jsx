@@ -70,7 +70,7 @@ export function MemberRegistrationTable({
 
       // Generate PDF document
       const blob = await pdf(
-        <MemberRegistrationPDF registration={registration} />
+        <MemberRegistrationPDF registration={registration} />,
       ).toBlob();
 
       // Create download link
@@ -103,6 +103,7 @@ export function MemberRegistrationTable({
       <Table.Root minWidth={{ base: "1200px", md: "100%" }}>
         <Table.Header>
           <Table.Row>
+            <Table.ColumnHeader>#</Table.ColumnHeader>
             <Table.ColumnHeader>Name</Table.ColumnHeader>
             <Table.ColumnHeader>Email</Table.ColumnHeader>
             <Table.ColumnHeader>Geburtsdatum</Table.ColumnHeader>
@@ -118,6 +119,7 @@ export function MemberRegistrationTable({
           {data && data.length > 0 ? (
             data.map((registration) => (
               <Table.Row key={registration.id}>
+                <Table.Cell>{registration.id}</Table.Cell>
                 <Table.Cell>
                   {registration.vorname} {registration.name}
                 </Table.Cell>
