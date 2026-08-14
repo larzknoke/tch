@@ -5,6 +5,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
   debug: true,
+  secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -25,19 +27,18 @@ export const authOptions = {
       },
       authorize: async (credentials, req) => {
         console.log("credentials: ", credentials);
-        const user = await fetch(
-          `${process.env.NEXTAUTH_URL}/api/user/check-credentials`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              accept: "application/json",
-            },
-            body: Object.entries(credentials)
-              .map((e) => e.join("="))
-              .join("&"),
-          }
-        )
+        const authBaseUrl =
+          process.env.NEXTAUTH_URL || process.env.AUTH_URL || "http://localhost:3000";
+        const user = await fetch(`${authBaseUrl}/api/user/check-credentials`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            accept: "application/json",
+          },
+          body: Object.entries(credentials)
+            .map((e) => e.join("="))
+            .join("&"),
+        })
           .then((res) => res.json())
           .catch((err) => {
             return null;
@@ -54,6 +55,24 @@ export const authOptions = {
     }),
   ],
   session: { strategy: "jwt" },
+  callbacks: {
+    redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) {
+        return `${baseUrl}${url}`;
+      }
+
+      try {
+        const parsedUrl = new URL(url);
+        if (parsedUrl.origin === baseUrl) {
+          return url;
+        }
+      } catch (error) {
+        // ignore invalid URLs and fall back to baseUrl
+      }
+
+      return baseUrl;
+    },
+  },
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",

@@ -30,10 +30,24 @@ function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const callbackUrl = useMemo(() => {
-    if (Array.isArray(router.query.callbackUrl)) {
-      return router.query.callbackUrl[0] || "/admin";
+    const rawCallbackUrl = Array.isArray(router.query.callbackUrl)
+      ? router.query.callbackUrl[0]
+      : router.query.callbackUrl;
+
+    if (!rawCallbackUrl) {
+      return "/admin";
     }
-    return router.query.callbackUrl || "/admin";
+
+    if (rawCallbackUrl.startsWith("http://") || rawCallbackUrl.startsWith("https://")) {
+      try {
+        const url = new URL(rawCallbackUrl);
+        return `${url.pathname}${url.search}${url.hash}` || "/admin";
+      } catch (error) {
+        return "/admin";
+      }
+    }
+
+    return rawCallbackUrl;
   }, [router.query.callbackUrl]);
 
   const {
@@ -74,7 +88,8 @@ function SignIn() {
           type: "success",
           duration: 3000,
         });
-        await router.push(res?.url || callbackUrl);
+        const redirectTarget = res?.url || callbackUrl;
+        await router.replace(redirectTarget);
       }
     } catch (error) {
       console.log(error);
