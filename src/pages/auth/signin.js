@@ -16,7 +16,7 @@ import {
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PasswordInput } from "@/components/ui/password-input";
 import { toaster } from "@/components/ui/toaster";
 
@@ -29,6 +29,12 @@ function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const callbackUrl = useMemo(() => {
+    if (Array.isArray(router.query.callbackUrl)) {
+      return router.query.callbackUrl[0] || "/admin";
+    }
+    return router.query.callbackUrl || "/admin";
+  }, [router.query.callbackUrl]);
 
   const {
     handleSubmit,
@@ -48,7 +54,7 @@ function SignIn() {
       let res = await signIn("credentials", {
         ...body,
         redirect: false,
-        callbackUrl: router.query.callbackUrl || "/admin",
+        callbackUrl,
       });
       console.log(`signing:onsubmit:res`, res);
       
@@ -68,7 +74,7 @@ function SignIn() {
           type: "success",
           duration: 3000,
         });
-        router.push(res.url || router.query.callbackUrl || "/admin");
+        await router.push(res?.url || callbackUrl);
       }
     } catch (error) {
       console.log(error);
@@ -82,13 +88,11 @@ function SignIn() {
       setIsLoading(false);
     }
   }
-  if (status === "authenticated") {
-    router.push("/", {
-      query: {
-        callbackUrl: router.query.callbackUrl,
-      },
-    });
-  }
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.replace(callbackUrl);
+    }
+  }, [status, callbackUrl, router]);
 
   return (
     <div>

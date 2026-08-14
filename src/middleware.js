@@ -2,15 +2,14 @@ import { withAuth } from "next-auth/middleware";
 
 export default withAuth({
   callbacks: {
-    authorized: async ({ req, token }) => {
-      const pathname = req.nextUrl.pathname;
+    authorized: async ({ token }) => {
       if (token) return true;
 
       return false;
     },
   },
   pages: {
-    signIn: "auth/signin",
+    signIn: "/auth/signin",
   },
 });
 
