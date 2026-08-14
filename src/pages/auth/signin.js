@@ -49,10 +49,9 @@ function SignIn() {
     try {
       const body = { ...values };
       console.log(`POSTing ${JSON.stringify(body, null, 2)}`);
-      let res = await signIn("credentials", {
+      const res = await signIn("credentials", {
         ...body,
         redirect: false,
-        callbackUrl: DEFAULT_REDIRECT_PATH,
       });
       console.log(`signing:onsubmit:res`, res);
 
@@ -72,8 +71,7 @@ function SignIn() {
           type: "success",
           duration: 3000,
         });
-        const redirectTarget = res?.url || DEFAULT_REDIRECT_PATH;
-        await router.replace(redirectTarget);
+        await router.replace(DEFAULT_REDIRECT_PATH);
       }
     } catch (error) {
       console.log(error);

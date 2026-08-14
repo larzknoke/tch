@@ -58,21 +58,8 @@ export const authOptions = {
   ],
   session: { strategy: "jwt" },
   callbacks: {
-    redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) {
-        return `${baseUrl}${url}`;
-      }
-
-      try {
-        const parsedUrl = new URL(url);
-        if (parsedUrl.origin === baseUrl) {
-          return url;
-        }
-      } catch (error) {
-        // ignore invalid URLs and fall back to baseUrl
-      }
-
-      return baseUrl;
+    async redirect({ url, baseUrl }) {
+      return `${baseUrl}/admin/member-registrations`;
     },
   },
   pages: {
