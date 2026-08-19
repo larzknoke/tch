@@ -7,7 +7,8 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import MemberRegisterForm from "@/components/member-register-form";
+import JugendtrainingInfoDialog from "@/components/jugendtraining-info-dialog";
+import JugendtrainingKostenplanDialog from "@/components/jugendtraining-kostenplan-dialog";
 
 function JugendTraining() {
   const [open, setOpen] = useState(false);
@@ -16,14 +17,25 @@ function JugendTraining() {
     <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
       <div className="w-full md:w-1/2 gap-5 flex flex-col">
         <HeaderText text="Jugendtraining & Kooperationen" />
+        <JugendtrainingKostenplanDialog />
+
+        <div className="bg-tch-blue px-8 py-6 relative text-white flex flex-col gap-4 rounded">
+          <h3>
+            Wintersaison 2026/2027 <br /> Anpassung der Trainingsabrechnung
+          </h3>
+          <div className="flex flex-col md:flex-row gap-3">
+            <JugendtrainingInfoDialog />
+          </div>
+        </div>
         <Link
-          href="Jugendleitlinie_2026.pdf"
+          href="Jugendleitlinie_2026_ohne.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-tch-blue underline text-2xl"
+          className="text-tch-blue underline text-2xl mt-6 hover:cursor-pointer"
         >
           Jugendleitlinie des TC Holzminden (PDF)
         </Link>
+
         <div className="flex flex-col gap-6">
           <h2>
             Intensive Kooperation mit Schulen und Betreuungstätten: Ein
