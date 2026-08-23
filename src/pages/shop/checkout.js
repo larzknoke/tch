@@ -284,10 +284,10 @@ export default function Checkout() {
                   )}
                 </div>
 
-                <div className="mb-8 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+                {/* <div className="mb-8 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
                   Die Abrechnung erfolgt direkt mit dem Hersteller. Infos bitte
                   bei erfolgreicher Anfrage der Bestätigung entnehmen.
-                </div>
+                </div> */}
 
                 {/*
                 <div className="mb-8">
