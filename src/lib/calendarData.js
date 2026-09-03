@@ -141,28 +141,22 @@ export const calendarData = [
   //   date: "2026-06-25",
   //   tag: "Allgemein",
   // },
-  {
-    id: 24,
-    title: "NK4 Tour, 01.08.",
-    date: "2026-08-01",
-    tag: "Allgemein",
-  },
-  {
-    id: 25,
-    title: "Tenniscamp, 05.-07.08.",
-    date: "2026-08-05",
-    tag: "Junior",
-  },
-  {
-    id: 26,
-    title: "Regionsmeisterschaften der Senioren, 21.-23.08.",
-    date: "2026-08-21",
-    tag: "Senior",
-  },
-  {
-    id: 27,
-    title: "Jugend-Clubmeisterschaften + Sommerfest, 19-20.09.",
-    date: "2026-09-19",
-    tag: "Junior",
-  },
+  // {
+  //   id: 24,
+  //   title: "NK4 Tour, 01.08.",
+  //   date: "2026-08-01",
+  //   tag: "Allgemein",
+  // },
+  // {
+  //   id: 25,
+  //   title: "Tenniscamp, 05.-07.08.",
+  //   date: "2026-08-05",
+  //   tag: "Junior",
+  // },
+  // {
+  //   id: 26,
+  //   title: "Regionsmeisterschaften der Senioren, 21.-23.08.",
+  //   date: "2026-08-21",
+  //   tag: "Senior",
+  // },
 ];
