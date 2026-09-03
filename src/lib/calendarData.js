@@ -159,4 +159,10 @@ export const calendarData = [
   //   date: "2026-08-21",
   //   tag: "Senior",
   // },
+  {
+    id: 27,
+    title: "Jugend-Clubmeisterschaften + Sommerfest, 19-20.09.",
+    date: "2026-09-19",
+    tag: "Junior",
+  },
 ];
