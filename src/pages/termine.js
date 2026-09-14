@@ -61,6 +61,7 @@ export default function Termine() {
   }, []);
 
   const hasActiveEfforts = effortsData && effortsData.length > 0;
+  const showEffortsFirst = loading || hasActiveEfforts;
 
   // Get unique tags from calendarData
   const uniqueTags = [
@@ -78,9 +79,9 @@ export default function Termine() {
   return (
     <div className="flex flex-col gap-8 md:gap-16 md:p-0 p-5">
       <div
-        className={`flex ${hasActiveEfforts ? "flex-col-reverse" : "flex-col"} md:flex-row gap-12 md:gap-16`}
+        className={`flex ${showEffortsFirst ? "flex-col-reverse" : "flex-col"} md:flex-row gap-12 md:gap-16`}
       >
-        <div className={`w-full md:w-1/2 ${hasActiveEfforts ? "" : " mt-8"}`}>
+        <div className={`w-full md:w-1/2 ${showEffortsFirst ? "" : " mt-8"}`}>
           <h2 className="mb-3 uppercase ">Kalender/Termine</h2>
 
           {/* Tag Filter */}
@@ -136,7 +137,7 @@ export default function Termine() {
           {/* Placeholder items for demonstration */}
         </div>
         <div
-          className={`w-full md:w-1/2 gap-12 flex flex-col  md:mx-0 ${hasActiveEfforts ? " mt-8 -mx-4 " : ""}  md:mt-8 mb-8`}
+          className={`w-full md:w-1/2 gap-12 flex flex-col  md:mx-0 ${showEffortsFirst ? " mt-8 -mx-4 " : ""}  md:mt-8 mb-8`}
         >
           <EffortWrapper loading={loading} effortsData={effortsData} />
         </div>
