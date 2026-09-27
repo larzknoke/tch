@@ -436,7 +436,7 @@ export default function Shop() {
               nicht selbst.
             </p>
             <p className="mb-3 text-sm leading-relaxed md:text-lg">
-              Die komplette Abwicklung übernimmt unser Kooperationspartner{" "}
+              Die Produktion läuft bei unserem Kooperationspartner{" "}
               <Link
                 href="https://www.druck-sport.de/"
                 target="_blank"
@@ -447,12 +447,9 @@ export default function Shop() {
                   Druck &amp; Sport Service Grote
                 </span>{" "}
               </Link>
-              aus Beverungen: von Veredelung und Bereitstellung über Bestellung
-              und Bezahlung bis zur Ausgabe der Vereinsausstattung.
-            </p>
-            <p className="text-sm leading-relaxed md:text-lg">
-              So können Mitglieder bequem Vereinsausstattung bestellen, ohne
-              dass für den TC Holzminden ein unzulässiger Shop-Gewinn entsteht.
+              in Beverungen. So können Mitglieder bequem Vereinsausstattung
+              bestellen, ohne dass für den TC Holzminden ein unzulässiger
+              Shop-Gewinn entsteht.
             </p>
           </section>
           <div className="mb-8 overflow-hidden rounded-lg border border-gray-200">
