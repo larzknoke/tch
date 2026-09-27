@@ -53,6 +53,10 @@ export default function OrderConfirmationEmail({ order }) {
               wir haben Ihre Bestellung erfolgreich erhalten. Nachfolgend finden
               Sie alle wichtigen Informationen.
             </Text>
+            <Text style={text}>
+              Sobald Ihre Bestellung fertig ist, melden wir uns bei Ihnen gerne
+              wieder, damit wir Ihnen den Versand oder die Abholung bestätigen.
+            </Text>
             <Hr style={divider} />
             <Text style={text}>
               <strong>Bestellnummer:</strong> #{order.id}
