@@ -432,8 +432,10 @@ export default function Shop() {
             </h2>
             <p className="mb-3 text-sm leading-relaxed md:text-lg">
               Als gemeinnütziger Sportverein dürfen wir mit Vereinskleidung
-              keinen eigenen Gewinn erzielen. Deshalb betreiben wir diesen Shop
-              nicht selbst.
+              keinen eigenen Gewinn erzielen. Deshalb stellen wir lediglich eine
+              Plattform zur Verfügung, die die Beschaffung unserer
+              Vereinskleidung für unsere Mitglieder und Freunde des Vereins
+              einfach und unkompliziert macht.
             </p>
             <p className="mb-3 text-sm leading-relaxed md:text-lg">
               Die Produktion läuft bei unserem Kooperationspartner{" "}
@@ -447,9 +449,7 @@ export default function Shop() {
                   Druck &amp; Sport Service Grote
                 </span>{" "}
               </Link>
-              in Beverungen. So können Mitglieder bequem Vereinsausstattung
-              bestellen, ohne dass für den TC Holzminden ein unzulässiger
-              Shop-Gewinn entsteht.
+              in Beverungen.
             </p>
           </section>
           <div className="mb-8 overflow-hidden rounded-lg border border-gray-200">

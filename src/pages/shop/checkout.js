@@ -194,8 +194,10 @@ export default function Checkout() {
         <div className="container mx-auto px-4 py-8 max-w-6xl">
           <div className="mb-6 rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3 text-amber-900">
             <p className="text-sm md:text-base font-semibold">
-              HINWEIS: Dies ist eine interne Bereitstellung für Mitglieder, kein
-              kommerzieller Shop.
+              HINWEIS: Unsere Vereinsausstattung ist ein internes Angebot für
+              Mitglieder und Vereinsfreunde und dient ausschließlich der
+              einfachen Beschaffung unserer Vereinskleidung. Mit der
+              Vereinskleidung werden keine Gewinne für den Verein erzielt.
             </p>
           </div>
           <h1 className="text-4xl font-bold text-tch-blue mb-8">
