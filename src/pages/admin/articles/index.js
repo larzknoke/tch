@@ -1,6 +1,14 @@
 import { Tooltip } from "@/components/ui/tooltip";
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
-import { HStack, VStack, Flex, Table, Icon, Button } from "@chakra-ui/react";
+import {
+  HStack,
+  VStack,
+  Flex,
+  Table,
+  Icon,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Checker, dateFormatter } from "@/lib/utils";
 import BallLoader from "@/components/ui/loading-ball";
@@ -75,51 +83,53 @@ function Article() {
   return (
     <VStack py={5} gap={5} placeItems="flex-start">
       {articlesData && !loading ? (
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeader>ID</Table.ColumnHeader>
-              <Table.ColumnHeader>Titel</Table.ColumnHeader>
-              <Table.ColumnHeader>Teaser</Table.ColumnHeader>
-              <Table.ColumnHeader>Slug</Table.ColumnHeader>
-              <Table.ColumnHeader>Datum</Table.ColumnHeader>
-              <Table.ColumnHeader>Aktiv</Table.ColumnHeader>
-              <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {articlesData.map((item) => (
-              <Table.Row key={item.id}>
-                <Table.Cell>{item.id}</Table.Cell>
-                <Table.Cell>{item.title}</Table.Cell>
-                <Table.Cell>{item.teaser}</Table.Cell>
-                <Table.Cell>{item.slug}</Table.Cell>
-                <Table.Cell>{dateFormatter(item.date, false)}</Table.Cell>
-                <Table.Cell>{Checker(item.active)}</Table.Cell>
-                <Table.Cell textAlign="end">
-                  <HStack placeContent="end" gap={4}>
-                    <Tooltip content="Bearbeiten">
-                      <Link href={`/admin/articles/edit/${item.id}`} passHref>
-                        <Icon size="sm">
-                          <PencilSquareIcon />
-                        </Icon>
-                      </Link>
-                    </Tooltip>
-                    <Tooltip content="Löschen">
-                      <Icon
-                        size="sm"
-                        color="red.600"
-                        onClick={() => deleteArticle(item.id)}
-                      >
-                        <TrashIcon />
-                      </Icon>
-                    </Tooltip>
-                  </HStack>
-                </Table.Cell>
+        <Box overflowX="auto" width="100%">
+          <Table.Root minWidth={{ base: "900px", md: "100%" }}>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeader>ID</Table.ColumnHeader>
+                <Table.ColumnHeader>Titel</Table.ColumnHeader>
+                <Table.ColumnHeader>Teaser</Table.ColumnHeader>
+                <Table.ColumnHeader>Slug</Table.ColumnHeader>
+                <Table.ColumnHeader>Datum</Table.ColumnHeader>
+                <Table.ColumnHeader>Aktiv</Table.ColumnHeader>
+                <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
               </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
+            </Table.Header>
+            <Table.Body>
+              {articlesData.map((item) => (
+                <Table.Row key={item.id}>
+                  <Table.Cell>{item.id}</Table.Cell>
+                  <Table.Cell>{item.title}</Table.Cell>
+                  <Table.Cell>{item.teaser}</Table.Cell>
+                  <Table.Cell>{item.slug}</Table.Cell>
+                  <Table.Cell>{dateFormatter(item.date, false)}</Table.Cell>
+                  <Table.Cell>{Checker(item.active)}</Table.Cell>
+                  <Table.Cell textAlign="end">
+                    <HStack placeContent="end" gap={4}>
+                      <Tooltip content="Bearbeiten">
+                        <Link href={`/admin/articles/edit/${item.id}`} passHref>
+                          <Icon size="sm">
+                            <PencilSquareIcon />
+                          </Icon>
+                        </Link>
+                      </Tooltip>
+                      <Tooltip content="Löschen">
+                        <Icon
+                          size="sm"
+                          color="red.600"
+                          onClick={() => deleteArticle(item.id)}
+                        >
+                          <TrashIcon />
+                        </Icon>
+                      </Tooltip>
+                    </HStack>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </Box>
       ) : (
         <Flex justify="center" w="100%">
           <BallLoader />

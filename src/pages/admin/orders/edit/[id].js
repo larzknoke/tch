@@ -1,6 +1,7 @@
 import LayoutAdmin from "@/components/ui/layouts/layout-admin";
 import {
   Button,
+  Box,
   Field,
   Input,
   VStack,
@@ -393,98 +394,106 @@ export default function EditOrder() {
                 </HStack>
 
                 {orderItems.length > 0 ? (
-                  <Table.Root size="sm">
-                    <Table.Header>
-                      <Table.Row>
-                        <Table.ColumnHeader>Produkt</Table.ColumnHeader>
-                        <Table.ColumnHeader>Menge</Table.ColumnHeader>
-                        <Table.ColumnHeader>Preis (€)</Table.ColumnHeader>
-                        <Table.ColumnHeader>Gesamt (€)</Table.ColumnHeader>
-                        <Table.ColumnHeader width="50px"></Table.ColumnHeader>
-                      </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                      {orderItems.map((item, index) => (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            <NativeSelect.Root size="sm">
-                              <NativeSelect.Field
-                                value={item.productId || ""}
+                  <Box overflowX="auto" width="100%">
+                    <Table.Root
+                      size="sm"
+                      minWidth={{ base: "800px", md: "100%" }}
+                    >
+                      <Table.Header>
+                        <Table.Row>
+                          <Table.ColumnHeader>Produkt</Table.ColumnHeader>
+                          <Table.ColumnHeader>Menge</Table.ColumnHeader>
+                          <Table.ColumnHeader>Preis (€)</Table.ColumnHeader>
+                          <Table.ColumnHeader>Gesamt (€)</Table.ColumnHeader>
+                          <Table.ColumnHeader width="50px"></Table.ColumnHeader>
+                        </Table.Row>
+                      </Table.Header>
+                      <Table.Body>
+                        {orderItems.map((item, index) => (
+                          <Table.Row key={index}>
+                            <Table.Cell>
+                              <NativeSelect.Root size="sm">
+                                <NativeSelect.Field
+                                  value={item.productId || ""}
+                                  onChange={(e) =>
+                                    updateOrderItem(
+                                      index,
+                                      "productId",
+                                      e.target.value,
+                                    )
+                                  }
+                                >
+                                  <option value="">Produkt wählen</option>
+                                  {Array.isArray(products) &&
+                                  products.length > 0 ? (
+                                    products.map((product) => (
+                                      <option
+                                        key={product.id}
+                                        value={product.id}
+                                      >
+                                        {product.name}
+                                      </option>
+                                    ))
+                                  ) : (
+                                    <option disabled>
+                                      Keine Produkte verfügbar
+                                    </option>
+                                  )}
+                                </NativeSelect.Field>
+                                <NativeSelect.Indicator />
+                              </NativeSelect.Root>
+                            </Table.Cell>
+                            <Table.Cell>
+                              <Input
+                                size="sm"
+                                type="number"
+                                min="1"
+                                value={item.quantity || 1}
                                 onChange={(e) =>
                                   updateOrderItem(
                                     index,
-                                    "productId",
-                                    e.target.value,
+                                    "quantity",
+                                    parseInt(e.target.value) || 1,
                                   )
                                 }
+                              />
+                            </Table.Cell>
+                            <Table.Cell>
+                              <Input
+                                size="sm"
+                                type="number"
+                                step="0.01"
+                                value={item.price || 0}
+                                onChange={(e) =>
+                                  updateOrderItem(
+                                    index,
+                                    "price",
+                                    parseFloat(e.target.value) || 0,
+                                  )
+                                }
+                              />
+                            </Table.Cell>
+                            <Table.Cell>
+                              {(
+                                (item.quantity || 1) * (item.price || 0)
+                              ).toFixed(2)}
+                            </Table.Cell>
+                            <Table.Cell>
+                              <IconButton
+                                size="sm"
+                                variant="ghost"
+                                colorPalette="red"
+                                onClick={() => removeOrderItem(index)}
+                                type="button"
                               >
-                                <option value="">Produkt wählen</option>
-                                {Array.isArray(products) &&
-                                products.length > 0 ? (
-                                  products.map((product) => (
-                                    <option key={product.id} value={product.id}>
-                                      {product.name}
-                                    </option>
-                                  ))
-                                ) : (
-                                  <option disabled>
-                                    Keine Produkte verfügbar
-                                  </option>
-                                )}
-                              </NativeSelect.Field>
-                              <NativeSelect.Indicator />
-                            </NativeSelect.Root>
-                          </Table.Cell>
-                          <Table.Cell>
-                            <Input
-                              size="sm"
-                              type="number"
-                              min="1"
-                              value={item.quantity || 1}
-                              onChange={(e) =>
-                                updateOrderItem(
-                                  index,
-                                  "quantity",
-                                  parseInt(e.target.value) || 1,
-                                )
-                              }
-                            />
-                          </Table.Cell>
-                          <Table.Cell>
-                            <Input
-                              size="sm"
-                              type="number"
-                              step="0.01"
-                              value={item.price || 0}
-                              onChange={(e) =>
-                                updateOrderItem(
-                                  index,
-                                  "price",
-                                  parseFloat(e.target.value) || 0,
-                                )
-                              }
-                            />
-                          </Table.Cell>
-                          <Table.Cell>
-                            {((item.quantity || 1) * (item.price || 0)).toFixed(
-                              2,
-                            )}
-                          </Table.Cell>
-                          <Table.Cell>
-                            <IconButton
-                              size="sm"
-                              variant="ghost"
-                              colorPalette="red"
-                              onClick={() => removeOrderItem(index)}
-                              type="button"
-                            >
-                              <TrashIcon className="h-4 w-4" />
-                            </IconButton>
-                          </Table.Cell>
-                        </Table.Row>
-                      ))}
-                    </Table.Body>
-                  </Table.Root>
+                                <TrashIcon className="h-4 w-4" />
+                              </IconButton>
+                            </Table.Cell>
+                          </Table.Row>
+                        ))}
+                      </Table.Body>
+                    </Table.Root>
+                  </Box>
                 ) : (
                   <p>Keine Bestellpositionen</p>
                 )}

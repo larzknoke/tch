@@ -109,76 +109,81 @@ export default function OrdersAdmin() {
       </HStack> */}
 
       {orders && !loading ? (
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeader>ID</Table.ColumnHeader>
-              <Table.ColumnHeader>Kunde</Table.ColumnHeader>
-              <Table.ColumnHeader>Betrag</Table.ColumnHeader>
-              <Table.ColumnHeader>Positionen</Table.ColumnHeader>
-              <Table.ColumnHeader>Status</Table.ColumnHeader>
-              <Table.ColumnHeader>Datum</Table.ColumnHeader>
-              <Table.ColumnHeader>Aktionen</Table.ColumnHeader>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {orders.map((order) => (
-              <Table.Row
-                key={order.id}
-                onClick={() => {
-                  setSelectedOrder(order);
-                  setIsDialogOpen(true);
-                }}
-                style={{ cursor: "pointer" }}
-                _hover={{ bg: "gray.50" }}
-              >
-                <Table.Cell>{order.id}</Table.Cell>
-                <Table.Cell>
-                  {order.user?.name || order.shippingName || order.email || "-"}
-                </Table.Cell>
-                <Table.Cell>
-                  {!order.isGroupOrder && order.total != null
-                    ? parseFloat(order.total).toFixed(2) + " €"
-                    : "-"}
-                </Table.Cell>
-                <Table.Cell>
-                  {order.items?.length ?? order.itemCount ?? "-"}
-                </Table.Cell>
-                <Table.Cell>
-                  <Badge colorPalette={statusColor(order.status)}>
-                    {order.status ? String(order.status) : "-"}
-                  </Badge>
-                </Table.Cell>
-                <Table.Cell>
-                  {order.createdAt
-                    ? new Date(order.createdAt).toLocaleString()
-                    : "-"}
-                </Table.Cell>
-                <Table.Cell onClick={(e) => e.stopPropagation()}>
-                  <HStack>
-                    <Link href={`/admin/orders/edit/${order.id}`}>
-                      <Tooltip content="Bearbeiten">
-                        <Button size="sm" variant="ghost">
-                          <PencilSquareIcon className="h-5 w-5" />
+        <Box overflowX="auto" width="100%">
+          <Table.Root minWidth={{ base: "950px", md: "100%" }}>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeader>ID</Table.ColumnHeader>
+                <Table.ColumnHeader>Kunde</Table.ColumnHeader>
+                <Table.ColumnHeader>Betrag</Table.ColumnHeader>
+                <Table.ColumnHeader>Positionen</Table.ColumnHeader>
+                <Table.ColumnHeader>Status</Table.ColumnHeader>
+                <Table.ColumnHeader>Datum</Table.ColumnHeader>
+                <Table.ColumnHeader>Aktionen</Table.ColumnHeader>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {orders.map((order) => (
+                <Table.Row
+                  key={order.id}
+                  onClick={() => {
+                    setSelectedOrder(order);
+                    setIsDialogOpen(true);
+                  }}
+                  style={{ cursor: "pointer" }}
+                  _hover={{ bg: "gray.50" }}
+                >
+                  <Table.Cell>{order.id}</Table.Cell>
+                  <Table.Cell>
+                    {order.user?.name ||
+                      order.shippingName ||
+                      order.email ||
+                      "-"}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {!order.isGroupOrder && order.total != null
+                      ? parseFloat(order.total).toFixed(2) + " €"
+                      : "-"}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {order.items?.length ?? order.itemCount ?? "-"}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Badge colorPalette={statusColor(order.status)}>
+                      {order.status ? String(order.status) : "-"}
+                    </Badge>
+                  </Table.Cell>
+                  <Table.Cell>
+                    {order.createdAt
+                      ? new Date(order.createdAt).toLocaleString()
+                      : "-"}
+                  </Table.Cell>
+                  <Table.Cell onClick={(e) => e.stopPropagation()}>
+                    <HStack>
+                      <Link href={`/admin/orders/edit/${order.id}`}>
+                        <Tooltip content="Bearbeiten">
+                          <Button size="sm" variant="ghost">
+                            <PencilSquareIcon className="h-5 w-5" />
+                          </Button>
+                        </Tooltip>
+                      </Link>
+                      <Tooltip content="Löschen">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          colorPalette="red"
+                          onClick={() => deleteOrder(order.id)}
+                        >
+                          <TrashIcon className="h-5 w-5" />
                         </Button>
                       </Tooltip>
-                    </Link>
-                    <Tooltip content="Löschen">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        colorPalette="red"
-                        onClick={() => deleteOrder(order.id)}
-                      >
-                        <TrashIcon className="h-5 w-5" />
-                      </Button>
-                    </Tooltip>
-                  </HStack>
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
+                    </HStack>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </Box>
       ) : (
         <BallLoader />
       )}
@@ -323,60 +328,67 @@ export default function OrdersAdmin() {
                         <Text fontWeight="bold" mb={2}>
                           Bestellpositionen
                         </Text>
-                        <Table.Root size="sm">
-                          <Table.Header>
-                            <Table.Row>
-                              <Table.ColumnHeader>Produkt</Table.ColumnHeader>
-                              <Table.ColumnHeader>Variante</Table.ColumnHeader>
-                              <Table.ColumnHeader>Menge</Table.ColumnHeader>
-                              <Table.ColumnHeader textAlign={"end"}>
-                                Preis
-                              </Table.ColumnHeader>
-                              <Table.ColumnHeader textAlign={"end"}>
-                                Gesamt
-                              </Table.ColumnHeader>
-                            </Table.Row>
-                          </Table.Header>
-                          <Table.Body>
-                            {selectedOrder.items.map((item) => (
-                              <Table.Row key={item.id}>
-                                <Table.Cell>
-                                  {item.product?.name || "-"}
-                                </Table.Cell>
-                                <Table.Cell>
-                                  {item.product?.sku ? (
-                                    <Text fontSize="xs">
-                                      {item.variant
-                                        ? `SKU: ${item.variant.sku} / `
-                                        : `SKU: ${item.product.sku}`}
-                                      {item.variant?.size
-                                        ? `Größe: ${item.variant.size}`
-                                        : ""}
-                                    </Text>
-                                  ) : (
-                                    "-"
-                                  )}
-                                </Table.Cell>
-                                <Table.Cell>{item.quantity}</Table.Cell>
-                                <Table.Cell textAlign={"end"}>
-                                  {!item.product?.isGroupOrder &&
-                                  item.price != null
-                                    ? parseFloat(item.price).toFixed(2) + " €"
-                                    : "-"}
-                                </Table.Cell>
-                                <Table.Cell textAlign={"end"}>
-                                  {!item.product?.isGroupOrder &&
-                                  item.price != null &&
-                                  item.quantity
-                                    ? (
-                                        parseFloat(item.price) * item.quantity
-                                      ).toFixed(2) + " €"
-                                    : "-"}
-                                </Table.Cell>
+                        <Box overflowX="auto" width="100%">
+                          <Table.Root
+                            size="sm"
+                            minWidth={{ base: "700px", md: "100%" }}
+                          >
+                            <Table.Header>
+                              <Table.Row>
+                                <Table.ColumnHeader>Produkt</Table.ColumnHeader>
+                                <Table.ColumnHeader>
+                                  Variante
+                                </Table.ColumnHeader>
+                                <Table.ColumnHeader>Menge</Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign={"end"}>
+                                  Preis
+                                </Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign={"end"}>
+                                  Gesamt
+                                </Table.ColumnHeader>
                               </Table.Row>
-                            ))}
-                          </Table.Body>
-                        </Table.Root>
+                            </Table.Header>
+                            <Table.Body>
+                              {selectedOrder.items.map((item) => (
+                                <Table.Row key={item.id}>
+                                  <Table.Cell>
+                                    {item.product?.name || "-"}
+                                  </Table.Cell>
+                                  <Table.Cell>
+                                    {item.product?.sku ? (
+                                      <Text fontSize="xs">
+                                        {item.variant
+                                          ? `SKU: ${item.variant.sku} / `
+                                          : `SKU: ${item.product.sku}`}
+                                        {item.variant?.size
+                                          ? `Größe: ${item.variant.size}`
+                                          : ""}
+                                      </Text>
+                                    ) : (
+                                      "-"
+                                    )}
+                                  </Table.Cell>
+                                  <Table.Cell>{item.quantity}</Table.Cell>
+                                  <Table.Cell textAlign={"end"}>
+                                    {!item.product?.isGroupOrder &&
+                                    item.price != null
+                                      ? parseFloat(item.price).toFixed(2) + " €"
+                                      : "-"}
+                                  </Table.Cell>
+                                  <Table.Cell textAlign={"end"}>
+                                    {!item.product?.isGroupOrder &&
+                                    item.price != null &&
+                                    item.quantity
+                                      ? (
+                                          parseFloat(item.price) * item.quantity
+                                        ).toFixed(2) + " €"
+                                      : "-"}
+                                  </Table.Cell>
+                                </Table.Row>
+                              ))}
+                            </Table.Body>
+                          </Table.Root>
+                        </Box>
                       </Box>
                     )}
 

@@ -2,6 +2,7 @@ import LayoutAdmin from "@/components/ui/layouts/layout-admin";
 import {
   Badge,
   Button,
+  Box,
   Card,
   Field,
   Input,
@@ -176,30 +177,36 @@ export default function GroupOrdersAdmin() {
                       <Text fontWeight="semibold" mb={2}>
                         Teilnehmer
                       </Text>
-                      <Table.Root size="sm" variant="outline">
-                        <Table.Header>
-                          <Table.Row>
-                            <Table.ColumnHeader>E-Mail</Table.ColumnHeader>
-                            <Table.ColumnHeader>Variante</Table.ColumnHeader>
-                            <Table.ColumnHeader>Menge</Table.ColumnHeader>
-                            <Table.ColumnHeader>
-                              Bestellung #
-                            </Table.ColumnHeader>
-                          </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                          {product.orderItems.map((item) => (
-                            <Table.Row key={item.id}>
-                              <Table.Cell>{item.order.email}</Table.Cell>
-                              <Table.Cell>
-                                {item.variant?.size || "—"}
-                              </Table.Cell>
-                              <Table.Cell>{item.quantity}</Table.Cell>
-                              <Table.Cell>#{item.order.id}</Table.Cell>
+                      <Box overflowX="auto" width="100%">
+                        <Table.Root
+                          size="sm"
+                          variant="outline"
+                          minWidth={{ base: "700px", md: "100%" }}
+                        >
+                          <Table.Header>
+                            <Table.Row>
+                              <Table.ColumnHeader>E-Mail</Table.ColumnHeader>
+                              <Table.ColumnHeader>Variante</Table.ColumnHeader>
+                              <Table.ColumnHeader>Menge</Table.ColumnHeader>
+                              <Table.ColumnHeader>
+                                Bestellung #
+                              </Table.ColumnHeader>
                             </Table.Row>
-                          ))}
-                        </Table.Body>
-                      </Table.Root>
+                          </Table.Header>
+                          <Table.Body>
+                            {product.orderItems.map((item) => (
+                              <Table.Row key={item.id}>
+                                <Table.Cell>{item.order.email}</Table.Cell>
+                                <Table.Cell>
+                                  {item.variant?.size || "—"}
+                                </Table.Cell>
+                                <Table.Cell>{item.quantity}</Table.Cell>
+                                <Table.Cell>#{item.order.id}</Table.Cell>
+                              </Table.Row>
+                            ))}
+                          </Table.Body>
+                        </Table.Root>
+                      </Box>
                     </div>
                   )}
 

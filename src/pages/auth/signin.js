@@ -55,7 +55,7 @@ function SignIn() {
       });
       console.log(`signing:onsubmit:res`, res);
 
-      if (res?.error) {
+      if (!res || res.error || res.ok === false) {
         setError("Email oder Passwort ist falsch");
         toaster.create({
           title: "Anmeldefehler",
@@ -63,8 +63,10 @@ function SignIn() {
           type: "error",
           duration: 5000,
         });
-        setIsLoading(false);
-      } else if (res?.ok) {
+        return;
+      }
+
+      if (res.ok) {
         toaster.create({
           title: "Erfolgreich angemeldet",
           description: "Sie werden weitergeleitet...",
@@ -82,6 +84,7 @@ function SignIn() {
         type: "error",
         duration: 5000,
       });
+    } finally {
       setIsLoading(false);
     }
   }
@@ -168,7 +171,8 @@ function SignIn() {
 
             <Button
               type="submit"
-              className="w-100 bg-tch-blue hover:bg-tch-blue-semi"
+              width="100%"
+              colorPalette="blue"
               loading={isLoading}
             >
               Login
