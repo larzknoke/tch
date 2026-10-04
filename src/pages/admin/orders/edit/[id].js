@@ -174,7 +174,10 @@ export default function EditOrder() {
   }
 
   function addOrderItem() {
-    setOrderItems([...orderItems, { productId: "", quantity: 1, price: 0 }]);
+    setOrderItems([
+      ...orderItems,
+      { productId: "", variantId: "", quantity: 1, price: 0 },
+    ]);
   }
 
   function removeOrderItem(index) {
@@ -185,15 +188,21 @@ export default function EditOrder() {
     const updated = [...orderItems];
     updated[index] = { ...updated[index], [field]: value };
 
-    // Auto-fill price when product is selected
+    // Auto-fill price and clear invalid variant when product changes.
     if (field === "productId") {
       const product = products.find((p) => p.id === parseInt(value));
       if (product) {
         updated[index].price = parseFloat(product.price);
       }
+      updated[index].variantId = "";
     }
 
     setOrderItems(updated);
+  }
+
+  function getProductVariants(productId) {
+    const product = products.find((p) => p.id === parseInt(productId, 10));
+    return product?.variants || [];
   }
 
   if (loadingOrder) {
@@ -247,6 +256,7 @@ export default function EditOrder() {
                         <NativeSelect.Field {...field}>
                           <option value="">Bitte wählen</option>
                           <option value="ausstehend">Ausstehend</option>
+                          <option value="in Produktion">In Produktion</option>
                           <option value="bezahlt">Bezahlt</option>
                           <option value="versendet">Versendet</option>
                           <option value="abgeschlossen">Abgeschlossen</option>
@@ -402,6 +412,7 @@ export default function EditOrder() {
                       <Table.Header>
                         <Table.Row>
                           <Table.ColumnHeader>Produkt</Table.ColumnHeader>
+                          <Table.ColumnHeader>Variante</Table.ColumnHeader>
                           <Table.ColumnHeader>Menge</Table.ColumnHeader>
                           <Table.ColumnHeader>Preis (€)</Table.ColumnHeader>
                           <Table.ColumnHeader>Gesamt (€)</Table.ColumnHeader>
@@ -442,6 +453,56 @@ export default function EditOrder() {
                                 </NativeSelect.Field>
                                 <NativeSelect.Indicator />
                               </NativeSelect.Root>
+                            </Table.Cell>
+                            <Table.Cell>
+                              {(() => {
+                                const product = products.find(
+                                  (p) => p.id === parseInt(item.productId, 10),
+                                );
+                                const variants = getProductVariants(
+                                  item.productId,
+                                );
+                                const hasVariants = Boolean(
+                                  product?.hasVariants,
+                                );
+
+                                if (!item.productId) {
+                                  return "-";
+                                }
+
+                                if (!hasVariants) {
+                                  return "-";
+                                }
+
+                                return (
+                                  <NativeSelect.Root size="sm">
+                                    <NativeSelect.Field
+                                      value={item.variantId ?? ""}
+                                      onChange={(e) =>
+                                        updateOrderItem(
+                                          index,
+                                          "variantId",
+                                          e.target.value,
+                                        )
+                                      }
+                                    >
+                                      <option value="">Variante wählen</option>
+                                      {variants.map((variant) => (
+                                        <option
+                                          key={variant.id}
+                                          value={variant.id}
+                                        >
+                                          {variant.size}
+                                          {variant.sku
+                                            ? ` (${variant.sku})`
+                                            : ""}
+                                        </option>
+                                      ))}
+                                    </NativeSelect.Field>
+                                    <NativeSelect.Indicator />
+                                  </NativeSelect.Root>
+                                );
+                              })()}
                             </Table.Cell>
                             <Table.Cell>
                               <Input

@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "create-user": "node scripts/create-user.js"
+    "create-user": "node scripts/create-user.js",
+    "repair-order-variants": "node scripts/repair-order-item-variants.js",
+    "set-order-item-variants": "node scripts/set-order-item-variants.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

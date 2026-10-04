@@ -14,7 +14,11 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  PencilSquareIcon,
+  ArrowDownTrayIcon,
+} from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import { toaster } from "@/components/ui/toaster";
 import Link from "next/link";
@@ -23,6 +27,10 @@ import BallLoader from "@/components/ui/loading-ball";
 export default function OrdersAdmin() {
   const [orders, setOrders] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [downloadingSummary, setDownloadingSummary] = useState(false);
+  const [downloadingSelectedSummary, setDownloadingSelectedSummary] =
+    useState(false);
+  const [selectedOrderIds, setSelectedOrderIds] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -97,22 +105,180 @@ export default function OrdersAdmin() {
     const s = String(status).toLowerCase();
     if (s === "paid" || s === "completed" || s === "shipped") return "green";
     if (s === "cancelled" || s === "canceled" || s === "refunded") return "red";
+    if (s === "in produktion") return "orange";
     return "gray";
   }
 
+  function handleRowClick(event, order) {
+    const target = event.target;
+    if (
+      target instanceof Element &&
+      target.closest(
+        "button, a, input, select, textarea, [role='button'], [data-interactive='true']",
+      )
+    ) {
+      return;
+    }
+
+    setSelectedOrder(order);
+    setIsDialogOpen(true);
+  }
+
+  function isSelectableForProduction(order) {
+    const status = String(order?.status || "").toLowerCase();
+    return status === "ausstehend" || status === "in produktion";
+  }
+
+  function toggleOrderSelection(order) {
+    if (!isSelectableForProduction(order)) {
+      return;
+    }
+
+    setSelectedOrderIds((prev) => {
+      if (prev.includes(order.id)) {
+        return prev.filter((id) => id !== order.id);
+      }
+      return [...prev, order.id];
+    });
+  }
+
+  function toggleSelectAllPending() {
+    const pendingIds = (orders || [])
+      .filter((order) => isSelectableForProduction(order))
+      .map((order) => order.id);
+
+    setSelectedOrderIds((prev) => {
+      const allSelected = pendingIds.every((id) => prev.includes(id));
+      if (allSelected) {
+        return prev.filter((id) => !pendingIds.includes(id));
+      }
+
+      return Array.from(new Set([...prev, ...pendingIds]));
+    });
+  }
+
+  async function downloadProductionSummaryPdf(orderIds = null) {
+    try {
+      if (orderIds && orderIds.length > 0) {
+        setDownloadingSelectedSummary(true);
+      } else {
+        setDownloadingSummary(true);
+      }
+
+      const res = await fetch("/api/admin/orders/production-summary-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+          orderIds && orderIds.length > 0 ? { orderIds } : {},
+        ),
+      });
+
+      if (!res.ok) {
+        let message = "Fehler beim Erstellen der Bestellzusammenfassung";
+        try {
+          const errorData = await res.json();
+          if (errorData?.error) {
+            message = errorData.error;
+          }
+        } catch {
+          // Keep fallback message
+        }
+
+        toaster.create({
+          description: message,
+          type: "error",
+        });
+        return;
+      }
+
+      const blob = await res.blob();
+      const updatedOrdersCount = res.headers.get("x-updated-orders") || "0";
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `bestellzusammenfassung_produktion_${new Date()
+        .toISOString()
+        .slice(0, 10)}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toaster.create({
+        description: `PDF erstellt. ${updatedOrdersCount} Bestellungen wurden auf \"in Produktion\" gesetzt.`,
+        type: "success",
+      });
+
+      if (orderIds && orderIds.length > 0) {
+        setSelectedOrderIds((prev) =>
+          prev.filter((id) => !orderIds.includes(id)),
+        );
+      }
+
+      getOrders();
+    } catch (error) {
+      console.error("Error:", error);
+      toaster.create({
+        description: "Fehler beim Erstellen der Bestellzusammenfassung",
+        type: "error",
+      });
+    } finally {
+      setDownloadingSummary(false);
+      setDownloadingSelectedSummary(false);
+    }
+  }
+
+  const pendingOrderCount = (orders || []).filter((order) =>
+    isSelectableForProduction(order),
+  ).length;
+
+  const selectedPendingOrderIds = selectedOrderIds.filter((id) =>
+    (orders || []).some(
+      (order) => order.id === id && isSelectableForProduction(order),
+    ),
+  );
+
   return (
     <VStack py={5} gap={5} placeItems="flex-start">
-      {/* <HStack>
-        <Link href="/admin/orders/create">
-          <Button colorPalette="blue">Neue Bestellung</Button>
-        </Link>
-      </HStack> */}
+      <HStack wrap="wrap">
+        <Button
+          colorPalette="gray"
+          variant="outline"
+          onClick={toggleSelectAllPending}
+          disabled={!pendingOrderCount}
+        >
+          {selectedPendingOrderIds.length === pendingOrderCount
+            ? "Auswahl aufheben"
+            : "Ausstehend + in Produktion auswählen"}
+        </Button>
+        <Button
+          colorPalette="orange"
+          variant="solid"
+          onClick={() => downloadProductionSummaryPdf(selectedPendingOrderIds)}
+          disabled={selectedPendingOrderIds.length === 0}
+          loading={downloadingSelectedSummary}
+        >
+          <ArrowDownTrayIcon className="h-5 w-5" />
+          Auswahl als PDF
+        </Button>
+        <Button
+          colorPalette="blue"
+          variant="outline"
+          onClick={() => downloadProductionSummaryPdf()}
+          loading={downloadingSummary}
+        >
+          <ArrowDownTrayIcon className="h-5 w-5" />
+          Alle ausstehenden als PDF
+        </Button>
+      </HStack>
 
       {orders && !loading ? (
         <Box overflowX="auto" width="100%">
           <Table.Root minWidth={{ base: "950px", md: "100%" }}>
             <Table.Header>
               <Table.Row>
+                <Table.ColumnHeader width="60px">Auswahl</Table.ColumnHeader>
                 <Table.ColumnHeader>ID</Table.ColumnHeader>
                 <Table.ColumnHeader>Kunde</Table.ColumnHeader>
                 <Table.ColumnHeader>Betrag</Table.ColumnHeader>
@@ -126,13 +292,18 @@ export default function OrdersAdmin() {
               {orders.map((order) => (
                 <Table.Row
                   key={order.id}
-                  onClick={() => {
-                    setSelectedOrder(order);
-                    setIsDialogOpen(true);
-                  }}
+                  onClick={(event) => handleRowClick(event, order)}
                   style={{ cursor: "pointer" }}
                   _hover={{ bg: "gray.50" }}
                 >
+                  <Table.Cell onClick={(e) => e.stopPropagation()}>
+                    <input
+                      type="checkbox"
+                      checked={selectedOrderIds.includes(order.id)}
+                      disabled={!isSelectableForProduction(order)}
+                      onChange={() => toggleOrderSelection(order)}
+                    />
+                  </Table.Cell>
                   <Table.Cell>{order.id}</Table.Cell>
                   <Table.Cell>
                     {order.user?.name ||

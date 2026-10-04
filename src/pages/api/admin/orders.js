@@ -2,6 +2,48 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import prisma from "@/lib/prisma";
 
+async function mapOrderItemsForWrite(items) {
+  const mapped = [];
+
+  for (const it of items) {
+    const productId = parseInt(it.productId, 10);
+    if (!Number.isInteger(productId) || productId <= 0) {
+      throw new Error("Invalid productId in order item");
+    }
+
+    const quantity = parseInt(it.quantity, 10) || 1;
+    const price = it.price != null ? parseFloat(it.price) : 0;
+
+    let variantId = null;
+    if (it.variantId != null && it.variantId !== "") {
+      const parsedVariantId = parseInt(it.variantId, 10);
+      if (Number.isInteger(parsedVariantId) && parsedVariantId > 0) {
+        const variant = await prisma.productVariant.findUnique({
+          where: { id: parsedVariantId },
+          select: { id: true, productId: true },
+        });
+
+        if (!variant || variant.productId !== productId) {
+          throw new Error(
+            `Variant ${parsedVariantId} passt nicht zum Produkt ${productId}`,
+          );
+        }
+
+        variantId = parsedVariantId;
+      }
+    }
+
+    mapped.push({
+      productId,
+      variantId,
+      quantity,
+      price,
+    });
+  }
+
+  return mapped;
+}
+
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
 
@@ -84,6 +126,8 @@ async function createOrder(req, res) {
       return res.status(400).json({ error: "Email and items are required" });
     }
 
+    const mappedItems = await mapOrderItemsForWrite(items);
+
     const order = await prisma.order.create({
       data: {
         userId: userId || null,
@@ -100,11 +144,7 @@ async function createOrder(req, res) {
         billingPlz: billingPlz || null,
         billingCity: billingCity || null,
         items: {
-          create: items.map((it) => ({
-            productId: parseInt(it.productId),
-            quantity: parseInt(it.quantity) || 1,
-            price: it.price ? parseFloat(it.price) : 0,
-          })),
+          create: mappedItems,
         },
       },
       include: { items: true },
@@ -141,6 +181,11 @@ async function updateOrder(req, res) {
     }
 
     // If items supplied, replace existing items
+    let mappedItems;
+    if (items && Array.isArray(items)) {
+      mappedItems = await mapOrderItemsForWrite(items);
+    }
+
     if (items && Array.isArray(items)) {
       await prisma.orderItem.deleteMany({ where: { orderId: parseInt(id) } });
     }
@@ -163,11 +208,7 @@ async function updateOrder(req, res) {
         items:
           items && Array.isArray(items)
             ? {
-                create: items.map((it) => ({
-                  productId: parseInt(it.productId),
-                  quantity: parseInt(it.quantity) || 1,
-                  price: it.price ? parseFloat(it.price) : 0,
-                })),
+                create: mappedItems,
               }
             : undefined,
       },
@@ -177,7 +218,9 @@ async function updateOrder(req, res) {
     return res.status(200).json(order);
   } catch (error) {
     console.error("Error updating order:", error);
-    return res.status(500).json({ error: "Failed to update order" });
+    return res.status(500).json({
+      error: error?.message || "Failed to update order",
+    });
   }
 }
 

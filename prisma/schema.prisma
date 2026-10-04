@@ -189,7 +189,7 @@ model Order {
   updatedAt DateTime @updatedAt
   userId    String?
   user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
-  status    String   @default("ausstehend")
+  status    String   @default("ausstehend") // ausstehend | in Produktion | bezahlt | versendet | abgeschlossen | storniert
   total     Decimal  @db.Decimal(10, 2)
   email     String
   payment   String?  @default("Barzahlung")
