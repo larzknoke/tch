@@ -100,7 +100,9 @@ function buildOrderDetails(orders) {
     items: (order.items || []).map((item) => ({
       id: item.id,
       productName: item.product?.name || `Produkt #${item.productId}`,
-      size: item.variant?.size || (item.product?.hasVariants ? "Groesse fehlt" : "-"),
+      size:
+        item.variant?.size ||
+        (item.product?.hasVariants ? "Groesse fehlt" : "-"),
       sku: item.variant?.sku || item.product?.sku || "-",
       quantity: Number(item.quantity) || 0,
     })),
@@ -177,7 +179,7 @@ export default async function handler(req, res) {
     }
 
     const { grouped, totalQuantity } = aggregateProductionItems(pendingOrders);
-  const ordersDetailed = buildOrderDetails(pendingOrders);
+    const ordersDetailed = buildOrderDetails(pendingOrders);
 
     if (totalQuantity === 0) {
       return res.status(400).json({
