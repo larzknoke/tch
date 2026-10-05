@@ -13,6 +13,7 @@ import {
   CloseButton,
   Grid,
   GridItem,
+  Menu,
 } from "@chakra-ui/react";
 import {
   TrashIcon,
@@ -30,6 +31,7 @@ export default function OrdersAdmin() {
   const [downloadingSummary, setDownloadingSummary] = useState(false);
   const [downloadingSelectedSummary, setDownloadingSelectedSummary] =
     useState(false);
+  const [sendingProductionEmailIds, setSendingProductionEmailIds] = useState([]);
   const [selectedOrderIds, setSelectedOrderIds] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -94,6 +96,52 @@ export default function OrdersAdmin() {
       });
     }
     setLoading(false);
+  }
+
+  async function sendProductionEmail(orderId) {
+    try {
+      setSendingProductionEmailIds((prev) => [...prev, orderId]);
+
+      const res = await fetch(
+        `/api/admin/orders/send-production-email?id=${orderId}`,
+        {
+          method: "POST",
+        },
+      );
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        toaster.create({
+          description:
+            data?.error || "Fehler beim Versenden der Produktions-E-Mail",
+          type: "error",
+        });
+        return;
+      }
+
+      toaster.create({
+        description: `Produktions-E-Mail fuer Bestellung #${orderId} versendet`,
+        type: "success",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      toaster.create({
+        description: "Fehler beim Versenden der Produktions-E-Mail",
+        type: "error",
+      });
+    } finally {
+      setSendingProductionEmailIds((prev) => prev.filter((id) => id !== orderId));
+    }
+  }
+
+  async function handleOrderActionChange(orderId, action) {
+    if (!action) {
+      return;
+    }
+
+    if (action === "send-production-email") {
+      await sendProductionEmail(orderId);
+    }
   }
 
   useEffect(() => {
@@ -348,6 +396,31 @@ export default function OrdersAdmin() {
                           <TrashIcon className="h-5 w-5" />
                         </Button>
                       </Tooltip>
+                      <Menu.Root
+                        positioning={{ hideWhenDetached: true }}
+                        onSelect={(details) =>
+                          handleOrderActionChange(order.id, details.value)
+                        }
+                      >
+                        <Menu.Trigger asChild>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            disabled={sendingProductionEmailIds.includes(order.id)}
+                          >
+                            Weitere Aktionen
+                          </Button>
+                        </Menu.Trigger>
+                        <Portal>
+                          <Menu.Positioner>
+                            <Menu.Content>
+                              <Menu.Item value="send-production-email">
+                                Produktions-E-Mail senden
+                              </Menu.Item>
+                            </Menu.Content>
+                          </Menu.Positioner>
+                        </Portal>
+                      </Menu.Root>
                     </HStack>
                   </Table.Cell>
                 </Table.Row>
