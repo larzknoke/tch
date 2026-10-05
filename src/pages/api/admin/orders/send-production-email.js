@@ -50,6 +50,8 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error("Error sending production email:", error);
-    return res.status(500).json({ error: "Fehler beim Versenden der Produktions-E-Mail" });
+    return res
+      .status(500)
+      .json({ error: "Fehler beim Versenden der Produktions-E-Mail" });
   }
 }

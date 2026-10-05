@@ -21,7 +21,9 @@ export default function OrderInProductionEmail({ order }) {
   return (
     <Html>
       <Head />
-      <Preview>Ihre Bestellung #{order.id} befindet sich jetzt in Produktion</Preview>
+      <Preview>
+        Ihre Bestellung #{order.id} befindet sich jetzt in Produktion
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           <Img
@@ -43,7 +45,8 @@ export default function OrderInProductionEmail({ order }) {
               Die Fertigstellung wird voraussichtlich in 10-14 Tagen erfolgen.
             </Text>
             <Text style={text}>
-              Eine weitere E-Mail folgt, sobald die Lieferung bei uns eingetroffen ist.
+              Eine weitere E-Mail folgt, sobald die Lieferung bei uns
+              eingetroffen ist.
             </Text>
             <Hr style={divider} />
             <Text style={text}>
@@ -74,7 +77,9 @@ export default function OrderInProductionEmail({ order }) {
                   <Text style={textSmall}>
                     Positionssumme: {formatMoney(lineTotal)}
                   </Text>
-                  {index < (order.items?.length || 0) - 1 && <Hr style={divider} />}
+                  {index < (order.items?.length || 0) - 1 && (
+                    <Hr style={divider} />
+                  )}
                 </Section>
               );
             })}
@@ -82,7 +87,8 @@ export default function OrderInProductionEmail({ order }) {
 
           <Section style={section}>
             <Text style={text}>
-              Bei Fragen antworten Sie gerne direkt auf diese E-Mail oder schreiben Sie an presse@tc1928.com.
+              Bei Fragen antworten Sie gerne direkt auf diese E-Mail oder
+              schreiben Sie an presse@tc1928.com.
             </Text>
             <Text style={text}>
               Freundliche Gruesse

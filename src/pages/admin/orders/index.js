@@ -31,7 +31,9 @@ export default function OrdersAdmin() {
   const [downloadingSummary, setDownloadingSummary] = useState(false);
   const [downloadingSelectedSummary, setDownloadingSelectedSummary] =
     useState(false);
-  const [sendingProductionEmailIds, setSendingProductionEmailIds] = useState([]);
+  const [sendingProductionEmailIds, setSendingProductionEmailIds] = useState(
+    [],
+  );
   const [selectedOrderIds, setSelectedOrderIds] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -130,7 +132,9 @@ export default function OrdersAdmin() {
         type: "error",
       });
     } finally {
-      setSendingProductionEmailIds((prev) => prev.filter((id) => id !== orderId));
+      setSendingProductionEmailIds((prev) =>
+        prev.filter((id) => id !== orderId),
+      );
     }
   }
 
@@ -406,7 +410,9 @@ export default function OrdersAdmin() {
                           <Button
                             size="sm"
                             variant="outline"
-                            disabled={sendingProductionEmailIds.includes(order.id)}
+                            disabled={sendingProductionEmailIds.includes(
+                              order.id,
+                            )}
                           >
                             Weitere Aktionen
                           </Button>
