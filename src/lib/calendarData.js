@@ -82,12 +82,12 @@ export const calendarData = [
   //   date: "2026-07-02",
   //   tag: "Junior",
   // },
-  {
-    id: 16,
-    title: "TCH LK Race Finale 2026, 24.-27.09.",
-    date: "2026-09-24",
-    tag: "Junior",
-  },
+  // {
+  //   id: 16,
+  //   title: "TCH LK Race Finale 2026, 24.-27.09.",
+  //   date: "2026-09-24",
+  //   tag: "Junior",
+  // },
   {
     id: 17,
     title: "Holzminden Indoor Open 2026, 30.10-01.11.",
@@ -100,18 +100,18 @@ export const calendarData = [
     date: "2026-12-18",
     tag: "Junior",
   },
-  {
-    id: 19,
-    title: "Arbeitseinsatz Halle Teil 1",
-    date: "2026-09-19",
-    tag: "Allgemein",
-  },
-  {
-    id: 20,
-    title: "Arbeitseinsatz Halle Teil 2",
-    date: "2026-09-26",
-    tag: "Allgemein",
-  },
+  // {
+  //   id: 19,
+  //   title: "Arbeitseinsatz Halle Teil 1",
+  //   date: "2026-09-19",
+  //   tag: "Allgemein",
+  // },
+  // {
+  //   id: 20,
+  //   title: "Arbeitseinsatz Halle Teil 2",
+  //   date: "2026-09-26",
+  //   tag: "Allgemein",
+  // },
   // {
   //   id: 19,
   //   title: "29. Cup der Sparkasse Einbeck/Holzminden, 24.-26.04.",
@@ -159,10 +159,10 @@ export const calendarData = [
   //   date: "2026-08-21",
   //   tag: "Senior",
   // },
-  {
-    id: 27,
-    title: "Jugend-Clubmeisterschaften + Sommerfest, 19-20.09.",
-    date: "2026-09-19",
-    tag: "Junior",
-  },
+  // {
+  //   id: 27,
+  //   title: "Jugend-Clubmeisterschaften + Sommerfest, 19-20.09.",
+  //   date: "2026-09-19",
+  //   tag: "Junior",
+  // },
 ];
