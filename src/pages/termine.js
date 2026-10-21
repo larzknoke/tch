@@ -103,7 +103,7 @@ export default function Termine() {
                 className={`text-xs rounded-xl px-3 py-1.5 uppercase font-semibold transition-colors hover:cursor-pointer ${
                   selectedTag === tag
                     ? "bg-tch-blue text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    : "bg-gray-200 text-gray-400 hover:bg-gray-300"
                 }`}
               >
                 {tag}
@@ -111,29 +111,47 @@ export default function Termine() {
             ))}
           </div>
 
-          {sortedDates.map((date) => (
-            <div key={date.id} className="mb-6 border-b border-tch-blue pt-3">
-              <div className="flex flex-row items-center gap-4">
-                <p
-                  className="text-tch-gold font-semibold"
-                  suppressHydrationWarning
-                >
-                  {new Date(date.date).toLocaleDateString("de-DE", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                </p>
-                <span className=" text-[9px] bg-tch-blue/50 text-white rounded-xl px-2 py-0.5 uppercase font-semibold tracking-wider">
-                  {date.tag || "Allgemein"}
-                </span>
+          {sortedDates.map((date, index) => {
+            const monthKey = date.date.slice(0, 7);
+            const previousMonthKey = sortedDates[index - 1]?.date.slice(0, 7);
+            const monthTitle = new Date(
+              `${monthKey}-01T00:00:00`,
+            ).toLocaleDateString("de-DE", {
+              month: "long",
+              year: "numeric",
+            });
+
+            return (
+              <div key={date.id}>
+                {monthKey !== previousMonthKey && (
+                  <h3 className="rounded mt-8 mb-3 w-full bg-gray-200 px-3 py-2 text-lg font-semibold text-gray-400 uppercase">
+                    {monthTitle}
+                  </h3>
+                )}
+                <div className="mb-6 border-b border-tch-blue pt-3">
+                  <div className="flex flex-row items-center gap-4">
+                    <p
+                      className="text-tch-gold font-semibold"
+                      suppressHydrationWarning
+                    >
+                      {new Date(date.date).toLocaleDateString("de-DE", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}
+                    </p>
+                    <span className=" text-[9px] bg-tch-blue/50 text-white rounded-xl px-2 py-0.5 uppercase font-semibold tracking-wider">
+                      {date.tag || "Allgemein"}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-1 text-tch-blue">
+                    {date.title}
+                  </h3>
+                  <p className="text-gray-600 mt-1">{date.description}</p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-1 text-tch-blue">
-                {date.title}
-              </h3>
-              <p className="text-gray-600 mt-1">{date.description}</p>
-            </div>
-          ))}
+            );
+          })}
           {/* Placeholder items for demonstration */}
         </div>
         <div
