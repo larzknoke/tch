@@ -71,7 +71,7 @@ export default function Termine() {
   // Filter dates based on selected tag
   const filteredDates = selectedTag
     ? calendarData.filter((date) => (date.tag || "Allgemein") === selectedTag)
-    : calendarData;
+    : calendarData.filter((date) => date.tag !== "Punktspiel");
   const sortedDates = [...filteredDates].sort(
     (a, b) => new Date(a.date) - new Date(b.date),
   );
