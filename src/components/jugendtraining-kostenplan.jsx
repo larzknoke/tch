@@ -12,9 +12,7 @@ function JugendtrainingKostenplan({
                 Trainingsform
               </th>
               <th className="px-3 py-2 border border-gray-200">Trainer</th>
-              <th className="px-3 py-2 border border-gray-200">
-                Kosten/ Monat
-              </th>
+              <th className="px-3 py-2 border border-gray-200">Kosten/Monat</th>
             </tr>
           </thead>
           <tbody>
@@ -91,7 +89,7 @@ function JugendtrainingKostenplan({
           </tbody>
         </table>
       </div>
-      <p>Preise pro Person</p>
+      <p>Preise pro Person pro Monat</p>
       <p>Trainingseinheit je 60 Minuten</p>
       <p>40 Trainingseinheiten pro Jahr</p>
       <p>
