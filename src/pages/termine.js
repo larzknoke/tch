@@ -63,15 +63,20 @@ export default function Termine() {
   const hasActiveEfforts = effortsData && effortsData.length > 0;
   const showEffortsFirst = loading || hasActiveEfforts;
 
-  // Get unique tags from calendarData
+  // Nur Termine anzeigen, die nicht mehr als 3 Tage in der Vergangenheit liegen
+  const cutoff = Date.now() - 3 * 24 * 60 * 60 * 1000;
+  const upcomingData = calendarData.filter(
+    (date) => new Date(date.date).getTime() >= cutoff,
+  );
+
   const uniqueTags = [
-    ...new Set(calendarData.map((date) => date.tag || "Allgemein")),
+    ...new Set(upcomingData.map((date) => date.tag || "Allgemein")),
   ];
 
   // Filter dates based on selected tag
   const filteredDates = selectedTag
-    ? calendarData.filter((date) => (date.tag || "Allgemein") === selectedTag)
-    : calendarData.filter((date) => date.tag !== "Punktspiel");
+    ? upcomingData.filter((date) => (date.tag || "Allgemein") === selectedTag)
+    : upcomingData.filter((date) => date.tag !== "Punktspiel");
   const sortedDates = [...filteredDates].sort(
     (a, b) => new Date(a.date) - new Date(b.date),
   );
