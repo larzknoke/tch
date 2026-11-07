@@ -75,13 +75,12 @@ export default function Checkout() {
     handleSubmit,
     watch,
     control,
-    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       email: "",
-      payment: "Barzahlung",
+      payment: "Überweisung",
       shippingName: "",
       shippingStreet: "",
       shippingPlz: "",
@@ -95,7 +94,7 @@ export default function Checkout() {
   });
 
   const useSameAddress = watch("useSameAddress");
-  const selectedPayment = "Barzahlung";
+  const selectedPayment = watch("payment");
   const isGroupOrderPayment = selectedPayment === "Sammelbestellung";
 
   useEffect(() => {
@@ -115,10 +114,6 @@ export default function Checkout() {
     return sum + parseFloat(item.price) * item.quantity;
   }, 0);
 
-  useEffect(() => {
-    setValue("payment", "Barzahlung");
-  }, [setValue]);
-
   const onSubmit = async (values) => {
     setLoading(true);
 
@@ -130,7 +125,7 @@ export default function Checkout() {
         },
         body: JSON.stringify({
           email: values.email,
-          payment: "Barzahlung",
+          payment: values.payment,
           shippingName: values.shippingName,
           shippingStreet: values.shippingStreet,
           shippingPlz: values.shippingPlz,
