@@ -155,9 +155,23 @@ export default function OrdersAdmin() {
   function statusColor(status) {
     if (!status) return "gray";
     const s = String(status).toLowerCase();
-    if (s === "paid" || s === "completed" || s === "shipped") return "green";
-    if (s === "cancelled" || s === "canceled" || s === "refunded") return "red";
+    if (
+      s === "paid" ||
+      s === "bezahlt" ||
+      s === "completed" ||
+      s === "abgeschlossen"
+    )
+      return "green";
+    if (s === "shipped" || s === "versendet") return "blue";
+    if (
+      s === "cancelled" ||
+      s === "canceled" ||
+      s === "refunded" ||
+      s === "storniert"
+    )
+      return "red";
     if (s === "in produktion") return "orange";
+    if (s === "ausstehend") return "yellow";
     return "gray";
   }
 
