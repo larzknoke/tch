@@ -15,6 +15,35 @@ function PlayStaySenior() {
     <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 px-5 md:px-0">
       <div className="w-full md:w-1/2">
         <HeaderText text="Play & Stay Senior" />
+        <div className="bg-tch-blue px-6 py-5 relative text-white flex flex-col gap-4 rounded mb-6">
+          <div>
+            <h3 className="text-lg font-bold uppercase mb-1">
+              Sommer{" "}
+              <span className="text-tch-blue-semi ml-1 text-sm">
+                Liebigstraße
+              </span>
+            </h3>
+            <div className="grid grid-cols-[5rem_minmax(0,1fr)] gap-x-0 sm:gap-x-4 gap-y-0 text-white">
+              <span className="font-bold">Montag</span>
+              <span>18–19 Uhr</span>
+              <span className="font-bold">Mittwoch</span>
+              <span>18–19 Uhr</span>
+            </div>
+          </div>
+          <hr className="border-t border-tch-blue-semi" />
+          <div>
+            <h3 className="text-lg font-bold uppercase mb-1">
+              Winter{" "}
+              <span className="text-tch-blue-semi ml-1 text-sm">
+                Tennishalle
+              </span>
+            </h3>
+            <div className=" text-white">
+              <span className="font-bold">in Planung...</span>
+              {/* <span></span> */}
+            </div>
+          </div>
+        </div>
         <div className="flex flex-col gap-6">
           <h2>
             Kostenloses Tennistraining für Erwachsene: <br /> Der TC Holzminden
